@@ -1331,6 +1331,158 @@ export default function HomePage() {
             </div>
           </div>
 
+          {/* Exemple d'Avis d'Intervention - Email */}
+          <div className="mt-12">
+            <h3 className="text-2xl font-bold text-center mb-8">
+              <span className="text-[#2dd4bf]">✉️</span> Exemple d'Avis d'Intervention envoyé au client
+            </h3>
+            <div className="max-w-2xl mx-auto">
+              <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                {/* Email Header */}
+                <div className="bg-slate-100 px-6 py-4 border-b">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-full flex items-center justify-center">
+                        <span className="text-white font-bold text-sm">AC</span>
+                      </div>
+                      <div>
+                        <div className="font-semibold text-slate-800">ACME Inspection</div>
+                        <div className="text-xs text-slate-500">noreply@acme-inspection.fr</div>
+                      </div>
+                    </div>
+                    <div className="text-xs text-slate-400">11 déc. 2025, 14:32</div>
+                  </div>
+                  <div className="space-y-1 text-sm">
+                    <div className="flex items-center gap-2">
+                      <span className="text-slate-500 w-8">À :</span>
+                      <span className="text-slate-700">contact@cabinet-dentaire-martin.fr</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-slate-500 w-8">Objet :</span>
+                      <span className="font-medium text-slate-800">📅 Avis d'intervention - CQA Rétro-alvéolaire - 15/12/2025</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Email Body */}
+                <div className="p-6">
+                  {/* Logo Header */}
+                  <div className="text-center mb-6 pb-6 border-b">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-lg">
+                      <span className="text-white font-bold text-lg">ACME Inspection</span>
+                    </div>
+                    <p className="text-sm text-slate-500 mt-2">Contrôle Qualité des Équipements Médicaux</p>
+                  </div>
+
+                  {/* Content */}
+                  <div className="space-y-4 text-slate-700">
+                    <p>Bonjour,</p>
+                    
+                    <p>Nous vous informons qu'une intervention de contrôle qualité est programmée dans votre établissement :</p>
+
+                    {/* Intervention Details Box */}
+                    <div className="bg-gradient-to-r from-teal-50 to-cyan-50 rounded-xl p-5 border border-teal-100">
+                      <div className="grid grid-cols-2 gap-4">
+                        <div>
+                          <div className="text-xs text-slate-500 uppercase tracking-wide">📅 Date</div>
+                          <div className="text-lg font-bold text-teal-700">Lundi 15 décembre 2025</div>
+                        </div>
+                        <div>
+                          <div className="text-xs text-slate-500 uppercase tracking-wide">⏰ Heure prévue</div>
+                          <div className="text-lg font-bold text-teal-700">09h00 - 11h00</div>
+                        </div>
+                        <div>
+                          <div className="text-xs text-slate-500 uppercase tracking-wide">🔧 Type d'intervention</div>
+                          <div className="font-semibold text-slate-800">CQA - Rétro-alvéolaire</div>
+                        </div>
+                        <div>
+                          <div className="text-xs text-slate-500 uppercase tracking-wide">👤 Technicien</div>
+                          <div className="font-semibold text-slate-800">Kévin DUPONT</div>
+                        </div>
+                      </div>
+                      <div className="mt-4 pt-4 border-t border-teal-200">
+                        <div className="text-xs text-slate-500 uppercase tracking-wide mb-1">🏢 Établissement</div>
+                        <div className="font-semibold text-slate-800">Cabinet Dentaire Dr MARTIN</div>
+                        <div className="text-sm text-slate-600">15 Rue de la Santé, 75013 Paris</div>
+                      </div>
+                      <div className="mt-4 pt-4 border-t border-teal-200">
+                        <div className="text-xs text-slate-500 uppercase tracking-wide mb-1">🔬 Équipement(s) concerné(s)</div>
+                        <div className="text-sm text-slate-700">
+                          • Trophy IRIX 70 (N° série: TRP-2024-0842)<br/>
+                          • Planmeca ProMax (N° série: PLM-2023-1156)
+                        </div>
+                      </div>
+                    </div>
+
+                    <p>Merci de bien vouloir confirmer votre disponibilité en cliquant sur le bouton ci-dessous :</p>
+
+                    {/* CTA Button */}
+                    <div className="text-center py-4">
+                      <button className="px-8 py-3 bg-gradient-to-r from-teal-500 to-cyan-500 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                        ✅ Confirmer ma disponibilité
+                      </button>
+                    </div>
+
+                    <p className="text-sm text-slate-500">
+                      Si cette date ne vous convient pas, merci de nous contacter au plus vite au 
+                      <span className="font-medium text-slate-700"> 01 23 45 67 89</span> ou par email à 
+                      <span className="font-medium text-slate-700"> planning@acme-inspection.fr</span>
+                    </p>
+
+                    {/* Reminder Box */}
+                    <div className="bg-amber-50 rounded-lg p-4 border border-amber-200">
+                      <div className="flex items-start gap-3">
+                        <span className="text-xl">💡</span>
+                        <div className="text-sm">
+                          <div className="font-semibold text-amber-800">Rappel important</div>
+                          <p className="text-amber-700">
+                            Pour le bon déroulement du contrôle, merci de vous assurer que les équipements 
+                            sont accessibles et en état de fonctionnement. Prévoyez environ 1h30 pour l'ensemble des contrôles.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <p>Cordialement,</p>
+                    <div className="mt-4">
+                      <div className="font-semibold text-slate-800">L'équipe ACME Inspection</div>
+                      <div className="text-sm text-slate-500">Service Planification</div>
+                    </div>
+                  </div>
+
+                  {/* Footer */}
+                  <div className="mt-8 pt-6 border-t text-center">
+                    <div className="text-xs text-slate-400">
+                      <p>ACME Inspection SARL - 123 Avenue des Contrôles, 75001 Paris</p>
+                      <p>Tél: 01 23 45 67 89 | Email: contact@acme-inspection.fr</p>
+                      <p className="mt-2">
+                        <a href="#" className="text-teal-600 hover:underline">Voir dans le Portail Client</a>
+                        <span className="mx-2">|</span>
+                        <a href="#" className="text-slate-500 hover:underline">Se désinscrire</a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Status indicator */}
+              <div className="mt-4 flex items-center justify-center gap-6 text-sm">
+                <div className="flex items-center gap-2">
+                  <span className="w-3 h-3 bg-green-500 rounded-full"></span>
+                  <span className="text-white/70">Envoyé le 11/12/2025 à 14:32</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-3 h-3 bg-blue-500 rounded-full"></span>
+                  <span className="text-white/70">Ouvert le 11/12/2025 à 15:08</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-3 h-3 bg-teal-500 rounded-full animate-pulse"></span>
+                  <span className="text-white/70">Confirmé le 11/12/2025 à 15:12</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Mockup Portail Client */}
           <div className="mt-12 grid md:grid-cols-2 gap-8">
             <div className="p-8 bg-gradient-to-br from-[#2dd4bf]/10 to-transparent rounded-2xl border border-[#2dd4bf]/20">
