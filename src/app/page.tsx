@@ -1,38 +1,13 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import { 
   Shield, Users, Zap, BarChart3, FileText, Calendar, 
   CheckCircle, ArrowRight, Menu, X, Mail, Phone, MapPin,
   Monitor, Smartphone, Cloud, Lock, Headphones, TrendingUp,
   Building2, Wrench, ClipboardCheck, Euro, Play, ChevronDown, Loader2, RefreshCw,
-  ChevronRight, Sparkles, Target, Clock, PieChart, Navigation, UserCheck, Settings
+  ChevronRight, Sparkles, Target, Clock, PieChart, Compass, UserCheck, Settings
 } from 'lucide-react';
-
-// Hook pour animation au scroll
-function useInView(threshold = 0.1) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [isInView, setIsInView] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true);
-        }
-      },
-      { threshold }
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => observer.disconnect();
-  }, [threshold]);
-
-  return { ref, isInView };
-}
 
 export default function HomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -535,7 +510,7 @@ export default function HomePage() {
                   </h3>
                   <div className="space-y-4">
                     {[
-                      { icon: Navigation, title: 'Optimisation GPS', desc: 'Réduisez les km parcourus avec nos algorithmes intelligents' },
+                      { icon: Compass, title: 'Optimisation GPS', desc: 'Réduisez les km parcourus avec nos algorithmes intelligents' },
                       { icon: Calendar, title: 'Planning drag & drop', desc: 'Planifiez en glissant-déposant, visualisez les conflits' },
                       { icon: Mail, title: 'Avis automatiques', desc: 'Envoi automatique aux clients, confirmations en 1 clic' },
                       { icon: Smartphone, title: 'App mobile', desc: 'Vos techniciens reçoivent leur feuille de route en temps réel' },
