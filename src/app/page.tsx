@@ -74,7 +74,7 @@ export default function HomePage() {
               <img 
                 src="/logo-text.png" 
                 alt="LEOVA Systems" 
-                className="h-14 w-auto hidden md:block"
+                className="h-14 w-auto hidden md:block translate-y-1"
               />
             </div>
 
@@ -691,5 +691,6 @@ export default function HomePage() {
     </div>
   );
 }
+
 
 
