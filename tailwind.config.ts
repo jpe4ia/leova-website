@@ -9,22 +9,18 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Palette LEOVA Systems - basée sur le logo officiel
         leova: {
-          50: '#f0fdfa',
-          100: '#ccfbf1',
-          200: '#99f6e4',
-          300: '#5eead4',
-          400: '#2dd4bf',
-          500: '#14b8a6',
-          600: '#0d9488',
-          700: '#0f766e',
-          800: '#115e59',
-          900: '#134e4a',
+          dark: '#0f2a2a',      // Fond très sombre
+          base: '#1a3d3d',      // Fond principal
+          accent: '#2dd4bf',    // Turquoise accent (jaguar)
+          light: '#5eead4',     // Turquoise clair
+          muted: '#4a7c7c',     // Gris-vert pour texte secondaire
         }
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
-        display: ['var(--font-cal)', 'system-ui', 'sans-serif'],
+        display: ['var(--font-space)', 'system-ui', 'sans-serif'],
       },
     },
   },
