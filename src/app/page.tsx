@@ -260,7 +260,7 @@ export default function HomePage() {
                     backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
                     backgroundSize: '32px 32px'
                   }}></div>
-                </div>
+                      </div>
                 
                 <div className="relative z-10 text-center space-y-6">
                   {/* Titre LISA avec gradient */}
@@ -278,25 +278,25 @@ export default function HomePage() {
                     <div className="flex items-center gap-4">
                       <div className="w-10 h-10 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg">
                         <FileText className="w-5 h-5 text-white" />
-                      </div>
+                    </div>
                       <span className="text-white/90">Gestion des interventions et rapports</span>
                     </div>
                     <div className="flex items-center gap-4">
                       <div className="w-10 h-10 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl flex items-center justify-center shadow-lg">
                         <CheckCircle className="w-5 h-5 text-white" />
-                      </div>
+                  </div>
                       <span className="text-white/90">Suivi qualité et non-conformités</span>
                     </div>
                     <div className="flex items-center gap-4">
                       <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-xl flex items-center justify-center shadow-lg">
                         <Building2 className="w-5 h-5 text-white" />
-                      </div>
+                    </div>
                       <span className="text-white/90">Base clients et équipements</span>
                     </div>
                     <div className="flex items-center gap-4">
                       <div className="w-10 h-10 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-xl flex items-center justify-center shadow-lg">
                         <Calendar className="w-5 h-5 text-white" />
-                      </div>
+                  </div>
                       <span className="text-white/90">Planification et facturation</span>
                     </div>
                   </div>
@@ -788,8 +788,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Section Galerie détaillée */}
-      <section className="py-24 bg-[#0f2a2a]">
+      {/* Les mockups détaillés sont maintenant dans les tabs interactifs ci-dessus */}
+
+      {/* Section supprimée - mockups intégrés dans les tabs */}
+      <section className="hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-2xl md:text-4xl font-bold mb-4">
@@ -2412,8 +2414,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Section Administration - Mockups complets */}
-      <section className="py-24 bg-[#0a1f1f]">
+      {/* Section Administration - Mockups déplacés dans Tab 5 */}
+      </section><section className="hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-2xl md:text-4xl font-bold mb-4">
