@@ -1,12 +1,38 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { 
   Shield, Users, Zap, BarChart3, FileText, Calendar, 
   CheckCircle, ArrowRight, Menu, X, Mail, Phone, MapPin,
   Monitor, Smartphone, Cloud, Lock, Headphones, TrendingUp,
-  Building2, Wrench, ClipboardCheck, Euro, Play, ChevronDown, Loader2, RefreshCw
+  Building2, Wrench, ClipboardCheck, Euro, Play, ChevronDown, Loader2, RefreshCw,
+  ChevronRight, Sparkles, Target, Clock, PieChart, Route, UserCheck, Settings
 } from 'lucide-react';
+
+// Hook pour animation au scroll
+function useInView(threshold = 0.1) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [isInView, setIsInView] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+        }
+      },
+      { threshold }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, [threshold]);
+
+  return { ref, isInView };
+}
 
 export default function HomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -15,6 +41,7 @@ export default function HomePage() {
   const [showSubscribeModal, setShowSubscribeModal] = useState<string | null>(null);
   const [subscribeEmail, setSubscribeEmail] = useState('');
   const [subscribeCompany, setSubscribeCompany] = useState('');
+  const [activeFeature, setActiveFeature] = useState<number>(0);
 
   // Gérer la souscription Stripe
   const handleSubscribe = async (plan: 'starter' | 'pro') => {
@@ -323,17 +350,453 @@ export default function HomePage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
 
-          {/* Galerie des modules LISA - Style clair comme la vraie app */}
-          <div className="mt-20 mb-16">
-            <h3 className="text-3xl font-bold text-center mb-4">
-              Découvrez les <span className="bg-gradient-to-r from-teal-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">modules LISA</span>
-            </h3>
-            <p className="text-white/50 text-center mb-12 max-w-2xl mx-auto">
-              Une interface claire et intuitive, conçue pour les professionnels de l'inspection
+      {/* Section Fonctionnalités Détaillées - Interactive */}
+      <section className="py-24 bg-gradient-to-b from-[#0a1f1f] to-[#0f2a2a]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-4xl font-bold mb-4">
+              Découvrez <span className="bg-gradient-to-r from-teal-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">LISA</span> en détail
+            </h2>
+            <p className="text-white/60 text-lg max-w-2xl mx-auto">
+              Cliquez sur une fonctionnalité pour explorer ses points forts
             </p>
+          </div>
+
+          {/* Navigation Tabs */}
+          <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-12">
+            {[
+              { id: 0, name: 'Tableau de bord', icon: '📊', color: 'from-blue-500 to-cyan-500' },
+              { id: 1, name: 'Commercial', icon: '💼', color: 'from-green-500 to-emerald-500' },
+              { id: 2, name: 'Planification', icon: '📅', color: 'from-purple-500 to-indigo-500' },
+              { id: 3, name: 'Suivi terrain', icon: '🗺️', color: 'from-orange-500 to-amber-500' },
+              { id: 4, name: 'Clients', icon: '🏢', color: 'from-pink-500 to-rose-500' },
+              { id: 5, name: 'Administration', icon: '⚙️', color: 'from-slate-500 to-zinc-500' },
+            ].map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveFeature(tab.id)}
+                className={`px-4 md:px-6 py-3 rounded-xl font-medium transition-all duration-300 flex items-center gap-2 text-sm md:text-base ${
+                  activeFeature === tab.id
+                    ? `bg-gradient-to-r ${tab.color} text-white shadow-lg scale-105`
+                    : 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white'
+                }`}
+              >
+                <span>{tab.icon}</span>
+                <span className="hidden sm:inline">{tab.name}</span>
+              </button>
+            ))}
+          </div>
+
+          {/* Contenu dynamique par fonctionnalité */}
+          <div className="relative">
             
-            <div className="grid md:grid-cols-2 gap-8">
+            {/* Tab 0: Tableau de bord */}
+            <div className={`transition-all duration-500 ${activeFeature === 0 ? 'opacity-100' : 'opacity-0 absolute inset-0 pointer-events-none'}`}>
+              <div className="grid lg:grid-cols-2 gap-8 items-center">
+                {/* Points forts */}
+                <div className="order-2 lg:order-1">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/20 text-blue-400 rounded-full text-sm mb-6">
+                    <Sparkles className="w-4 h-4" />
+                    Points forts
+                  </div>
+                  <h3 className="text-2xl md:text-3xl font-bold mb-6">
+                    Pilotez votre activité en <span className="text-[#2dd4bf]">temps réel</span>
+                  </h3>
+                  <div className="space-y-4">
+                    {[
+                      { icon: Target, title: 'Vision 360°', desc: 'Tous vos KPIs financiers et opérationnels sur un seul écran' },
+                      { icon: TrendingUp, title: 'Analyses prédictives', desc: 'Anticipez votre CA, détectez les tendances et les risques' },
+                      { icon: Clock, title: 'Temps réel', desc: 'Données actualisées en permanence, alertes instantanées' },
+                      { icon: PieChart, title: 'Rapports automatiques', desc: 'Exports Excel, PDF, envoi automatique par email' },
+                    ].map((point, i) => (
+                      <div key={i} className="flex items-start gap-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors">
+                        <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center shrink-0">
+                          <point.icon className="w-5 h-5 text-white" />
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-white mb-1">{point.title}</h4>
+                          <p className="text-white/50 text-sm">{point.desc}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                {/* Mockup */}
+                <div className="order-1 lg:order-2">
+                  <div className="bg-white rounded-2xl shadow-2xl overflow-hidden transform hover:scale-[1.02] transition-transform duration-300">
+                    <div className="bg-slate-900 px-4 py-3 flex items-center gap-2">
+                      <span className="text-lg font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
+                      <span className="text-white/50 text-xs">Tableau de bord</span>
+                    </div>
+                    <div className="p-5">
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+                        {[
+                          { label: 'CA du mois', value: '127 450 €', trend: '+12%', color: 'text-green-600' },
+                          { label: 'Interventions', value: '156', trend: '+8%', color: 'text-blue-600' },
+                          { label: 'Taux conformité', value: '94.2%', trend: '+2.1%', color: 'text-teal-600' },
+                          { label: 'Devis en attente', value: '23 400 €', trend: '', color: 'text-orange-600' },
+                        ].map((kpi, i) => (
+                          <div key={i} className="bg-slate-50 rounded-xl p-3 text-center">
+                            <div className="text-xs text-slate-500 mb-1">{kpi.label}</div>
+                            <div className={`text-lg font-bold ${kpi.color}`}>{kpi.value}</div>
+                            {kpi.trend && <div className="text-xs text-green-500">{kpi.trend}</div>}
+                          </div>
+                        ))}
+                      </div>
+                      <div className="h-32 bg-gradient-to-r from-blue-100 to-cyan-50 rounded-xl flex items-center justify-center">
+                        <span className="text-slate-400 text-sm">📈 Graphique évolution CA</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Tab 1: Commercial */}
+            <div className={`transition-all duration-500 ${activeFeature === 1 ? 'opacity-100' : 'opacity-0 absolute inset-0 pointer-events-none'}`}>
+              <div className="grid lg:grid-cols-2 gap-8 items-center">
+                <div className="order-2 lg:order-1">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/20 text-green-400 rounded-full text-sm mb-6">
+                    <Sparkles className="w-4 h-4" />
+                    Points forts
+                  </div>
+                  <h3 className="text-2xl md:text-3xl font-bold mb-6">
+                    Boostez vos <span className="text-[#2dd4bf]">ventes</span>
+                  </h3>
+                  <div className="space-y-4">
+                    {[
+                      { icon: Users, title: 'Pipeline visuel', desc: 'Suivez chaque opportunité du premier contact à la signature' },
+                      { icon: FileText, title: 'Devis en 2 clics', desc: 'Modèles personnalisables, calcul automatique, envoi direct' },
+                      { icon: TrendingUp, title: 'Prévisions', desc: 'Estimez votre CA futur avec les probabilités de signature' },
+                      { icon: CheckCircle, title: 'Relances auto', desc: 'Ne perdez plus de prospects avec les rappels intelligents' },
+                    ].map((point, i) => (
+                      <div key={i} className="flex items-start gap-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors">
+                        <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-500 rounded-lg flex items-center justify-center shrink-0">
+                          <point.icon className="w-5 h-5 text-white" />
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-white mb-1">{point.title}</h4>
+                          <p className="text-white/50 text-sm">{point.desc}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="order-1 lg:order-2">
+                  <div className="bg-white rounded-2xl shadow-2xl overflow-hidden transform hover:scale-[1.02] transition-transform duration-300">
+                    <div className="bg-slate-900 px-4 py-3 flex items-center gap-2">
+                      <span className="text-lg font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
+                      <span className="text-white/50 text-xs">Commercial</span>
+                    </div>
+                    <div className="p-5">
+                      <div className="flex gap-2 mb-4">
+                        {['Prospects', 'Qualification', 'Proposition', 'Négociation', 'Gagné'].map((stage, i) => (
+                          <div key={i} className={`flex-1 text-center py-2 rounded text-xs font-medium ${i < 3 ? 'bg-green-100 text-green-700' : 'bg-slate-100 text-slate-500'}`}>
+                            {stage}
+                          </div>
+                        ))}
+                      </div>
+                      <div className="space-y-2">
+                        {[
+                          { name: 'CHU Lyon', amount: '45 000 €', prob: '80%', stage: 'Négociation' },
+                          { name: 'Clinique St-Jean', amount: '12 500 €', prob: '60%', stage: 'Proposition' },
+                        ].map((deal, i) => (
+                          <div key={i} className="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
+                            <div>
+                              <div className="font-medium text-slate-800 text-sm">{deal.name}</div>
+                              <div className="text-xs text-slate-500">{deal.stage}</div>
+                            </div>
+                            <div className="text-right">
+                              <div className="font-bold text-green-600">{deal.amount}</div>
+                              <div className="text-xs text-slate-400">{deal.prob} prob.</div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Tab 2: Planification */}
+            <div className={`transition-all duration-500 ${activeFeature === 2 ? 'opacity-100' : 'opacity-0 absolute inset-0 pointer-events-none'}`}>
+              <div className="grid lg:grid-cols-2 gap-8 items-center">
+                <div className="order-2 lg:order-1">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-500/20 text-purple-400 rounded-full text-sm mb-6">
+                    <Sparkles className="w-4 h-4" />
+                    Points forts
+                  </div>
+                  <h3 className="text-2xl md:text-3xl font-bold mb-6">
+                    Optimisez vos <span className="text-[#2dd4bf]">tournées</span>
+                  </h3>
+                  <div className="space-y-4">
+                    {[
+                      { icon: Route, title: 'Optimisation GPS', desc: 'Réduisez les km parcourus avec nos algorithmes intelligents' },
+                      { icon: Calendar, title: 'Planning drag & drop', desc: 'Planifiez en glissant-déposant, visualisez les conflits' },
+                      { icon: Mail, title: 'Avis automatiques', desc: 'Envoi automatique aux clients, confirmations en 1 clic' },
+                      { icon: Smartphone, title: 'App mobile', desc: 'Vos techniciens reçoivent leur feuille de route en temps réel' },
+                    ].map((point, i) => (
+                      <div key={i} className="flex items-start gap-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors">
+                        <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-lg flex items-center justify-center shrink-0">
+                          <point.icon className="w-5 h-5 text-white" />
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-white mb-1">{point.title}</h4>
+                          <p className="text-white/50 text-sm">{point.desc}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="order-1 lg:order-2">
+                  <div className="bg-white rounded-2xl shadow-2xl overflow-hidden transform hover:scale-[1.02] transition-transform duration-300">
+                    <div className="bg-slate-900 px-4 py-3 flex items-center gap-2">
+                      <span className="text-lg font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
+                      <span className="text-white/50 text-xs">Planification</span>
+                    </div>
+                    <div className="p-5">
+                      <div className="bg-purple-50 rounded-xl p-4 mb-4">
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="text-purple-600">🗓️</span>
+                          <span className="font-semibold text-purple-800">Semaine 3 - Thomas B.</span>
+                        </div>
+                        <div className="flex gap-1">
+                          {['L', 'M', 'M', 'J', 'V'].map((d, i) => (
+                            <div key={i} className={`flex-1 text-center py-2 rounded text-xs ${i < 4 ? 'bg-purple-200 text-purple-700' : 'bg-slate-200 text-slate-500'}`}>
+                              {d}<br/><span className="font-bold">{i < 4 ? '2-3' : '0'}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="text-xs text-slate-500 mb-2">Prochaine intervention :</div>
+                      <div className="p-3 border border-purple-200 rounded-lg bg-purple-50/50">
+                        <div className="font-medium text-slate-800">Centre Imagerie Lyon</div>
+                        <div className="text-xs text-purple-600">📍 Lyon 3 • ⏰ 09:00 • CQC Scanner</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Tab 3: Suivi terrain */}
+            <div className={`transition-all duration-500 ${activeFeature === 3 ? 'opacity-100' : 'opacity-0 absolute inset-0 pointer-events-none'}`}>
+              <div className="grid lg:grid-cols-2 gap-8 items-center">
+                <div className="order-2 lg:order-1">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-orange-500/20 text-orange-400 rounded-full text-sm mb-6">
+                    <Sparkles className="w-4 h-4" />
+                    Points forts
+                  </div>
+                  <h3 className="text-2xl md:text-3xl font-bold mb-6">
+                    Suivez vos <span className="text-[#2dd4bf]">techniciens</span> en direct
+                  </h3>
+                  <div className="space-y-4">
+                    {[
+                      { icon: MapPin, title: 'Géolocalisation', desc: 'Visualisez la position de chaque technicien en temps réel' },
+                      { icon: ClipboardCheck, title: 'Rapports mobiles', desc: 'Saisie terrain immédiate, photos, signatures électroniques' },
+                      { icon: RefreshCw, title: 'Synchro instantanée', desc: 'Les données remontent automatiquement dans LISA' },
+                      { icon: UserCheck, title: 'Validation workflow', desc: 'Circuit de validation configurable pour chaque rapport' },
+                    ].map((point, i) => (
+                      <div key={i} className="flex items-start gap-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors">
+                        <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-amber-500 rounded-lg flex items-center justify-center shrink-0">
+                          <point.icon className="w-5 h-5 text-white" />
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-white mb-1">{point.title}</h4>
+                          <p className="text-white/50 text-sm">{point.desc}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="order-1 lg:order-2">
+                  <div className="bg-white rounded-2xl shadow-2xl overflow-hidden transform hover:scale-[1.02] transition-transform duration-300">
+                    <div className="bg-slate-900 px-4 py-3 flex items-center gap-2">
+                      <span className="text-lg font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
+                      <span className="text-white/50 text-xs">Feuille de route</span>
+                    </div>
+                    <div className="p-5">
+                      <div className="bg-gradient-to-r from-orange-500 to-amber-500 text-white rounded-xl p-4 mb-4">
+                        <div className="text-sm opacity-80">Mardi 14 janvier</div>
+                        <div className="font-bold">Thomas BERNARD</div>
+                        <div className="flex gap-4 mt-2 text-xs">
+                          <span>📍 Lyon → Grenoble</span>
+                          <span>🚗 245 km</span>
+                          <span>⏱️ 3h15</span>
+                        </div>
+                      </div>
+                      <div className="space-y-2">
+                        {[
+                          { time: '09:30', client: 'Centre Imagerie Alpes', type: 'Scanner', status: '✅' },
+                          { time: '14:00', client: 'Clinique des Cèdres', type: 'Arceau', status: '🔄' },
+                        ].map((interv, i) => (
+                          <div key={i} className="flex items-center gap-3 p-2 border rounded-lg">
+                            <span className="text-lg">{interv.status}</span>
+                            <div className="flex-1">
+                              <div className="font-medium text-slate-800 text-sm">{interv.client}</div>
+                              <div className="text-xs text-slate-500">{interv.type}</div>
+                            </div>
+                            <span className="text-xs font-mono text-slate-600">{interv.time}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Tab 4: Clients */}
+            <div className={`transition-all duration-500 ${activeFeature === 4 ? 'opacity-100' : 'opacity-0 absolute inset-0 pointer-events-none'}`}>
+              <div className="grid lg:grid-cols-2 gap-8 items-center">
+                <div className="order-2 lg:order-1">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-pink-500/20 text-pink-400 rounded-full text-sm mb-6">
+                    <Sparkles className="w-4 h-4" />
+                    Points forts
+                  </div>
+                  <h3 className="text-2xl md:text-3xl font-bold mb-6">
+                    Fidélisez vos <span className="text-[#2dd4bf]">clients</span>
+                  </h3>
+                  <div className="space-y-4">
+                    {[
+                      { icon: Building2, title: 'Fiche client complète', desc: 'Toutes les infos : contacts, sites, équipements, historique' },
+                      { icon: FileText, title: 'Documents centralisés', desc: 'Contrats, devis, factures, rapports accessibles en 1 clic' },
+                      { icon: Monitor, title: 'Portail client', desc: 'Vos clients accèdent à leurs données en autonomie' },
+                      { icon: Lock, title: 'Droits d\'accès', desc: 'Contrôlez finement qui voit quoi dans le portail' },
+                    ].map((point, i) => (
+                      <div key={i} className="flex items-start gap-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors">
+                        <div className="w-10 h-10 bg-gradient-to-br from-pink-500 to-rose-500 rounded-lg flex items-center justify-center shrink-0">
+                          <point.icon className="w-5 h-5 text-white" />
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-white mb-1">{point.title}</h4>
+                          <p className="text-white/50 text-sm">{point.desc}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="order-1 lg:order-2">
+                  <div className="bg-white rounded-2xl shadow-2xl overflow-hidden transform hover:scale-[1.02] transition-transform duration-300">
+                    <div className="bg-slate-900 px-4 py-3 flex items-center gap-2">
+                      <span className="text-lg font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
+                      <span className="text-white/50 text-xs">Base clients</span>
+                    </div>
+                    <div className="p-5">
+                      <div className="flex gap-2 mb-4">
+                        <input className="flex-1 px-3 py-2 border rounded-lg text-sm" placeholder="🔍 Rechercher un client..." />
+                        <button className="px-4 py-2 bg-pink-500 text-white rounded-lg text-sm">+ Nouveau</button>
+                      </div>
+                      <div className="space-y-2">
+                        {[
+                          { name: 'CHU Grenoble', sites: 3, equip: 45, status: 'Premium' },
+                          { name: 'Clinique du Parc', sites: 1, equip: 12, status: 'Standard' },
+                          { name: 'Cabinet Dr Martin', sites: 1, equip: 4, status: 'Standard' },
+                        ].map((client, i) => (
+                          <div key={i} className="flex items-center gap-3 p-3 border rounded-lg hover:border-pink-300 transition-colors cursor-pointer">
+                            <div className="w-10 h-10 bg-gradient-to-br from-pink-100 to-rose-100 rounded-full flex items-center justify-center text-pink-600 font-bold text-sm">
+                              {client.name.split(' ').map(w => w[0]).slice(0, 2).join('')}
+                            </div>
+                            <div className="flex-1">
+                              <div className="font-medium text-slate-800">{client.name}</div>
+                              <div className="text-xs text-slate-500">{client.sites} site(s) • {client.equip} équipements</div>
+                            </div>
+                            <span className={`px-2 py-1 rounded text-xs ${client.status === 'Premium' ? 'bg-amber-100 text-amber-700' : 'bg-slate-100 text-slate-600'}`}>
+                              {client.status}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Tab 5: Administration */}
+            <div className={`transition-all duration-500 ${activeFeature === 5 ? 'opacity-100' : 'opacity-0 absolute inset-0 pointer-events-none'}`}>
+              <div className="grid lg:grid-cols-2 gap-8 items-center">
+                <div className="order-2 lg:order-1">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-slate-500/20 text-slate-400 rounded-full text-sm mb-6">
+                    <Sparkles className="w-4 h-4" />
+                    Points forts
+                  </div>
+                  <h3 className="text-2xl md:text-3xl font-bold mb-6">
+                    Configurez <span className="text-[#2dd4bf]">tout</span> selon vos besoins
+                  </h3>
+                  <div className="space-y-4">
+                    {[
+                      { icon: Users, title: 'Gestion des utilisateurs', desc: 'Créez des comptes, attribuez des rôles personnalisés' },
+                      { icon: Shield, title: 'Rôles sur-mesure', desc: 'Définissez précisément les droits de chaque profil' },
+                      { icon: FileText, title: 'Modèles de rapports', desc: 'Créez vos propres modèles avec les points de contrôle' },
+                      { icon: Settings, title: 'Paramètres avancés', desc: 'Intégrations, webhooks, synchronisation automatique' },
+                    ].map((point, i) => (
+                      <div key={i} className="flex items-start gap-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors">
+                        <div className="w-10 h-10 bg-gradient-to-br from-slate-500 to-zinc-500 rounded-lg flex items-center justify-center shrink-0">
+                          <point.icon className="w-5 h-5 text-white" />
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-white mb-1">{point.title}</h4>
+                          <p className="text-white/50 text-sm">{point.desc}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="order-1 lg:order-2">
+                  <div className="bg-white rounded-2xl shadow-2xl overflow-hidden transform hover:scale-[1.02] transition-transform duration-300">
+                    <div className="bg-slate-900 px-4 py-3 flex items-center gap-2">
+                      <span className="text-lg font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
+                      <span className="text-white/50 text-xs">Administration</span>
+                    </div>
+                    <div className="p-5">
+                      <div className="grid grid-cols-2 gap-3 mb-4">
+                        {[
+                          { icon: '👥', label: 'Utilisateurs', count: '12' },
+                          { icon: '🛡️', label: 'Rôles', count: '5' },
+                          { icon: '📄', label: 'Modèles', count: '8' },
+                          { icon: '🔄', label: 'Synchros', count: '3' },
+                        ].map((item, i) => (
+                          <div key={i} className="p-3 bg-slate-50 rounded-xl text-center hover:bg-slate-100 transition-colors cursor-pointer">
+                            <span className="text-2xl">{item.icon}</span>
+                            <div className="text-xs text-slate-500 mt-1">{item.label}</div>
+                            <div className="font-bold text-slate-800">{item.count}</div>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="p-3 bg-green-50 border border-green-200 rounded-lg flex items-center gap-3">
+                        <span className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></span>
+                        <div className="text-sm text-green-700">
+                          <span className="font-medium">Synchroteam</span> - Connecté
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* Section Galerie détaillée - avec scroll animations */}
+      <section className="py-24 bg-[#0f2a2a]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-2xl md:text-4xl font-bold mb-4">
+              Aperçu des <span className="text-[#2dd4bf]">modules</span> en détail
+            </h2>
+            <p className="text-white/60 text-lg">
+              Des interfaces pensées pour le terrain
+            </p>
+          </div>
+            
+          <div className="grid md:grid-cols-2 gap-8">
               
               {/* Module 1: Dashboard Financier - ENRICHI */}
               <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
