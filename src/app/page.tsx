@@ -1,11 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { 
   Shield, Users, Zap, BarChart3, FileText, Calendar, 
   CheckCircle, ArrowRight, Menu, X, Mail, Phone, MapPin,
   Monitor, Smartphone, Cloud, Lock, Headphones, TrendingUp,
-  Building2, Wrench, ClipboardCheck, Euro, Play, ChevronDown, Loader2, RefreshCw
+  Building2, Wrench, ClipboardCheck, Euro, Play, ChevronDown, Loader2, RefreshCw,
+  ChevronLeft, ChevronRight
 } from 'lucide-react';
 
 export default function HomePage() {
@@ -16,6 +17,25 @@ export default function HomePage() {
   const [subscribeEmail, setSubscribeEmail] = useState('');
   const [subscribeCompany, setSubscribeCompany] = useState('');
   const [activeFeature, setActiveFeature] = useState(0);
+  const [carouselIndex, setCarouselIndex] = useState(0);
+  const [isHovering, setIsHovering] = useState(false);
+
+  // Nombre de mockups par tab
+  const mockupsCount = [2, 2, 3, 3, 2, 8];
+
+  // Auto-scroll carousel toutes les 2 secondes
+  useEffect(() => {
+    if (isHovering) return;
+    const interval = setInterval(() => {
+      setCarouselIndex(prev => (prev + 1) % mockupsCount[activeFeature]);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [activeFeature, isHovering]);
+
+  // Reset carousel quand on change de tab
+  useEffect(() => {
+    setCarouselIndex(0);
+  }, [activeFeature]);
 
   // Gérer la souscription Stripe
   const handleSubscribe = async (plan: 'starter' | 'pro') => {
@@ -240,7 +260,7 @@ export default function HomePage() {
                     backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
                     backgroundSize: '32px 32px'
                   }}></div>
-                </div>
+                      </div>
                 
                 <div className="relative z-10 text-center space-y-6">
                   {/* Titre LISA avec gradient */}
@@ -258,25 +278,25 @@ export default function HomePage() {
                     <div className="flex items-center gap-4">
                       <div className="w-10 h-10 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg">
                         <FileText className="w-5 h-5 text-white" />
-                      </div>
+                    </div>
                       <span className="text-white/90">Gestion des interventions et rapports</span>
                     </div>
                     <div className="flex items-center gap-4">
                       <div className="w-10 h-10 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl flex items-center justify-center shadow-lg">
                         <CheckCircle className="w-5 h-5 text-white" />
-                      </div>
+                  </div>
                       <span className="text-white/90">Suivi qualité et non-conformités</span>
                     </div>
                     <div className="flex items-center gap-4">
                       <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-xl flex items-center justify-center shadow-lg">
                         <Building2 className="w-5 h-5 text-white" />
-                      </div>
+                    </div>
                       <span className="text-white/90">Base clients et équipements</span>
                     </div>
                     <div className="flex items-center gap-4">
                       <div className="w-10 h-10 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-xl flex items-center justify-center shadow-lg">
                         <Calendar className="w-5 h-5 text-white" />
-                      </div>
+                  </div>
                       <span className="text-white/90">Planification et facturation</span>
                     </div>
                   </div>
@@ -396,37 +416,133 @@ export default function HomePage() {
                     ))}
                   </div>
                 </div>
-                <div className="order-1 lg:order-2">
-                  <div className="bg-white rounded-2xl shadow-2xl overflow-hidden transform hover:scale-[1.02] transition-transform">
-                    <div className="bg-slate-900 px-4 py-3 flex items-center gap-2">
-                      <span className="text-lg font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
-                      <span className="text-white/50 text-xs">Tableau de bord</span>
-                    </div>
-                    <div className="p-5">
-                      <div className="grid grid-cols-2 gap-3 mb-4">
-                        <div className="bg-slate-50 rounded-xl p-3 text-center">
-                          <div className="text-xs text-slate-500">CA du mois</div>
-                          <div className="text-lg font-bold text-green-600">127 450 €</div>
-                          <div className="text-xs text-green-500">+12%</div>
+                {/* Carousel Mockups Tab 0 */}
+                <div 
+                  className="order-1 lg:order-2 relative"
+                  onMouseEnter={() => setIsHovering(true)}
+                  onMouseLeave={() => setIsHovering(false)}
+                >
+                  {/* Navigation */}
+                  <button onClick={() => setCarouselIndex(prev => prev > 0 ? prev - 1 : 1)} className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-10 h-10 bg-white/20 backdrop-blur rounded-full flex items-center justify-center text-white hover:bg-white/30">
+                    <ChevronLeft className="w-5 h-5" />
+                  </button>
+                  <button onClick={() => setCarouselIndex(prev => prev < 1 ? prev + 1 : 0)} className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-10 h-10 bg-white/20 backdrop-blur rounded-full flex items-center justify-center text-white hover:bg-white/30">
+                    <ChevronRight className="w-5 h-5" />
+                  </button>
+                  
+                  {/* Mockup 0: Dashboard Financier */}
+                  {carouselIndex === 0 && (
+                    <div className="bg-white rounded-2xl shadow-2xl overflow-hidden animate-fade-in">
+                      <div className="bg-slate-900 px-4 py-3 flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <span className="text-lg font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
+                          <span className="text-white/40 text-xs">Dashboard Financier</span>
                         </div>
-                        <div className="bg-slate-50 rounded-xl p-3 text-center">
-                          <div className="text-xs text-slate-500">Interventions</div>
-                          <div className="text-lg font-bold text-blue-600">156</div>
-                          <div className="text-xs text-green-500">+8%</div>
-                        </div>
-                        <div className="bg-slate-50 rounded-xl p-3 text-center">
-                          <div className="text-xs text-slate-500">Taux conformité</div>
-                          <div className="text-lg font-bold text-teal-600">94.2%</div>
-                        </div>
-                        <div className="bg-slate-50 rounded-xl p-3 text-center">
-                          <div className="text-xs text-slate-500">Devis en attente</div>
-                          <div className="text-lg font-bold text-orange-600">23 400 €</div>
+                        <div className="px-2 py-1 bg-teal-500 text-white text-[10px] rounded flex items-center gap-1">
+                          <RefreshCw className="w-3 h-3" /> Actualiser
                         </div>
                       </div>
-                      <div className="h-24 bg-gradient-to-r from-blue-100 to-cyan-50 rounded-xl flex items-center justify-center">
-                        <span className="text-slate-400 text-sm">📈 Graphique évolution CA</span>
+                      <div className="p-4">
+                        <div className="flex items-center gap-2 mb-3">
+                          <span className="w-6 h-6 bg-green-100 rounded flex items-center justify-center text-green-600 text-sm">💰</span>
+                          <span className="font-semibold text-slate-700 text-sm">Chiffre d'Affaires</span>
+                        </div>
+                        <div className="grid grid-cols-2 gap-2 mb-3">
+                          <div className="bg-slate-50 rounded-lg p-2 border">
+                            <div className="flex justify-between items-center mb-1">
+                              <span className="text-[9px] text-slate-500">CA 2025</span>
+                              <span className="text-[8px] text-green-500">↗ 18.3%</span>
+                            </div>
+                            <div className="text-lg font-bold text-slate-800">1 811 081 €</div>
+                            <div className="w-full bg-slate-200 rounded-full h-1 mt-1">
+                              <div className="bg-green-500 h-1 rounded-full" style={{width: '91%'}}></div>
+                            </div>
+                          </div>
+                          <div className="bg-slate-50 rounded-lg p-2 border">
+                            <div className="text-[9px] text-slate-500 mb-1">CA 2024</div>
+                            <div className="text-lg font-bold text-slate-800">1 530 861 €</div>
+                            <div className="w-full bg-slate-200 rounded-full h-1 mt-1">
+                              <div className="bg-blue-400 h-1 rounded-full" style={{width: '85%'}}></div>
+                            </div>
+                          </div>
+                          <div className="bg-slate-50 rounded-lg p-2 border">
+                            <div className="text-[9px] text-slate-500 mb-1">Croissance</div>
+                            <div className="text-2xl font-bold text-green-600">+18.3%</div>
+                          </div>
+                          <div className="bg-slate-50 rounded-lg p-2 border">
+                            <div className="text-[9px] text-slate-500 mb-1">Budget 2025</div>
+                            <div className="text-lg font-bold text-slate-800">1 978 147 €</div>
+                          </div>
+                        </div>
+                        <div className="bg-slate-50 rounded-lg p-3 border">
+                          <div className="text-xs font-medium text-slate-700 mb-2">CA 2024 vs 2025</div>
+                          <div className="flex items-end justify-between h-16 gap-1">
+                            {[{a:95,b:85},{a:145,b:120},{a:180,b:155},{a:220,b:195},{a:285,b:240},{a:350,b:295}].map((d,i)=>(
+                              <div key={i} className="flex-1 flex gap-0.5 items-end justify-center h-full">
+                                <div className="w-2 bg-teal-400 rounded-t" style={{height:`${d.a/4}px`}}></div>
+                                <div className="w-2 bg-slate-300 rounded-t" style={{height:`${d.b/4}px`}}></div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
                       </div>
                     </div>
+                  )}
+                  
+                  {/* Mockup 1: Dashboard Commercial */}
+                  {carouselIndex === 1 && (
+                    <div className="bg-white rounded-2xl shadow-2xl overflow-hidden animate-fade-in">
+                      <div className="bg-slate-900 px-4 py-3 flex items-center gap-2">
+                        <span className="text-lg font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
+                        <span className="text-white/40 text-xs">Dashboard Commercial</span>
+                      </div>
+                      <div className="p-4">
+                        <div className="flex items-center gap-2 mb-3">
+                          <span className="w-6 h-6 bg-blue-100 rounded flex items-center justify-center text-blue-600 text-sm">📊</span>
+                          <span className="font-semibold text-slate-700 text-sm">Pipeline Commercial</span>
+                        </div>
+                        <div className="flex gap-1 mb-3">
+                          {['Prospect','Qualif.','Devis','Négo','Gagné'].map((s,i)=>(
+                            <div key={i} className={`flex-1 text-center py-1.5 rounded text-[10px] font-medium ${i<3?'bg-blue-100 text-blue-700':'bg-slate-100 text-slate-500'}`}>{s}</div>
+                          ))}
+                        </div>
+                        <div className="space-y-2 mb-3">
+                          {[{n:'CHU Lyon',m:'45 000 €',p:'80%',s:'Négociation'},{n:'Clinique St-Jean',m:'12 500 €',p:'60%',s:'Devis'},{n:'Centre Imagerie',m:'28 000 €',p:'40%',s:'Qualification'}].map((d,i)=>(
+                            <div key={i} className="p-2 bg-slate-50 rounded-lg border flex justify-between items-center">
+                              <div>
+                                <div className="font-medium text-slate-800 text-sm">{d.n}</div>
+                                <div className="text-[10px] text-slate-500">{d.s}</div>
+                              </div>
+                              <div className="text-right">
+                                <div className="font-bold text-green-600 text-sm">{d.m}</div>
+                                <div className="text-[10px] text-slate-400">{d.p} prob.</div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                        <div className="grid grid-cols-3 gap-2">
+                          <div className="bg-green-50 rounded-lg p-2 text-center border border-green-100">
+                            <div className="text-lg font-bold text-green-600">85 500 €</div>
+                            <div className="text-[9px] text-slate-500">Pipeline total</div>
+                          </div>
+                          <div className="bg-blue-50 rounded-lg p-2 text-center border border-blue-100">
+                            <div className="text-lg font-bold text-blue-600">12</div>
+                            <div className="text-[9px] text-slate-500">Opportunités</div>
+                          </div>
+                          <div className="bg-amber-50 rounded-lg p-2 text-center border border-amber-100">
+                            <div className="text-lg font-bold text-amber-600">58%</div>
+                            <div className="text-[9px] text-slate-500">Taux conversion</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                  
+                  {/* Indicateurs */}
+                  <div className="flex justify-center gap-2 mt-4">
+                    {[0,1].map(i => (
+                      <button key={i} onClick={() => setCarouselIndex(i)} className={`w-2 h-2 rounded-full transition-all ${carouselIndex === i ? 'bg-[#2dd4bf] w-6' : 'bg-white/30'}`} />
+                    ))}
                   </div>
                 </div>
               </div>
