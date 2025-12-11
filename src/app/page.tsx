@@ -2,6 +2,13 @@
 
 import { useState, useEffect } from 'react';
 import MockupFeuilleRoute from '@/components/mockups/MockupFeuilleRoute';
+import MockupAvisIntervention from '@/components/mockups/MockupAvisIntervention';
+import MockupAdminUtilisateurs from '@/components/mockups/MockupAdminUtilisateurs';
+import MockupAdminRoles from '@/components/mockups/MockupAdminRoles';
+import MockupAdminModeles from '@/components/mockups/MockupAdminModeles';
+import MockupAdminNC from '@/components/mockups/MockupAdminNC';
+import MockupAdminTemplates from '@/components/mockups/MockupAdminTemplates';
+import MockupAdminSync from '@/components/mockups/MockupAdminSync';
 import { 
   Shield, Users, Zap, BarChart3, FileText, Calendar, 
   CheckCircle, ArrowRight, Menu, X, Mail, Phone, MapPin,
@@ -1465,67 +1472,7 @@ export default function HomePage() {
               )}
 
               {/* Avis Intervention - Tab 3 index 1 */}
-              {activeFeature === 3 && mockupIndex === 1 && (
-              <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
-                <div className="flex">
-                  <div className="w-2 bg-gradient-to-b from-blue-500 via-teal-500 to-green-500"></div>
-                  <div className="flex-1">
-                    <div className="bg-white border-b px-6 py-4 flex items-center justify-between">
-                      <div>
-                        <h4 className="text-xl font-bold text-slate-800 flex items-center gap-2">📧 Suivi des Avis d'Intervention</h4>
-                        <p className="text-sm text-slate-500">Interventions de -30 jours à +60 jours</p>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <button className="px-4 py-2 bg-slate-100 text-slate-600 text-sm rounded-lg">📊 Tout afficher</button>
-                        <button className="px-4 py-2 bg-teal-500 text-white text-sm rounded-lg">✈️ Envoyer les avis</button>
-                      </div>
-                    </div>
-                    <div className="p-6">
-                      <div className="grid grid-cols-4 gap-3 mb-5">
-                        {[
-                          { label: 'Total', value: '131', color: 'text-slate-700', bg: 'bg-slate-50' },
-                          { label: 'Non envoyés', value: '115', color: 'text-orange-600', bg: 'bg-orange-50' },
-                          { label: 'Envoyés', value: '16', color: 'text-blue-600', bg: 'bg-blue-50' },
-                          { label: 'Confirmés', value: '11', color: 'text-green-600', bg: 'bg-green-50' },
-                        ].map((stat, i) => (
-                          <div key={i} className={`${stat.bg} rounded-lg p-3 text-center`}>
-                            <div className={`text-lg font-bold ${stat.color}`}>{stat.value}</div>
-                            <div className="text-[10px] text-slate-500">{stat.label}</div>
-                          </div>
-                        ))}
-                      </div>
-                      <table className="w-full text-[11px]">
-                        <thead className="bg-slate-50">
-                          <tr>
-                            <th className="text-left p-2">Date</th>
-                            <th className="text-left p-2">Client</th>
-                            <th className="text-left p-2">Type</th>
-                            <th className="text-center p-2">Statut</th>
-                            <th className="text-center p-2">Actions</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {[
-                            { date: '12/12/2025', client: 'Cabinet Martin', type: 'CQA Rétro', statut: 'Confirmé', color: 'bg-green-100 text-green-700' },
-                            { date: '13/12/2025', client: 'Centre Durand', type: 'CQC Scanner', statut: 'Envoyé', color: 'bg-blue-100 text-blue-700' },
-                            { date: '14/12/2025', client: 'Clinique St-Jean', type: 'CQE Mammo', statut: 'Non envoyé', color: 'bg-orange-100 text-orange-700' },
-                            { date: '15/12/2025', client: 'Dr Lefebvre', type: 'CQA Pano', statut: 'Non envoyé', color: 'bg-orange-100 text-orange-700' },
-                          ].map((row, i) => (
-                            <tr key={i} className="border-t hover:bg-slate-50">
-                              <td className="p-2">{row.date}</td>
-                              <td className="p-2 font-medium">{row.client}</td>
-                              <td className="p-2">{row.type}</td>
-                              <td className="p-2 text-center"><span className={`px-2 py-1 rounded-full text-[9px] ${row.color}`}>{row.statut}</span></td>
-                              <td className="p-2 text-center"><button className="px-2 py-1 bg-teal-500 text-white text-[9px] rounded">✈️ Avis</button></td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              )}
+              {activeFeature === 3 && mockupIndex === 1 && <MockupAvisIntervention />}
 
               {/* Base Client - Tab 1 index 1 */}
               {activeFeature === 1 && mockupIndex === 1 && (
@@ -1790,192 +1737,22 @@ export default function HomePage() {
 
               {/* TAB 4 - ADMINISTRATION */}
               {/* Utilisateurs - Tab 4 index 0 */}
-              {activeFeature === 4 && mockupIndex === 0 && (
-              <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
-                <div className="bg-slate-900 px-4 py-3 flex items-center justify-between">
-                  <span className="text-xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
-                  <span className="text-[10px] text-white/50">Administration</span>
-                </div>
-                <div className="p-5">
-                  <h4 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">👥 Gestion des Utilisateurs</h4>
-                  <table className="w-full text-[11px]">
-                    <thead className="bg-slate-50">
-                      <tr><th className="text-left p-2">Nom</th><th className="text-left p-2">Email</th><th className="text-left p-2">Rôle</th><th className="text-center p-2">Statut</th><th className="text-center p-2">Actions</th></tr>
-                    </thead>
-                    <tbody>
-                      {[
-                        { name: 'Jean DUPONT', email: 'j.dupont@exemple.fr', role: 'Administrateur', status: 'Actif', color: 'bg-purple-100 text-purple-700' },
-                        { name: 'Marie MARTIN', email: 'm.martin@exemple.fr', role: 'Technicien', status: 'Actif', color: 'bg-blue-100 text-blue-700' },
-                        { name: 'Pierre DURAND', email: 'p.durand@exemple.fr', role: 'Commercial', status: 'Actif', color: 'bg-green-100 text-green-700' },
-                        { name: 'Sophie LEROY', email: 's.leroy@exemple.fr', role: 'Assistante', status: 'Inactif', color: 'bg-orange-100 text-orange-700' },
-                      ].map((user, i) => (
-                        <tr key={i} className="border-t hover:bg-slate-50">
-                          <td className="p-2 font-medium">{user.name}</td>
-                          <td className="p-2 text-slate-500">{user.email}</td>
-                          <td className="p-2"><span className={`px-2 py-1 rounded-full text-[10px] ${user.color}`}>{user.role}</span></td>
-                          <td className="p-2 text-center"><span className={user.status === 'Actif' ? 'text-green-600' : 'text-slate-400'}>● {user.status}</span></td>
-                          <td className="p-2 text-center flex gap-1 justify-center">
-                            <button className="p-1 hover:bg-slate-100 rounded">✏️</button>
-                            <button className="p-1 hover:bg-slate-100 rounded">🔑</button>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              )}
+              {activeFeature === 4 && mockupIndex === 0 && <MockupAdminUtilisateurs />}
 
               {/* Rôles - Tab 4 index 1 */}
-              {activeFeature === 4 && mockupIndex === 1 && (
-              <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
-                <div className="bg-slate-900 px-4 py-3 flex items-center justify-between">
-                  <span className="text-xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
-                  <span className="text-[10px] text-white/50">Administration</span>
-                </div>
-                <div className="p-5">
-                  <h4 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">🛡️ Gestion des Rôles Personnalisés</h4>
-                  <div className="space-y-3">
-                    {[
-                      { name: 'Super Admin', desc: 'Accès complet', perms: 12, color: 'bg-purple-500' },
-                      { name: 'Responsable Commercial', desc: 'Gestion commerciale', perms: 8, color: 'bg-blue-500' },
-                      { name: 'Technicien Terrain', desc: 'Interventions', perms: 5, color: 'bg-teal-500' },
-                      { name: 'Assistante Administrative', desc: 'Facturation', perms: 6, color: 'bg-orange-500' },
-                    ].map((role, i) => (
-                      <div key={i} className="flex items-center gap-4 p-3 border rounded-lg hover:bg-slate-50">
-                        <div className={`w-3 h-3 ${role.color} rounded-full`}></div>
-                        <div className="flex-1">
-                          <div className="font-medium text-slate-800">{role.name}</div>
-                          <div className="text-[10px] text-slate-500">{role.desc}</div>
-                        </div>
-                        <div className="text-[10px] text-slate-400">{role.perms} permissions</div>
-                        <button className="text-slate-400 hover:text-slate-600">✏️</button>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-              )}
+              {activeFeature === 4 && mockupIndex === 1 && <MockupAdminRoles />}
 
               {/* Modèles Rapports - Tab 4 index 2 */}
-              {activeFeature === 4 && mockupIndex === 2 && (
-              <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
-                <div className="bg-slate-900 px-4 py-3 flex items-center justify-between">
-                  <span className="text-xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
-                  <span className="text-[10px] text-white/50">Administration</span>
-                </div>
-                <div className="p-5">
-                  <h4 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">📄 Modèles de Rapports</h4>
-                  <div className="grid grid-cols-2 gap-3">
-                    {[
-                      { name: 'CQA - Rétro-alvéolaire', type: 'Dentaire', count: 156, icon: '🦷' },
-                      { name: 'CQC - Scanner', type: 'Imagerie', count: 89, icon: '🔬' },
-                      { name: 'CQE - Mammographie', type: 'Imagerie', count: 67, icon: '📊' },
-                      { name: 'CQA - Panoramique', type: 'Dentaire', count: 134, icon: '🦷' },
-                    ].map((tpl, i) => (
-                      <div key={i} className="p-3 border rounded-lg hover:bg-slate-50 flex items-center gap-3">
-                        <span className="text-2xl">{tpl.icon}</span>
-                        <div className="flex-1">
-                          <div className="font-medium text-slate-800 text-sm">{tpl.name}</div>
-                          <div className="text-[10px] text-slate-500">{tpl.type} • {tpl.count} rapports</div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-              )}
+              {activeFeature === 4 && mockupIndex === 2 && <MockupAdminModeles />}
 
               {/* Non-conformités - Tab 4 index 3 */}
-              {activeFeature === 4 && mockupIndex === 3 && (
-              <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
-                <div className="bg-slate-900 px-4 py-3 flex items-center justify-between">
-                  <span className="text-xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
-                  <span className="text-[10px] text-white/50">Administration</span>
-                </div>
-                <div className="p-5">
-                  <h4 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">⚠️ Configuration Non-conformités</h4>
-                  <div className="space-y-3">
-                    {[
-                      { code: 'NC-DENT', name: 'NC Dentaire', desc: 'Équipements dentaires', count: 23, color: 'bg-red-500' },
-                      { code: 'NC-RADIO', name: 'NC Radiologie', desc: 'Imagerie médicale', count: 15, color: 'bg-orange-500' },
-                      { code: 'NC-BLOC', name: 'NC Bloc Opératoire', desc: 'Équipements bloc', count: 8, color: 'bg-yellow-500' },
-                    ].map((nc, i) => (
-                      <div key={i} className="flex items-center gap-4 p-3 border rounded-lg">
-                        <div className={`w-2 h-10 ${nc.color} rounded-full`}></div>
-                        <div className="flex-1">
-                          <div className="flex items-center gap-2">
-                            <span className="px-2 py-0.5 bg-slate-100 text-slate-600 text-[10px] rounded font-mono">{nc.code}</span>
-                            <span className="font-medium text-slate-800">{nc.name}</span>
-                          </div>
-                          <div className="text-[10px] text-slate-500">{nc.desc}</div>
-                        </div>
-                        <div className="text-lg font-bold text-slate-700">{nc.count}</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-              )}
+              {activeFeature === 4 && mockupIndex === 3 && <MockupAdminNC />}
 
               {/* Templates Avis - Tab 4 index 4 */}
-              {activeFeature === 4 && mockupIndex === 4 && (
-              <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
-                <div className="bg-slate-900 px-4 py-3 flex items-center justify-between">
-                  <span className="text-xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
-                  <span className="text-[10px] text-white/50">Administration</span>
-                </div>
-                <div className="p-5">
-                  <h4 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">📧 Templates Avis d'Intervention</h4>
-                  <div className="space-y-3">
-                    {[
-                      { name: 'Avis Standard', desc: 'Template par défaut', active: true },
-                      { name: 'Avis Urgent', desc: 'Intervention prioritaire', active: true },
-                      { name: 'Rappel Intervention', desc: 'J-3 avant intervention', active: false },
-                    ].map((tpl, i) => (
-                      <div key={i} className="flex items-center gap-4 p-3 border rounded-lg hover:bg-slate-50">
-                        <div className="flex-1">
-                          <div className="font-medium text-slate-800">{tpl.name}</div>
-                          <div className="text-[10px] text-slate-500">{tpl.desc}</div>
-                        </div>
-                        <div className={`w-9 h-5 rounded-full ${tpl.active ? 'bg-green-500' : 'bg-slate-300'}`}>
-                          <div className={`w-4 h-4 bg-white rounded-full shadow mt-0.5 transition-all ${tpl.active ? 'ml-4' : 'ml-0.5'}`}></div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-              )}
+              {activeFeature === 4 && mockupIndex === 4 && <MockupAdminTemplates />}
 
               {/* Intégrations - Tab 4 index 5 */}
-              {activeFeature === 4 && mockupIndex === 5 && (
-              <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
-                <div className="bg-slate-900 px-4 py-3 flex items-center justify-between">
-                  <span className="text-xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
-                  <span className="text-[10px] text-white/50">Administration</span>
-                </div>
-                <div className="p-5">
-                  <h4 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">🔗 Synchronisation & Intégrations</h4>
-                  <div className="space-y-3">
-                    {[
-                      { name: 'EBP Gestion Commerciale', desc: 'Facturation & clients', status: 'Connecté', color: 'text-green-600', icon: '💳' },
-                      { name: 'Google Sheets', desc: 'Export données', status: 'Configuré', color: 'text-blue-600', icon: '📊' },
-                      { name: 'Synchroteam', desc: 'Planning terrain', status: 'Actif', color: 'text-green-600', icon: '📅' },
-                    ].map((int, i) => (
-                      <div key={i} className="flex items-center gap-4 p-3 border rounded-lg hover:bg-slate-50">
-                        <span className="text-2xl">{int.icon}</span>
-                        <div className="flex-1">
-                          <div className="font-medium text-slate-800">{int.name}</div>
-                          <div className="text-[10px] text-slate-500">{int.desc}</div>
-                        </div>
-                        <span className={`text-sm font-medium ${int.color}`}>● {int.status}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-              )}
+              {activeFeature === 4 && mockupIndex === 5 && <MockupAdminSync />}
 
               {/* TAB 5 - PORTAIL CLIENT */}
               {/* Portail Client - Tab 5 index 0 */}
