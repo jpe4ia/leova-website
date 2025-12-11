@@ -335,356 +335,775 @@ export default function HomePage() {
             
             <div className="grid md:grid-cols-2 gap-8">
               
-              {/* Module 1: Dashboard Financier */}
+              {/* Module 1: Dashboard Financier - ENRICHI */}
               <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
                 {/* Header LISA */}
                 <div className="bg-slate-900 px-4 py-3 flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <span className="text-lg font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
-                    <span className="text-[10px] text-white/40">Logiciel métier</span>
+                  <div className="flex items-center gap-3">
+                    <span className="text-xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
+                    <span className="text-[10px] text-white/40 hidden sm:block">Logiciel métier Inspections et de Suivi des Activités</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <div className="px-3 py-1 bg-teal-500 text-white text-xs rounded-lg flex items-center gap-1">
+                    <span className="text-[10px] text-white/50">📅 Mise à jour: 11/12/2025 19:30</span>
+                    <div className="px-3 py-1.5 bg-teal-500 text-white text-xs rounded-lg flex items-center gap-1.5 hover:bg-teal-600 cursor-pointer">
                       <RefreshCw className="w-3 h-3" /> Actualiser
                     </div>
                   </div>
                 </div>
-                {/* Content */}
-                <div className="p-5">
-                  <h4 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
-                    <div className="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center">
-                      <Euro className="w-4 h-4 text-amber-600" />
+                {/* Sidebar + Content */}
+                <div className="flex">
+                  {/* Mini Sidebar */}
+                  <div className="w-40 bg-slate-50 border-r p-3 hidden sm:block">
+                    <div className="flex items-center gap-2 mb-4 pb-3 border-b">
+                      <div className="w-10 h-10 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-full flex items-center justify-center">
+                        <span className="text-white text-xs font-bold">PA</span>
+                      </div>
+                      <div>
+                        <div className="text-[10px] text-slate-400">Connecté :</div>
+                        <div className="text-xs font-medium text-slate-700">Admin PAQA</div>
+                      </div>
                     </div>
-                    Dashboard Financier
-                  </h4>
-                  {/* Stats cards */}
-                  <div className="grid grid-cols-4 gap-3 mb-4">
-                    <div className="bg-slate-50 rounded-xl p-3 text-center border border-slate-100">
-                      <div className="text-xs text-slate-500 mb-1">CA 2025</div>
-                      <div className="text-lg font-bold text-slate-800">1 245 K€</div>
-                      <div className="text-[10px] text-green-500 font-medium">↗ 18.3%</div>
-                    </div>
-                    <div className="bg-slate-50 rounded-xl p-3 text-center border border-slate-100">
-                      <div className="text-xs text-slate-500 mb-1">CA 2024</div>
-                      <div className="text-lg font-bold text-slate-800">1 052 K€</div>
-                      <div className="text-[10px] text-slate-400">Cumulé</div>
-                    </div>
-                    <div className="bg-slate-50 rounded-xl p-3 text-center border border-slate-100">
-                      <div className="text-xs text-slate-500 mb-1">Croissance</div>
-                      <div className="text-lg font-bold text-green-600">18.3%</div>
-                      <div className="text-[10px] text-green-500 font-medium">↗ vs N-1</div>
-                    </div>
-                    <div className="bg-slate-50 rounded-xl p-3 text-center border border-slate-100">
-                      <div className="text-xs text-slate-500 mb-1">Budget</div>
-                      <div className="text-lg font-bold text-slate-800">1 350 K€</div>
-                      <div className="text-[10px] text-slate-400">Objectif</div>
-                    </div>
-                  </div>
-                  {/* Chart */}
-                  <div className="bg-slate-50 rounded-xl p-4 border border-slate-100">
-                    <div className="text-sm font-medium text-slate-600 mb-3">Évolution CA 2024 vs 2025</div>
-                    <div className="flex items-end justify-between h-20 gap-1">
-                      {[30, 35, 32, 45, 42, 55, 48, 62, 58, 72, 68, 85].map((h, i) => (
-                        <div key={i} className="flex-1 flex flex-col gap-0.5">
-                          <div className="bg-teal-400 rounded-t" style={{ height: `${h}%` }}></div>
-                          <div className="bg-slate-300 rounded-t" style={{ height: `${h * 0.85}%` }}></div>
+                    <nav className="space-y-1">
+                      {[
+                        { icon: '💰', label: 'FINANCIER', active: true },
+                        { icon: '📊', label: 'COMMERCIAL', active: false },
+                        { icon: '🏦', label: 'TRÉSORERIE', active: false },
+                        { icon: '📅', label: 'PLANIFICATION', active: false },
+                        { icon: '📋', label: 'SUIVI ACTIVITÉ', active: false },
+                        { icon: '🗺️', label: 'FEUILLE ROUTE', active: false },
+                        { icon: '🏢', label: 'BASE CLIENT', active: false },
+                      ].map((item, i) => (
+                        <div key={i} className={`flex items-center gap-2 px-2 py-1.5 rounded-lg text-[10px] ${item.active ? 'bg-teal-500 text-white font-medium' : 'text-slate-600 hover:bg-slate-100'}`}>
+                          <span>{item.icon}</span>
+                          <span>{item.label}</span>
                         </div>
                       ))}
-                    </div>
-                    <div className="flex items-center justify-center gap-4 mt-2 text-[10px]">
-                      <span className="flex items-center gap-1"><span className="w-2 h-2 bg-teal-400 rounded"></span> CA 2025</span>
-                      <span className="flex items-center gap-1"><span className="w-2 h-2 bg-slate-300 rounded"></span> CA 2024</span>
-                    </div>
+                    </nav>
                   </div>
-                </div>
-              </div>
-
-              {/* Module 2: Dashboard Commercial */}
-              <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
-                {/* Header LISA */}
-                <div className="bg-slate-900 px-4 py-3 flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <span className="text-lg font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
-                    <span className="text-[10px] text-white/40">Logiciel métier</span>
-                  </div>
-                  <div className="px-3 py-1 bg-blue-500 text-white text-xs rounded-lg">Grille Tarifaire</div>
-                </div>
-                {/* Content */}
-                <div className="p-5">
-                  <h4 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
-                    <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
-                      <TrendingUp className="w-4 h-4 text-blue-600" />
+                  {/* Main Content */}
+                  <div className="flex-1 p-5">
+                    <div className="flex items-center justify-between mb-4">
+                      <h4 className="text-xl font-bold text-slate-800 flex items-center gap-2">
+                        <div className="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center">
+                          <span className="text-amber-600">💰</span>
+                        </div>
+                        Dashboard Financier
+                      </h4>
+                      <span className="text-xs text-slate-400">Mise à jour : Août 2025</span>
                     </div>
-                    Dashboard Commercial
-                  </h4>
-                  {/* Tabs */}
-                  <div className="flex gap-2 mb-4">
-                    <span className="px-3 py-1.5 bg-blue-100 text-blue-700 text-xs rounded-lg font-medium">Performances</span>
-                    <span className="px-3 py-1.5 text-slate-500 text-xs">Carte de France</span>
-                    <span className="px-3 py-1.5 text-slate-500 text-xs">Liste des Offres</span>
-                  </div>
-                  {/* Performance stats */}
-                  <div className="grid grid-cols-5 gap-2 mb-4">
-                    <div className="bg-slate-50 rounded-lg p-2 text-center border">
-                      <div className="text-xl font-bold text-blue-600">344</div>
-                      <div className="text-[9px] text-slate-500">OFFRES</div>
-                    </div>
-                    <div className="bg-slate-50 rounded-lg p-2 text-center border">
-                      <div className="text-xl font-bold text-green-600">234</div>
-                      <div className="text-[9px] text-slate-500">Conversions</div>
-                    </div>
-                    <div className="bg-slate-50 rounded-lg p-2 text-center border">
-                      <div className="text-xl font-bold text-teal-600">68%</div>
-                      <div className="text-[9px] text-slate-500">Taux</div>
-                    </div>
-                    <div className="bg-slate-50 rounded-lg p-2 text-center border">
-                      <div className="text-xl font-bold text-orange-600">5</div>
-                      <div className="text-[9px] text-slate-500">Captations</div>
-                    </div>
-                    <div className="bg-slate-50 rounded-lg p-2 text-center border">
-                      <div className="text-xl font-bold text-red-500">3</div>
-                      <div className="text-[9px] text-slate-500">Relances</div>
-                    </div>
-                  </div>
-                  {/* Objective bar */}
-                  <div className="bg-gradient-to-r from-slate-800 to-slate-700 rounded-xl p-4 text-white">
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="text-sm">🎯 CA Global Équipe</span>
-                      <span className="text-xl font-bold text-green-400">104.7%</span>
-                    </div>
-                    <div className="w-full bg-slate-600 rounded-full h-2 mb-2">
-                      <div className="bg-gradient-to-r from-yellow-400 to-green-400 h-2 rounded-full" style={{ width: '100%' }}></div>
-                    </div>
-                    <div className="text-[10px] text-green-400">🎉 Objectif dépassé ! +21 226 €</div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Module 3: Planification */}
-              <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
-                {/* Header LISA */}
-                <div className="bg-slate-900 px-4 py-3 flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <span className="text-lg font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
-                  </div>
-                  <div className="flex gap-2">
-                    <span className="px-2 py-1 bg-white/10 text-white text-[10px] rounded">Calendrier</span>
-                    <span className="px-2 py-1 text-white/50 text-[10px]">Carte</span>
-                    <span className="px-2 py-1 text-white/50 text-[10px]">Liste</span>
-                  </div>
-                </div>
-                <div className="p-5">
-                  <h4 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
-                    <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
-                      <Calendar className="w-4 h-4 text-purple-600" />
-                    </div>
-                    Planification des Interventions
-                  </h4>
-                  {/* Stats */}
-                  <div className="grid grid-cols-5 gap-2 mb-4">
-                    {[
-                      { label: "Aujourd'hui", value: '10', icon: '📅' },
-                      { label: 'Semaine', value: '120', icon: '📆' },
-                      { label: 'Planifiées', value: '472', icon: '⏳' },
-                      { label: 'Terminées', value: '85', icon: '✅' },
-                      { label: 'Total', value: '1000', icon: '🔧' },
-                    ].map((s, i) => (
-                      <div key={i} className="bg-slate-50 rounded-lg p-2 text-center border">
-                        <div className="text-[10px] text-slate-500">{s.label}</div>
-                        <div className="text-lg font-bold text-slate-800">{s.value}</div>
+                    
+                    {/* Section Chiffre d'Affaires */}
+                    <div className="mb-4">
+                      <div className="flex items-center gap-2 mb-3">
+                        <span className="w-6 h-6 bg-green-100 rounded flex items-center justify-center text-green-600 text-sm">$</span>
+                        <span className="font-semibold text-slate-700">Chiffre d'Affaires</span>
                       </div>
-                    ))}
-                  </div>
-                  {/* Calendar week view */}
-                  <div className="bg-slate-50 rounded-xl p-3 border">
-                    <div className="grid grid-cols-7 gap-1 text-center text-[10px] mb-2">
-                      {['lun. 8', 'mar. 9', 'mer. 10', 'jeu. 11', 'ven. 12', 'sam. 13', 'dim. 14'].map((d, i) => (
-                        <div key={i} className={`py-1 rounded ${i === 3 ? 'bg-teal-500 text-white font-bold' : 'text-slate-500'}`}>{d}</div>
-                      ))}
+                      <div className="grid grid-cols-4 gap-3">
+                        <div className="bg-slate-50 rounded-xl p-3 border border-slate-100">
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className="w-5 h-5 bg-green-100 rounded flex items-center justify-center text-[10px] text-green-600">$</span>
+                            <span className="text-[10px] text-slate-500">CA 2025 Cumulé</span>
+                            <span className="text-[9px] text-green-500 ml-auto">↗ 18.3%</span>
+                          </div>
+                          <div className="text-xl font-bold text-slate-800">1 811 081 €</div>
+                          <div className="flex items-center justify-between mt-2">
+                            <span className="text-[9px] text-slate-400">Budget</span>
+                            <span className="text-[9px] text-slate-600">1 978 147 €</span>
+                          </div>
+                          <div className="w-full bg-slate-200 rounded-full h-1.5 mt-1">
+                            <div className="bg-green-500 h-1.5 rounded-full" style={{ width: '91.5%' }}></div>
+                          </div>
+                        </div>
+                        <div className="bg-slate-50 rounded-xl p-3 border border-slate-100">
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className="w-5 h-5 bg-blue-100 rounded flex items-center justify-center text-[10px] text-blue-600">$</span>
+                            <span className="text-[10px] text-slate-500">CA 2024 Cumulé</span>
+                            <span className="text-[9px] text-slate-400 ml-auto">↗ 0.0%</span>
+                          </div>
+                          <div className="text-xl font-bold text-slate-800">1 530 861 €</div>
+                          <div className="flex items-center justify-between mt-2">
+                            <span className="text-[9px] text-slate-400">Budget</span>
+                            <span className="text-[9px] text-slate-600">1 693 126 €</span>
+                          </div>
+                          <div className="w-full bg-slate-200 rounded-full h-1.5 mt-1">
+                            <div className="bg-green-500 h-1.5 rounded-full" style={{ width: '90.4%' }}></div>
+                          </div>
+                        </div>
+                        <div className="bg-slate-50 rounded-xl p-3 border border-slate-100">
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className="w-5 h-5 bg-purple-100 rounded flex items-center justify-center text-[10px] text-purple-600">📊</span>
+                            <span className="text-[10px] text-slate-500">Croissance CA</span>
+                            <span className="text-[9px] text-green-500 ml-auto">↗ 18.3%</span>
+                          </div>
+                          <div className="text-3xl font-bold text-green-600">18.3%</div>
+                        </div>
+                        <div className="bg-slate-50 rounded-xl p-3 border border-slate-100">
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className="w-5 h-5 bg-amber-100 rounded flex items-center justify-center text-[10px] text-amber-600">🎯</span>
+                            <span className="text-[10px] text-slate-500">Budget CA 2025</span>
+                            <span className="text-[9px] text-slate-400 ml-auto">↗ 0.0%</span>
+                          </div>
+                          <div className="text-xl font-bold text-slate-800">1 978 147 €</div>
+                        </div>
+                      </div>
                     </div>
-                    <div className="grid grid-cols-7 gap-1">
-                      {[2, 4, 3, 5, 2, 0, 0].map((count, i) => (
-                        <div key={i} className="space-y-0.5">
-                          {[...Array(Math.min(count, 3))].map((_, j) => (
-                            <div key={j} className={`h-4 rounded text-[8px] px-1 truncate ${
-                              ['bg-teal-100 text-teal-700', 'bg-blue-100 text-blue-700', 'bg-orange-100 text-orange-700'][j % 3]
-                            }`}>
-                              {['CHU', 'Clinique', 'Labo'][j % 3]}
+                    
+                    {/* Charts Row */}
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="bg-slate-50 rounded-xl p-4 border border-slate-100">
+                        <div className="text-sm font-medium text-slate-700 mb-3">Évolution CA 2024 vs 2025</div>
+                        <div className="flex items-end justify-between h-28 gap-1 mb-2">
+                          {[
+                            { m: 'Fév', v25: 95, v24: 85 },
+                            { m: 'Mars', v25: 145, v24: 120 },
+                            { m: 'Avril', v25: 180, v24: 155 },
+                            { m: 'Mai', v25: 220, v24: 195 },
+                            { m: 'Juin', v25: 285, v24: 240 },
+                            { m: 'Juil', v25: 350, v24: 295 },
+                            { m: 'Août', v25: 420, v24: 345 },
+                          ].map((d, i) => (
+                            <div key={i} className="flex-1 flex flex-col items-center gap-0.5">
+                              <div className="w-full flex gap-0.5 items-end justify-center" style={{ height: '100px' }}>
+                                <div className="w-2 bg-teal-400 rounded-t" style={{ height: `${d.v25 / 4.5}%` }}></div>
+                                <div className="w-2 bg-slate-300 rounded-t" style={{ height: `${d.v24 / 4.5}%` }}></div>
+                              </div>
+                              <span className="text-[8px] text-slate-400">{d.m}</span>
                             </div>
                           ))}
                         </div>
-                      ))}
+                        <div className="flex items-center justify-center gap-4 text-[10px]">
+                          <span className="flex items-center gap-1"><span className="w-2 h-2 bg-teal-400 rounded"></span> CA 2025</span>
+                          <span className="flex items-center gap-1"><span className="w-2 h-2 bg-slate-300 rounded"></span> CA 2024</span>
+                        </div>
+                      </div>
+                      <div className="bg-slate-50 rounded-xl p-4 border border-slate-100">
+                        <div className="text-sm font-medium text-slate-700 mb-3">Réalisation Budget CA</div>
+                        <div className="mb-3">
+                          <div className="flex justify-between text-xs mb-1">
+                            <span className="text-slate-600">Progression CA vs Budget</span>
+                            <span className="font-semibold">1 811 081 / 1 978 147 €</span>
+                          </div>
+                          <div className="w-full bg-slate-200 rounded-full h-3">
+                            <div className="bg-gradient-to-r from-yellow-400 to-yellow-500 h-3 rounded-full relative" style={{ width: '91.6%' }}>
+                              <span className="absolute right-1 top-0 text-[9px] text-white font-bold">91.6%</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="flex justify-between text-xs">
+                          <span className="text-green-600">91.6% réalisé</span>
+                          <span className="text-orange-500">167 066 € restants</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Module 4: Suivi Activité */}
+              {/* Module 2: Dashboard Commercial - ENRICHI */}
               <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
                 {/* Header */}
-                <div className="bg-gradient-to-r from-purple-600 to-purple-500 px-4 py-3 text-white">
-                  <div className="flex items-center justify-between">
-                    <span className="font-bold">📋 Détail des Interventions - Année 2025</span>
-                    <span className="text-xs bg-white/20 px-2 py-1 rounded">✅ 3308 interventions (7332 équipements)</span>
-                  </div>
-                </div>
-                <div className="p-5">
-                  {/* Stats */}
-                  <div className="grid grid-cols-3 gap-3 mb-4">
-                    <div className="bg-blue-50 rounded-lg p-3 text-center border border-blue-100">
-                      <div className="text-2xl font-bold text-blue-600">960</div>
-                      <div className="text-xs text-slate-500">Établissements</div>
-                    </div>
-                    <div className="bg-amber-50 rounded-lg p-3 text-center border border-amber-100">
-                      <div className="text-2xl font-bold text-amber-600">5987h</div>
-                      <div className="text-xs text-slate-500">Durée Totale</div>
-                    </div>
-                    <div className="bg-green-50 rounded-lg p-3 text-center border border-green-100">
-                      <div className="text-2xl font-bold text-green-600">4796</div>
-                      <div className="text-xs text-slate-500">Équipements</div>
-                    </div>
-                  </div>
-                  {/* Table header */}
-                  <div className="bg-slate-100 rounded-t-lg px-3 py-2 grid grid-cols-6 text-[10px] font-medium text-slate-600">
-                    <span>N°</span>
-                    <span>DATE</span>
-                    <span>TECH.</span>
-                    <span>CLIENT</span>
-                    <span>PRESTATIONS</span>
-                    <span>STATUT</span>
-                  </div>
-                  {/* Table rows */}
-                  {[
-                    { id: '73274', date: '10/12/25', tech: 'Kévin', client: 'Cabinet Dentaire Dr...', presta: 'CQA - Rétro-alvéolaire', status: 'Terminé', color: 'bg-green-100 text-green-700' },
-                    { id: '72906', date: '09/12/25', tech: 'Alexandre', client: 'Hôpital Henri M...', presta: 'CQC - Arceau mobile', status: 'Validé', color: 'bg-blue-100 text-blue-700' },
-                    { id: '73271', date: '09/12/25', tech: 'Kévin', client: 'Cabinet du Dr Pom...', presta: 'CQA - Panoramique', status: 'Terminé', color: 'bg-green-100 text-green-700' },
-                  ].map((row, i) => (
-                    <div key={i} className="px-3 py-2 grid grid-cols-6 text-[10px] border-b items-center">
-                      <span className="font-mono text-slate-600">{row.id}</span>
-                      <span className="text-slate-600">{row.date}</span>
-                      <span className="text-slate-800">{row.tech}</span>
-                      <span className="text-blue-600 truncate">{row.client}</span>
-                      <span className="text-slate-600 truncate">{row.presta}</span>
-                      <span className={`px-2 py-0.5 rounded text-[9px] ${row.color}`}>{row.status}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Module 5: Facturation */}
-              <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
-                {/* Header */}
-                <div className="bg-gradient-to-r from-green-600 to-teal-500 px-4 py-3 text-white flex justify-between items-center">
-                  <div className="flex items-center gap-2">
-                    <span className="text-xl">💰</span>
-                    <div>
-                      <div className="font-bold">Facturation</div>
-                      <div className="text-[10px] text-white/70">Suivi des interventions pour facturation EBP</div>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-xs">154 interventions • 687 équipements</div>
-                    <div className="text-lg font-bold">1 055.20 € HT</div>
-                  </div>
-                </div>
-                <div className="p-5">
-                  {/* Filters */}
-                  <div className="flex gap-2 mb-4 flex-wrap">
-                    <input className="px-3 py-1.5 border rounded-lg text-xs bg-slate-50 w-32" placeholder="Recherche..." />
-                    <select className="px-2 py-1.5 border rounded-lg text-xs bg-slate-50">
-                      <option>2025</option>
-                    </select>
-                    <select className="px-2 py-1.5 border rounded-lg text-xs bg-slate-50">
-                      <option>Tous</option>
-                    </select>
-                    <span className="px-3 py-1.5 bg-green-100 text-green-700 rounded-lg text-xs flex items-center gap-1">✅ Terminé</span>
-                  </div>
-                  {/* Stats row */}
-                  <div className="grid grid-cols-4 gap-2 mb-4">
-                    <div className="text-center p-2 bg-slate-50 rounded-lg">
-                      <div className="text-lg font-bold">154</div>
-                      <div className="text-[9px] text-slate-500">Interventions</div>
-                    </div>
-                    <div className="text-center p-2 bg-slate-50 rounded-lg">
-                      <div className="text-lg font-bold">30</div>
-                      <div className="text-[9px] text-slate-500">Établissements</div>
-                    </div>
-                    <div className="text-center p-2 bg-slate-50 rounded-lg">
-                      <div className="text-lg font-bold">687</div>
-                      <div className="text-[9px] text-slate-500">Équipements</div>
-                    </div>
-                    <div className="text-center p-2 bg-green-50 rounded-lg">
-                      <div className="text-lg font-bold text-green-600">1055€</div>
-                      <div className="text-[9px] text-slate-500">Total HT</div>
-                    </div>
-                  </div>
-                  {/* Sample row */}
-                  <div className="border rounded-lg overflow-hidden">
-                    <div className="bg-slate-50 px-3 py-2 grid grid-cols-5 text-[9px] font-medium text-slate-500">
-                      <span>DATE</span><span>CLIENT</span><span>PRESTATION</span><span>MONTANT</span><span>EBP</span>
-                    </div>
-                    <div className="px-3 py-2 grid grid-cols-5 text-[10px] border-t items-center">
-                      <span>09/12/25</span>
-                      <span className="text-blue-600">Hôpital TENON</span>
-                      <span>CQC - Mobile Lit</span>
-                      <span className="font-semibold">360 €</span>
-                      <span className="text-green-600">✓ Validé</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Module 6: Dépôt Rapport */}
-              <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
-                {/* Header LISA */}
                 <div className="bg-slate-900 px-4 py-3 flex items-center justify-between">
-                  <span className="text-lg font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
-                  <div className="flex gap-2 text-xs">
-                    <span className="px-2 py-1 bg-teal-500 text-white rounded">Déposer</span>
-                    <span className="px-2 py-1 text-white/50">Suivi des dépôts</span>
-                    <span className="px-2 py-1 text-white/50">CV à échéance</span>
+                  <div className="flex items-center gap-3">
+                    <span className="text-xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="px-3 py-1.5 bg-blue-500 text-white text-xs rounded-lg flex items-center gap-1.5">
+                      📊 Grille Tarifaire
+                    </div>
+                    <span className="text-[10px] text-white/50">Connecté: Admin</span>
                   </div>
                 </div>
                 <div className="p-5">
                   <h4 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
-                    <div className="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">
-                      <FileText className="w-4 h-4 text-orange-600" />
+                    <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                      <span className="text-blue-600">📊</span>
                     </div>
-                    Suivi des Rapports Déposés
+                    Dashboard Commercial
                   </h4>
-                  {/* Stats */}
-                  <div className="grid grid-cols-5 gap-2 mb-4">
+                  
+                  {/* Tabs */}
+                  <div className="flex gap-1 mb-5 border-b">
                     {[
-                      { label: 'Total', value: '20', color: 'text-slate-800' },
+                      { label: 'Performances', icon: '📈', active: true },
+                      { label: 'Carte de France', icon: '🗺️', active: false },
+                      { label: 'Liste des Offres', icon: '📋', active: false },
+                      { label: 'Liste des Prospects', icon: '👥', active: false },
+                    ].map((tab, i) => (
+                      <button key={i} className={`px-4 py-2 text-xs flex items-center gap-1.5 border-b-2 ${tab.active ? 'border-blue-500 text-blue-700 font-medium' : 'border-transparent text-slate-500'}`}>
+                        <span>{tab.icon}</span> {tab.label}
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* Performance Globale */}
+                  <div className="mb-4">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-slate-600 font-medium">📊 Performance Globale Équipe</span>
+                    </div>
+                    <div className="grid grid-cols-5 gap-2">
+                      {[
+                        { value: '344', label: 'OFFRE Total', color: 'text-blue-600' },
+                        { value: '234', label: 'Conversions', color: 'text-green-600' },
+                        { value: '68.0%', label: 'Taux Conversion', color: 'text-teal-600' },
+                        { value: '12', label: 'Captations', color: 'text-orange-500' },
+                        { value: '5', label: 'Relances', color: 'text-red-500' },
+                      ].map((stat, i) => (
+                        <div key={i} className="bg-slate-50 rounded-xl p-3 text-center border">
+                          <div className={`text-2xl font-bold ${stat.color}`}>{stat.value}</div>
+                          <div className="text-[10px] text-slate-500">{stat.label}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* CA Row */}
+                  <div className="grid grid-cols-2 gap-3 mb-4">
+                    <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-4 border border-green-100">
+                      <div className="text-xs text-slate-500 mb-1">CA Réalisé Global</div>
+                      <div className="text-3xl font-bold text-green-600">475 726 €</div>
+                    </div>
+                    <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-4 border border-blue-100">
+                      <div className="text-xs text-slate-500 mb-1">Portefeuille d'Affaires Global</div>
+                      <div className="text-3xl font-bold text-blue-600">96 047 €</div>
+                    </div>
+                  </div>
+
+                  {/* Objective Card */}
+                  <div className="bg-gradient-to-r from-slate-800 to-slate-700 rounded-xl p-5 text-white">
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center">
+                          <span>🎯</span>
+                        </div>
+                        <div>
+                          <div className="font-semibold">CA Global Équipe</div>
+                          <div className="text-xs text-white/60">Objectif Annuel de Croissance</div>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-3xl font-bold text-green-400">104.7%</div>
+                        <div className="text-xs text-white/60">Réalisé</div>
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-3 gap-3 mb-3">
+                      <div className="bg-white/10 rounded-lg p-2">
+                        <div className="text-[10px] text-white/60">CA Réalisé</div>
+                        <div className="font-bold">475 726 €</div>
+                      </div>
+                      <div className="bg-white/10 rounded-lg p-2">
+                        <div className="text-[10px] text-white/60">Objectif Total</div>
+                        <div className="font-bold">454 500 €</div>
+                      </div>
+                      <div className="bg-white/10 rounded-lg p-2">
+                        <div className="text-[10px] text-white/60">Dépassement</div>
+                        <div className="font-bold text-green-400">+21 226,14 €</div>
+                      </div>
+                    </div>
+                    <div>
+                      <div className="flex justify-between text-xs mb-1">
+                        <span>Progression vers l'objectif</span>
+                        <span className="text-green-400">🎉 Objectif dépassé !</span>
+                      </div>
+                      <div className="w-full bg-slate-600 rounded-full h-2.5">
+                        <div className="bg-gradient-to-r from-yellow-400 via-green-400 to-green-500 h-2.5 rounded-full" style={{ width: '100%' }}></div>
+                      </div>
+                    </div>
+                    <div className="mt-3 bg-green-500/20 rounded-lg p-2 text-center">
+                      <span className="text-green-300">🎉 OBJECTIF PULVÉRISÉ ! Vous êtes des légendes ! Dépassement de 4.7% ! 🏆</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Module 3: Planification - ENRICHI */}
+              <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                <div className="bg-slate-900 px-4 py-3 flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <span className="text-xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="px-2 py-1 bg-white/10 text-white text-[10px] rounded">📅 Calendrier</span>
+                    <span className="px-2 py-1 text-white/50 text-[10px]">🗺️ Carte</span>
+                    <span className="px-2 py-1 text-white/50 text-[10px]">📋 Liste</span>
+                    <div className="px-3 py-1.5 bg-teal-500 text-white text-xs rounded-lg">+ Nouvelle</div>
+                  </div>
+                </div>
+                <div className="p-5">
+                  <div className="flex items-center justify-between mb-4">
+                    <div>
+                      <h4 className="text-xl font-bold text-slate-800 flex items-center gap-2">
+                        <span className="text-2xl">📅</span>
+                        Planification des Interventions
+                      </h4>
+                      <p className="text-sm text-slate-500">Gérez et optimisez les tournées de vos techniciens</p>
+                    </div>
+                    <span className="text-xs px-2 py-1 bg-green-100 text-green-700 rounded">● En ligne</span>
+                  </div>
+
+                  {/* Stats Row */}
+                  <div className="grid grid-cols-5 gap-3 mb-5">
+                    {[
+                      { icon: '📅', label: "Aujourd'hui", value: '10' },
+                      { icon: '📆', label: 'Semaine', value: '120' },
+                      { icon: '⏳', label: 'Planifiées', value: '472' },
+                      { icon: '✅', label: 'Terminées', value: '85' },
+                      { icon: '🔧', label: 'Total', value: '1000' },
+                    ].map((s, i) => (
+                      <div key={i} className="bg-slate-50 rounded-xl p-3 border text-center">
+                        <div className="flex items-center justify-center gap-1 mb-1">
+                          <span>{s.icon}</span>
+                          <span className="text-[10px] text-slate-500">{s.label}</span>
+                        </div>
+                        <div className="text-2xl font-bold text-slate-800">{s.value}</div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Navigation */}
+                  <div className="flex items-center justify-between mb-4 bg-slate-50 rounded-lg p-2">
+                    <button className="px-3 py-1 text-slate-600 hover:bg-white rounded">←</button>
+                    <button className="px-3 py-1 bg-white rounded shadow-sm text-sm font-medium">Aujourd'hui</button>
+                    <span className="text-sm font-semibold text-slate-700">8 déc. - 14 déc. 2025</span>
+                    <select className="text-xs border rounded px-2 py-1">
+                      <option>Tous les techniciens</option>
+                    </select>
+                    <select className="text-xs border rounded px-2 py-1">
+                      <option>Tous statuts</option>
+                    </select>
+                    <button className="px-3 py-1 text-slate-600 hover:bg-white rounded">→</button>
+                  </div>
+
+                  {/* Calendar Grid */}
+                  <div className="border rounded-xl overflow-hidden">
+                    {/* Header */}
+                    <div className="grid grid-cols-8 bg-slate-100 text-xs font-medium text-slate-600">
+                      <div className="p-2 border-r">Heure</div>
+                      {['lun. 8', 'mar. 9', 'mer. 10', 'jeu. 11', 'ven. 12', 'sam. 13', 'dim. 14'].map((d, i) => (
+                        <div key={i} className={`p-2 text-center border-r ${i === 3 ? 'bg-teal-500 text-white' : ''}`}>{d}</div>
+                      ))}
+                    </div>
+                    {/* Time slots */}
+                    {['8:00', '9:00', '10:00'].map((time, ti) => (
+                      <div key={ti} className="grid grid-cols-8 border-t text-[9px]">
+                        <div className="p-2 border-r text-slate-500 bg-slate-50">{time}</div>
+                        {[...Array(7)].map((_, di) => (
+                          <div key={di} className="p-1 border-r min-h-[50px]">
+                            {ti === 0 && di === 1 && (
+                              <div className="bg-teal-100 text-teal-800 p-1 rounded text-[8px] mb-1">
+                                <div className="font-medium truncate">Cabinet dentaire du Do...</div>
+                                <div className="text-teal-600">CQC - Rétro-alvéolaire</div>
+                                <div className="flex justify-between mt-0.5">
+                                  <span>Badonviller</span>
+                                  <span className="bg-green-500 text-white px-1 rounded">Terminé</span>
+                                </div>
+                              </div>
+                            )}
+                            {ti === 0 && di === 3 && (
+                              <div className="bg-blue-100 text-blue-800 p-1 rounded text-[8px] mb-1">
+                                <div className="font-medium truncate">PRIM - Cabinet de radio...</div>
+                                <div className="text-blue-600">CQC - Mammo num. To...</div>
+                                <div className="flex justify-between mt-0.5">
+                                  <span>CHALONS</span>
+                                  <span className="text-slate-500">synchronized</span>
+                                </div>
+                              </div>
+                            )}
+                            {ti === 1 && di === 1 && (
+                              <div className="bg-orange-100 text-orange-800 p-1 rounded text-[8px]">
+                                <div className="font-medium truncate">Centre Antoine LACASS...</div>
+                                <div className="text-orange-600">CQA - Accélérateur Part...</div>
+                                <div className="flex justify-between mt-0.5">
+                                  <span>Nice</span>
+                                  <span className="bg-blue-500 text-white px-1 rounded">Planifié</span>
+                                </div>
+                              </div>
+                            )}
+                            {ti === 2 && di === 2 && (
+                              <div className="bg-purple-100 text-purple-800 p-1 rounded text-[8px]">
+                                <div className="font-medium truncate">Centre de Médecine Nu...</div>
+                                <div className="text-purple-600">CQA - Service Médecin...</div>
+                                <div className="flex justify-between mt-0.5">
+                                  <span>Dijon</span>
+                                  <span className="bg-blue-500 text-white px-1 rounded">Planifié</span>
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Module 4: Suivi Activité - ENRICHI */}
+              <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                <div className="bg-gradient-to-r from-purple-600 to-purple-500 px-4 py-3 text-white">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">📋</span>
+                      <span className="font-bold">Détail des Interventions - Année 2025</span>
+                    </div>
+                    <span className="text-xs bg-white/20 px-3 py-1 rounded-full">✅ 3308 interventions chargées (7332 équipements contrôlés)</span>
+                  </div>
+                </div>
+                <div className="p-5">
+                  {/* Search & Filters */}
+                  <div className="bg-slate-50 rounded-xl p-4 mb-4 border">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-slate-600">🔍</span>
+                      <span className="text-sm font-medium text-slate-700">Recherche globale</span>
+                    </div>
+                    <input className="w-full px-4 py-2 border rounded-lg text-sm mb-3" placeholder="Rechercher dans toutes les colonnes (code établissement, site, équipement, prestation...)" />
+                    <div className="grid grid-cols-5 gap-3">
+                      <div>
+                        <label className="text-[10px] text-slate-500 flex items-center gap-1">📅 Mois</label>
+                        <select className="w-full px-2 py-1.5 border rounded text-xs mt-1"><option>Tous les mois</option></select>
+                      </div>
+                      <div>
+                        <label className="text-[10px] text-slate-500 flex items-center gap-1">📆 Année</label>
+                        <select className="w-full px-2 py-1.5 border rounded text-xs mt-1"><option>Toutes les années</option></select>
+                      </div>
+                      <div>
+                        <label className="text-[10px] text-slate-500 flex items-center gap-1">👤 Technicien</label>
+                        <select className="w-full px-2 py-1.5 border rounded text-xs mt-1"><option>Tous les techniciens</option></select>
+                      </div>
+                      <div>
+                        <label className="text-[10px] text-slate-500 flex items-center gap-1">🔧 Type</label>
+                        <select className="w-full px-2 py-1.5 border rounded text-xs mt-1"><option>Tous les types</option></select>
+                      </div>
+                      <div>
+                        <label className="text-[10px] text-slate-500 flex items-center gap-1">📊 Statut</label>
+                        <div className="flex items-center gap-1 mt-1">
+                          <span className="px-2 py-1 bg-green-100 text-green-700 rounded text-xs">✅ Terminé</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Stats */}
+                  <div className="grid grid-cols-3 gap-4 mb-4">
+                    <div className="bg-blue-50 rounded-xl p-4 border border-blue-100 flex items-center gap-3">
+                      <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                        <span className="text-xl">🏢</span>
+                      </div>
+                      <div>
+                        <div className="text-xs text-slate-500">Nombre d'Établissements</div>
+                        <div className="text-2xl font-bold text-blue-600">960</div>
+                      </div>
+                    </div>
+                    <div className="bg-amber-50 rounded-xl p-4 border border-amber-100 flex items-center gap-3">
+                      <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center">
+                        <span className="text-xl">⏱️</span>
+                      </div>
+                      <div>
+                        <div className="text-xs text-slate-500">Durée Totale</div>
+                        <div className="text-2xl font-bold text-amber-600">5987h</div>
+                      </div>
+                    </div>
+                    <div className="bg-green-50 rounded-xl p-4 border border-green-100 flex items-center gap-3">
+                      <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+                        <span className="text-xl">🔬</span>
+                      </div>
+                      <div>
+                        <div className="text-xs text-slate-500">Équipements Contrôlés</div>
+                        <div className="text-2xl font-bold text-green-600">4796</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Table */}
+                  <div className="border rounded-xl overflow-hidden">
+                    <div className="bg-slate-100 px-4 py-2 grid grid-cols-7 text-[10px] font-semibold text-slate-600 uppercase">
+                      <span>N°</span>
+                      <span>DATE</span>
+                      <span>TECH.</span>
+                      <span>CODE</span>
+                      <span>CLIENT / ÉTAB.</span>
+                      <span>ÉQUIPEMENTS</span>
+                      <span>STATUT</span>
+                    </div>
+                    {[
+                      { id: '73274', date: '10/12/25', dur: '1.6h', tech: 'Kévin', code: '11891-2', client: 'Cabinet Dentaire du Docteur GERARD Amélie', equip: 'D-11891-2-RE-02: RE - REXA 234-Trophy-IRIX 70', presta: 'CQA - Rétro-alvéolaire', status: 'Terminé' },
+                      { id: '72906', date: '09/12/25', dur: '2h', tech: 'Alexandre', code: '14032-1', client: 'APHP - Hôpital TENON', equip: 'R-14032-1-AM-13: AM-BB9SS2500105HL-GE-OEC ONE', presta: 'CQC - Arceau mobile de bloc', status: 'Validé' },
+                      { id: '73271', date: '09/12/25', dur: '1.9h', tech: 'Kévin', code: '11890-1', client: 'Cabinet dentaire du Dr POMMIER', equip: 'D-11890-1-RE-02: RE - VAXB016-Trophy-ELITYS', presta: 'CQA - Rétro-alvéolaire', status: 'Terminé' },
+                      { id: '70971', date: '09/12/25', dur: '1.3h', tech: 'Arnaud', code: '13289-6', client: 'GROUPE COURLANCY - 06 Clinique Saint Christophe', equip: 'R-13289-6-AM-33: AM - 51234-Ziehm-SOLO II', presta: 'CQC - Arceau mobile de bloc', status: 'Terminé' },
+                    ].map((row, i) => (
+                      <div key={i} className="px-4 py-3 grid grid-cols-7 text-[10px] border-t items-start hover:bg-slate-50">
+                        <span className="font-mono font-bold text-slate-700">{row.id}</span>
+                        <div>
+                          <div>{row.date}</div>
+                          <div className="text-slate-400">{row.dur}</div>
+                        </div>
+                        <span className="text-slate-700">{row.tech}</span>
+                        <span className="text-blue-600 font-mono">{row.code}</span>
+                        <span className="text-slate-600 truncate pr-2">{row.client}</span>
+                        <div className="pr-2">
+                          <div className="text-slate-500 truncate">{row.equip}</div>
+                          <div className="text-slate-400 mt-0.5">{row.presta}</div>
+                        </div>
+                        <span className={`px-2 py-1 rounded-full text-[9px] inline-flex items-center gap-1 ${row.status === 'Terminé' ? 'bg-green-100 text-green-700' : 'bg-blue-100 text-blue-700'}`}>
+                          {row.status === 'Terminé' ? '✓' : '◐'} {row.status}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Module 5: Base Client - NOUVEAU */}
+              <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                <div className="bg-slate-900 px-4 py-3 flex items-center justify-between">
+                  <span className="text-xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
+                  <div className="text-[10px] text-white/50">🏢 Base Client</div>
+                </div>
+                <div className="p-5">
+                  {/* Client Detail Header */}
+                  <div className="bg-slate-50 rounded-xl p-4 border mb-4">
+                    <div className="flex items-start justify-between">
+                      <div className="flex items-center gap-4">
+                        <div className="text-sm font-mono text-slate-500">▾ 13890</div>
+                        <div>
+                          <h5 className="font-bold text-slate-800">APHP - Hôpital Bichat Claude Bernard</h5>
+                          <div className="text-xs text-slate-500">kaya.doyeux@aphp.fr</div>
+                        </div>
+                      </div>
+                      <div className="text-right text-xs">
+                        <div className="text-slate-500">📍 75018 Paris</div>
+                        <div className="text-slate-400">46 Rue Henri Huchard</div>
+                        <div className="text-slate-600">📞 +33140258471</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Portail Client Access */}
+                  <div className="bg-blue-50 rounded-xl p-4 border border-blue-100 mb-4 flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">🔑</span>
+                      <div>
+                        <div className="font-medium text-slate-700">Accès Portail Client</div>
+                        <div className="text-xs text-slate-500">Aucun accès portail configuré pour ce client</div>
+                        <div className="text-[10px] text-slate-400">L'identifiant sera : 13890</div>
+                      </div>
+                    </div>
+                    <button className="px-4 py-2 bg-blue-500 text-white text-xs rounded-lg hover:bg-blue-600">🔗 Créer l'accès</button>
+                  </div>
+
+                  {/* Site Detail */}
+                  <div className="border rounded-xl overflow-hidden">
+                    <div className="bg-slate-100 px-4 py-3 flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <span>📍</span>
+                        <span className="font-medium text-slate-700">APHP - Hôpital Bichat Claude Bernard</span>
+                        <span className="text-xs text-slate-500">Paris (75018) • Réf: 13890-1</span>
+                      </div>
+                      <span className="text-xs text-slate-500">29 équip. • 42 interv.</span>
+                    </div>
+                    <div className="p-4 grid grid-cols-3 gap-4">
+                      {/* Equipements */}
+                      <div>
+                        <div className="flex items-center gap-2 mb-2 text-sm font-medium text-slate-700">
+                          <span>🔧</span> Équipements (29)
+                        </div>
+                        <div className="space-y-1 text-[10px]">
+                          <div className="flex items-center justify-between p-1.5 bg-slate-50 rounded">
+                            <span>AM - 2230-Philips-BV Pulsera</span>
+                            <span className="text-blue-500">📎</span>
+                          </div>
+                          <div className="flex items-center justify-between p-1.5 bg-slate-50 rounded">
+                            <span>AM - 4023-Siemens-Siremobil compact L</span>
+                            <span className="text-blue-500">📎</span>
+                          </div>
+                          <div className="flex items-center justify-between p-1.5 bg-slate-50 rounded">
+                            <span>AM - 42020-Siemens-CIOS ALPHA</span>
+                            <span className="text-blue-500">📎</span>
+                          </div>
+                        </div>
+                      </div>
+                      {/* Interventions */}
+                      <div>
+                        <div className="flex items-center gap-2 mb-2 text-sm font-medium text-slate-700">
+                          <span>📅</span> Interventions (42)
+                        </div>
+                        <div className="space-y-1 text-[10px]">
+                          <div className="p-1.5 bg-slate-50 rounded">
+                            <span className="text-blue-600">#70969</span> - CQC - Scanner<br/>
+                            <span className="text-slate-400">2025-12-31</span>
+                          </div>
+                          <div className="p-1.5 bg-slate-50 rounded">
+                            <span className="text-blue-600">#71394</span> - CQC - Scanner<br/>
+                            <span className="text-slate-400">2025-12-31</span>
+                          </div>
+                        </div>
+                      </div>
+                      {/* Prestations */}
+                      <div>
+                        <div className="flex items-center gap-2 mb-2 text-sm font-medium text-slate-700">
+                          <span>📋</span> Prestations
+                        </div>
+                        <div className="space-y-1 text-[10px]">
+                          <div className="flex justify-between p-1.5 bg-slate-50 rounded">
+                            <span>CQC - Table télécommandée</span>
+                            <span className="text-blue-600">1x</span>
+                          </div>
+                          <div className="flex justify-between p-1.5 bg-slate-50 rounded">
+                            <span>CQC - Table interventionnelle</span>
+                            <span className="text-blue-600">9x</span>
+                          </div>
+                          <div className="flex justify-between p-1.5 bg-slate-50 rounded">
+                            <span>CQC - Mobile Lit</span>
+                            <span className="text-blue-600">8x</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Facturation Params */}
+                  <div className="mt-4 bg-amber-50 rounded-xl p-4 border border-amber-100">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span>💳</span>
+                      <span className="font-medium text-slate-700">Paramètres Facturation (EBP)</span>
+                      <button className="ml-auto px-3 py-1 bg-teal-500 text-white text-xs rounded hover:bg-teal-600">🔄 Actualiser</button>
+                    </div>
+                    <div className="grid grid-cols-4 gap-4 text-xs">
+                      <div>
+                        <div className="text-slate-500">Mode règlement</div>
+                        <div className="font-medium">VIRNET</div>
+                      </div>
+                      <div>
+                        <div className="text-slate-500">Remise habituelle</div>
+                        <div className="font-medium">50.0%</div>
+                      </div>
+                      <div>
+                        <div className="text-slate-500">Frais déplacement</div>
+                        <div className="font-medium">Non</div>
+                      </div>
+                      <div>
+                        <div className="text-slate-500">Bon de commande</div>
+                        <div className="font-medium">Non requis</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Module 6: Dépôt Rapport - ENRICHI */}
+              <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                <div className="bg-slate-900 px-4 py-3 flex items-center justify-between">
+                  <span className="text-xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
+                  <div className="flex gap-2 text-xs">
+                    <span className="px-3 py-1.5 text-white/50">📤 Déposer des rapports</span>
+                    <span className="px-3 py-1.5 bg-teal-500 text-white rounded">📋 Suivi des dépôts</span>
+                    <span className="px-3 py-1.5 text-white/50">⏰ CV à échéance</span>
+                  </div>
+                </div>
+                <div className="p-5">
+                  <div className="flex items-center justify-between mb-4">
+                    <div>
+                      <h4 className="text-xl font-bold text-slate-800 flex items-center gap-2">
+                        <span>📁</span> Suivi des Rapports Déposés
+                      </h4>
+                      <p className="text-sm text-slate-500">20 rapport(s) déposé(s)</p>
+                    </div>
+                    <button className="px-4 py-2 bg-teal-500 text-white text-xs rounded-lg flex items-center gap-2">
+                      <RefreshCw className="w-3 h-3" /> Actualiser
+                    </button>
+                  </div>
+
+                  {/* Stats */}
+                  <div className="grid grid-cols-6 gap-2 mb-4">
+                    {[
+                      { label: 'Total', value: '20', color: 'text-slate-700' },
                       { label: 'Identifiés', value: '18', color: 'text-green-600' },
                       { label: 'Non identifiés', value: '2', color: 'text-orange-500' },
                       { label: 'Avec NC', value: '3', color: 'text-red-500' },
                       { label: 'Contre-visite', value: '3', color: 'text-blue-500' },
+                      { label: 'ANSM', value: '0', color: 'text-purple-500' },
                     ].map((s, i) => (
-                      <div key={i} className="bg-slate-50 rounded-lg p-2 text-center border">
-                        <div className={`text-xl font-bold ${s.color}`}>{s.value}</div>
-                        <div className="text-[9px] text-slate-500">{s.label}</div>
+                      <div key={i} className="bg-slate-50 rounded-xl p-3 text-center border">
+                        <div className={`text-2xl font-bold ${s.color}`}>{s.value}</div>
+                        <div className="text-[10px] text-slate-500">{s.label}</div>
                       </div>
                     ))}
                   </div>
-                  {/* File list */}
-                  <div className="border rounded-lg divide-y">
+
+                  {/* Filters */}
+                  <div className="flex items-center gap-2 mb-4 flex-wrap">
+                    <div className="flex-1">
+                      <input className="w-full px-3 py-2 border rounded-lg text-xs" placeholder="🔍 12576" />
+                    </div>
+                    <select className="px-3 py-2 border rounded-lg text-xs">
+                      <option>Tous les types de NC</option>
+                    </select>
+                  </div>
+
+                  {/* Filter Tabs */}
+                  <div className="flex gap-2 mb-4">
+                    <span className="px-3 py-1.5 bg-blue-500 text-white text-xs rounded-lg">Tous (20)</span>
+                    <span className="px-3 py-1.5 bg-slate-100 text-slate-600 text-xs rounded-lg">✅ Identifiés (18)</span>
+                    <span className="px-3 py-1.5 bg-slate-100 text-slate-600 text-xs rounded-lg">⚠️ Non identifiés (2)</span>
+                    <span className="px-3 py-1.5 bg-slate-100 text-slate-600 text-xs rounded-lg">🔴 Avec NC (3)</span>
+                    <span className="px-3 py-1.5 bg-slate-100 text-slate-600 text-xs rounded-lg">🔄 Contre-visite (3)</span>
+                  </div>
+
+                  {/* Table */}
+                  <div className="border rounded-xl overflow-hidden">
+                    <div className="bg-slate-100 px-4 py-2 grid grid-cols-5 text-[10px] font-semibold text-slate-600 uppercase">
+                      <span>FICHIER</span>
+                      <span>DATE DÉPÔT</span>
+                      <span>CODE ÉTAB.</span>
+                      <span>STATUT</span>
+                      <span>ACTIONS REQUISES</span>
+                    </div>
                     {[
-                      { name: 'CQC-251120-12576-1-M...pdf', date: '03/12/25', status: '✓', hasCV: true },
-                      { name: 'CQA-251120-12576-1-D...pdf', date: '24/11/25', status: '⚠', hasCV: false },
+                      { name: 'CQC-251120-12576-1-M-12576-1-DR-01.pdf', date: '03/12/25', code: '12576-1', status: '✓', hasCV: true, hasClient: true },
+                      { name: 'CQA-251120-12576-1-D-12576-1-PA-04.pdf', date: '24/11/25', code: '-', status: '⚠', hasCV: false, hasClient: false },
                     ].map((f, i) => (
-                      <div key={i} className="px-3 py-2 flex items-center gap-3">
-                        <div className="w-8 h-8 bg-red-100 rounded flex items-center justify-center">
-                          <FileText className="w-4 h-4 text-red-500" />
+                      <div key={i} className={`px-4 py-3 grid grid-cols-5 text-[10px] border-t items-center ${i === 0 ? 'bg-green-50/50' : ''}`}>
+                        <div className="flex items-center gap-2">
+                          <span className="text-red-500">📄</span>
+                          <span className="truncate font-medium">{f.name}</span>
                         </div>
-                        <div className="flex-1">
-                          <div className="text-xs font-medium text-slate-700">{f.name}</div>
-                          <div className="text-[10px] text-slate-400">{f.date}</div>
+                        <span>{f.date}</span>
+                        <span className="font-mono">{f.code}</span>
+                        <span className={f.status === '✓' ? 'text-green-600' : 'text-orange-500'}>{f.status}</span>
+                        <div className="flex gap-1">
+                          {f.hasCV && <span className="px-2 py-0.5 bg-blue-100 text-blue-600 rounded text-[9px]">△ CV</span>}
+                          {f.hasClient && <span className="px-2 py-0.5 bg-teal-100 text-teal-600 rounded text-[9px]">◁ Client</span>}
+                          {!f.hasCV && !f.hasClient && <span className="px-2 py-0.5 bg-orange-100 text-orange-600 rounded text-[9px]">⚠️</span>}
                         </div>
-                        <span className={`text-sm ${f.status === '✓' ? 'text-green-500' : 'text-orange-500'}`}>{f.status}</span>
-                        {f.hasCV && <span className="text-[9px] px-1.5 py-0.5 bg-blue-100 text-blue-600 rounded">CV</span>}
                       </div>
                     ))}
+                  </div>
+
+                  {/* Expanded Detail */}
+                  <div className="mt-4 bg-slate-50 rounded-xl p-4 border">
+                    <div className="grid grid-cols-3 gap-4 text-xs">
+                      <div>
+                        <div className="text-slate-500 mb-1">📋 Référence</div>
+                        <div className="font-mono text-blue-600">CQC-251120-12576-1-M-12576-1-DR-01</div>
+                        <div className="text-slate-400 mt-1">N° Intervention : <strong>70858</strong></div>
+                        <div className="text-slate-400">Date intervention : <strong>20/11/2025</strong></div>
+                        <div className="text-slate-400">Intervenant : <strong>Nicolas SAINT DIZIER</strong></div>
+                      </div>
+                      <div>
+                        <div className="text-slate-500 mb-1">🏢 Client / Établissement</div>
+                        <div className="font-medium">SCM RADIOLOGIE ROHRBACH (12576)</div>
+                        <div className="text-slate-400">SCM WIEDEMANN TRILLAUD TIEGA (12576-1)</div>
+                        <div className="text-slate-400">3 Rue de la Libération, 57410 Rohrbach-lès-Bitche</div>
+                      </div>
+                      <div>
+                        <div className="text-slate-500 mb-1">🔬 Équipement</div>
+                        <div>Marque : <strong>FujiFilm</strong></div>
+                        <div>Modèle : <strong>AMULET S</strong></div>
+                        <div>N° Série : <strong>MXA1210012</strong></div>
+                        <div>Type : <strong>Mammo num. DR (capteur plan)</strong></div>
+                        <div className="mt-2 px-2 py-1 bg-red-100 text-red-700 rounded text-[9px] inline-block">
+                          DENT-NC - NC Dentaire 🔗
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1072,6 +1491,7 @@ export default function HomePage() {
     </div>
   );
 }
+
 
 
 
