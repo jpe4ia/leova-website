@@ -79,18 +79,17 @@ export default function SuccessPage() {
 
           {/* CTA */}
           <div className="space-y-3">
-            <Link
-              href="https://dashboard.cibio.fr"
-              className="flex items-center justify-center gap-2 w-full py-4 bg-[#2dd4bf] hover:bg-[#5eead4] text-[#0f2a2a] font-bold rounded-xl transition-all"
-            >
-              Accéder à LISA
-              <ArrowRight className="w-5 h-5" />
-            </Link>
+            <div className="bg-[#2dd4bf]/10 border border-[#2dd4bf]/30 rounded-xl p-4 text-center">
+              <p className="text-[#2dd4bf] font-medium">
+                Vos identifiants de connexion vous seront envoyés par email sous 24h
+              </p>
+            </div>
             <Link
               href="/"
-              className="block text-white/50 hover:text-white text-sm transition-colors"
+              className="flex items-center justify-center gap-2 w-full py-4 bg-[#2dd4bf] hover:bg-[#5eead4] text-[#0f2a2a] font-bold rounded-xl transition-all"
             >
               Retour à l'accueil
+              <ArrowRight className="w-5 h-5" />
             </Link>
           </div>
         </div>

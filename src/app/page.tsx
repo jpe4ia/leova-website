@@ -69,7 +69,7 @@ export default function HomePage() {
               <img 
                 src="/logo-leova.png" 
                 alt="LEOVA Systems" 
-                className="h-12 w-auto"
+                className="h-16 w-auto"
               />
             </div>
 
@@ -82,13 +82,6 @@ export default function HomePage() {
             </div>
 
             <div className="hidden md:flex items-center gap-4">
-              <a 
-                href="https://dashboard.cibio.fr" 
-                target="_blank"
-                className="text-white/70 hover:text-white transition-colors font-medium"
-              >
-                Se connecter
-              </a>
               <a 
                 href="#contact"
                 className="px-6 py-2.5 bg-[#2dd4bf] hover:bg-[#5eead4] text-[#0f2a2a] font-semibold rounded-lg transition-all"
@@ -517,7 +510,7 @@ export default function HomePage() {
                 <img 
                   src="/logo-leova.png" 
                   alt="LEOVA Systems - Leading Engineering Of Value & Automation" 
-                  className="h-20 opacity-60"
+                  className="h-28 opacity-70"
                 />
               </div>
             </div>
@@ -601,7 +594,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-3">
-              <img src="/logo-leova.png" alt="LEOVA" className="h-8" />
+              <img src="/logo-leova.png" alt="LEOVA" className="h-12" />
             </div>
             <div className="flex items-center gap-8 text-sm text-white/40">
               <a href="/mentions-legales" className="hover:text-[#2dd4bf] transition-colors">Mentions légales</a>
@@ -692,3 +685,5 @@ export default function HomePage() {
     </div>
   );
 }
+
+
