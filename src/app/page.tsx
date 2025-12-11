@@ -1383,6 +1383,403 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Section Administration - Mockups complets */}
+      <section className="py-24 bg-[#0a1f1f]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4">
+              <span className="text-[#2dd4bf]">⚙️</span> Module <span className="text-[#2dd4bf]">Administration</span>
+            </h2>
+            <p className="text-white/60 text-lg max-w-2xl mx-auto">
+              Configurez et personnalisez LISA selon vos besoins métier
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-8">
+
+            {/* 1. Gestion des Utilisateurs */}
+            <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+              <div className="bg-slate-900 px-4 py-3 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <span className="text-lg font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
+                  <span className="text-white/50 text-xs">Administration</span>
+                </div>
+                <span className="px-3 py-1 bg-blue-500 text-white text-xs rounded">+ Nouvel utilisateur</span>
+              </div>
+              <div className="p-5">
+                <h4 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+                  👥 Gestion des Utilisateurs
+                </h4>
+                <div className="border rounded-xl overflow-hidden">
+                  <div className="bg-slate-100 px-4 py-2 grid grid-cols-5 text-xs font-semibold text-slate-600">
+                    <span>UTILISATEUR</span>
+                    <span>EMAIL</span>
+                    <span>RÔLE</span>
+                    <span>STATUT</span>
+                    <span>ACTIONS</span>
+                  </div>
+                  {[
+                    { name: 'Jean DUPONT', email: 'j.dupont@exemple.fr', role: 'Administrateur', status: 'Actif', color: 'bg-purple-100 text-purple-700' },
+                    { name: 'Marie MARTIN', email: 'm.martin@exemple.fr', role: 'Commercial', status: 'Actif', color: 'bg-blue-100 text-blue-700' },
+                    { name: 'Pierre BERNARD', email: 'p.bernard@exemple.fr', role: 'Contrôleur', status: 'Actif', color: 'bg-green-100 text-green-700' },
+                    { name: 'Sophie PETIT', email: 's.petit@exemple.fr', role: 'Planification', status: 'Inactif', color: 'bg-orange-100 text-orange-700' },
+                  ].map((user, i) => (
+                    <div key={i} className="px-4 py-3 grid grid-cols-5 text-xs border-t items-center hover:bg-slate-50">
+                      <div className="flex items-center gap-2">
+                        <div className="w-8 h-8 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-full flex items-center justify-center text-white text-xs font-bold">
+                          {user.name.split(' ').map(n => n[0]).join('')}
+                        </div>
+                        <span className="font-medium text-slate-700">{user.name}</span>
+                      </div>
+                      <span className="text-slate-600">{user.email}</span>
+                      <span className={`px-2 py-1 rounded-full text-[10px] w-fit ${user.color}`}>{user.role}</span>
+                      <span className={`${user.status === 'Actif' ? 'text-green-600' : 'text-slate-400'}`}>● {user.status}</span>
+                      <div className="flex gap-1">
+                        <button className="p-1 hover:bg-slate-100 rounded text-slate-500">✏️</button>
+                        <button className="p-1 hover:bg-slate-100 rounded text-slate-500">🔑</button>
+                        <button className="p-1 hover:bg-red-50 rounded text-red-500">🗑️</button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* 2. Gestion des Rôles */}
+            <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+              <div className="bg-slate-900 px-4 py-3 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <span className="text-lg font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
+                  <span className="text-white/50 text-xs">Administration</span>
+                </div>
+                <span className="px-3 py-1 bg-purple-500 text-white text-xs rounded">+ Nouveau rôle</span>
+              </div>
+              <div className="p-5">
+                <h4 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+                  🛡️ Gestion des Rôles Personnalisés
+                </h4>
+                <div className="space-y-3">
+                  {[
+                    { name: 'Super Admin', desc: 'Accès complet à toutes les fonctionnalités', perms: 12, color: 'bg-purple-500' },
+                    { name: 'Responsable Commercial', desc: 'Gestion commerciale et suivi des offres', perms: 8, color: 'bg-blue-500' },
+                    { name: 'Technicien Terrain', desc: 'Feuille de route et dépôt rapports', perms: 4, color: 'bg-green-500' },
+                    { name: 'Assistante Administrative', desc: 'Facturation et suivi clients', perms: 6, color: 'bg-orange-500' },
+                  ].map((role, i) => (
+                    <div key={i} className="border rounded-xl p-4 hover:border-teal-300 transition-colors">
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="flex items-center gap-3">
+                          <div className={`w-3 h-3 ${role.color} rounded-full`}></div>
+                          <span className="font-semibold text-slate-800">{role.name}</span>
+                        </div>
+                        <div className="flex gap-2">
+                          <button className="text-xs text-teal-600 hover:underline">Modifier</button>
+                          <button className="text-xs text-red-500 hover:underline">Supprimer</button>
+                        </div>
+                      </div>
+                      <p className="text-xs text-slate-500 mb-2">{role.desc}</p>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs text-slate-400">{role.perms} permissions actives</span>
+                        <div className="flex-1 bg-slate-100 rounded-full h-1.5">
+                          <div className={`${role.color} h-1.5 rounded-full`} style={{ width: `${(role.perms / 12) * 100}%` }}></div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* 3. Modèles de Rapports */}
+            <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+              <div className="bg-slate-900 px-4 py-3 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <span className="text-lg font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
+                  <span className="text-white/50 text-xs">Administration</span>
+                </div>
+                <span className="px-3 py-1 bg-teal-500 text-white text-xs rounded">+ Nouveau modèle</span>
+              </div>
+              <div className="p-5">
+                <h4 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+                  📄 Modèles de Rapports
+                </h4>
+                <div className="grid grid-cols-2 gap-3">
+                  {[
+                    { name: 'CQA - Rétro-alvéolaire', type: 'Dentaire', count: 156, icon: '🦷' },
+                    { name: 'CQC - Scanner', type: 'Imagerie', count: 89, icon: '🔬' },
+                    { name: 'CQC - Mammographie', type: 'Imagerie', count: 234, icon: '📷' },
+                    { name: 'CQA - Panoramique', type: 'Dentaire', count: 112, icon: '🦷' },
+                    { name: 'CQC - Arceau mobile', type: 'Bloc opératoire', count: 67, icon: '🏥' },
+                    { name: 'CQC - Table interventionnelle', type: 'Bloc opératoire', count: 45, icon: '🏥' },
+                  ].map((model, i) => (
+                    <div key={i} className="border rounded-lg p-3 hover:border-teal-300 transition-colors cursor-pointer group">
+                      <div className="flex items-start justify-between">
+                        <div className="flex items-center gap-2">
+                          <span className="text-xl">{model.icon}</span>
+                          <div>
+                            <div className="font-medium text-slate-800 text-sm">{model.name}</div>
+                            <div className="text-xs text-slate-500">{model.type}</div>
+                          </div>
+                        </div>
+                        <button className="opacity-0 group-hover:opacity-100 text-slate-400 hover:text-slate-600">⚙️</button>
+                      </div>
+                      <div className="mt-2 text-xs text-teal-600">{model.count} rapports générés</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* 4. Types de Non-Conformités */}
+            <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+              <div className="bg-slate-900 px-4 py-3 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <span className="text-lg font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
+                  <span className="text-white/50 text-xs">Administration</span>
+                </div>
+                <span className="px-3 py-1 bg-red-500 text-white text-xs rounded">+ Nouveau type NC</span>
+              </div>
+              <div className="p-5">
+                <h4 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+                  ⚠️ Types de Non-Conformités
+                </h4>
+                <div className="space-y-2">
+                  {[
+                    { code: 'NC-DENT', name: 'NC Dentaire', desc: 'Non-conformités équipements dentaires', count: 23, color: 'bg-red-500' },
+                    { code: 'NC-RADIO', name: 'NC Radiologie', desc: 'Non-conformités imagerie médicale', count: 15, color: 'bg-orange-500' },
+                    { code: 'NC-BLOC', name: 'NC Bloc Opératoire', desc: 'Non-conformités équipements bloc', count: 8, color: 'bg-yellow-500' },
+                    { code: 'NC-MAINT', name: 'NC Maintenance', desc: 'Défauts de maintenance préventive', count: 12, color: 'bg-purple-500' },
+                    { code: 'NC-DOC', name: 'NC Documentation', desc: 'Documents manquants ou périmés', count: 31, color: 'bg-blue-500' },
+                  ].map((nc, i) => (
+                    <div key={i} className="flex items-center gap-3 p-3 border rounded-lg hover:bg-slate-50">
+                      <div className={`w-2 h-10 ${nc.color} rounded-full`}></div>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2">
+                          <span className="font-mono text-xs bg-slate-100 px-2 py-0.5 rounded">{nc.code}</span>
+                          <span className="font-semibold text-slate-800 text-sm">{nc.name}</span>
+                        </div>
+                        <div className="text-xs text-slate-500">{nc.desc}</div>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-lg font-bold text-slate-700">{nc.count}</div>
+                        <div className="text-xs text-slate-400">signalées</div>
+                      </div>
+                      <button className="text-slate-400 hover:text-slate-600">⚙️</button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* 5. Points de Contrôle */}
+            <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+              <div className="bg-slate-900 px-4 py-3 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <span className="text-lg font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
+                  <span className="text-white/50 text-xs">Administration</span>
+                </div>
+                <span className="px-3 py-1 bg-green-500 text-white text-xs rounded">+ Nouveau point</span>
+              </div>
+              <div className="p-5">
+                <h4 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+                  ✅ Points de Contrôle
+                </h4>
+                <div className="mb-4">
+                  <select className="w-full px-3 py-2 border rounded-lg text-sm">
+                    <option>📋 Tous les modèles de rapport</option>
+                    <option>🦷 CQA - Rétro-alvéolaire</option>
+                    <option>🔬 CQC - Scanner</option>
+                  </select>
+                </div>
+                <div className="space-y-2 max-h-64 overflow-y-auto">
+                  {[
+                    { num: '1.1', name: 'Vérification visuelle de l\'équipement', cat: 'Inspection', required: true },
+                    { num: '1.2', name: 'Contrôle du numéro de série', cat: 'Identification', required: true },
+                    { num: '2.1', name: 'Test de tension du générateur', cat: 'Électrique', required: true },
+                    { num: '2.2', name: 'Mesure du courant de fuite', cat: 'Électrique', required: true },
+                    { num: '3.1', name: 'Contrôle qualité image fantôme', cat: 'Qualité image', required: true },
+                    { num: '3.2', name: 'Mesure résolution spatiale', cat: 'Qualité image', required: false },
+                    { num: '4.1', name: 'Vérification dispositifs de sécurité', cat: 'Sécurité', required: true },
+                    { num: '4.2', name: 'Test arrêt d\'urgence', cat: 'Sécurité', required: true },
+                  ].map((point, i) => (
+                    <div key={i} className="flex items-center gap-3 p-2 border rounded-lg hover:bg-slate-50 text-xs">
+                      <span className="font-mono bg-slate-100 px-2 py-1 rounded text-slate-600">{point.num}</span>
+                      <div className="flex-1">
+                        <div className="font-medium text-slate-800">{point.name}</div>
+                        <div className="text-slate-500">{point.cat}</div>
+                      </div>
+                      {point.required ? (
+                        <span className="px-2 py-0.5 bg-red-100 text-red-600 rounded text-[10px]">Obligatoire</span>
+                      ) : (
+                        <span className="px-2 py-0.5 bg-slate-100 text-slate-500 rounded text-[10px]">Optionnel</span>
+                      )}
+                      <button className="text-slate-400 hover:text-slate-600">✏️</button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* 6. Templates Avis Intervention */}
+            <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+              <div className="bg-slate-900 px-4 py-3 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <span className="text-lg font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
+                  <span className="text-white/50 text-xs">Administration</span>
+                </div>
+                <span className="px-3 py-1 bg-indigo-500 text-white text-xs rounded">+ Nouveau template</span>
+              </div>
+              <div className="p-5">
+                <h4 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+                  📧 Templates Avis d'Intervention
+                </h4>
+                <div className="space-y-3">
+                  {[
+                    { name: 'Avis Initial', type: 'Envoi automatique', subject: 'Intervention prévue le {DATE}', active: true },
+                    { name: 'Rappel J-3', type: 'Rappel', subject: 'Rappel : Intervention dans 3 jours', active: true },
+                    { name: 'Confirmation', type: 'Confirmation', subject: 'Merci pour votre confirmation', active: true },
+                    { name: 'Report', type: 'Modification', subject: 'Report de votre intervention', active: false },
+                  ].map((tpl, i) => (
+                    <div key={i} className="border rounded-xl p-4 hover:border-indigo-300 transition-colors">
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="flex items-center gap-3">
+                          <span className="text-2xl">✉️</span>
+                          <div>
+                            <div className="font-semibold text-slate-800">{tpl.name}</div>
+                            <div className="text-xs text-indigo-600">{tpl.type}</div>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <label className="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" defaultChecked={tpl.active} className="sr-only peer" />
+                            <div className={`w-9 h-5 rounded-full ${tpl.active ? 'bg-green-500' : 'bg-slate-300'}`}>
+                              <div className={`absolute top-0.5 ${tpl.active ? 'right-0.5' : 'left-0.5'} w-4 h-4 bg-white rounded-full shadow`}></div>
+                            </div>
+                          </label>
+                          <button className="text-slate-400 hover:text-slate-600">✏️</button>
+                        </div>
+                      </div>
+                      <div className="text-xs text-slate-500 bg-slate-50 p-2 rounded font-mono">
+                        Objet : {tpl.subject}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* 7. Paramètres Généraux */}
+            <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+              <div className="bg-slate-900 px-4 py-3 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <span className="text-lg font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
+                  <span className="text-white/50 text-xs">Administration</span>
+                </div>
+                <span className="px-3 py-1 bg-slate-600 text-white text-xs rounded">💾 Sauvegarder</span>
+              </div>
+              <div className="p-5">
+                <h4 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+                  ⚙️ Paramètres Généraux
+                </h4>
+                <div className="space-y-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="text-xs text-slate-500 mb-1 block">Nom de l'entreprise</label>
+                      <input className="w-full px-3 py-2 border rounded-lg text-sm" value="ACME Inspection SARL" readOnly />
+                    </div>
+                    <div>
+                      <label className="text-xs text-slate-500 mb-1 block">SIRET</label>
+                      <input className="w-full px-3 py-2 border rounded-lg text-sm" value="123 456 789 00012" readOnly />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="text-xs text-slate-500 mb-1 block">Adresse</label>
+                    <input className="w-full px-3 py-2 border rounded-lg text-sm" value="123 Avenue des Contrôles, 75001 Paris" readOnly />
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="text-xs text-slate-500 mb-1 block">Email contact</label>
+                      <input className="w-full px-3 py-2 border rounded-lg text-sm" value="contact@acme-inspection.fr" readOnly />
+                    </div>
+                    <div>
+                      <label className="text-xs text-slate-500 mb-1 block">Téléphone</label>
+                      <input className="w-full px-3 py-2 border rounded-lg text-sm" value="+33 1 23 45 67 89" readOnly />
+                    </div>
+                  </div>
+                  <div className="border-t pt-4">
+                    <div className="text-sm font-medium text-slate-700 mb-2">Options</div>
+                    <div className="space-y-2">
+                      {[
+                        { label: 'Envoi automatique des avis d\'intervention', checked: true },
+                        { label: 'Rappel automatique J-3', checked: true },
+                        { label: 'Notifications email aux administrateurs', checked: true },
+                        { label: 'Mode maintenance', checked: false },
+                      ].map((opt, i) => (
+                        <label key={i} className="flex items-center gap-3 text-sm text-slate-600 cursor-pointer">
+                          <input type="checkbox" defaultChecked={opt.checked} className="w-4 h-4 text-teal-500 rounded" />
+                          {opt.label}
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 8. Synchronisation */}
+            <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+              <div className="bg-slate-900 px-4 py-3 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <span className="text-lg font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
+                  <span className="text-white/50 text-xs">Administration</span>
+                </div>
+                <span className="px-3 py-1 bg-green-500 text-white text-xs rounded flex items-center gap-1">
+                  <span className="w-2 h-2 bg-white rounded-full animate-pulse"></span>
+                  Connecté
+                </span>
+              </div>
+              <div className="p-5">
+                <h4 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+                  🔄 Synchronisation & Intégrations
+                </h4>
+                <div className="space-y-3">
+                  {[
+                    { name: 'Synchroteam', desc: 'Synchronisation interventions', status: 'Connecté', lastSync: 'Il y a 5 min', color: 'green', icon: '📅' },
+                    { name: 'EBP Gestion Commerciale', desc: 'Facturation & clients', status: 'Connecté', lastSync: 'Il y a 2h', color: 'green', icon: '💳' },
+                    { name: 'Google Sheets', desc: 'Export données', status: 'Configuré', lastSync: 'Manuel', color: 'blue', icon: '📊' },
+                    { name: 'Webhook ANSM', desc: 'Alertes matériovigilance', status: 'Actif', lastSync: 'Temps réel', color: 'green', icon: '⚠️' },
+                  ].map((sync, i) => (
+                    <div key={i} className="flex items-center gap-4 p-4 border rounded-xl hover:bg-slate-50">
+                      <span className="text-2xl">{sync.icon}</span>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2">
+                          <span className="font-semibold text-slate-800">{sync.name}</span>
+                          <span className={`w-2 h-2 rounded-full ${sync.color === 'green' ? 'bg-green-500' : 'bg-blue-500'}`}></span>
+                        </div>
+                        <div className="text-xs text-slate-500">{sync.desc}</div>
+                      </div>
+                      <div className="text-right">
+                        <div className={`text-xs font-medium ${sync.color === 'green' ? 'text-green-600' : 'text-blue-600'}`}>{sync.status}</div>
+                        <div className="text-xs text-slate-400">{sync.lastSync}</div>
+                      </div>
+                      <button className="px-3 py-1.5 bg-slate-100 text-slate-600 text-xs rounded hover:bg-slate-200">
+                        🔄 Sync
+                      </button>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-4 p-3 bg-amber-50 border border-amber-200 rounded-lg">
+                  <div className="flex items-center gap-2 text-amber-700 text-sm">
+                    <span>⚠️</span>
+                    <span>Dernière synchronisation complète : <strong>11/12/2025 à 14:32</strong></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       {/* Pricing Section */}
       <section id="pricing" className="py-24 bg-[#1a3d3d]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
