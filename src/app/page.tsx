@@ -458,321 +458,328 @@ export default function HomePage() {
               </div>
             )}
 
-            {/* Tab 1: Commercial */}
+            {/* Tab 1: Commercial - Carousel avec mockups Base Client */}
             {activeFeature === 1 && (
-              <div className="grid lg:grid-cols-2 gap-8 items-center animate-fade-in">
-                <div className="order-2 lg:order-1">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/20 text-green-400 rounded-full text-sm mb-6">
-                    ✨ Points forts
-                  </div>
-                  <h3 className="text-2xl md:text-3xl font-bold mb-6">
-                    Boostez vos <span className="text-[#2dd4bf]">ventes</span>
-                  </h3>
-                  <div className="space-y-4">
-                    {[
-                      { icon: '👥', title: 'Pipeline visuel', desc: 'Suivez chaque opportunité du premier contact à la signature' },
-                      { icon: '📝', title: 'Devis en 2 clics', desc: 'Modèles personnalisables, calcul automatique, envoi direct' },
-                      { icon: '📈', title: 'Prévisions', desc: 'Estimez votre CA futur avec les probabilités de signature' },
-                      { icon: '🔔', title: 'Relances auto', desc: 'Ne perdez plus de prospects avec les rappels intelligents' },
-                    ].map((point, i) => (
-                      <div key={i} className="flex items-start gap-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors">
-                        <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-500 rounded-lg flex items-center justify-center shrink-0 text-xl">
-                          {point.icon}
-                        </div>
-                        <div>
-                          <h4 className="font-semibold text-white mb-1">{point.title}</h4>
-                          <p className="text-white/50 text-sm">{point.desc}</p>
-                        </div>
-                      </div>
-                    ))}
+              <div className="animate-fade-in">
+                {/* Points forts */}
+                <div className="mb-6">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/20 text-green-400 rounded-full text-sm mb-4">✨ Points forts</div>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    {[{icon:'👥',title:'Pipeline visuel',desc:'Suivez chaque opportunité'},{icon:'📝',title:'Devis en 2 clics',desc:'Modèles personnalisables'},{icon:'📈',title:'Prévisions',desc:'Probabilités de signature'},{icon:'🔔',title:'Relances auto',desc:'Rappels intelligents'}].map((p,i)=>(<div key={i} className="p-3 bg-white/5 rounded-xl hover:bg-white/10"><div className="text-2xl mb-2">{p.icon}</div><h4 className="font-semibold text-white text-sm mb-1">{p.title}</h4><p className="text-white/50 text-xs">{p.desc}</p></div>))}
                   </div>
                 </div>
-                <div className="order-1 lg:order-2">
-                  <div className="bg-white rounded-2xl shadow-2xl overflow-hidden transform hover:scale-[1.02] transition-transform">
-                    <div className="bg-slate-900 px-4 py-3 flex items-center gap-2">
-                      <span className="text-lg font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
-                      <span className="text-white/50 text-xs">Commercial</span>
-                    </div>
-                    <div className="p-5">
-                      <div className="flex gap-2 mb-4">
-                        {['Prospect', 'Qualif.', 'Devis', 'Négo', 'Gagné'].map((s, i) => (
-                          <div key={i} className={`flex-1 text-center py-2 rounded text-xs font-medium ${i < 3 ? 'bg-green-100 text-green-700' : 'bg-slate-100 text-slate-500'}`}>{s}</div>
-                        ))}
+                
+                {/* Carousel Base Client */}
+                <div className="relative" onMouseEnter={() => setIsHovering(true)} onMouseLeave={() => setIsHovering(false)}>
+                  <button onClick={() => setCarouselIndex(prev => prev > 0 ? prev - 1 : 1)} className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-black/50 backdrop-blur rounded-full flex items-center justify-center text-white hover:bg-black/70"><ChevronLeft className="w-5 h-5" /></button>
+                  <button onClick={() => setCarouselIndex(prev => prev < 1 ? prev + 1 : 0)} className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-black/50 backdrop-blur rounded-full flex items-center justify-center text-white hover:bg-black/70"><ChevronRight className="w-5 h-5" /></button>
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex gap-2">{[0,1].map(i=>(<button key={i} onClick={()=>setCarouselIndex(i)} className={`w-2 h-2 rounded-full transition-all ${carouselIndex===i?'bg-[#2dd4bf] w-6':'bg-white/50'}`}/>))}</div>
+                  <div className="absolute top-4 left-4 z-10 px-3 py-1 bg-black/50 backdrop-blur text-white text-xs rounded-full">{carouselIndex===0?'🏢 Base Client':'📊 Pipeline Commercial'}</div>
+                  
+                  {/* Mockup 0: Base Client COMPLET */}
+                  {carouselIndex === 0 && (
+                    <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                      <div className="bg-slate-900 px-4 py-3 flex items-center justify-between">
+                        <div className="flex items-center gap-3"><span className="text-xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span><span className="text-[10px] text-white/40 hidden sm:block">Base Client</span></div>
+                        <div className="px-3 py-1.5 bg-green-500 text-white text-xs rounded-lg">+ Nouveau client</div>
                       </div>
-                      <div className="space-y-2">
-                        <div className="p-3 bg-slate-50 rounded-lg flex justify-between items-center">
-                          <div>
-                            <div className="font-medium text-slate-800 text-sm">CHU Lyon</div>
-                            <div className="text-xs text-slate-500">Négociation</div>
-                          </div>
-                          <div className="text-right">
-                            <div className="font-bold text-green-600">45 000 €</div>
-                            <div className="text-xs text-slate-400">80% prob.</div>
-                          </div>
+                      <div className="flex">
+                        <div className="w-48 bg-slate-50 border-r p-3 hidden md:block">
+                          <div className="mb-4"><input className="w-full px-3 py-2 border rounded-lg text-sm bg-white" placeholder="🔍 Rechercher..." readOnly /></div>
+                          <div className="text-[10px] text-slate-500 font-medium mb-2 uppercase">Filtres</div>
+                          <div className="space-y-2">{[{l:'Tous les clients',c:'234',active:true},{l:'Premium',c:'45'},{l:'Standard',c:'189'},{l:'À relancer',c:'12'}].map((f,i)=>(<div key={i} className={`flex justify-between items-center px-3 py-2 rounded-lg text-xs cursor-pointer ${f.active?'bg-teal-500 text-white':'bg-white border hover:bg-slate-100'}`}><span>{f.l}</span><span className={`px-2 py-0.5 rounded-full text-[10px] ${f.active?'bg-white/20':'bg-slate-100'}`}>{f.c}</span></div>))}</div>
                         </div>
-                        <div className="p-3 bg-slate-50 rounded-lg flex justify-between items-center">
-                          <div>
-                            <div className="font-medium text-slate-800 text-sm">Clinique St-Jean</div>
-                            <div className="text-xs text-slate-500">Proposition</div>
-                          </div>
-                          <div className="text-right">
-                            <div className="font-bold text-green-600">12 500 €</div>
-                            <div className="text-xs text-slate-400">60% prob.</div>
-                          </div>
+                        <div className="flex-1 p-5">
+                          <div className="flex items-center justify-between mb-4"><h4 className="text-xl font-bold text-slate-800">🏢 Base Clients</h4><div className="flex gap-2"><button className="px-3 py-1.5 bg-slate-100 text-slate-600 text-xs rounded-lg">📤 Export</button><button className="px-3 py-1.5 bg-teal-500 text-white text-xs rounded-lg">+ Ajouter</button></div></div>
+                          <div className="overflow-x-auto"><table className="w-full text-sm"><thead><tr className="border-b">{['Client','Type','Sites','Équipements','CA Annuel','Actions'].map((h,i)=>(<th key={i} className="text-left py-3 px-2 text-[10px] text-slate-500 font-medium uppercase">{h}</th>))}</tr></thead><tbody>
+                            {[{n:'CHU Grenoble Alpes',t:'Premium',s:3,e:45,ca:'125 000 €',tc:'bg-amber-100 text-amber-700'},{n:'Clinique du Parc Lyon',t:'Standard',s:1,e:12,ca:'28 500 €',tc:'bg-slate-100 text-slate-600'},{n:'Cabinet Dr MARTIN',t:'Standard',s:1,e:4,ca:'8 200 €',tc:'bg-slate-100 text-slate-600'},{n:'Centre Imagerie Sud',t:'Premium',s:2,e:28,ca:'67 800 €',tc:'bg-amber-100 text-amber-700'},{n:'Hôpital St-Joseph',t:'Premium',s:4,e:62,ca:'185 000 €',tc:'bg-amber-100 text-amber-700'}].map((c,i)=>(
+                              <tr key={i} className="border-b hover:bg-slate-50 cursor-pointer"><td className="py-3 px-2"><div className="flex items-center gap-3"><div className="w-10 h-10 bg-gradient-to-br from-teal-100 to-cyan-100 rounded-full flex items-center justify-center text-teal-600 font-bold text-xs">{c.n.split(' ').map(w=>w[0]).slice(0,2).join('')}</div><div><div className="font-medium text-slate-800">{c.n}</div><div className="text-[10px] text-slate-400">Créé le 15/03/2024</div></div></div></td><td className="py-3 px-2"><span className={`px-2 py-1 rounded-full text-[10px] ${c.tc}`}>{c.t}</span></td><td className="py-3 px-2 font-medium">{c.s}</td><td className="py-3 px-2 font-medium">{c.e}</td><td className="py-3 px-2 font-bold text-green-600">{c.ca}</td><td className="py-3 px-2"><button className="text-teal-500 hover:text-teal-700">👁️</button></td></tr>
+                            ))}
+                          </tbody></table></div>
                         </div>
                       </div>
                     </div>
-                  </div>
+                  )}
+                  
+                  {/* Mockup 1: Pipeline Commercial */}
+                  {carouselIndex === 1 && (
+                    <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                      <div className="bg-slate-900 px-4 py-3 flex items-center justify-between"><div className="flex items-center gap-3"><span className="text-xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span></div><div className="px-3 py-1.5 bg-green-500 text-white text-xs rounded-lg">+ Nouvelle offre</div></div>
+                      <div className="p-5">
+                        <h4 className="text-xl font-bold text-slate-800 mb-4">📊 Pipeline Commercial</h4>
+                        <div className="flex gap-2 mb-4 overflow-x-auto pb-2">{['Prospect','Qualifié','Devis','Négociation','Gagné','Perdu'].map((s,i)=>(<div key={i} className={`flex-shrink-0 w-40 p-3 rounded-xl border ${i===4?'bg-green-50 border-green-200':i===5?'bg-red-50 border-red-200':'bg-slate-50'}`}><div className="flex justify-between items-center mb-2"><span className="font-medium text-sm">{s}</span><span className="text-xs bg-white px-2 py-0.5 rounded-full">{[12,8,5,3,45,6][i]}</span></div><div className="space-y-2">{i<4&&[{n:'CHU Grenoble',m:'78k€'},{n:'Clinique Parc',m:'45k€'}].slice(0,i===0?2:1).map((c,j)=>(<div key={j} className="bg-white p-2 rounded-lg border text-xs"><div className="font-medium text-slate-800">{c.n}</div><div className="text-green-600 font-bold">{c.m}</div></div>))}</div></div>))}</div>
+                        <div className="grid grid-cols-3 gap-4"><div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-4 border border-green-100"><div className="text-xs text-slate-500">Pipeline Total</div><div className="text-2xl font-bold text-green-600">245 800 €</div></div><div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-4 border border-blue-100"><div className="text-xs text-slate-500">Taux Conversion</div><div className="text-2xl font-bold text-blue-600">68%</div></div><div className="bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl p-4 border border-amber-100"><div className="text-xs text-slate-500">Cycle Moyen</div><div className="text-2xl font-bold text-amber-600">45j</div></div></div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             )}
 
-            {/* Tab 2: Planification */}
+            {/* Tab 2: Planification - Carousel avec Planification + Feuille Route + Avis */}
             {activeFeature === 2 && (
-              <div className="grid lg:grid-cols-2 gap-8 items-center animate-fade-in">
-                <div className="order-2 lg:order-1">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-500/20 text-purple-400 rounded-full text-sm mb-6">
-                    ✨ Points forts
-                  </div>
-                  <h3 className="text-2xl md:text-3xl font-bold mb-6">
-                    Optimisez vos <span className="text-[#2dd4bf]">tournées</span>
-                  </h3>
-                  <div className="space-y-4">
-                    {[
-                      { icon: '🗺️', title: 'Optimisation GPS', desc: 'Réduisez les km parcourus avec nos algorithmes' },
-                      { icon: '📅', title: 'Planning drag & drop', desc: 'Planifiez en glissant-déposant, visualisez les conflits' },
-                      { icon: '📧', title: 'Avis automatiques', desc: 'Envoi automatique aux clients, confirmations en 1 clic' },
-                      { icon: '📱', title: 'App mobile', desc: 'Vos techniciens reçoivent leur feuille de route en temps réel' },
-                    ].map((point, i) => (
-                      <div key={i} className="flex items-start gap-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors">
-                        <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-lg flex items-center justify-center shrink-0 text-xl">
-                          {point.icon}
-                        </div>
-                        <div>
-                          <h4 className="font-semibold text-white mb-1">{point.title}</h4>
-                          <p className="text-white/50 text-sm">{point.desc}</p>
-                        </div>
-                      </div>
-                    ))}
+              <div className="animate-fade-in">
+                <div className="mb-6">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-500/20 text-purple-400 rounded-full text-sm mb-4">✨ Points forts</div>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    {[{icon:'🗺️',title:'Optimisation GPS',desc:'Réduisez les km'},{icon:'📅',title:'Drag & drop',desc:'Planifiez facilement'},{icon:'📧',title:'Avis auto',desc:'Confirmations 1 clic'},{icon:'📱',title:'App mobile',desc:'Feuille de route live'}].map((p,i)=>(<div key={i} className="p-3 bg-white/5 rounded-xl hover:bg-white/10"><div className="text-2xl mb-2">{p.icon}</div><h4 className="font-semibold text-white text-sm mb-1">{p.title}</h4><p className="text-white/50 text-xs">{p.desc}</p></div>))}
                   </div>
                 </div>
-                <div className="order-1 lg:order-2">
-                  <div className="bg-white rounded-2xl shadow-2xl overflow-hidden transform hover:scale-[1.02] transition-transform">
-                    <div className="bg-slate-900 px-4 py-3 flex items-center gap-2">
-                      <span className="text-lg font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
-                      <span className="text-white/50 text-xs">Planification</span>
-                    </div>
-                    <div className="p-5">
-                      <div className="bg-purple-50 rounded-xl p-4 mb-4">
-                        <div className="flex items-center gap-2 mb-2">
-                          <span className="text-purple-600">🗓️</span>
-                          <span className="font-semibold text-purple-800">Semaine 3 - Thomas B.</span>
-                        </div>
-                        <div className="flex gap-1">
-                          {['L', 'M', 'M', 'J', 'V'].map((d, i) => (
-                            <div key={i} className={`flex-1 text-center py-2 rounded text-xs ${i < 4 ? 'bg-purple-200 text-purple-700' : 'bg-slate-200 text-slate-500'}`}>
-                              {d}<br/><span className="font-bold">{i < 4 ? '2-3' : '0'}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                      <div className="p-3 border border-purple-200 rounded-lg bg-purple-50/50">
-                        <div className="font-medium text-slate-800">Centre Imagerie Lyon</div>
-                        <div className="text-xs text-purple-600">📍 Lyon 3 • ⏰ 09:00 • CQC Scanner</div>
+                
+                <div className="relative" onMouseEnter={() => setIsHovering(true)} onMouseLeave={() => setIsHovering(false)}>
+                  <button onClick={() => setCarouselIndex(prev => prev > 0 ? prev - 1 : 2)} className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-black/50 backdrop-blur rounded-full flex items-center justify-center text-white hover:bg-black/70"><ChevronLeft className="w-5 h-5" /></button>
+                  <button onClick={() => setCarouselIndex(prev => prev < 2 ? prev + 1 : 0)} className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-black/50 backdrop-blur rounded-full flex items-center justify-center text-white hover:bg-black/70"><ChevronRight className="w-5 h-5" /></button>
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex gap-2">{[0,1,2].map(i=>(<button key={i} onClick={()=>setCarouselIndex(i)} className={`w-2 h-2 rounded-full transition-all ${carouselIndex===i?'bg-[#2dd4bf] w-6':'bg-white/50'}`}/>))}</div>
+                  <div className="absolute top-4 left-4 z-10 px-3 py-1 bg-black/50 backdrop-blur text-white text-xs rounded-full">{carouselIndex===0?'📅 Planification':carouselIndex===1?'🗺️ Feuille de Route':'📧 Avis Intervention'}</div>
+                  
+                  {/* Mockup 0: Planification COMPLET */}
+                  {carouselIndex === 0 && (
+                    <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                      <div className="bg-slate-900 px-4 py-3 flex items-center justify-between"><div className="flex items-center gap-3"><span className="text-xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span></div><div className="flex items-center gap-2"><span className="px-2 py-1 bg-white/10 text-white text-[10px] rounded">📅 Calendrier</span><span className="px-2 py-1 text-white/50 text-[10px]">🗺️ Carte</span><div className="px-3 py-1.5 bg-teal-500 text-white text-xs rounded-lg">+ Nouvelle</div></div></div>
+                      <div className="p-5">
+                        <div className="flex items-center justify-between mb-4"><h4 className="text-xl font-bold text-slate-800 flex items-center gap-2"><span className="text-2xl">📅</span>Planification</h4><div className="flex gap-2"><button className="px-3 py-1.5 bg-slate-100 rounded-lg text-xs">← Sem. précédente</button><span className="px-4 py-1.5 bg-purple-100 text-purple-700 rounded-lg text-xs font-medium">Semaine 3 - Janvier 2026</span><button className="px-3 py-1.5 bg-slate-100 rounded-lg text-xs">Sem. suivante →</button></div></div>
+                        <div className="grid grid-cols-5 gap-2 mb-4">{['Lundi 13','Mardi 14','Mercredi 15','Jeudi 16','Vendredi 17'].map((d,i)=>(<div key={i} className="text-center"><div className="text-xs text-slate-500 mb-2">{d}</div><div className={`rounded-lg p-2 min-h-[120px] ${i<4?'bg-purple-50 border border-purple-200':'bg-slate-50 border border-slate-200'}`}>{i<4&&<div className="space-y-1">{[{t:'09:00',c:'CHU Grenoble',type:'CQC Scanner'},{t:'14:00',c:'Clinique Parc',type:'CQA Mammo'}].slice(0,i===2?1:2).map((int,j)=>(<div key={j} className="bg-white rounded p-1.5 border text-[10px]"><div className="font-medium text-slate-800">{int.t}</div><div className="text-slate-600 truncate">{int.c}</div><div className="text-purple-600">{int.type}</div></div>))}</div>}</div></div>))}</div>
+                        <div className="grid grid-cols-3 gap-4"><div className="bg-purple-50 rounded-xl p-3 border border-purple-100"><div className="text-xs text-slate-500">Interventions</div><div className="text-2xl font-bold text-purple-600">12</div><div className="text-[10px] text-slate-400">cette semaine</div></div><div className="bg-green-50 rounded-xl p-3 border border-green-100"><div className="text-xs text-slate-500">Taux occupation</div><div className="text-2xl font-bold text-green-600">85%</div></div><div className="bg-amber-50 rounded-xl p-3 border border-amber-100"><div className="text-xs text-slate-500">Km estimés</div><div className="text-2xl font-bold text-amber-600">487 km</div></div></div>
                       </div>
                     </div>
-                  </div>
+                  )}
+                  
+                  {/* Mockup 1: Feuille de Route COMPLET */}
+                  {carouselIndex === 1 && (
+                    <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                      <div className="bg-slate-900 px-4 py-3 flex items-center justify-between"><div className="flex items-center gap-3"><span className="text-xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span><span className="text-[10px] text-white/40">Feuille de Route</span></div><div className="flex items-center gap-2"><div className="px-3 py-1.5 bg-purple-500 text-white text-xs rounded-lg">📤 Envoyer au technicien</div></div></div>
+                      <div className="p-5">
+                        <div className="bg-gradient-to-r from-purple-500 to-indigo-500 text-white rounded-xl p-4 mb-4">
+                          <div className="flex items-center justify-between"><div><div className="text-sm opacity-80">Mardi 14 janvier 2026</div><div className="text-xl font-bold">Thomas BERNARD</div><div className="flex gap-4 mt-2 text-xs"><span>📍 Lyon → Grenoble → Annecy</span><span>🚗 312 km</span><span>⏱️ 4h15</span></div></div><div className="text-right"><div className="text-3xl font-bold">4</div><div className="text-xs opacity-80">interventions</div></div></div>
+                        </div>
+                        <div className="text-xs text-slate-500 mb-2 flex items-center gap-2"><span>🏨</span> Nuit d'hôtel prévue à Annecy</div>
+                        <div className="space-y-3">{[{t:'08:30',n:'Centre Imagerie Alpes',a:'45 rue des Alpes, 38000 Grenoble',eq:'Scanner Siemens SOMATOM',type:'CQC',s:'✅',km:'98 km depuis Lyon'},{t:'11:00',n:'Clinique des Cèdres',a:'12 av. du Parc, 38100 Grenoble',eq:'Arceau chirurgical GE',type:'CQA',s:'🔄',km:'12 km'},{t:'14:30',n:'Hôpital d\'Annecy',a:'1 av. de l\'Hôpital, 74000 Annecy',eq:'IRM Philips Achieva',type:'CQC',s:'📅',km:'106 km'},{t:'16:30',n:'Cabinet Dr PETIT',a:'8 rue du Lac, 74000 Annecy',eq:'Rétro-alvéolaire Carestream',type:'CQA',s:'📅',km:'3 km'}].map((d,i)=>(<div key={i} className="p-3 border rounded-xl flex items-start gap-3 hover:border-purple-300"><div className="text-center"><div className="text-lg">{d.s}</div><div className="text-xs font-mono font-bold text-purple-600">{d.t}</div></div><div className="flex-1"><div className="font-semibold text-slate-800">{d.n}</div><div className="text-[10px] text-slate-500">{d.a}</div><div className="text-xs text-slate-600 mt-1">🔧 {d.eq}</div><div className="flex gap-2 mt-1"><span className="px-2 py-0.5 bg-purple-100 text-purple-700 rounded text-[10px]">{d.type}</span><span className="text-[10px] text-slate-400">🚗 {d.km}</span></div></div></div>))}</div>
+                      </div>
+                    </div>
+                  )}
+                  
+                  {/* Mockup 2: Avis d'Intervention */}
+                  {carouselIndex === 2 && (
+                    <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                      <div className="bg-slate-900 px-4 py-3 flex items-center justify-between"><div className="flex items-center gap-3"><span className="text-xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span><span className="text-[10px] text-white/40">Avis d'Intervention</span></div><div className="px-3 py-1.5 bg-green-500 text-white text-xs rounded-lg">✅ Envoyé</div></div>
+                      <div className="p-5">
+                        <div className="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl p-4 border border-purple-100 mb-4">
+                          <div className="text-xs text-slate-500 mb-2">À: contact@chu-grenoble.fr</div>
+                          <div className="font-medium text-slate-800 mb-3">📅 Avis d'intervention - CQC Scanner - 15/12/2025</div>
+                          <div className="bg-white rounded-lg p-4 border">
+                            <div className="text-center mb-4"><div className="text-xl font-bold text-purple-700">AVIS D'INTERVENTION</div><div className="text-sm text-slate-500">Contrôle Qualité - Imagerie Médicale</div></div>
+                            <div className="grid grid-cols-2 gap-4 mb-4">{[{l:'📅 Date prévue',v:'Lundi 15 décembre 2025'},{l:'⏰ Horaire',v:'09h00 - 11h00'},{l:'🔧 Type',v:'CQC Scanner'},{l:'👤 Technicien',v:'Thomas BERNARD'},{l:'📍 Site',v:'CHU Grenoble - Bât. A'},{l:'🖥️ Équipement',v:'Scanner Siemens SOMATOM'}].map((d,i)=>(<div key={i} className="text-sm"><span className="text-slate-500">{d.l}</span><br/><span className="font-semibold text-slate-800">{d.v}</span></div>))}</div>
+                            <div className="text-xs text-slate-500 mb-3 p-3 bg-amber-50 rounded-lg border border-amber-100">⚠️ Merci de prévoir l'accès à la salle et la disponibilité de l'équipement pendant la durée du contrôle.</div>
+                            <button className="w-full py-3 bg-gradient-to-r from-purple-500 to-indigo-500 text-white rounded-xl font-medium">✅ Confirmer ma disponibilité</button>
+                          </div>
+                        </div>
+                        <div className="flex gap-2"><span className="px-3 py-1.5 bg-green-100 text-green-700 text-xs rounded-lg">✅ Email envoyé</span><span className="px-3 py-1.5 bg-amber-100 text-amber-700 text-xs rounded-lg">⏳ En attente confirmation</span></div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             )}
 
-            {/* Tab 3: Suivi terrain */}
+            {/* Tab 3: Suivi terrain - Carousel avec Suivi Activité + Dépôt Rapport + Suivi Interventions */}
             {activeFeature === 3 && (
-              <div className="grid lg:grid-cols-2 gap-8 items-center animate-fade-in">
-                <div className="order-2 lg:order-1">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-orange-500/20 text-orange-400 rounded-full text-sm mb-6">
-                    ✨ Points forts
-                  </div>
-                  <h3 className="text-2xl md:text-3xl font-bold mb-6">
-                    Suivez vos <span className="text-[#2dd4bf]">techniciens</span> en direct
-                  </h3>
-                  <div className="space-y-4">
-                    {[
-                      { icon: '📍', title: 'Géolocalisation', desc: 'Visualisez la position de chaque technicien en temps réel' },
-                      { icon: '📋', title: 'Rapports mobiles', desc: 'Saisie terrain immédiate, photos, signatures électroniques' },
-                      { icon: '🔄', title: 'Synchro instantanée', desc: 'Les données remontent automatiquement dans LISA' },
-                      { icon: '✅', title: 'Validation workflow', desc: 'Circuit de validation configurable pour chaque rapport' },
-                    ].map((point, i) => (
-                      <div key={i} className="flex items-start gap-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors">
-                        <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-amber-500 rounded-lg flex items-center justify-center shrink-0 text-xl">
-                          {point.icon}
-                        </div>
-                        <div>
-                          <h4 className="font-semibold text-white mb-1">{point.title}</h4>
-                          <p className="text-white/50 text-sm">{point.desc}</p>
-                        </div>
-                      </div>
-                    ))}
+              <div className="animate-fade-in">
+                <div className="mb-6">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-orange-500/20 text-orange-400 rounded-full text-sm mb-4">✨ Points forts</div>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    {[{icon:'📍',title:'Géolocalisation',desc:'Position temps réel'},{icon:'📋',title:'Rapports mobiles',desc:'Photos, signatures'},{icon:'🔄',title:'Synchro auto',desc:'Données instantanées'},{icon:'✅',title:'Validation',desc:'Workflow configurable'}].map((p,i)=>(<div key={i} className="p-3 bg-white/5 rounded-xl hover:bg-white/10"><div className="text-2xl mb-2">{p.icon}</div><h4 className="font-semibold text-white text-sm mb-1">{p.title}</h4><p className="text-white/50 text-xs">{p.desc}</p></div>))}
                   </div>
                 </div>
-                <div className="order-1 lg:order-2">
-                  <div className="bg-white rounded-2xl shadow-2xl overflow-hidden transform hover:scale-[1.02] transition-transform">
-                    <div className="bg-slate-900 px-4 py-3 flex items-center gap-2">
-                      <span className="text-lg font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
-                      <span className="text-white/50 text-xs">Feuille de route</span>
-                    </div>
-                    <div className="p-5">
-                      <div className="bg-gradient-to-r from-orange-500 to-amber-500 text-white rounded-xl p-4 mb-4">
-                        <div className="text-sm opacity-80">Mardi 14 janvier</div>
-                        <div className="font-bold">Thomas BERNARD</div>
-                        <div className="flex gap-4 mt-2 text-xs">
-                          <span>📍 Lyon → Grenoble</span>
-                          <span>🚗 245 km</span>
-                        </div>
-                      </div>
-                      <div className="space-y-2">
-                        <div className="flex items-center gap-3 p-2 border rounded-lg">
-                          <span>✅</span>
-                          <div className="flex-1">
-                            <div className="font-medium text-slate-800 text-sm">Centre Imagerie Alpes</div>
-                            <div className="text-xs text-slate-500">Scanner</div>
-                          </div>
-                          <span className="text-xs font-mono text-slate-600">09:30</span>
-                        </div>
-                        <div className="flex items-center gap-3 p-2 border rounded-lg">
-                          <span>🔄</span>
-                          <div className="flex-1">
-                            <div className="font-medium text-slate-800 text-sm">Clinique des Cèdres</div>
-                            <div className="text-xs text-slate-500">Arceau</div>
-                          </div>
-                          <span className="text-xs font-mono text-slate-600">14:00</span>
-                        </div>
+                
+                <div className="relative" onMouseEnter={() => setIsHovering(true)} onMouseLeave={() => setIsHovering(false)}>
+                  <button onClick={() => setCarouselIndex(prev => prev > 0 ? prev - 1 : 2)} className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-black/50 backdrop-blur rounded-full flex items-center justify-center text-white hover:bg-black/70"><ChevronLeft className="w-5 h-5" /></button>
+                  <button onClick={() => setCarouselIndex(prev => prev < 2 ? prev + 1 : 0)} className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-black/50 backdrop-blur rounded-full flex items-center justify-center text-white hover:bg-black/70"><ChevronRight className="w-5 h-5" /></button>
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex gap-2">{[0,1,2].map(i=>(<button key={i} onClick={()=>setCarouselIndex(i)} className={`w-2 h-2 rounded-full transition-all ${carouselIndex===i?'bg-[#2dd4bf] w-6':'bg-white/50'}`}/>))}</div>
+                  <div className="absolute top-4 left-4 z-10 px-3 py-1 bg-black/50 backdrop-blur text-white text-xs rounded-full">{carouselIndex===0?'📋 Suivi Activité':carouselIndex===1?'📄 Dépôt Rapport':'📊 Suivi Interventions'}</div>
+                  
+                  {/* Mockup 0: Suivi Activité COMPLET */}
+                  {carouselIndex === 0 && (
+                    <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                      <div className="bg-slate-900 px-4 py-3 flex items-center justify-between"><div className="flex items-center gap-3"><span className="text-xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span></div><div className="flex items-center gap-2"><span className="text-[10px] text-white/50">📅 11/12/2025</span><div className="px-3 py-1.5 bg-teal-500 text-white text-xs rounded-lg flex items-center gap-1.5"><RefreshCw className="w-3 h-3" /> Actualiser</div></div></div>
+                      <div className="p-5">
+                        <h4 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2"><span className="text-2xl">📋</span>Suivi d'Activité</h4>
+                        <div className="grid grid-cols-4 gap-3 mb-4">{[{v:'156',l:'Interventions',c:'text-blue-600',bg:'bg-blue-50'},{v:'94.2%',l:'Conformité',c:'text-green-600',bg:'bg-green-50'},{v:'12',l:'En attente',c:'text-orange-600',bg:'bg-orange-50'},{v:'3',l:'NC ouvertes',c:'text-red-600',bg:'bg-red-50'}].map((s,i)=>(<div key={i} className={`${s.bg} rounded-xl p-3 text-center border`}><div className={`text-2xl font-bold ${s.c}`}>{s.v}</div><div className="text-[10px] text-slate-500">{s.l}</div></div>))}</div>
+                        <div className="overflow-x-auto"><table className="w-full text-sm"><thead><tr className="border-b">{['N°','Client','Date','Type','Technicien','Statut'].map((h,i)=>(<th key={i} className="text-left py-2 px-2 text-[10px] text-slate-500 font-medium uppercase">{h}</th>))}</tr></thead><tbody>
+                          {[{n:'12847',c:'CHU Grenoble Alpes',d:'15/12/25',t:'CQC Scanner',tech:'T. Bernard',s:'✅ Terminé',sc:'bg-green-100 text-green-700'},{n:'12848',c:'Clinique du Parc',d:'15/12/25',t:'CQA Mammo',tech:'M. Dupont',s:'🔄 En cours',sc:'bg-blue-100 text-blue-700'},{n:'12849',c:'Centre Imagerie Sud',d:'16/12/25',t:'CQC IRM',tech:'T. Bernard',s:'📅 Planifié',sc:'bg-slate-100 text-slate-600'},{n:'12850',c:'Hôpital St-Joseph',d:'16/12/25',t:'CQA Arceau',tech:'P. Martin',s:'📅 Planifié',sc:'bg-slate-100 text-slate-600'},{n:'12851',c:'Cabinet Dr PETIT',d:'17/12/25',t:'CQA Rétro',tech:'M. Dupont',s:'⚠️ NC',sc:'bg-amber-100 text-amber-700'}].map((r,i)=>(
+                            <tr key={i} className="border-b hover:bg-slate-50"><td className="py-2 px-2 font-mono text-blue-600">{r.n}</td><td className="py-2 px-2 font-medium text-slate-800">{r.c}</td><td className="py-2 px-2 text-slate-500">{r.d}</td><td className="py-2 px-2"><span className="px-2 py-0.5 bg-purple-100 text-purple-700 rounded text-[10px]">{r.t}</span></td><td className="py-2 px-2 text-slate-600">{r.tech}</td><td className="py-2 px-2"><span className={`px-2 py-0.5 rounded text-[10px] ${r.sc}`}>{r.s}</span></td></tr>
+                          ))}
+                        </tbody></table></div>
                       </div>
                     </div>
-                  </div>
+                  )}
+                  
+                  {/* Mockup 1: Dépôt Rapport COMPLET */}
+                  {carouselIndex === 1 && (
+                    <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                      <div className="bg-slate-900 px-4 py-3 flex items-center justify-between"><div className="flex items-center gap-3"><span className="text-xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span><span className="text-[10px] text-white/40">Dépôt de Rapport</span></div><div className="px-3 py-1.5 bg-orange-500 text-white text-xs rounded-lg">📤 Envoyer</div></div>
+                      <div className="p-5">
+                        <div className="bg-orange-50 border border-orange-200 rounded-xl p-4 mb-4">
+                          <div className="flex items-center gap-3 mb-3"><span className="text-2xl">📋</span><div><div className="font-bold text-slate-800">Rapport #12847 - CQC Scanner</div><div className="text-xs text-slate-500">CHU Grenoble Alpes • Scanner Siemens SOMATOM</div></div></div>
+                          <div className="grid grid-cols-3 gap-3 text-sm">{[{l:'Technicien',v:'Thomas BERNARD'},{l:'Date',v:'15/12/2025'},{l:'Durée',v:'1h45'}].map((d,i)=>(<div key={i}><span className="text-slate-500 text-xs">{d.l}</span><br/><span className="font-medium">{d.v}</span></div>))}</div>
+                        </div>
+                        <div className="space-y-3 mb-4">
+                          <div className="border rounded-xl p-4"><div className="flex justify-between items-center mb-3"><span className="font-semibold text-slate-800">Points de contrôle</span><span className="text-green-600 font-bold">24/24 ✅</span></div><div className="w-full bg-slate-200 rounded-full h-2"><div className="bg-green-500 h-2 rounded-full" style={{width:'100%'}}></div></div></div>
+                          <div className="border rounded-xl p-4"><div className="flex justify-between items-center mb-2"><span className="font-semibold text-slate-800">Non-conformités</span><span className="text-amber-600 font-bold">1 mineure</span></div><div className="bg-amber-50 rounded-lg p-2 text-xs"><span className="font-medium">NC-001:</span> Étiquetage date de contrôle manquant</div></div>
+                          <div className="border rounded-xl p-4"><div className="font-semibold text-slate-800 mb-2">Photos jointes</div><div className="flex gap-2">{[1,2,3,4,5,6].map(i=>(<div key={i} className="w-12 h-12 bg-slate-100 rounded-lg flex items-center justify-center text-slate-400">📷</div>))}</div></div>
+                        </div>
+                        <div className="flex gap-3"><button className="flex-1 py-3 bg-slate-100 text-slate-600 rounded-xl font-medium">💾 Brouillon</button><button className="flex-1 py-3 bg-gradient-to-r from-orange-500 to-amber-500 text-white rounded-xl font-medium">✅ Valider et envoyer</button></div>
+                      </div>
+                    </div>
+                  )}
+                  
+                  {/* Mockup 2: Suivi Interventions */}
+                  {carouselIndex === 2 && (
+                    <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                      <div className="bg-slate-900 px-4 py-3 flex items-center justify-between"><div className="flex items-center gap-3"><span className="text-xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span></div><div className="flex items-center gap-2"><span className="px-2 py-1 bg-white/10 text-white text-[10px] rounded">📊 Tableau</span><span className="px-2 py-1 text-white/50 text-[10px]">📅 Calendrier</span><span className="px-2 py-1 text-white/50 text-[10px]">🗺️ Carte</span></div></div>
+                      <div className="p-5">
+                        <h4 className="text-xl font-bold text-slate-800 mb-4">📊 Suivi des Interventions</h4>
+                        <div className="flex gap-2 mb-4 overflow-x-auto pb-2">{['Tous','En cours','Terminés','NC ouvertes'].map((f,i)=>(<button key={i} className={`px-4 py-2 rounded-lg text-xs whitespace-nowrap ${i===0?'bg-teal-500 text-white':'bg-slate-100 text-slate-600'}`}>{f}</button>))}</div>
+                        <div className="grid grid-cols-4 gap-3 mb-4">{[{v:'847',l:'Total',bg:'bg-slate-50'},{v:'823',l:'Terminées',c:'text-green-600',bg:'bg-green-50'},{v:'12',l:'En cours',c:'text-blue-600',bg:'bg-blue-50'},{v:'12',l:'NC',c:'text-red-600',bg:'bg-red-50'}].map((s,i)=>(<div key={i} className={`${s.bg} rounded-xl p-3 text-center border`}><div className={`text-xl font-bold ${s.c||'text-slate-800'}`}>{s.v}</div><div className="text-[10px] text-slate-500">{s.l}</div></div>))}</div>
+                        <div className="bg-slate-50 rounded-xl p-4 border"><div className="text-sm font-medium text-slate-700 mb-3">Interventions par mois</div><div className="flex items-end justify-between h-24 gap-2">{[{m:'Juin',v:45},{m:'Juil',v:62},{m:'Août',v:58},{m:'Sep',v:71},{m:'Oct',v:68},{m:'Nov',v:75},{m:'Déc',v:42}].map((d,i)=>(<div key={i} className="flex-1 flex flex-col items-center"><div className="w-full bg-teal-400 rounded-t" style={{height:`${d.v}px`}}></div><span className="text-[8px] text-slate-400 mt-1">{d.m}</span></div>))}</div></div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             )}
 
-            {/* Tab 4: Clients */}
+            {/* Tab 4: Clients - Carousel avec Fiche Client + Équipements */}
             {activeFeature === 4 && (
-              <div className="grid lg:grid-cols-2 gap-8 items-center animate-fade-in">
-                <div className="order-2 lg:order-1">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-pink-500/20 text-pink-400 rounded-full text-sm mb-6">
-                    ✨ Points forts
-                  </div>
-                  <h3 className="text-2xl md:text-3xl font-bold mb-6">
-                    Fidélisez vos <span className="text-[#2dd4bf]">clients</span>
-                  </h3>
-                  <div className="space-y-4">
-                    {[
-                      { icon: '🏢', title: 'Fiche client complète', desc: 'Toutes les infos : contacts, sites, équipements, historique' },
-                      { icon: '📁', title: 'Documents centralisés', desc: 'Contrats, devis, factures, rapports accessibles en 1 clic' },
-                      { icon: '🖥️', title: 'Portail client', desc: 'Vos clients accèdent à leurs données en autonomie' },
-                      { icon: '🔒', title: "Droits d'accès", desc: 'Contrôlez finement qui voit quoi dans le portail' },
-                    ].map((point, i) => (
-                      <div key={i} className="flex items-start gap-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors">
-                        <div className="w-10 h-10 bg-gradient-to-br from-pink-500 to-rose-500 rounded-lg flex items-center justify-center shrink-0 text-xl">
-                          {point.icon}
-                        </div>
-                        <div>
-                          <h4 className="font-semibold text-white mb-1">{point.title}</h4>
-                          <p className="text-white/50 text-sm">{point.desc}</p>
-                        </div>
-                      </div>
-                    ))}
+              <div className="animate-fade-in">
+                <div className="mb-6">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-pink-500/20 text-pink-400 rounded-full text-sm mb-4">✨ Points forts</div>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    {[{icon:'🏢',title:'Fiche complète',desc:'Contacts, historique'},{icon:'📁',title:'Documents',desc:'Tout en 1 clic'},{icon:'🖥️',title:'Portail client',desc:'Accès autonome'},{icon:'🔒',title:'Droits accès',desc:'Contrôle fin'}].map((p,i)=>(<div key={i} className="p-3 bg-white/5 rounded-xl hover:bg-white/10"><div className="text-2xl mb-2">{p.icon}</div><h4 className="font-semibold text-white text-sm mb-1">{p.title}</h4><p className="text-white/50 text-xs">{p.desc}</p></div>))}
                   </div>
                 </div>
-                <div className="order-1 lg:order-2">
-                  <div className="bg-white rounded-2xl shadow-2xl overflow-hidden transform hover:scale-[1.02] transition-transform">
-                    <div className="bg-slate-900 px-4 py-3 flex items-center gap-2">
-                      <span className="text-lg font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
-                      <span className="text-white/50 text-xs">Base clients</span>
-                    </div>
-                    <div className="p-5">
-                      <div className="flex gap-2 mb-4">
-                        <input className="flex-1 px-3 py-2 border rounded-lg text-sm" placeholder="🔍 Rechercher..." readOnly />
-                        <button className="px-4 py-2 bg-pink-500 text-white rounded-lg text-sm">+ Nouveau</button>
-                      </div>
-                      <div className="space-y-2">
-                        {[
-                          { name: 'CHU Grenoble', sites: 3, equip: 45 },
-                          { name: 'Clinique du Parc', sites: 1, equip: 12 },
-                          { name: 'Cabinet Dr Martin', sites: 1, equip: 4 },
-                        ].map((c, i) => (
-                          <div key={i} className="p-3 border rounded-lg hover:border-pink-300 cursor-pointer flex items-center gap-3">
-                            <div className="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center text-pink-600 font-bold text-sm">
-                              {c.name.substring(0, 2)}
-                            </div>
-                            <div>
-                              <div className="font-medium text-slate-800">{c.name}</div>
-                              <div className="text-xs text-slate-500">{c.sites} site(s) • {c.equip} équipements</div>
-                            </div>
-                          </div>
-                        ))}
+                
+                <div className="relative" onMouseEnter={() => setIsHovering(true)} onMouseLeave={() => setIsHovering(false)}>
+                  <button onClick={() => setCarouselIndex(prev => prev > 0 ? prev - 1 : 1)} className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-black/50 backdrop-blur rounded-full flex items-center justify-center text-white hover:bg-black/70"><ChevronLeft className="w-5 h-5" /></button>
+                  <button onClick={() => setCarouselIndex(prev => prev < 1 ? prev + 1 : 0)} className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-black/50 backdrop-blur rounded-full flex items-center justify-center text-white hover:bg-black/70"><ChevronRight className="w-5 h-5" /></button>
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex gap-2">{[0,1].map(i=>(<button key={i} onClick={()=>setCarouselIndex(i)} className={`w-2 h-2 rounded-full transition-all ${carouselIndex===i?'bg-[#2dd4bf] w-6':'bg-white/50'}`}/>))}</div>
+                  <div className="absolute top-4 left-4 z-10 px-3 py-1 bg-black/50 backdrop-blur text-white text-xs rounded-full">{carouselIndex===0?'🏢 Fiche Client':'🖥️ Équipements'}</div>
+                  
+                  {/* Mockup 0: Fiche Client détaillée */}
+                  {carouselIndex === 0 && (
+                    <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                      <div className="bg-slate-900 px-4 py-3 flex items-center justify-between"><div className="flex items-center gap-3"><span className="text-xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span><span className="text-[10px] text-white/40">Fiche Client</span></div><div className="flex gap-2"><button className="px-3 py-1.5 bg-blue-500 text-white text-xs rounded-lg">📝 Modifier</button><button className="px-3 py-1.5 bg-green-500 text-white text-xs rounded-lg">📤 Exporter</button></div></div>
+                      <div className="p-5">
+                        <div className="flex items-start gap-4 mb-6">
+                          <div className="w-16 h-16 bg-gradient-to-br from-pink-100 to-rose-100 rounded-xl flex items-center justify-center text-pink-600 font-bold text-xl">CHU</div>
+                          <div className="flex-1"><h4 className="text-xl font-bold text-slate-800">CHU Grenoble Alpes</h4><div className="text-sm text-slate-500">Client depuis : Mars 2019</div><div className="flex gap-2 mt-2"><span className="px-2 py-1 bg-amber-100 text-amber-700 rounded text-[10px]">Premium</span><span className="px-2 py-1 bg-green-100 text-green-700 rounded text-[10px]">Actif</span></div></div>
+                          <div className="text-right"><div className="text-2xl font-bold text-green-600">185 000 €</div><div className="text-xs text-slate-500">CA Annuel</div></div>
+                        </div>
+                        <div className="grid grid-cols-3 gap-4 mb-6">{[{l:'Sites',v:'4',i:'🏢'},{l:'Équipements',v:'62',i:'🖥️'},{l:'Interventions',v:'156',i:'📋'}].map((s,i)=>(<div key={i} className="bg-slate-50 rounded-xl p-4 text-center border"><span className="text-2xl">{s.i}</span><div className="text-2xl font-bold text-slate-800 mt-1">{s.v}</div><div className="text-xs text-slate-500">{s.l}</div></div>))}</div>
+                        <div className="grid grid-cols-2 gap-4">
+                          <div className="border rounded-xl p-4"><div className="font-semibold text-slate-800 mb-3">📍 Sites</div><div className="space-y-2">{['Hôpital Nord - Bât A','Hôpital Sud - Imagerie','Clinique Universitaire','Centre de Recherche'].map((s,i)=>(<div key={i} className="flex items-center gap-2 text-sm"><span className="w-2 h-2 bg-teal-400 rounded-full"></span>{s}</div>))}</div></div>
+                          <div className="border rounded-xl p-4"><div className="font-semibold text-slate-800 mb-3">👤 Contacts</div><div className="space-y-2">{[{n:'Dr. Marie LAURENT',r:'Resp. Qualité',e:'m.laurent@chu-grenoble.fr'},{n:'Jean DUPONT',r:'Service Technique',e:'j.dupont@chu-grenoble.fr'}].map((c,i)=>(<div key={i} className="text-sm"><div className="font-medium">{c.n}</div><div className="text-[10px] text-slate-500">{c.r}</div><div className="text-[10px] text-blue-600">{c.e}</div></div>))}</div></div>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  )}
+                  
+                  {/* Mockup 1: Équipements */}
+                  {carouselIndex === 1 && (
+                    <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                      <div className="bg-slate-900 px-4 py-3 flex items-center justify-between"><div className="flex items-center gap-3"><span className="text-xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span><span className="text-[10px] text-white/40">Équipements</span></div><div className="px-3 py-1.5 bg-pink-500 text-white text-xs rounded-lg">+ Ajouter</div></div>
+                      <div className="p-5">
+                        <div className="flex items-center justify-between mb-4"><h4 className="text-xl font-bold text-slate-800">🖥️ Parc Équipements</h4><input className="px-3 py-2 border rounded-lg text-sm w-64" placeholder="🔍 Rechercher..." readOnly /></div>
+                        <div className="grid grid-cols-4 gap-3 mb-4">{[{v:'62',l:'Total',bg:'bg-slate-50'},{v:'45',l:'Conformes',c:'text-green-600',bg:'bg-green-50'},{v:'12',l:'À contrôler',c:'text-amber-600',bg:'bg-amber-50'},{v:'5',l:'Hors service',c:'text-red-600',bg:'bg-red-50'}].map((s,i)=>(<div key={i} className={`${s.bg} rounded-xl p-3 text-center border`}><div className={`text-xl font-bold ${s.c||'text-slate-800'}`}>{s.v}</div><div className="text-[10px] text-slate-500">{s.l}</div></div>))}</div>
+                        <div className="overflow-x-auto"><table className="w-full text-sm"><thead><tr className="border-b">{['Équipement','Marque/Modèle','N° Série','Site','Prochain CQ','Statut'].map((h,i)=>(<th key={i} className="text-left py-2 px-2 text-[10px] text-slate-500 font-medium uppercase">{h}</th>))}</tr></thead><tbody>
+                          {[{e:'Scanner',m:'Siemens SOMATOM',ns:'SN-2024-001',site:'Hôpital Nord',cq:'15/01/26',s:'✅',sc:'bg-green-100 text-green-700'},{e:'IRM',m:'Philips Achieva',ns:'SN-2023-045',site:'Hôpital Sud',cq:'20/01/26',s:'✅',sc:'bg-green-100 text-green-700'},{e:'Mammographe',m:'GE Senographe',ns:'SN-2022-089',site:'Clinique Univ.',cq:'05/01/26',s:'⚠️',sc:'bg-amber-100 text-amber-700'},{e:'Arceau',m:'GE OEC',ns:'SN-2024-112',site:'Hôpital Nord',cq:'25/01/26',s:'✅',sc:'bg-green-100 text-green-700'}].map((r,i)=>(
+                            <tr key={i} className="border-b hover:bg-slate-50"><td className="py-2 px-2 font-medium text-slate-800">{r.e}</td><td className="py-2 px-2 text-slate-600">{r.m}</td><td className="py-2 px-2 font-mono text-xs text-slate-500">{r.ns}</td><td className="py-2 px-2 text-slate-600">{r.site}</td><td className="py-2 px-2">{r.cq}</td><td className="py-2 px-2"><span className={`px-2 py-0.5 rounded text-[10px] ${r.sc}`}>{r.s}</span></td></tr>
+                          ))}
+                        </tbody></table></div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             )}
 
-            {/* Tab 5: Administration */}
+            {/* Tab 5: Administration - Carousel avec Utilisateurs, Rôles, Modèles, Paramètres, Intégrations */}
             {activeFeature === 5 && (
-              <div className="grid lg:grid-cols-2 gap-8 items-center animate-fade-in">
-                <div className="order-2 lg:order-1">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-slate-500/20 text-slate-400 rounded-full text-sm mb-6">
-                    ✨ Points forts
-                  </div>
-                  <h3 className="text-2xl md:text-3xl font-bold mb-6">
-                    Configurez <span className="text-[#2dd4bf]">tout</span> selon vos besoins
-                  </h3>
-                  <div className="space-y-4">
-                    {[
-                      { icon: '👥', title: 'Gestion des utilisateurs', desc: 'Créez des comptes, attribuez des rôles personnalisés' },
-                      { icon: '🛡️', title: 'Rôles sur-mesure', desc: 'Définissez précisément les droits de chaque profil' },
-                      { icon: '📄', title: 'Modèles de rapports', desc: 'Créez vos propres modèles avec les points de contrôle' },
-                      { icon: '⚙️', title: 'Paramètres avancés', desc: 'Intégrations, webhooks, synchronisation automatique' },
-                    ].map((point, i) => (
-                      <div key={i} className="flex items-start gap-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors">
-                        <div className="w-10 h-10 bg-gradient-to-br from-slate-500 to-zinc-500 rounded-lg flex items-center justify-center shrink-0 text-xl">
-                          {point.icon}
-                        </div>
-                        <div>
-                          <h4 className="font-semibold text-white mb-1">{point.title}</h4>
-                          <p className="text-white/50 text-sm">{point.desc}</p>
-                        </div>
-                      </div>
-                    ))}
+              <div className="animate-fade-in">
+                <div className="mb-6">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-slate-500/20 text-slate-400 rounded-full text-sm mb-4">✨ Points forts</div>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    {[{icon:'👥',title:'Utilisateurs',desc:'Comptes & rôles'},{icon:'🛡️',title:'Permissions',desc:'Droits sur-mesure'},{icon:'📄',title:'Modèles',desc:'Rapports configurables'},{icon:'⚙️',title:'Paramètres',desc:'Intégrations API'}].map((p,i)=>(<div key={i} className="p-3 bg-white/5 rounded-xl hover:bg-white/10"><div className="text-2xl mb-2">{p.icon}</div><h4 className="font-semibold text-white text-sm mb-1">{p.title}</h4><p className="text-white/50 text-xs">{p.desc}</p></div>))}
                   </div>
                 </div>
-                <div className="order-1 lg:order-2">
-                  <div className="bg-white rounded-2xl shadow-2xl overflow-hidden transform hover:scale-[1.02] transition-transform">
-                    <div className="bg-slate-900 px-4 py-3 flex items-center gap-2">
-                      <span className="text-lg font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
-                      <span className="text-white/50 text-xs">Administration</span>
-                    </div>
-                    <div className="p-5">
-                      <div className="grid grid-cols-2 gap-3 mb-4">
-                        {[
-                          { icon: '👥', label: 'Utilisateurs', count: '12' },
-                          { icon: '🛡️', label: 'Rôles', count: '5' },
-                          { icon: '📄', label: 'Modèles', count: '8' },
-                          { icon: '🔄', label: 'Synchros', count: '3' },
-                        ].map((item, i) => (
-                          <div key={i} className="p-3 bg-slate-50 rounded-xl text-center hover:bg-slate-100 cursor-pointer">
-                            <span className="text-2xl">{item.icon}</span>
-                            <div className="text-xs text-slate-500 mt-1">{item.label}</div>
-                            <div className="font-bold text-slate-800">{item.count}</div>
-                          </div>
-                        ))}
-                      </div>
-                      <div className="p-3 bg-green-50 border border-green-200 rounded-lg flex items-center gap-3">
-                        <span className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></span>
-                        <span className="text-sm text-green-700"><strong>Synchroteam</strong> - Connecté</span>
+                
+                <div className="relative" onMouseEnter={() => setIsHovering(true)} onMouseLeave={() => setIsHovering(false)}>
+                  <button onClick={() => setCarouselIndex(prev => prev > 0 ? prev - 1 : 4)} className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-black/50 backdrop-blur rounded-full flex items-center justify-center text-white hover:bg-black/70"><ChevronLeft className="w-5 h-5" /></button>
+                  <button onClick={() => setCarouselIndex(prev => prev < 4 ? prev + 1 : 0)} className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-black/50 backdrop-blur rounded-full flex items-center justify-center text-white hover:bg-black/70"><ChevronRight className="w-5 h-5" /></button>
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex gap-2">{[0,1,2,3,4].map(i=>(<button key={i} onClick={()=>setCarouselIndex(i)} className={`w-2 h-2 rounded-full transition-all ${carouselIndex===i?'bg-[#2dd4bf] w-6':'bg-white/50'}`}/>))}</div>
+                  <div className="absolute top-4 left-4 z-10 px-3 py-1 bg-black/50 backdrop-blur text-white text-xs rounded-full">{['👥 Utilisateurs','🛡️ Rôles','📄 Modèles','⚙️ Paramètres','🔄 Intégrations'][carouselIndex]}</div>
+                  
+                  {/* Mockup 0: Utilisateurs */}
+                  {carouselIndex === 0 && (
+                    <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                      <div className="bg-slate-900 px-4 py-3 flex items-center justify-between"><div className="flex items-center gap-3"><span className="text-xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span><span className="text-[10px] text-white/40">Administration › Utilisateurs</span></div><div className="px-3 py-1.5 bg-teal-500 text-white text-xs rounded-lg">+ Nouvel utilisateur</div></div>
+                      <div className="p-5">
+                        <div className="grid grid-cols-4 gap-3 mb-4">{[{v:'12',l:'Total',bg:'bg-slate-50'},{v:'8',l:'Actifs',c:'text-green-600',bg:'bg-green-50'},{v:'3',l:'Tech.',c:'text-blue-600',bg:'bg-blue-50'},{v:'1',l:'Admin',c:'text-purple-600',bg:'bg-purple-50'}].map((s,i)=>(<div key={i} className={`${s.bg} rounded-xl p-3 text-center border`}><div className={`text-xl font-bold ${s.c||'text-slate-800'}`}>{s.v}</div><div className="text-[10px] text-slate-500">{s.l}</div></div>))}</div>
+                        <div className="overflow-x-auto"><table className="w-full text-sm"><thead><tr className="border-b">{['Utilisateur','Email','Rôle','Statut','Dernière connexion'].map((h,i)=>(<th key={i} className="text-left py-2 px-2 text-[10px] text-slate-500 font-medium uppercase">{h}</th>))}</tr></thead><tbody>
+                          {[{n:'Marie LAURENT',e:'m.laurent@paqa.fr',r:'Administrateur',s:'🟢 Actif',d:'Aujourd\'hui 09:15',rc:'bg-purple-100 text-purple-700'},{n:'Thomas BERNARD',e:'t.bernard@paqa.fr',r:'Technicien',s:'🟢 Actif',d:'Aujourd\'hui 08:30',rc:'bg-blue-100 text-blue-700'},{n:'Pierre MARTIN',e:'p.martin@paqa.fr',r:'Technicien',s:'🟢 Actif',d:'Hier 17:45',rc:'bg-blue-100 text-blue-700'},{n:'Sophie DUBOIS',e:'s.dubois@paqa.fr',r:'Commercial',s:'🟡 Absent',d:'10/12/2025',rc:'bg-green-100 text-green-700'}].map((u,i)=>(
+                            <tr key={i} className="border-b hover:bg-slate-50"><td className="py-2 px-2"><div className="flex items-center gap-2"><div className="w-8 h-8 bg-gradient-to-br from-teal-100 to-cyan-100 rounded-full flex items-center justify-center text-teal-600 font-bold text-xs">{u.n.split(' ').map(w=>w[0]).join('')}</div><span className="font-medium text-slate-800">{u.n}</span></div></td><td className="py-2 px-2 text-slate-500">{u.e}</td><td className="py-2 px-2"><span className={`px-2 py-0.5 rounded text-[10px] ${u.rc}`}>{u.r}</span></td><td className="py-2 px-2">{u.s}</td><td className="py-2 px-2 text-slate-500">{u.d}</td></tr>
+                          ))}
+                        </tbody></table></div>
                       </div>
                     </div>
-                  </div>
+                  )}
+                  
+                  {/* Mockup 1: Rôles */}
+                  {carouselIndex === 1 && (
+                    <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                      <div className="bg-slate-900 px-4 py-3 flex items-center justify-between"><div className="flex items-center gap-3"><span className="text-xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span><span className="text-[10px] text-white/40">Administration › Rôles</span></div><div className="px-3 py-1.5 bg-teal-500 text-white text-xs rounded-lg">+ Nouveau rôle</div></div>
+                      <div className="p-5">
+                        <div className="space-y-3">{[{n:'Administrateur',d:'Accès complet à toutes les fonctionnalités',u:1,c:'bg-purple-100 border-purple-200',p:['Tout']},{n:'Manager',d:'Gestion équipe, rapports, clients',u:2,c:'bg-blue-100 border-blue-200',p:['Dashboard','Clients','Rapports','Équipe']},{n:'Technicien',d:'Interventions, rapports terrain',u:5,c:'bg-green-100 border-green-200',p:['Planification','Interventions','Rapports']},{n:'Commercial',d:'Prospection, devis, suivi clients',u:3,c:'bg-amber-100 border-amber-200',p:['Commercial','Clients','Devis']},{n:'Lecture seule',d:'Consultation uniquement',u:1,c:'bg-slate-100 border-slate-200',p:['Dashboard (lecture)']}].map((r,i)=>(
+                          <div key={i} className={`p-4 rounded-xl border ${r.c}`}><div className="flex items-center justify-between mb-2"><div className="flex items-center gap-3"><span className="font-semibold text-slate-800">{r.n}</span><span className="text-xs text-slate-500">{r.u} utilisateur(s)</span></div><button className="text-teal-600 text-xs">✏️ Modifier</button></div><div className="text-xs text-slate-600 mb-2">{r.d}</div><div className="flex flex-wrap gap-1">{r.p.map((p,j)=>(<span key={j} className="px-2 py-0.5 bg-white/50 rounded text-[10px] text-slate-600">{p}</span>))}</div></div>
+                        ))}</div>
+                      </div>
+                    </div>
+                  )}
+                  
+                  {/* Mockup 2: Modèles de rapports */}
+                  {carouselIndex === 2 && (
+                    <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                      <div className="bg-slate-900 px-4 py-3 flex items-center justify-between"><div className="flex items-center gap-3"><span className="text-xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span><span className="text-[10px] text-white/40">Administration › Modèles Rapports</span></div><div className="px-3 py-1.5 bg-teal-500 text-white text-xs rounded-lg">+ Nouveau modèle</div></div>
+                      <div className="p-5">
+                        <div className="grid grid-cols-2 gap-4">{[{n:'CQC Scanner',t:'Contrôle Qualité Complet',p:24,c:'bg-blue-50 border-blue-200'},{n:'CQA Mammographe',t:'Contrôle Qualité Annuel',p:18,c:'bg-pink-50 border-pink-200'},{n:'CQC IRM',t:'Contrôle Qualité Complet',p:32,c:'bg-purple-50 border-purple-200'},{n:'CQA Arceau',t:'Contrôle Qualité Annuel',p:15,c:'bg-amber-50 border-amber-200'},{n:'CQI Rétro-alvéolaire',t:'Contrôle Initial',p:12,c:'bg-green-50 border-green-200'},{n:'Maintenance préventive',t:'Check-list maintenance',p:20,c:'bg-slate-50 border-slate-200'}].map((m,i)=>(
+                          <div key={i} className={`p-4 rounded-xl border ${m.c}`}><div className="flex items-center justify-between mb-2"><span className="font-semibold text-slate-800">{m.n}</span><button className="text-teal-600 text-xs">✏️</button></div><div className="text-xs text-slate-500 mb-3">{m.t}</div><div className="flex items-center justify-between"><span className="text-xs text-slate-600">{m.p} points de contrôle</span><span className="px-2 py-0.5 bg-green-100 text-green-700 rounded text-[10px]">Actif</span></div></div>
+                        ))}</div>
+                      </div>
+                    </div>
+                  )}
+                  
+                  {/* Mockup 3: Paramètres */}
+                  {carouselIndex === 3 && (
+                    <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                      <div className="bg-slate-900 px-4 py-3 flex items-center justify-between"><div className="flex items-center gap-3"><span className="text-xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span><span className="text-[10px] text-white/40">Administration › Paramètres</span></div><div className="px-3 py-1.5 bg-green-500 text-white text-xs rounded-lg">💾 Sauvegarder</div></div>
+                      <div className="p-5">
+                        <div className="space-y-4">{[{t:'Entreprise',i:[{l:'Nom',v:'PAQA - Physique Appliquée au Contrôle'},{l:'SIRET',v:'123 456 789 00012'},{l:'Email support',v:'support@paqa.fr'}]},{t:'Notifications',i:[{l:'Email de rappel',v:'Activé',check:true},{l:'Délai rappel (jours)',v:'7'},{l:'Rapport automatique',v:'Activé',check:true}]},{t:'Facturation',i:[{l:'TVA par défaut',v:'20%'},{l:'Devise',v:'EUR (€)'},{l:'Délai paiement',v:'30 jours'}]}].map((s,i)=>(
+                          <div key={i} className="border rounded-xl p-4"><div className="font-semibold text-slate-800 mb-3 flex items-center gap-2"><span>{['🏢','🔔','💰'][i]}</span>{s.t}</div><div className="space-y-2">{s.i.map((f,j)=>(<div key={j} className="flex items-center justify-between"><span className="text-sm text-slate-600">{f.l}</span>{f.check?<div className="w-10 h-5 bg-green-500 rounded-full relative"><div className="absolute right-0.5 top-0.5 w-4 h-4 bg-white rounded-full"></div></div>:<span className="px-3 py-1 bg-slate-100 rounded text-sm">{f.v}</span>}</div>))}</div></div>
+                        ))}</div>
+                      </div>
+                    </div>
+                  )}
+                  
+                  {/* Mockup 4: Intégrations */}
+                  {carouselIndex === 4 && (
+                    <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                      <div className="bg-slate-900 px-4 py-3 flex items-center justify-between"><div className="flex items-center gap-3"><span className="text-xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span><span className="text-[10px] text-white/40">Administration › Intégrations</span></div></div>
+                      <div className="p-5">
+                        <div className="space-y-3">{[{n:'Synchroteam',d:'Synchronisation planning et interventions',s:true,c:'from-blue-500 to-cyan-500'},{n:'Google Sheets',d:'Export automatique des données',s:true,c:'from-green-500 to-emerald-500'},{n:'EBP Gestion',d:'Facturation et comptabilité',s:false,c:'from-orange-500 to-amber-500'},{n:'PandaDoc',d:'Génération automatique de devis',s:true,c:'from-purple-500 to-indigo-500'},{n:'Webhook personnalisé',d:'API REST pour intégrations tierces',s:true,c:'from-slate-500 to-zinc-500'}].map((int,i)=>(
+                          <div key={i} className="p-4 border rounded-xl flex items-center gap-4"><div className={`w-12 h-12 bg-gradient-to-br ${int.c} rounded-xl flex items-center justify-center text-white font-bold`}>{int.n[0]}</div><div className="flex-1"><div className="font-semibold text-slate-800">{int.n}</div><div className="text-xs text-slate-500">{int.d}</div></div><div className="flex items-center gap-3">{int.s?<span className="flex items-center gap-2 text-green-600 text-sm"><span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>Connecté</span>:<span className="text-slate-400 text-sm">Non configuré</span>}<button className="px-3 py-1.5 bg-slate-100 text-slate-600 rounded-lg text-xs">{int.s?'Configurer':'Activer'}</button></div></div>
+                        ))}</div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             )}
