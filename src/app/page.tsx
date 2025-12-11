@@ -5,12 +5,52 @@ import {
   Shield, Users, Zap, BarChart3, FileText, Calendar, 
   CheckCircle, ArrowRight, Menu, X, Mail, Phone, MapPin,
   Monitor, Smartphone, Cloud, Lock, Headphones, TrendingUp,
-  Building2, Wrench, ClipboardCheck, Euro, Play, ChevronDown
+  Building2, Wrench, ClipboardCheck, Euro, Play, ChevronDown, Loader2
 } from 'lucide-react';
 
 export default function HomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', company: '', phone: '', message: '' });
+  const [checkoutLoading, setCheckoutLoading] = useState<string | null>(null);
+  const [showSubscribeModal, setShowSubscribeModal] = useState<string | null>(null);
+  const [subscribeEmail, setSubscribeEmail] = useState('');
+  const [subscribeCompany, setSubscribeCompany] = useState('');
+
+  // Gérer la souscription Stripe
+  const handleSubscribe = async (plan: 'starter' | 'pro') => {
+    if (!subscribeEmail) {
+      alert('Veuillez entrer votre email');
+      return;
+    }
+
+    setCheckoutLoading(plan);
+    
+    try {
+      const response = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          plan,
+          email: subscribeEmail,
+          company: subscribeCompany,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.url) {
+        // Rediriger vers Stripe Checkout
+        window.location.href = data.url;
+      } else {
+        alert(data.error || 'Erreur lors de la création du paiement');
+      }
+    } catch (error) {
+      console.error('Erreur:', error);
+      alert('Erreur de connexion. Veuillez réessayer.');
+    } finally {
+      setCheckoutLoading(null);
+    }
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -341,7 +381,7 @@ export default function HomePage() {
             {/* Starter */}
             <div className="p-8 bg-[#0f2a2a] rounded-2xl border border-white/10">
               <div className="text-[#2dd4bf] font-semibold text-sm mb-2">STARTER</div>
-              <div className="text-4xl font-bold mb-1">99€<span className="text-lg text-white/40 font-normal">/mois</span></div>
+              <div className="text-4xl font-bold mb-1">99€<span className="text-lg text-white/40 font-normal"> HT/mois</span></div>
               <p className="text-white/50 text-sm mb-8">Pour les petites structures</p>
               
               <ul className="space-y-3 mb-8">
@@ -359,9 +399,12 @@ export default function HomePage() {
                 ))}
               </ul>
               
-              <a href="#contact" className="block w-full py-3 bg-white/5 hover:bg-white/10 text-center font-semibold rounded-lg transition-colors border border-white/10">
-                Choisir
-              </a>
+              <button 
+                onClick={() => setShowSubscribeModal('starter')}
+                className="block w-full py-3 bg-white/5 hover:bg-white/10 text-center font-semibold rounded-lg transition-colors border border-white/10"
+              >
+                Souscrire
+              </button>
             </div>
 
             {/* Pro - Highlighted */}
@@ -370,7 +413,7 @@ export default function HomePage() {
                 RECOMMANDÉ
               </div>
               <div className="text-[#2dd4bf] font-semibold text-sm mb-2">PROFESSIONNEL</div>
-              <div className="text-4xl font-bold mb-1">199€<span className="text-lg text-white/40 font-normal">/mois</span></div>
+              <div className="text-4xl font-bold mb-1">199€<span className="text-lg text-white/40 font-normal"> HT/mois</span></div>
               <p className="text-white/50 text-sm mb-8">Pour les équipes en croissance</p>
               
               <ul className="space-y-3 mb-8">
@@ -389,9 +432,12 @@ export default function HomePage() {
                 ))}
               </ul>
               
-              <a href="#contact" className="block w-full py-3 bg-[#2dd4bf] hover:bg-[#5eead4] text-[#0f2a2a] text-center font-bold rounded-lg transition-colors">
-                Choisir
-              </a>
+              <button 
+                onClick={() => setShowSubscribeModal('pro')}
+                className="block w-full py-3 bg-[#2dd4bf] hover:bg-[#5eead4] text-[#0f2a2a] text-center font-bold rounded-lg transition-colors"
+              >
+                Souscrire
+              </button>
             </div>
 
             {/* Enterprise */}
@@ -558,9 +604,9 @@ export default function HomePage() {
               <img src="/logo-leova.png" alt="LEOVA" className="h-8" />
             </div>
             <div className="flex items-center gap-8 text-sm text-white/40">
-              <a href="#" className="hover:text-[#2dd4bf] transition-colors">Mentions légales</a>
-              <a href="#" className="hover:text-[#2dd4bf] transition-colors">Politique de confidentialité</a>
-              <a href="#" className="hover:text-[#2dd4bf] transition-colors">CGV</a>
+              <a href="/mentions-legales" className="hover:text-[#2dd4bf] transition-colors">Mentions légales</a>
+              <a href="/confidentialite" className="hover:text-[#2dd4bf] transition-colors">Politique de confidentialité</a>
+              <a href="/cgv" className="hover:text-[#2dd4bf] transition-colors">CGV</a>
             </div>
             <p className="text-sm text-white/30">
               © {new Date().getFullYear()} LEOVA Systems. Tous droits réservés.
@@ -568,6 +614,81 @@ export default function HomePage() {
           </div>
         </div>
       </footer>
+
+      {/* Modal de souscription */}
+      {showSubscribeModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          {/* Backdrop */}
+          <div 
+            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+            onClick={() => setShowSubscribeModal(null)}
+          ></div>
+          
+          {/* Modal */}
+          <div className="relative bg-[#1a3d3d] rounded-2xl p-8 max-w-md w-full border border-[#2dd4bf]/20 shadow-2xl">
+            <button 
+              onClick={() => setShowSubscribeModal(null)}
+              className="absolute top-4 right-4 text-white/50 hover:text-white"
+            >
+              <X className="w-6 h-6" />
+            </button>
+
+            <h3 className="text-2xl font-bold mb-2">
+              Souscrire à LISA {showSubscribeModal === 'starter' ? 'Starter' : 'Professionnel'}
+            </h3>
+            <p className="text-white/60 mb-6">
+              {showSubscribeModal === 'starter' ? '99€ HT/mois' : '199€ HT/mois'} - Sans engagement
+            </p>
+
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm text-white/60 mb-2">Email professionnel *</label>
+                <input
+                  type="email"
+                  required
+                  value={subscribeEmail}
+                  onChange={(e) => setSubscribeEmail(e.target.value)}
+                  className="w-full px-4 py-3 bg-[#0f2a2a] border border-white/10 rounded-lg focus:outline-none focus:border-[#2dd4bf] transition-colors text-white"
+                  placeholder="vous@entreprise.fr"
+                />
+              </div>
+              <div>
+                <label className="block text-sm text-white/60 mb-2">Entreprise</label>
+                <input
+                  type="text"
+                  value={subscribeCompany}
+                  onChange={(e) => setSubscribeCompany(e.target.value)}
+                  className="w-full px-4 py-3 bg-[#0f2a2a] border border-white/10 rounded-lg focus:outline-none focus:border-[#2dd4bf] transition-colors text-white"
+                  placeholder="Nom de votre entreprise"
+                />
+              </div>
+
+              <button
+                onClick={() => handleSubscribe(showSubscribeModal as 'starter' | 'pro')}
+                disabled={checkoutLoading !== null}
+                className="w-full py-4 bg-[#2dd4bf] hover:bg-[#5eead4] disabled:opacity-50 disabled:cursor-not-allowed text-[#0f2a2a] font-bold rounded-lg transition-all flex items-center justify-center gap-2"
+              >
+                {checkoutLoading ? (
+                  <>
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                    Redirection vers le paiement...
+                  </>
+                ) : (
+                  <>
+                    Payer par carte bancaire
+                    <ArrowRight className="w-5 h-5" />
+                  </>
+                )}
+              </button>
+
+              <p className="text-xs text-white/40 text-center">
+                Paiement sécurisé par Stripe. En continuant, vous acceptez nos{' '}
+                <a href="/cgv" className="text-[#2dd4bf] hover:underline">CGV</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
