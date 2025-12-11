@@ -33,7 +33,7 @@ export default function MentionsLegales() {
               <p><strong>SIRET :</strong> [À compléter]</p>
               <p><strong>RCS :</strong> [À compléter]</p>
               <p><strong>N° TVA Intracommunautaire :</strong> [À compléter]</p>
-              <p><strong>Email :</strong> contact@leova-systems.fr</p>
+              <p><strong>Email :</strong> contact@leova-systems.com</p>
               <p><strong>Téléphone :</strong> [À compléter]</p>
             </div>
           </section>

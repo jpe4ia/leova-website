@@ -1331,6 +1331,407 @@ export default function HomePage() {
             </div>
           </div>
 
+          {/* Feuille de Route - Mockup complet */}
+          <div className="mt-16">
+            <h3 className="text-2xl font-bold text-center mb-8">
+              <span className="text-[#2dd4bf]">🗺️</span> Feuille de Route Technicien
+            </h3>
+            <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+              {/* Header */}
+              <div className="bg-white border-b px-6 py-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-2 text-slate-400">
+                      <span>◀</span>
+                      <span>▶</span>
+                    </div>
+                    <div>
+                      <h4 className="text-xl font-bold text-slate-800 flex items-center gap-2">
+                        🚗 Feuille de Route
+                      </h4>
+                      <p className="text-sm text-slate-500">Thomas BERNARD • Semaine 3 (13 janv. - 19 janv. 2026)</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <button className="p-2 hover:bg-slate-100 rounded-lg">🖨️</button>
+                    <button className="px-4 py-2 bg-blue-500 text-white text-sm rounded-lg flex items-center gap-2">
+                      📍 Google Maps
+                    </button>
+                  </div>
+                </div>
+                
+                {/* Filters */}
+                <div className="flex items-center gap-3 mt-4 flex-wrap">
+                  <div className="flex rounded-lg border overflow-hidden">
+                    <button className="px-3 py-1.5 bg-slate-100 text-sm font-medium">Jour</button>
+                    <button className="px-3 py-1.5 bg-blue-500 text-white text-sm font-medium">Semaine</button>
+                  </div>
+                  <div className="flex items-center gap-2 border rounded-lg px-3 py-1.5">
+                    <span>◀</span>
+                    <span className="text-sm">📅 13/01/2026</span>
+                    <span>📅</span>
+                    <span>▶</span>
+                  </div>
+                  <button className="px-3 py-1.5 border rounded-lg text-sm">Aujourd'hui</button>
+                  <select className="px-3 py-1.5 border rounded-lg text-sm">
+                    <option>Thomas BERNARD</option>
+                  </select>
+                  <div className="flex items-center gap-2 border rounded-lg px-3 py-1.5 text-sm">
+                    <span>📍</span>
+                    <span>LYON</span>
+                  </div>
+                  <div className="flex items-center gap-2 border rounded-lg px-3 py-1.5 text-sm">
+                    <span>📍</span>
+                    <span>45 rue Victor Hugo...</span>
+                  </div>
+                  <div className="flex items-center gap-2 border rounded-lg px-3 py-1.5 text-sm">
+                    <span>🚗</span>
+                    <span>Voiture</span>
+                    <span>▼</span>
+                  </div>
+                  <button className="px-3 py-1.5 border rounded-lg text-sm flex items-center gap-2 text-purple-600 border-purple-200 bg-purple-50">
+                    🔄 Tournées
+                  </button>
+                </div>
+              </div>
+
+              <div className="flex">
+                {/* Left Panel */}
+                <div className="flex-1 p-6 border-r">
+                  {/* Tournée Alert */}
+                  <div className="bg-gradient-to-r from-purple-500 to-indigo-500 rounded-xl p-4 text-white mb-6">
+                    <div className="flex items-center gap-3 mb-2">
+                      <span className="text-2xl">🧳</span>
+                      <div>
+                        <div className="font-bold">Tournée détectée</div>
+                        <div className="text-sm text-white/80">4 jours consécutifs • 3 nuits d'hôtel</div>
+                      </div>
+                    </div>
+                    {/* Week calendar */}
+                    <div className="flex gap-2 mt-4">
+                      {[
+                        { day: 'LUN.', num: '13', interv: 3, hotel: false, active: false },
+                        { day: 'MAR.', num: '14', interv: 2, hotel: true, active: true },
+                        { day: 'MER.', num: '15', interv: 4, hotel: true, active: false },
+                        { day: 'JEU.', num: '16', interv: 2, hotel: true, active: false },
+                        { day: 'VEN.', num: '17', interv: 1, hotel: false, active: false },
+                      ].map((d, i) => (
+                        <div key={i} className={`flex-1 rounded-lg p-2 text-center ${d.active ? 'bg-white text-purple-700' : 'bg-white/10'}`}>
+                          <div className="text-xs">{d.day}</div>
+                          <div className="text-xl font-bold">{d.num}</div>
+                          <div className="text-xs">{d.interv} interv.</div>
+                          {d.hotel && <div className="text-xs mt-1">🏨</div>}
+                        </div>
+                      ))}
+                    </div>
+                    <div className="mt-4 bg-white/10 rounded-lg p-3 text-sm flex items-center gap-2">
+                      <span>🏨</span>
+                      <span>Nuit d'hôtel prévue : Ce soir: 3h12 du domicile. Demain: 2h45 depuis domicile.</span>
+                    </div>
+                  </div>
+
+                  {/* Day Header */}
+                  <div className="flex items-center justify-between bg-slate-800 text-white rounded-t-xl px-4 py-3">
+                    <div className="flex items-center gap-3">
+                      <span>📅</span>
+                      <span className="font-bold">Mardi 14 Janvier 2026</span>
+                      <span className="px-2 py-0.5 bg-purple-500 rounded text-xs">Jour 2/4</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="px-3 py-1 bg-blue-500 rounded-full text-xs">2 interventions</span>
+                      <span className="px-3 py-1 bg-orange-500 rounded-full text-xs flex items-center gap-1">🏨 Hôtel ce soir</span>
+                    </div>
+                  </div>
+
+                  {/* Journey Info */}
+                  <div className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white p-4 rounded-b-xl mb-4">
+                    <div className="grid grid-cols-5 gap-4 text-center">
+                      <div>
+                        <div className="flex items-center justify-center gap-1 text-xs text-white/70 mb-1">
+                          <span>🏠</span> Départ domicile
+                        </div>
+                        <div className="text-2xl font-bold">07:45</div>
+                      </div>
+                      <div>
+                        <div className="flex items-center justify-center gap-1 text-xs text-white/70 mb-1">
+                          <span>🏨</span> Arrivée hôtel
+                        </div>
+                        <div className="text-2xl font-bold">18:30</div>
+                      </div>
+                      <div>
+                        <div className="flex items-center justify-center gap-1 text-xs text-white/70 mb-1">
+                          <span>📏</span> Distance
+                        </div>
+                        <div className="text-2xl font-bold">245.7 km</div>
+                      </div>
+                      <div className="border-l border-white/20 pl-4">
+                        <div className="flex items-center justify-center gap-1 text-xs text-white/70 mb-1">
+                          <span>🏠</span> Départ
+                        </div>
+                        <div className="text-sm font-semibold">LYON</div>
+                      </div>
+                      <div>
+                        <div className="flex items-center justify-center gap-1 text-xs text-white/70 mb-1">
+                          <span>🏨</span> Arrivée
+                        </div>
+                        <div className="text-sm font-semibold truncate">GRENOBLE 38...</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Stats */}
+                  <div className="grid grid-cols-5 gap-3 mb-6">
+                    {[
+                      { value: '2', label: 'Interventions', color: 'text-blue-600' },
+                      { value: '2', label: 'Clients', color: 'text-purple-600' },
+                      { value: '2', label: 'Sites', color: 'text-teal-600' },
+                      { value: '2h35', label: '🚗 Trajet', color: 'text-orange-600' },
+                      { value: '3h', label: 'Interventions', color: 'text-green-600' },
+                    ].map((s, i) => (
+                      <div key={i} className="text-center p-3 bg-slate-50 rounded-xl">
+                        <div className={`text-2xl font-bold ${s.color}`}>{s.value}</div>
+                        <div className="text-xs text-slate-500">{s.label}</div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Intervention 1 */}
+                  <div className="border rounded-xl overflow-hidden mb-4">
+                    <div className="bg-slate-100 px-4 py-3 flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <span className="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center font-bold">1</span>
+                        <div>
+                          <div className="font-bold text-slate-800">CENTRE D'IMAGERIE DES ALPES</div>
+                          <div className="text-xs text-slate-500">🏢 03 CIM Centre Hospitalier</div>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <button className="px-3 py-1 bg-teal-100 text-teal-700 rounded text-xs">📋 Avis</button>
+                        <button className="px-3 py-1 bg-blue-100 text-blue-700 rounded text-xs">📄 CSV</button>
+                        <button className="px-3 py-1 bg-purple-100 text-purple-700 rounded text-xs">📦 Package</button>
+                      </div>
+                    </div>
+                    <div className="px-4 py-3 border-b">
+                      <div className="flex items-center gap-2 text-sm text-slate-600">
+                        <span>📍</span>
+                        <span>78 avenue Jean Jaurès, 38000 GRENOBLE</span>
+                      </div>
+                      <div className="mt-2 flex items-center gap-3">
+                        <span className="px-2 py-1 bg-green-100 text-green-700 rounded text-xs">🚗 Départ 07:45 (104 min, 98.5 km)</span>
+                        <span className="text-xs text-slate-500">2 interventions</span>
+                      </div>
+                    </div>
+                    
+                    {/* Equipment 1 */}
+                    <div className="px-4 py-3 border-b hover:bg-slate-50 flex items-center gap-4">
+                      <span className="w-6 h-6 bg-slate-200 text-slate-600 rounded-full flex items-center justify-center text-xs">1</span>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2">
+                          <span className="px-2 py-0.5 bg-blue-100 text-blue-700 rounded text-xs font-medium">CQC - Scanner</span>
+                          <span className="px-2 py-0.5 bg-green-100 text-green-600 rounded text-xs">synchronized</span>
+                        </div>
+                        <div className="text-sm text-slate-600 mt-1">
+                          <span className="font-medium">🔧 SC - </span>
+                          <span>458 792 A - Siemens-SOMATOM go.Up</span>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <div className="font-semibold text-slate-800">⏰ 09:30</div>
+                        <div className="text-xs text-slate-500">(90 min)</div>
+                      </div>
+                      <div className="text-xs text-slate-400">N° 84521</div>
+                      <div className="flex gap-1">
+                        <button className="p-1 text-slate-400 hover:text-slate-600">📥</button>
+                        <button className="p-1 text-slate-400 hover:text-slate-600">⚙️</button>
+                        <button className="p-1 text-slate-400 hover:text-slate-600">▼</button>
+                      </div>
+                    </div>
+
+                    {/* Equipment 2 */}
+                    <div className="px-4 py-3 hover:bg-slate-50 flex items-center gap-4">
+                      <span className="w-6 h-6 bg-slate-200 text-slate-600 rounded-full flex items-center justify-center text-xs">2</span>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2">
+                          <span className="px-2 py-0.5 bg-purple-100 text-purple-700 rounded text-xs font-medium">CQC - IRM</span>
+                          <span className="px-2 py-0.5 bg-green-100 text-green-600 rounded text-xs">synchronized</span>
+                        </div>
+                        <div className="text-sm text-slate-600 mt-1">
+                          <span className="font-medium">🔧 IRM - </span>
+                          <span>K 295847 - Philips-Ingenia 1.5T</span>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <div className="font-semibold text-slate-800">⏰ 11:00</div>
+                        <div className="text-xs text-slate-500">(60 min)</div>
+                      </div>
+                      <div className="text-xs text-slate-400">N° 84522</div>
+                      <div className="flex gap-1">
+                        <button className="p-1 text-slate-400 hover:text-slate-600">📥</button>
+                        <button className="p-1 text-slate-400 hover:text-slate-600">⚙️</button>
+                        <button className="p-1 text-slate-400 hover:text-slate-600">▼</button>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Intervention 2 */}
+                  <div className="border rounded-xl overflow-hidden">
+                    <div className="bg-slate-100 px-4 py-3 flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <span className="w-8 h-8 bg-orange-500 text-white rounded-full flex items-center justify-center font-bold">2</span>
+                        <div>
+                          <div className="font-bold text-slate-800">CLINIQUE DES CÈDRES</div>
+                          <div className="text-xs text-slate-500">🏢 Pôle Santé Sud</div>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <button className="px-3 py-1 bg-teal-100 text-teal-700 rounded text-xs">📋 Avis</button>
+                        <button className="px-3 py-1 bg-blue-100 text-blue-700 rounded text-xs">📄 CSV</button>
+                        <button className="px-3 py-1 bg-purple-100 text-purple-700 rounded text-xs">📦 Package</button>
+                      </div>
+                    </div>
+                    <div className="px-4 py-3 border-b">
+                      <div className="flex items-center gap-2 text-sm text-slate-600">
+                        <span>📍</span>
+                        <span>12 rue des Cèdres, 38100 ÉCHIROLLES</span>
+                      </div>
+                      <div className="mt-2 flex items-center gap-3">
+                        <span className="px-2 py-1 bg-green-100 text-green-700 rounded text-xs">🚗 Départ 12:15 (25 min, 12.3 km)</span>
+                        <span className="text-xs text-slate-500">1 intervention</span>
+                      </div>
+                    </div>
+
+                    {/* Equipment */}
+                    <div className="px-4 py-3 hover:bg-slate-50 flex items-center gap-4">
+                      <span className="w-6 h-6 bg-slate-200 text-slate-600 rounded-full flex items-center justify-center text-xs">1</span>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2">
+                          <span className="px-2 py-0.5 bg-orange-100 text-orange-700 rounded text-xs font-medium">CQC - Arceau mobile</span>
+                          <span className="px-2 py-0.5 bg-green-100 text-green-600 rounded text-xs">synchronized</span>
+                        </div>
+                        <div className="text-sm text-slate-600 mt-1">
+                          <span className="font-medium">🔧 AM - </span>
+                          <span>78452 - GE Healthcare-OEC Elite</span>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <div className="font-semibold text-slate-800">⏰ 14:00</div>
+                        <div className="text-xs text-slate-500">(60 min)</div>
+                      </div>
+                      <div className="text-xs text-slate-400">N° 84523</div>
+                      <div className="flex gap-1">
+                        <button className="p-1 text-slate-400 hover:text-slate-600">📥</button>
+                        <button className="p-1 text-slate-400 hover:text-slate-600">⚙️</button>
+                        <button className="p-1 text-slate-400 hover:text-slate-600">▼</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right Panel - Map + Tour */}
+                <div className="w-96 bg-slate-50">
+                  {/* Tabs */}
+                  <div className="flex border-b bg-white">
+                    <button className="flex-1 px-4 py-3 text-sm text-slate-500 hover:bg-slate-50">📅 Trajet du jour</button>
+                    <button className="flex-1 px-4 py-3 text-sm text-purple-600 font-medium border-b-2 border-purple-500 bg-purple-50">🔄 Tournée (4 jours)</button>
+                  </div>
+
+                  {/* Map placeholder */}
+                  <div className="h-64 bg-gradient-to-br from-green-100 via-blue-50 to-blue-100 relative">
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="text-center">
+                        <div className="text-4xl mb-2">🗺️</div>
+                        <div className="text-sm text-slate-600">Carte Google Maps</div>
+                        <div className="text-xs text-slate-400 mt-1">Lyon → Grenoble → Échirolles</div>
+                      </div>
+                    </div>
+                    {/* Route overlay */}
+                    <div className="absolute bottom-4 right-4 bg-white rounded-lg shadow-lg p-2 text-xs">
+                      <div className="font-medium">🚗 3h 15 min</div>
+                      <div className="text-slate-500">245.7 km</div>
+                    </div>
+                    {/* Points */}
+                    <div className="absolute top-1/4 left-1/4 w-4 h-4 bg-green-500 rounded-full border-2 border-white shadow"></div>
+                    <div className="absolute top-1/2 right-1/3 w-4 h-4 bg-blue-500 rounded-full border-2 border-white shadow"></div>
+                    <div className="absolute bottom-1/3 right-1/4 w-4 h-4 bg-red-500 rounded-full border-2 border-white shadow"></div>
+                  </div>
+
+                  {/* Tour summary */}
+                  <div className="p-4">
+                    <div className="flex items-center gap-2 mb-4">
+                      <span className="text-purple-600">🔄</span>
+                      <span className="font-bold text-slate-800">TOURNÉE COMPLÈTE (4 JOURS)</span>
+                      <button className="ml-auto text-xs text-blue-600 hover:underline">📍 Maps</button>
+                    </div>
+
+                    {/* Start point */}
+                    <div className="flex items-center gap-3 mb-4 p-3 bg-green-50 rounded-lg border border-green-200">
+                      <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                        <span className="text-white text-xs">🏠</span>
+                      </div>
+                      <div>
+                        <div className="text-xs text-slate-500">DÉPART (J1)</div>
+                        <div className="font-bold text-slate-800">LYON</div>
+                      </div>
+                    </div>
+
+                    {/* Days */}
+                    <div className="space-y-3">
+                      <div>
+                        <div className="text-xs text-slate-500 mb-2">J1 - LUN. 13 JANV.</div>
+                        <div className="flex items-center gap-2 p-2 bg-white rounded border">
+                          <span className="w-5 h-5 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs">1</span>
+                          <div className="text-xs">
+                            <div className="font-medium">Cabinet du Dr MOREAU</div>
+                            <div className="text-slate-500">Cabinet du Dr MOREAU Laurent</div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div>
+                        <div className="flex items-center gap-2 text-xs text-slate-500 mb-2">
+                          <span>J2 - MAR. 14 JANV.</span>
+                          <span className="px-1.5 py-0.5 bg-orange-100 text-orange-600 rounded">🏨 Hôtel</span>
+                        </div>
+                        <div className="flex items-center gap-2 p-2 bg-purple-50 rounded border border-purple-200">
+                          <span className="w-5 h-5 bg-purple-500 text-white rounded-full flex items-center justify-center text-xs">2</span>
+                          <div className="text-xs">
+                            <div className="font-medium text-purple-700">CENTRE D'IMAGERIE DES ALPES</div>
+                            <div className="text-slate-500">03 CIM Centre Hospitalier</div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div>
+                        <div className="flex items-center gap-2 text-xs text-slate-500 mb-2">
+                          <span>J3 - MER. 15 JANV.</span>
+                          <span className="px-1.5 py-0.5 bg-orange-100 text-orange-600 rounded">🏨 Hôtel</span>
+                        </div>
+                        <div className="flex items-center gap-2 p-2 bg-white rounded border">
+                          <span className="w-5 h-5 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs">3</span>
+                          <div className="text-xs">
+                            <div className="font-medium">Pôle de santé ALPES SUD</div>
+                            <div className="text-slate-500">Centre médical polyvalent</div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div>
+                        <div className="text-xs text-slate-500 mb-2">J4 - JEU. 16 JANV.</div>
+                        <div className="flex items-center gap-2 p-2 bg-white rounded border">
+                          <span className="w-5 h-5 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs">4</span>
+                          <div className="text-xs">
+                            <div className="font-medium">CHU GRENOBLE ALPES</div>
+                            <div className="text-slate-500">Service radiologie</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Exemple d'Avis d'Intervention - Email */}
           <div className="mt-12">
             <h3 className="text-2xl font-bold text-center mb-8">
@@ -2065,7 +2466,7 @@ export default function HomePage() {
                   </div>
                   <div>
                     <div className="text-sm text-white/50">Email</div>
-                    <div className="font-medium">contact@leova-systems.fr</div>
+                    <div className="font-medium">contact@leova-systems.com</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
