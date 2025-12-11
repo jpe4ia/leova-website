@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import MockupFeuilleRoute from '@/components/mockups/MockupFeuilleRoute';
 import { 
   Shield, Users, Zap, BarChart3, FileText, Calendar, 
   CheckCircle, ArrowRight, Menu, X, Mail, Phone, MapPin,
@@ -1344,7 +1343,59 @@ export default function HomePage() {
               )}
 
               {/* Feuille de Route - Tab 2 index 1 */}
-              {activeFeature === 2 && mockupIndex === 1 && <MockupFeuilleRoute />}
+              {activeFeature === 2 && mockupIndex === 1 && (
+              <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                <div className="bg-white border-b px-6 py-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-4">
+                      <div className="flex items-center gap-2 text-slate-400">
+                        <span>◀</span>
+                        <span>▶</span>
+                      </div>
+                      <div>
+                        <h4 className="text-xl font-bold text-slate-800 flex items-center gap-2">
+                          🚗 Feuille de Route
+                        </h4>
+                        <p className="text-sm text-slate-500">Mercredi 11 décembre 2025 - 4 interventions</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <button className="px-4 py-2 bg-slate-100 text-slate-600 text-sm rounded-lg flex items-center gap-2 hover:bg-slate-200">📅 Trajet du jour</button>
+                      <button className="px-4 py-2 bg-purple-100 text-purple-600 text-sm rounded-lg font-medium">🔄 Tournée (4 jours)</button>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <div className="space-y-4">
+                    {[
+                      { time: '08:30', client: 'Cabinet Dentaire Martin', address: '15 Rue de la Paix, 75002 Paris', type: 'CQA Rétro-alvéolaire', equip: 'Trophy CCX - SN: TRP-2024-0847', status: 'En cours', color: 'border-blue-500 bg-blue-50' },
+                      { time: '10:15', client: 'Centre Imagerie Durand', address: '42 Avenue des Champs, 75008 Paris', type: 'CQC Scanner', equip: 'Siemens CT-540 - SN: SIE-2023-1205', status: 'Planifié', color: 'border-slate-300 bg-white' },
+                      { time: '14:00', client: 'Clinique Saint-Jean', address: '8 Boulevard Haussmann, 75009 Paris', type: 'CQE Mammographie', equip: 'Hologic Selenia - SN: HOL-2022-0456', status: 'Planifié', color: 'border-slate-300 bg-white' },
+                      { time: '16:30', client: 'Dr Lefebvre', address: '23 Rue du Commerce, 75015 Paris', type: 'CQA Panoramique', equip: 'Carestream 8100 - SN: CAR-2024-0123', status: 'Planifié', color: 'border-slate-300 bg-white' },
+                    ].map((rdv, i) => (
+                      <div key={i} className={`flex items-start gap-4 p-4 rounded-xl border-l-4 ${rdv.color}`}>
+                        <div className="text-center">
+                          <div className="text-lg font-bold text-slate-800">{rdv.time}</div>
+                          <div className="text-[10px] text-slate-400">~45 min</div>
+                        </div>
+                        <div className="flex-1">
+                          <div className="font-semibold text-slate-800">{rdv.client}</div>
+                          <div className="text-sm text-slate-500 flex items-center gap-1">📍 {rdv.address}</div>
+                          <div className="mt-2 flex flex-wrap gap-2">
+                            <span className="px-2 py-1 bg-purple-100 text-purple-700 text-[10px] rounded-full">{rdv.type}</span>
+                            <span className="px-2 py-1 bg-slate-100 text-slate-600 text-[10px] rounded-full">{rdv.equip}</span>
+                          </div>
+                        </div>
+                        <div className="flex flex-col items-end gap-2">
+                          <span className={`px-2 py-1 rounded-full text-[10px] ${rdv.status === 'En cours' ? 'bg-blue-100 text-blue-700' : 'bg-slate-100 text-slate-600'}`}>{rdv.status}</span>
+                          <button className="text-xs text-blue-600 hover:underline">📍 Maps</button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              )}
 
               {/* TAB 3 - SUIVI ACTIVITÉ */}
               {/* Suivi Activité */}
