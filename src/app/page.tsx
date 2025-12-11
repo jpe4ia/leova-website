@@ -65,11 +65,16 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
               <img 
-                src="/logo-leova.png" 
+                src="/logo-icon.png" 
+                alt="LEOVA" 
+                className="h-14 w-auto"
+              />
+              <img 
+                src="/logo-text.png" 
                 alt="LEOVA Systems" 
-                className="h-16 w-auto"
+                className="h-12 w-auto hidden sm:block"
               />
             </div>
 
@@ -593,8 +598,9 @@ export default function HomePage() {
       <footer className="py-12 bg-[#0a1f1f] border-t border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex items-center gap-3">
-              <img src="/logo-leova.png" alt="LEOVA" className="h-12" />
+            <div className="flex items-center gap-2">
+              <img src="/logo-icon.png" alt="LEOVA" className="h-10" />
+              <img src="/logo-text.png" alt="LEOVA Systems" className="h-8 hidden sm:block" />
             </div>
             <div className="flex items-center gap-8 text-sm text-white/40">
               <a href="/mentions-legales" className="hover:text-[#2dd4bf] transition-colors">Mentions légales</a>
