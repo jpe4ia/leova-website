@@ -297,7 +297,7 @@ export default function HomePage() {
       <section id="features" className="py-24 bg-[#0f2a2a]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">
+            <h2 className="text-2xl md:text-4xl font-bold mb-4">
               Fonctionnalités <span className="text-[#2dd4bf]">complètes</span>
             </h2>
             <p className="text-white/60 text-lg max-w-2xl mx-auto">
@@ -398,7 +398,7 @@ export default function HomePage() {
                         <span className="w-6 h-6 bg-green-100 rounded flex items-center justify-center text-green-600 text-sm">$</span>
                         <span className="font-semibold text-slate-700">Chiffre d'Affaires</span>
                       </div>
-                      <div className="grid grid-cols-4 gap-3">
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                         <div className="bg-slate-50 rounded-xl p-3 border border-slate-100">
                           <div className="flex items-center gap-2 mb-1">
                             <span className="w-5 h-5 bg-green-100 rounded flex items-center justify-center text-[10px] text-green-600">$</span>
@@ -449,7 +449,7 @@ export default function HomePage() {
                     </div>
                     
                     {/* Charts Row */}
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="bg-slate-50 rounded-xl p-4 border border-slate-100">
                         <div className="text-sm font-medium text-slate-700 mb-3">Évolution CA 2024 vs 2025</div>
                         <div className="flex items-end justify-between h-28 gap-1 mb-2">
@@ -540,7 +540,7 @@ export default function HomePage() {
                     <div className="flex items-center gap-2 mb-3">
                       <span className="text-slate-600 font-medium">📊 Performance Globale Équipe</span>
                     </div>
-                    <div className="grid grid-cols-5 gap-2">
+                    <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
                       {[
                         { value: '344', label: 'OFFRE Total', color: 'text-blue-600' },
                         { value: '234', label: 'Conversions', color: 'text-green-600' },
@@ -557,7 +557,7 @@ export default function HomePage() {
                   </div>
 
                   {/* CA Row */}
-                  <div className="grid grid-cols-2 gap-3 mb-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
                     <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-4 border border-green-100">
                       <div className="text-xs text-slate-500 mb-1">CA Réalisé Global</div>
                       <div className="text-3xl font-bold text-green-600">475 726 €</div>
@@ -585,7 +585,7 @@ export default function HomePage() {
                         <div className="text-xs text-white/60">Réalisé</div>
                       </div>
                     </div>
-                    <div className="grid grid-cols-3 gap-3 mb-3">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
                       <div className="bg-white/10 rounded-lg p-2">
                         <div className="text-[10px] text-white/60">CA Réalisé</div>
                         <div className="font-bold">475 726 €</div>
@@ -641,7 +641,7 @@ export default function HomePage() {
                   </div>
 
                   {/* Stats Row */}
-                  <div className="grid grid-cols-5 gap-3 mb-5">
+                  <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-5">
                     {[
                       { icon: '📅', label: "Aujourd'hui", value: '10' },
                       { icon: '📆', label: 'Semaine', value: '120' },
@@ -674,7 +674,7 @@ export default function HomePage() {
                   </div>
 
                   {/* Calendar Grid */}
-                  <div className="border rounded-xl overflow-hidden">
+                  <div className="border rounded-xl overflow-hidden overflow-x-auto">
                     {/* Header */}
                     <div className="grid grid-cols-8 bg-slate-100 text-xs font-medium text-slate-600">
                       <div className="p-2 border-r">Heure</div>
@@ -755,7 +755,7 @@ export default function HomePage() {
                       <span className="text-sm font-medium text-slate-700">Recherche globale</span>
                     </div>
                     <input className="w-full px-4 py-2 border rounded-lg text-sm mb-3" placeholder="Rechercher dans toutes les colonnes (code établissement, site, équipement, prestation...)" />
-                    <div className="grid grid-cols-5 gap-3">
+                    <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
                       <div>
                         <label className="text-[10px] text-slate-500 flex items-center gap-1">📅 Mois</label>
                         <select className="w-full px-2 py-1.5 border rounded text-xs mt-1"><option>Tous les mois</option></select>
@@ -782,7 +782,7 @@ export default function HomePage() {
                   </div>
 
                   {/* Stats */}
-                  <div className="grid grid-cols-3 gap-4 mb-4">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                     <div className="bg-blue-50 rounded-xl p-4 border border-blue-100 flex items-center gap-3">
                       <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
                         <span className="text-xl">🏢</span>
@@ -813,7 +813,7 @@ export default function HomePage() {
                   </div>
 
                   {/* Table */}
-                  <div className="border rounded-xl overflow-hidden">
+                  <div className="border rounded-xl overflow-hidden overflow-x-auto">
                     <div className="bg-slate-100 px-4 py-2 grid grid-cols-7 text-[10px] font-semibold text-slate-600 uppercase">
                       <span>N°</span>
                       <span>DATE</span>
@@ -890,7 +890,7 @@ export default function HomePage() {
                   </div>
 
                   {/* Site Detail */}
-                  <div className="border rounded-xl overflow-hidden">
+                  <div className="border rounded-xl overflow-hidden overflow-x-auto">
                     <div className="bg-slate-100 px-4 py-3 flex items-center justify-between">
                       <div className="flex items-center gap-2">
                         <span>📍</span>
@@ -966,7 +966,7 @@ export default function HomePage() {
                       <span className="font-medium text-slate-700">Paramètres Facturation (EBP)</span>
                       <button className="ml-auto px-3 py-1 bg-teal-500 text-white text-xs rounded hover:bg-teal-600">🔄 Actualiser</button>
                     </div>
-                    <div className="grid grid-cols-4 gap-4 text-xs">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs">
                       <div>
                         <div className="text-slate-500">Mode règlement</div>
                         <div className="font-medium">VIRNET</div>
@@ -1048,7 +1048,7 @@ export default function HomePage() {
                   </div>
 
                   {/* Table */}
-                  <div className="border rounded-xl overflow-hidden">
+                  <div className="border rounded-xl overflow-hidden overflow-x-auto">
                     <div className="bg-slate-100 px-4 py-2 grid grid-cols-5 text-[10px] font-semibold text-slate-600 uppercase">
                       <span>FICHIER</span>
                       <span>DATE DÉPÔT</span>
@@ -1079,7 +1079,7 @@ export default function HomePage() {
 
                   {/* Expanded Detail */}
                   <div className="mt-4 bg-slate-50 rounded-xl p-4 border">
-                    <div className="grid grid-cols-3 gap-4 text-xs">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
                       <div>
                         <div className="text-slate-500 mb-1">📋 Référence</div>
                         <div className="font-mono text-blue-600">CQC-251120-12576-1-M-12576-1-DR-01</div>
@@ -1143,7 +1143,7 @@ export default function HomePage() {
                   </div>
 
                   {/* Stats Row */}
-                  <div className="grid grid-cols-5 border-b">
+                  <div className="grid grid-cols-3 md:grid-cols-5 border-b">
                     <div className="p-4 text-center border-r">
                       <div className="text-3xl font-bold text-slate-700">131</div>
                       <div className="text-xs text-slate-500">Interventions planifiées</div>
@@ -1395,9 +1395,9 @@ export default function HomePage() {
                 </div>
               </div>
 
-              <div className="flex">
+              <div className="flex flex-col lg:flex-row">
                 {/* Left Panel */}
-                <div className="flex-1 p-6 border-r">
+                <div className="flex-1 p-4 md:p-6 lg:border-r">
                   {/* Tournée Alert */}
                   <div className="bg-gradient-to-r from-purple-500 to-indigo-500 rounded-xl p-4 text-white mb-6">
                     <div className="flex items-center gap-3 mb-2">
@@ -1445,7 +1445,7 @@ export default function HomePage() {
 
                   {/* Journey Info */}
                   <div className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white p-4 rounded-b-xl mb-4">
-                    <div className="grid grid-cols-5 gap-4 text-center">
+                    <div className="grid grid-cols-2 md:grid-cols-5 gap-4 text-center">
                       <div>
                         <div className="flex items-center justify-center gap-1 text-xs text-white/70 mb-1">
                           <span>🏠</span> Départ domicile
@@ -1480,7 +1480,7 @@ export default function HomePage() {
                   </div>
 
                   {/* Stats */}
-                  <div className="grid grid-cols-5 gap-3 mb-6">
+                  <div className="grid grid-cols-2 md:grid-cols-5 gap-3 mb-6">
                     {[
                       { value: '2', label: 'Interventions', color: 'text-blue-600' },
                       { value: '2', label: 'Clients', color: 'text-purple-600' },
@@ -1548,7 +1548,7 @@ export default function HomePage() {
                     </div>
 
                     {/* Equipment 2 */}
-                    <div className="px-4 py-3 hover:bg-slate-50 flex items-center gap-4">
+                    <div className="px-4 py-3 hover:bg-slate-50 flex flex-wrap md:flex-nowrap items-center gap-4">
                       <span className="w-6 h-6 bg-slate-200 text-slate-600 rounded-full flex items-center justify-center text-xs">2</span>
                       <div className="flex-1">
                         <div className="flex items-center gap-2">
@@ -1574,7 +1574,7 @@ export default function HomePage() {
                   </div>
 
                   {/* Intervention 2 */}
-                  <div className="border rounded-xl overflow-hidden">
+                  <div className="border rounded-xl overflow-hidden overflow-x-auto">
                     <div className="bg-slate-100 px-4 py-3 flex items-center justify-between">
                       <div className="flex items-center gap-3">
                         <span className="w-8 h-8 bg-orange-500 text-white rounded-full flex items-center justify-center font-bold">2</span>
@@ -1601,7 +1601,7 @@ export default function HomePage() {
                     </div>
 
                     {/* Equipment */}
-                    <div className="px-4 py-3 hover:bg-slate-50 flex items-center gap-4">
+                    <div className="px-4 py-3 hover:bg-slate-50 flex flex-wrap md:flex-nowrap items-center gap-4">
                       <span className="w-6 h-6 bg-slate-200 text-slate-600 rounded-full flex items-center justify-center text-xs">1</span>
                       <div className="flex-1">
                         <div className="flex items-center gap-2">
@@ -1628,7 +1628,7 @@ export default function HomePage() {
                 </div>
 
                 {/* Right Panel - Map + Tour */}
-                <div className="w-96 bg-slate-50">
+                <div className="w-full lg:w-96 bg-slate-50">
                   {/* Tabs */}
                   <div className="flex border-b bg-white">
                     <button className="flex-1 px-4 py-3 text-sm text-slate-500 hover:bg-slate-50">📅 Trajet du jour</button>
@@ -1783,7 +1783,7 @@ export default function HomePage() {
 
                     {/* Intervention Details Box */}
                     <div className="bg-gradient-to-r from-teal-50 to-cyan-50 rounded-xl p-5 border border-teal-100">
-                      <div className="grid grid-cols-2 gap-4">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                           <div className="text-xs text-slate-500 uppercase tracking-wide">📅 Date</div>
                           <div className="text-lg font-bold text-teal-700">Lundi 15 décembre 2025</div>
@@ -1867,7 +1867,7 @@ export default function HomePage() {
               </div>
 
               {/* Status indicator */}
-              <div className="mt-4 flex items-center justify-center gap-6 text-sm">
+              <div className="mt-4 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 text-sm">
                 <div className="flex items-center gap-2">
                   <span className="w-3 h-3 bg-green-500 rounded-full"></span>
                   <span className="text-white/70">Envoyé le 11/12/2025 à 14:32</span>
@@ -1940,7 +1940,7 @@ export default function HomePage() {
       <section className="py-24 bg-[#0a1f1f]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">
+            <h2 className="text-2xl md:text-4xl font-bold mb-4">
               <span className="text-[#2dd4bf]">⚙️</span> Module <span className="text-[#2dd4bf]">Administration</span>
             </h2>
             <p className="text-white/60 text-lg max-w-2xl mx-auto">
@@ -1963,7 +1963,7 @@ export default function HomePage() {
                 <h4 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
                   👥 Gestion des Utilisateurs
                 </h4>
-                <div className="border rounded-xl overflow-hidden">
+                <div className="border rounded-xl overflow-hidden overflow-x-auto">
                   <div className="bg-slate-100 px-4 py-2 grid grid-cols-5 text-xs font-semibold text-slate-600">
                     <span>UTILISATEUR</span>
                     <span>EMAIL</span>
@@ -2055,7 +2055,7 @@ export default function HomePage() {
                 <h4 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
                   📄 Modèles de Rapports
                 </h4>
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {[
                     { name: 'CQA - Rétro-alvéolaire', type: 'Dentaire', count: 156, icon: '🦷' },
                     { name: 'CQC - Scanner', type: 'Imagerie', count: 89, icon: '🔬' },
@@ -2234,7 +2234,7 @@ export default function HomePage() {
                   ⚙️ Paramètres Généraux
                 </h4>
                 <div className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="text-xs text-slate-500 mb-1 block">Nom de l'entreprise</label>
                       <input className="w-full px-3 py-2 border rounded-lg text-sm" value="ACME Inspection SARL" readOnly />
@@ -2248,7 +2248,7 @@ export default function HomePage() {
                     <label className="text-xs text-slate-500 mb-1 block">Adresse</label>
                     <input className="w-full px-3 py-2 border rounded-lg text-sm" value="123 Avenue des Contrôles, 75001 Paris" readOnly />
                   </div>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="text-xs text-slate-500 mb-1 block">Email contact</label>
                       <input className="w-full px-3 py-2 border rounded-lg text-sm" value="contact@acme-inspection.fr" readOnly />
@@ -2337,7 +2337,7 @@ export default function HomePage() {
       <section id="pricing" className="py-24 bg-[#1a3d3d]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">
+            <h2 className="text-2xl md:text-4xl font-bold mb-4">
               Tarification <span className="text-[#2dd4bf]">transparente</span>
             </h2>
             <p className="text-white/60 text-lg max-w-2xl mx-auto">
@@ -2661,6 +2661,13 @@ export default function HomePage() {
     </div>
   );
 }
+
+
+
+
+
+
+
 
 
 
