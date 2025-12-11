@@ -5,7 +5,7 @@ import {
   Shield, Users, Zap, BarChart3, FileText, Calendar, 
   CheckCircle, ArrowRight, Menu, X, Mail, Phone, MapPin,
   Monitor, Smartphone, Cloud, Lock, Headphones, TrendingUp,
-  Building2, Wrench, ClipboardCheck, Euro, Play, ChevronDown, Loader2
+  Building2, Wrench, ClipboardCheck, Euro, Play, ChevronDown, Loader2, RefreshCw
 } from 'lucide-react';
 
 export default function HomePage() {
