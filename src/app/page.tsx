@@ -143,7 +143,7 @@ export default function HomePage() {
             
             {/* Main Title */}
             <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6">
-              <span className="text-[#2dd4bf]">LISA</span>
+              <span className="bg-gradient-to-r from-teal-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">LISA</span>
               <br />
               <span className="text-white">
                 Le logiciel métier qui
@@ -229,49 +229,62 @@ export default function HomePage() {
               </div>
             </div>
             
-            {/* Dashboard mockup */}
+            {/* LISA Preview Card */}
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-[#2dd4bf]/20 to-transparent rounded-2xl blur-2xl"></div>
-              <div className="relative bg-[#0f2a2a] rounded-2xl border border-[#2dd4bf]/20 p-3 shadow-2xl">
-                <div className="bg-[#1a3d3d] rounded-xl p-6 space-y-4">
-                  {/* Header */}
-                  <div className="flex items-center justify-between pb-4 border-b border-white/10">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-[#2dd4bf] rounded-lg flex items-center justify-center font-bold text-[#0f2a2a]">L</div>
-                      <div>
-                        <div className="font-semibold">LISA Dashboard</div>
-                        <div className="text-xs text-white/50">Vue d'ensemble</div>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#2dd4bf]/20 to-blue-500/20 rounded-2xl blur-3xl"></div>
+              <div className="relative bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800 rounded-2xl border border-white/10 p-8 shadow-2xl">
+                {/* Effet de grille en arrière-plan */}
+                <div className="absolute inset-0 opacity-5 rounded-2xl overflow-hidden">
+                  <div className="absolute inset-0" style={{
+                    backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
+                    backgroundSize: '32px 32px'
+                  }}></div>
+                </div>
+                
+                <div className="relative z-10 text-center space-y-6">
+                  {/* Titre LISA avec gradient */}
+                  <h2 className="text-5xl font-black tracking-tight">
+                    <span className="bg-gradient-to-r from-teal-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">
+                      LISA
+                    </span>
+                  </h2>
+                  <p className="text-white/60 text-lg">
+                    Logiciel métier Inspections et de Suivi des Activités
+                  </p>
+                  
+                  {/* Features list */}
+                  <div className="bg-white/5 rounded-xl p-6 backdrop-blur-sm border border-white/10 space-y-4 text-left">
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg">
+                        <FileText className="w-5 h-5 text-white" />
                       </div>
+                      <span className="text-white/90">Gestion des interventions et rapports</span>
                     </div>
-                    <div className="flex gap-1.5">
-                      <div className="w-3 h-3 bg-red-400 rounded-full"></div>
-                      <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
-                      <div className="w-3 h-3 bg-green-400 rounded-full"></div>
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl flex items-center justify-center shadow-lg">
+                        <CheckCircle className="w-5 h-5 text-white" />
+                      </div>
+                      <span className="text-white/90">Suivi qualité et non-conformités</span>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-xl flex items-center justify-center shadow-lg">
+                        <Building2 className="w-5 h-5 text-white" />
+                      </div>
+                      <span className="text-white/90">Base clients et équipements</span>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-xl flex items-center justify-center shadow-lg">
+                        <Calendar className="w-5 h-5 text-white" />
+                      </div>
+                      <span className="text-white/90">Planification et facturation</span>
                     </div>
                   </div>
-                  {/* Stats */}
-                  <div className="grid grid-cols-3 gap-3">
-                    <div className="bg-[#0f2a2a] rounded-lg p-4 text-center">
-                      <div className="text-3xl font-bold text-[#2dd4bf]">156</div>
-                      <div className="text-xs text-white/50 mt-1">Équipements</div>
-                    </div>
-                    <div className="bg-[#0f2a2a] rounded-lg p-4 text-center">
-                      <div className="text-3xl font-bold text-[#5eead4]">42</div>
-                      <div className="text-xs text-white/50 mt-1">Interventions</div>
-                    </div>
-                    <div className="bg-[#0f2a2a] rounded-lg p-4 text-center">
-                      <div className="text-3xl font-bold text-emerald-400">98%</div>
-                      <div className="text-xs text-white/50 mt-1">Conformité</div>
-                    </div>
-                  </div>
-                  {/* Chart placeholder */}
-                  <div className="bg-[#0f2a2a] rounded-lg p-4">
-                    <div className="text-sm text-white/50 mb-3">Activité mensuelle</div>
-                    <div className="h-24 flex items-end gap-1">
-                      {[40, 65, 45, 80, 55, 90, 70, 85, 60, 95, 75, 88].map((h, i) => (
-                        <div key={i} className="flex-1 bg-gradient-to-t from-[#2dd4bf] to-[#5eead4] rounded-t opacity-80" style={{ height: `${h}%` }}></div>
-                      ))}
-                    </div>
+                  
+                  {/* Footer */}
+                  <div className="flex items-center justify-center gap-2 text-white/40 text-sm pt-2">
+                    <span>Développé par</span>
+                    <img src="/logo-icon.png" alt="LEOVA" className="h-5 w-auto" />
+                    <span className="text-[#2dd4bf] font-semibold">LEOVA Systems</span>
                   </div>
                 </div>
               </div>
