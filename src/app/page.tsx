@@ -6,7 +6,7 @@ import {
   CheckCircle, ArrowRight, Menu, X, Mail, Phone, MapPin,
   Monitor, Smartphone, Cloud, Lock, Headphones, TrendingUp,
   Building2, Wrench, ClipboardCheck, Euro, Play, ChevronDown, Loader2, RefreshCw,
-  ChevronRight, Sparkles, Target, Clock, PieChart, Route, UserCheck, Settings
+  ChevronRight, Sparkles, Target, Clock, PieChart, Navigation, UserCheck, Settings
 } from 'lucide-react';
 
 // Hook pour animation au scroll
@@ -535,7 +535,7 @@ export default function HomePage() {
                   </h3>
                   <div className="space-y-4">
                     {[
-                      { icon: Route, title: 'Optimisation GPS', desc: 'Réduisez les km parcourus avec nos algorithmes intelligents' },
+                      { icon: Navigation, title: 'Optimisation GPS', desc: 'Réduisez les km parcourus avec nos algorithmes intelligents' },
                       { icon: Calendar, title: 'Planning drag & drop', desc: 'Planifiez en glissant-déposant, visualisez les conflits' },
                       { icon: Mail, title: 'Avis automatiques', desc: 'Envoi automatique aux clients, confirmations en 1 clic' },
                       { icon: Smartphone, title: 'App mobile', desc: 'Vos techniciens reçoivent leur feuille de route en temps réel' },
@@ -3124,6 +3124,7 @@ export default function HomePage() {
     </div>
   );
 }
+
 
 
 
