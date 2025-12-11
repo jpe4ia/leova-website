@@ -19,16 +19,55 @@ export default function HomePage() {
   const [activeFeature, setActiveFeature] = useState(0);
   const [mockupIndex, setMockupIndex] = useState(0);
   const [isHoveringCarousel, setIsHoveringCarousel] = useState(false);
-  const totalMockups = 6;
+  
+  // Définition des mockups par tab
+  const mockupsByTab: { [key: number]: { label: string; id: string }[] } = {
+    0: [ // Financier
+      { label: '💰 Dashboard Financier', id: 'financier' },
+      { label: '📄 Facturation', id: 'facturation' },
+    ],
+    1: [ // Commercial
+      { label: '📊 Dashboard Commercial', id: 'commercial' },
+      { label: '🏢 Base Client', id: 'baseclient' },
+    ],
+    2: [ // Planification
+      { label: '📅 Planification', id: 'planification' },
+      { label: '🗺️ Feuille de Route', id: 'feuilleroute' },
+    ],
+    3: [ // Suivi Activité
+      { label: '📋 Suivi Activité', id: 'suiviactivite' },
+      { label: '📧 Avis Intervention', id: 'avisintervention' },
+      { label: '📄 Dépôt Rapport', id: 'depotrapport' },
+    ],
+    4: [ // Administration
+      { label: '👥 Utilisateurs', id: 'utilisateurs' },
+      { label: '🛡️ Rôles', id: 'roles' },
+      { label: '📄 Modèles Rapports', id: 'modeles' },
+      { label: '⚠️ Non-conformités', id: 'nc' },
+      { label: '📧 Templates Avis', id: 'templates' },
+      { label: '🔗 Intégrations', id: 'integrations' },
+    ],
+    5: [ // Portail Client
+      { label: '🌐 Portail Client', id: 'portailclient' },
+    ],
+  };
+  
+  const currentMockups = mockupsByTab[activeFeature] || [];
+  const totalMockups = currentMockups.length;
+
+  // Reset mockup index quand on change de tab
+  useEffect(() => {
+    setMockupIndex(0);
+  }, [activeFeature]);
 
   // Auto-scroll carousel toutes les 2 secondes
   useEffect(() => {
-    if (isHoveringCarousel) return;
+    if (isHoveringCarousel || totalMockups === 0) return;
     const interval = setInterval(() => {
       setMockupIndex(prev => (prev + 1) % totalMockups);
     }, 2000);
     return () => clearInterval(interval);
-  }, [isHoveringCarousel]);
+  }, [isHoveringCarousel, totalMockups]);
 
   // Gérer la souscription Stripe
   const handleSubscribe = async (plan: 'starter' | 'pro') => {
@@ -355,12 +394,12 @@ export default function HomePage() {
           {/* Navigation Tabs */}
           <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-12">
             {[
-              { id: 0, name: 'Tableau de bord', icon: '📊', color: 'from-blue-500 to-cyan-500' },
-              { id: 1, name: 'Commercial', icon: '💼', color: 'from-green-500 to-emerald-500' },
+              { id: 0, name: 'Financier', icon: '💰', color: 'from-emerald-500 to-teal-500' },
+              { id: 1, name: 'Commercial', icon: '📊', color: 'from-blue-500 to-cyan-500' },
               { id: 2, name: 'Planification', icon: '📅', color: 'from-purple-500 to-indigo-500' },
-              { id: 3, name: 'Suivi terrain', icon: '🗺️', color: 'from-orange-500 to-amber-500' },
-              { id: 4, name: 'Clients', icon: '🏢', color: 'from-pink-500 to-rose-500' },
-              { id: 5, name: 'Administration', icon: '⚙️', color: 'from-slate-500 to-zinc-500' },
+              { id: 3, name: 'Suivi Activité', icon: '📋', color: 'from-orange-500 to-amber-500' },
+              { id: 4, name: 'Administration', icon: '⚙️', color: 'from-slate-500 to-zinc-500' },
+              { id: 5, name: 'Portail Client', icon: '🌐', color: 'from-pink-500 to-rose-500' },
             ].map((tab) => (
               <button
                 key={tab.id}
@@ -809,13 +848,15 @@ export default function HomePage() {
               {/* Label */}
               <div className="text-center mb-4">
                 <span className="px-4 py-2 bg-white/10 backdrop-blur rounded-full text-white text-sm">
-                  {['💰 Dashboard Financier', '📊 Dashboard Commercial', '📅 Planification', '📋 Suivi Activité', '🏢 Base Client', '📄 Dépôt Rapport'][mockupIndex]}
+                  {currentMockups[mockupIndex]?.label || ''}
                 </span>
               </div>
               
-              {/* Mockups conditionnels */}
-              {/* Module 1: Dashboard Financier */}
-              {mockupIndex === 0 && (
+              {/* Mockups conditionnels par tab */}
+              
+              {/* TAB 0 - FINANCIER */}
+              {/* Dashboard Financier */}
+              {activeFeature === 0 && mockupIndex === 0 && (
               <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
                 {/* Header LISA */}
                 <div className="bg-slate-900 px-4 py-3 flex items-center justify-between">
@@ -980,8 +1021,87 @@ export default function HomePage() {
               </div>
               )}
 
-              {/* Module 2: Dashboard Commercial */}
-              {mockupIndex === 1 && (
+              {/* Facturation - Tab 0 index 1 */}
+              {activeFeature === 0 && mockupIndex === 1 && (
+              <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                {/* Header */}
+                <div className="bg-slate-900 px-4 py-3 flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <span className="text-xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
+                    <span className="text-[10px] text-white/40 hidden sm:block">Module Facturation</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[10px] text-white/50">📅 11/12/2025</span>
+                    <div className="px-3 py-1.5 bg-emerald-500 text-white text-xs rounded-lg">💳 EBP Connecté</div>
+                  </div>
+                </div>
+                <div className="p-5">
+                  <h4 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
+                    <div className="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center">
+                      <span className="text-emerald-600">📄</span>
+                    </div>
+                    Gestion des Factures
+                  </h4>
+                  
+                  {/* Stats */}
+                  <div className="grid grid-cols-4 gap-3 mb-5">
+                    {[
+                      { label: 'En attente', value: '12', color: 'text-orange-600', bg: 'bg-orange-50' },
+                      { label: 'Envoyées', value: '45', color: 'text-blue-600', bg: 'bg-blue-50' },
+                      { label: 'Payées', value: '128', color: 'text-green-600', bg: 'bg-green-50' },
+                      { label: 'CA Mois', value: '47 850€', color: 'text-emerald-600', bg: 'bg-emerald-50' },
+                    ].map((stat, i) => (
+                      <div key={i} className={`${stat.bg} rounded-lg p-3 text-center`}>
+                        <div className={`text-lg font-bold ${stat.color}`}>{stat.value}</div>
+                        <div className="text-[10px] text-slate-500">{stat.label}</div>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  {/* Liste factures */}
+                  <div className="border rounded-lg overflow-hidden">
+                    <div className="bg-slate-50 px-3 py-2 flex items-center justify-between border-b">
+                      <span className="text-xs font-medium text-slate-600">Dernières factures</span>
+                      <button className="px-2 py-1 bg-emerald-500 text-white text-[10px] rounded">+ Nouvelle facture</button>
+                    </div>
+                    <table className="w-full text-[11px]">
+                      <thead className="bg-slate-50">
+                        <tr>
+                          <th className="text-left p-2 text-slate-500 font-medium">N° Facture</th>
+                          <th className="text-left p-2 text-slate-500 font-medium">Client</th>
+                          <th className="text-left p-2 text-slate-500 font-medium">Date</th>
+                          <th className="text-right p-2 text-slate-500 font-medium">Montant</th>
+                          <th className="text-center p-2 text-slate-500 font-medium">Statut</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {[
+                          { num: 'FAC-2025-0847', client: 'Cabinet Dentaire Martin', date: '11/12/2025', montant: '1 250,00 €', statut: 'Payée', color: 'bg-green-100 text-green-700' },
+                          { num: 'FAC-2025-0846', client: 'Centre Imagerie Durand', date: '10/12/2025', montant: '3 890,00 €', statut: 'Envoyée', color: 'bg-blue-100 text-blue-700' },
+                          { num: 'FAC-2025-0845', client: 'Clinique Saint-Jean', date: '09/12/2025', montant: '5 420,00 €', statut: 'Payée', color: 'bg-green-100 text-green-700' },
+                          { num: 'FAC-2025-0844', client: 'Dr Lefebvre', date: '08/12/2025', montant: '890,00 €', statut: 'En attente', color: 'bg-orange-100 text-orange-700' },
+                          { num: 'FAC-2025-0843', client: 'Hôpital Central', date: '07/12/2025', montant: '12 350,00 €', statut: 'Payée', color: 'bg-green-100 text-green-700' },
+                        ].map((fac, i) => (
+                          <tr key={i} className="border-t hover:bg-slate-50">
+                            <td className="p-2 font-medium text-blue-600">{fac.num}</td>
+                            <td className="p-2 text-slate-700">{fac.client}</td>
+                            <td className="p-2 text-slate-500">{fac.date}</td>
+                            <td className="p-2 text-right font-medium text-slate-800">{fac.montant}</td>
+                            <td className="p-2 text-center">
+                              <span className={`px-2 py-1 rounded-full text-[9px] ${fac.color}`}>{fac.statut}</span>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              )}
+
+              {/* TAB 1 - COMMERCIAL */}
+              {/* Dashboard Commercial */}
+              {activeFeature === 1 && mockupIndex === 0 && (
               <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
                 {/* Header */}
                 <div className="bg-slate-900 px-4 py-3 flex items-center justify-between">
@@ -1098,8 +1218,9 @@ export default function HomePage() {
               </div>
               )}
 
-              {/* Module 3: Planification */}
-              {mockupIndex === 2 && (
+              {/* TAB 2 - PLANIFICATION */}
+              {/* Planification */}
+              {activeFeature === 2 && mockupIndex === 0 && (
               <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
                 <div className="bg-slate-900 px-4 py-3 flex items-center justify-between">
                   <div className="flex items-center gap-3">
@@ -1221,8 +1342,64 @@ export default function HomePage() {
               </div>
               )}
 
-              {/* Module 4: Suivi Activité */}
-              {mockupIndex === 3 && (
+              {/* Feuille de Route - Tab 2 index 1 */}
+              {activeFeature === 2 && mockupIndex === 1 && (
+              <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                <div className="bg-white border-b px-6 py-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-4">
+                      <div className="flex items-center gap-2 text-slate-400">
+                        <span>◀</span>
+                        <span>▶</span>
+                      </div>
+                      <div>
+                        <h4 className="text-xl font-bold text-slate-800 flex items-center gap-2">
+                          🚗 Feuille de Route
+                        </h4>
+                        <p className="text-sm text-slate-500">Mercredi 11 décembre 2025 - 4 interventions</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <button className="px-4 py-2 bg-slate-100 text-slate-600 text-sm rounded-lg flex items-center gap-2 hover:bg-slate-200">📅 Trajet du jour</button>
+                      <button className="px-4 py-2 bg-purple-100 text-purple-600 text-sm rounded-lg font-medium">🔄 Tournée (4 jours)</button>
+                    </div>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <div className="space-y-4">
+                    {[
+                      { time: '08:30', client: 'Cabinet Dentaire Martin', address: '15 Rue de la Paix, 75002 Paris', type: 'CQA Rétro-alvéolaire', equip: 'Trophy CCX - SN: TRP-2024-0847', status: 'En cours', color: 'border-blue-500 bg-blue-50' },
+                      { time: '10:15', client: 'Centre Imagerie Durand', address: '42 Avenue des Champs, 75008 Paris', type: 'CQC Scanner', equip: 'Siemens CT-540 - SN: SIE-2023-1205', status: 'Planifié', color: 'border-slate-300 bg-white' },
+                      { time: '14:00', client: 'Clinique Saint-Jean', address: '8 Boulevard Haussmann, 75009 Paris', type: 'CQE Mammographie', equip: 'Hologic Selenia - SN: HOL-2022-0456', status: 'Planifié', color: 'border-slate-300 bg-white' },
+                      { time: '16:30', client: 'Dr Lefebvre', address: '23 Rue du Commerce, 75015 Paris', type: 'CQA Panoramique', equip: 'Carestream 8100 - SN: CAR-2024-0123', status: 'Planifié', color: 'border-slate-300 bg-white' },
+                    ].map((rdv, i) => (
+                      <div key={i} className={`flex items-start gap-4 p-4 rounded-xl border-l-4 ${rdv.color}`}>
+                        <div className="text-center">
+                          <div className="text-lg font-bold text-slate-800">{rdv.time}</div>
+                          <div className="text-[10px] text-slate-400">~45 min</div>
+                        </div>
+                        <div className="flex-1">
+                          <div className="font-semibold text-slate-800">{rdv.client}</div>
+                          <div className="text-sm text-slate-500 flex items-center gap-1">📍 {rdv.address}</div>
+                          <div className="mt-2 flex flex-wrap gap-2">
+                            <span className="px-2 py-1 bg-purple-100 text-purple-700 text-[10px] rounded-full">{rdv.type}</span>
+                            <span className="px-2 py-1 bg-slate-100 text-slate-600 text-[10px] rounded-full">{rdv.equip}</span>
+                          </div>
+                        </div>
+                        <div className="flex flex-col items-end gap-2">
+                          <span className={`px-2 py-1 rounded-full text-[10px] ${rdv.status === 'En cours' ? 'bg-blue-100 text-blue-700' : 'bg-slate-100 text-slate-600'}`}>{rdv.status}</span>
+                          <button className="text-xs text-blue-600 hover:underline">📍 Maps</button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              )}
+
+              {/* TAB 3 - SUIVI ACTIVITÉ */}
+              {/* Suivi Activité */}
+              {activeFeature === 3 && mockupIndex === 0 && (
               <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
                 <div className="bg-gradient-to-r from-purple-600 to-purple-500 px-4 py-3 text-white">
                   <div className="flex items-center justify-between">
@@ -1338,8 +1515,71 @@ export default function HomePage() {
               </div>
               )}
 
-              {/* Module 5: Base Client */}
-              {mockupIndex === 4 && (
+              {/* Avis Intervention - Tab 3 index 1 */}
+              {activeFeature === 3 && mockupIndex === 1 && (
+              <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                <div className="flex">
+                  <div className="w-2 bg-gradient-to-b from-blue-500 via-teal-500 to-green-500"></div>
+                  <div className="flex-1">
+                    <div className="bg-white border-b px-6 py-4 flex items-center justify-between">
+                      <div>
+                        <h4 className="text-xl font-bold text-slate-800 flex items-center gap-2">📧 Suivi des Avis d'Intervention</h4>
+                        <p className="text-sm text-slate-500">Interventions de -30 jours à +60 jours</p>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <button className="px-4 py-2 bg-slate-100 text-slate-600 text-sm rounded-lg">📊 Tout afficher</button>
+                        <button className="px-4 py-2 bg-teal-500 text-white text-sm rounded-lg">✈️ Envoyer les avis</button>
+                      </div>
+                    </div>
+                    <div className="p-6">
+                      <div className="grid grid-cols-4 gap-3 mb-5">
+                        {[
+                          { label: 'Total', value: '131', color: 'text-slate-700', bg: 'bg-slate-50' },
+                          { label: 'Non envoyés', value: '115', color: 'text-orange-600', bg: 'bg-orange-50' },
+                          { label: 'Envoyés', value: '16', color: 'text-blue-600', bg: 'bg-blue-50' },
+                          { label: 'Confirmés', value: '11', color: 'text-green-600', bg: 'bg-green-50' },
+                        ].map((stat, i) => (
+                          <div key={i} className={`${stat.bg} rounded-lg p-3 text-center`}>
+                            <div className={`text-lg font-bold ${stat.color}`}>{stat.value}</div>
+                            <div className="text-[10px] text-slate-500">{stat.label}</div>
+                          </div>
+                        ))}
+                      </div>
+                      <table className="w-full text-[11px]">
+                        <thead className="bg-slate-50">
+                          <tr>
+                            <th className="text-left p-2">Date</th>
+                            <th className="text-left p-2">Client</th>
+                            <th className="text-left p-2">Type</th>
+                            <th className="text-center p-2">Statut</th>
+                            <th className="text-center p-2">Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {[
+                            { date: '12/12/2025', client: 'Cabinet Martin', type: 'CQA Rétro', statut: 'Confirmé', color: 'bg-green-100 text-green-700' },
+                            { date: '13/12/2025', client: 'Centre Durand', type: 'CQC Scanner', statut: 'Envoyé', color: 'bg-blue-100 text-blue-700' },
+                            { date: '14/12/2025', client: 'Clinique St-Jean', type: 'CQE Mammo', statut: 'Non envoyé', color: 'bg-orange-100 text-orange-700' },
+                            { date: '15/12/2025', client: 'Dr Lefebvre', type: 'CQA Pano', statut: 'Non envoyé', color: 'bg-orange-100 text-orange-700' },
+                          ].map((row, i) => (
+                            <tr key={i} className="border-t hover:bg-slate-50">
+                              <td className="p-2">{row.date}</td>
+                              <td className="p-2 font-medium">{row.client}</td>
+                              <td className="p-2">{row.type}</td>
+                              <td className="p-2 text-center"><span className={`px-2 py-1 rounded-full text-[9px] ${row.color}`}>{row.statut}</span></td>
+                              <td className="p-2 text-center"><button className="px-2 py-1 bg-teal-500 text-white text-[9px] rounded">✈️ Avis</button></td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              )}
+
+              {/* Base Client - Tab 1 index 1 */}
+              {activeFeature === 1 && mockupIndex === 1 && (
               <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
                 <div className="bg-slate-900 px-4 py-3 flex items-center justify-between">
                   <span className="text-xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
@@ -1477,8 +1717,8 @@ export default function HomePage() {
               </div>
               )}
 
-              {/* Module 6: Dépôt Rapport */}
-              {mockupIndex === 5 && (
+              {/* Dépôt Rapport - Tab 3 index 2 */}
+              {activeFeature === 3 && mockupIndex === 2 && (
               <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
                 <div className="bg-slate-900 px-4 py-3 flex items-center justify-between">
                   <span className="text-xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
@@ -1593,6 +1833,247 @@ export default function HomePage() {
                           DENT-NC - NC Dentaire 🔗
                         </div>
                       </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              )}
+
+              {/* TAB 4 - ADMINISTRATION */}
+              {/* Utilisateurs - Tab 4 index 0 */}
+              {activeFeature === 4 && mockupIndex === 0 && (
+              <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                <div className="bg-slate-900 px-4 py-3 flex items-center justify-between">
+                  <span className="text-xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
+                  <span className="text-[10px] text-white/50">Administration</span>
+                </div>
+                <div className="p-5">
+                  <h4 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">👥 Gestion des Utilisateurs</h4>
+                  <table className="w-full text-[11px]">
+                    <thead className="bg-slate-50">
+                      <tr><th className="text-left p-2">Nom</th><th className="text-left p-2">Email</th><th className="text-left p-2">Rôle</th><th className="text-center p-2">Statut</th><th className="text-center p-2">Actions</th></tr>
+                    </thead>
+                    <tbody>
+                      {[
+                        { name: 'Jean DUPONT', email: 'j.dupont@exemple.fr', role: 'Administrateur', status: 'Actif', color: 'bg-purple-100 text-purple-700' },
+                        { name: 'Marie MARTIN', email: 'm.martin@exemple.fr', role: 'Technicien', status: 'Actif', color: 'bg-blue-100 text-blue-700' },
+                        { name: 'Pierre DURAND', email: 'p.durand@exemple.fr', role: 'Commercial', status: 'Actif', color: 'bg-green-100 text-green-700' },
+                        { name: 'Sophie LEROY', email: 's.leroy@exemple.fr', role: 'Assistante', status: 'Inactif', color: 'bg-orange-100 text-orange-700' },
+                      ].map((user, i) => (
+                        <tr key={i} className="border-t hover:bg-slate-50">
+                          <td className="p-2 font-medium">{user.name}</td>
+                          <td className="p-2 text-slate-500">{user.email}</td>
+                          <td className="p-2"><span className={`px-2 py-1 rounded-full text-[10px] ${user.color}`}>{user.role}</span></td>
+                          <td className="p-2 text-center"><span className={user.status === 'Actif' ? 'text-green-600' : 'text-slate-400'}>● {user.status}</span></td>
+                          <td className="p-2 text-center flex gap-1 justify-center">
+                            <button className="p-1 hover:bg-slate-100 rounded">✏️</button>
+                            <button className="p-1 hover:bg-slate-100 rounded">🔑</button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              )}
+
+              {/* Rôles - Tab 4 index 1 */}
+              {activeFeature === 4 && mockupIndex === 1 && (
+              <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                <div className="bg-slate-900 px-4 py-3 flex items-center justify-between">
+                  <span className="text-xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
+                  <span className="text-[10px] text-white/50">Administration</span>
+                </div>
+                <div className="p-5">
+                  <h4 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">🛡️ Gestion des Rôles Personnalisés</h4>
+                  <div className="space-y-3">
+                    {[
+                      { name: 'Super Admin', desc: 'Accès complet', perms: 12, color: 'bg-purple-500' },
+                      { name: 'Responsable Commercial', desc: 'Gestion commerciale', perms: 8, color: 'bg-blue-500' },
+                      { name: 'Technicien Terrain', desc: 'Interventions', perms: 5, color: 'bg-teal-500' },
+                      { name: 'Assistante Administrative', desc: 'Facturation', perms: 6, color: 'bg-orange-500' },
+                    ].map((role, i) => (
+                      <div key={i} className="flex items-center gap-4 p-3 border rounded-lg hover:bg-slate-50">
+                        <div className={`w-3 h-3 ${role.color} rounded-full`}></div>
+                        <div className="flex-1">
+                          <div className="font-medium text-slate-800">{role.name}</div>
+                          <div className="text-[10px] text-slate-500">{role.desc}</div>
+                        </div>
+                        <div className="text-[10px] text-slate-400">{role.perms} permissions</div>
+                        <button className="text-slate-400 hover:text-slate-600">✏️</button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              )}
+
+              {/* Modèles Rapports - Tab 4 index 2 */}
+              {activeFeature === 4 && mockupIndex === 2 && (
+              <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                <div className="bg-slate-900 px-4 py-3 flex items-center justify-between">
+                  <span className="text-xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
+                  <span className="text-[10px] text-white/50">Administration</span>
+                </div>
+                <div className="p-5">
+                  <h4 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">📄 Modèles de Rapports</h4>
+                  <div className="grid grid-cols-2 gap-3">
+                    {[
+                      { name: 'CQA - Rétro-alvéolaire', type: 'Dentaire', count: 156, icon: '🦷' },
+                      { name: 'CQC - Scanner', type: 'Imagerie', count: 89, icon: '🔬' },
+                      { name: 'CQE - Mammographie', type: 'Imagerie', count: 67, icon: '📊' },
+                      { name: 'CQA - Panoramique', type: 'Dentaire', count: 134, icon: '🦷' },
+                    ].map((tpl, i) => (
+                      <div key={i} className="p-3 border rounded-lg hover:bg-slate-50 flex items-center gap-3">
+                        <span className="text-2xl">{tpl.icon}</span>
+                        <div className="flex-1">
+                          <div className="font-medium text-slate-800 text-sm">{tpl.name}</div>
+                          <div className="text-[10px] text-slate-500">{tpl.type} • {tpl.count} rapports</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              )}
+
+              {/* Non-conformités - Tab 4 index 3 */}
+              {activeFeature === 4 && mockupIndex === 3 && (
+              <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                <div className="bg-slate-900 px-4 py-3 flex items-center justify-between">
+                  <span className="text-xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
+                  <span className="text-[10px] text-white/50">Administration</span>
+                </div>
+                <div className="p-5">
+                  <h4 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">⚠️ Configuration Non-conformités</h4>
+                  <div className="space-y-3">
+                    {[
+                      { code: 'NC-DENT', name: 'NC Dentaire', desc: 'Équipements dentaires', count: 23, color: 'bg-red-500' },
+                      { code: 'NC-RADIO', name: 'NC Radiologie', desc: 'Imagerie médicale', count: 15, color: 'bg-orange-500' },
+                      { code: 'NC-BLOC', name: 'NC Bloc Opératoire', desc: 'Équipements bloc', count: 8, color: 'bg-yellow-500' },
+                    ].map((nc, i) => (
+                      <div key={i} className="flex items-center gap-4 p-3 border rounded-lg">
+                        <div className={`w-2 h-10 ${nc.color} rounded-full`}></div>
+                        <div className="flex-1">
+                          <div className="flex items-center gap-2">
+                            <span className="px-2 py-0.5 bg-slate-100 text-slate-600 text-[10px] rounded font-mono">{nc.code}</span>
+                            <span className="font-medium text-slate-800">{nc.name}</span>
+                          </div>
+                          <div className="text-[10px] text-slate-500">{nc.desc}</div>
+                        </div>
+                        <div className="text-lg font-bold text-slate-700">{nc.count}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              )}
+
+              {/* Templates Avis - Tab 4 index 4 */}
+              {activeFeature === 4 && mockupIndex === 4 && (
+              <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                <div className="bg-slate-900 px-4 py-3 flex items-center justify-between">
+                  <span className="text-xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
+                  <span className="text-[10px] text-white/50">Administration</span>
+                </div>
+                <div className="p-5">
+                  <h4 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">📧 Templates Avis d'Intervention</h4>
+                  <div className="space-y-3">
+                    {[
+                      { name: 'Avis Standard', desc: 'Template par défaut', active: true },
+                      { name: 'Avis Urgent', desc: 'Intervention prioritaire', active: true },
+                      { name: 'Rappel Intervention', desc: 'J-3 avant intervention', active: false },
+                    ].map((tpl, i) => (
+                      <div key={i} className="flex items-center gap-4 p-3 border rounded-lg hover:bg-slate-50">
+                        <div className="flex-1">
+                          <div className="font-medium text-slate-800">{tpl.name}</div>
+                          <div className="text-[10px] text-slate-500">{tpl.desc}</div>
+                        </div>
+                        <div className={`w-9 h-5 rounded-full ${tpl.active ? 'bg-green-500' : 'bg-slate-300'}`}>
+                          <div className={`w-4 h-4 bg-white rounded-full shadow mt-0.5 transition-all ${tpl.active ? 'ml-4' : 'ml-0.5'}`}></div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              )}
+
+              {/* Intégrations - Tab 4 index 5 */}
+              {activeFeature === 4 && mockupIndex === 5 && (
+              <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                <div className="bg-slate-900 px-4 py-3 flex items-center justify-between">
+                  <span className="text-xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
+                  <span className="text-[10px] text-white/50">Administration</span>
+                </div>
+                <div className="p-5">
+                  <h4 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">🔗 Synchronisation & Intégrations</h4>
+                  <div className="space-y-3">
+                    {[
+                      { name: 'EBP Gestion Commerciale', desc: 'Facturation & clients', status: 'Connecté', color: 'text-green-600', icon: '💳' },
+                      { name: 'Google Sheets', desc: 'Export données', status: 'Configuré', color: 'text-blue-600', icon: '📊' },
+                      { name: 'Synchroteam', desc: 'Planning terrain', status: 'Actif', color: 'text-green-600', icon: '📅' },
+                    ].map((int, i) => (
+                      <div key={i} className="flex items-center gap-4 p-3 border rounded-lg hover:bg-slate-50">
+                        <span className="text-2xl">{int.icon}</span>
+                        <div className="flex-1">
+                          <div className="font-medium text-slate-800">{int.name}</div>
+                          <div className="text-[10px] text-slate-500">{int.desc}</div>
+                        </div>
+                        <span className={`text-sm font-medium ${int.color}`}>● {int.status}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              )}
+
+              {/* TAB 5 - PORTAIL CLIENT */}
+              {/* Portail Client - Tab 5 index 0 */}
+              {activeFeature === 5 && mockupIndex === 0 && (
+              <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                <div className="bg-gradient-to-r from-slate-800 to-slate-700 px-6 py-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
+                        <span className="text-xl">🏢</span>
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-bold text-white">Cabinet Dentaire Martin</h3>
+                        <p className="text-sm text-white/60">Portail Client LISA</p>
+                      </div>
+                    </div>
+                    <span className="px-3 py-1 bg-green-500 text-white text-xs rounded-full">Accès actif</span>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <div className="grid grid-cols-3 gap-4 mb-6">
+                    {[
+                      { label: 'Interventions', value: '24', icon: '📋' },
+                      { label: 'Équipements', value: '8', icon: '🔧' },
+                      { label: 'Documents', value: '156', icon: '📄' },
+                    ].map((stat, i) => (
+                      <div key={i} className="bg-slate-50 rounded-lg p-4 text-center">
+                        <span className="text-2xl">{stat.icon}</span>
+                        <div className="text-2xl font-bold text-slate-800 mt-2">{stat.value}</div>
+                        <div className="text-sm text-slate-500">{stat.label}</div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="border rounded-lg p-4">
+                    <h4 className="font-bold text-slate-800 mb-3">Dernières interventions</h4>
+                    <div className="space-y-2">
+                      {[
+                        { date: '10/12/2025', type: 'CQA Rétro', status: 'Conforme', color: 'text-green-600' },
+                        { date: '15/09/2025', type: 'CQA Panoramique', status: 'Conforme', color: 'text-green-600' },
+                        { date: '20/06/2025', type: 'CQA Rétro', status: 'NC Mineure', color: 'text-orange-600' },
+                      ].map((int, i) => (
+                        <div key={i} className="flex items-center justify-between p-2 hover:bg-slate-50 rounded">
+                          <span className="text-sm text-slate-600">{int.date}</span>
+                          <span className="text-sm font-medium">{int.type}</span>
+                          <span className={`text-sm font-medium ${int.color}`}>{int.status}</span>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -3152,6 +3633,9 @@ export default function HomePage() {
     </div>
   );
 }
+
+
+
 
 
 
