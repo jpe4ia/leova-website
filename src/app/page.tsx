@@ -253,7 +253,7 @@ export default function HomePage() {
                     backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
                     backgroundSize: '32px 32px'
                   }}></div>
-                </div>
+                      </div>
                 
                 <div className="relative z-10 text-center space-y-6">
                   {/* Titre LISA avec gradient */}
@@ -271,25 +271,25 @@ export default function HomePage() {
                     <div className="flex items-center gap-4">
                       <div className="w-10 h-10 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg">
                         <FileText className="w-5 h-5 text-white" />
-                      </div>
+                    </div>
                       <span className="text-white/90">Gestion des interventions et rapports</span>
                     </div>
                     <div className="flex items-center gap-4">
                       <div className="w-10 h-10 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl flex items-center justify-center shadow-lg">
                         <CheckCircle className="w-5 h-5 text-white" />
-                      </div>
+                  </div>
                       <span className="text-white/90">Suivi qualité et non-conformités</span>
                     </div>
                     <div className="flex items-center gap-4">
                       <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-xl flex items-center justify-center shadow-lg">
                         <Building2 className="w-5 h-5 text-white" />
-                      </div>
+                    </div>
                       <span className="text-white/90">Base clients et équipements</span>
                     </div>
                     <div className="flex items-center gap-4">
                       <div className="w-10 h-10 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-xl flex items-center justify-center shadow-lg">
                         <Calendar className="w-5 h-5 text-white" />
-                      </div>
+                  </div>
                       <span className="text-white/90">Planification et facturation</span>
                     </div>
                   </div>
@@ -813,8 +813,8 @@ export default function HomePage() {
                 </span>
               </div>
             
-            {/* Mockups - Affichage conditionnel */}
-            <div>
+              {/* Mockups - Affichage conditionnel */}
+              <div>
               
               {/* Module 1: Dashboard Financier - ENRICHI */}
               {mockupIndex === 0 && (
