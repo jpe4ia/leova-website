@@ -69,12 +69,12 @@ export default function HomePage() {
               <img 
                 src="/logo-icon.png" 
                 alt="LEOVA" 
-                className="h-14 w-auto"
+                className="h-12 w-auto"
               />
               <img 
                 src="/logo-text.png" 
                 alt="LEOVA Systems" 
-                className="h-12 w-auto hidden sm:block"
+                className="h-10 w-auto hidden sm:block"
               />
             </div>
 
