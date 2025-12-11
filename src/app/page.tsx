@@ -324,6 +324,252 @@ export default function HomePage() {
             ))}
           </div>
 
+          {/* Galerie des modules LISA */}
+          <div className="mt-20 mb-16">
+            <h3 className="text-3xl font-bold text-center mb-12">
+              Découvrez les <span className="bg-gradient-to-r from-teal-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">modules LISA</span>
+            </h3>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              
+              {/* Module 1: Suivi d'activité */}
+              <div className="bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800 rounded-2xl border border-white/10 p-5 shadow-xl">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-xl flex items-center justify-center">
+                    <BarChart3 className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-white">Suivi d'activité</h4>
+                    <p className="text-xs text-white/50">Interventions & statistiques</p>
+                  </div>
+                </div>
+                <div className="bg-slate-900/80 rounded-xl p-4 space-y-2">
+                  <div className="flex items-center justify-between text-xs text-white/60 border-b border-white/10 pb-2">
+                    <span className="font-medium">Référence</span>
+                    <span>Client</span>
+                    <span>Statut</span>
+                  </div>
+                  {[
+                    { ref: 'INT-2024-156', client: 'CHU Montpellier', status: 'Terminé', color: 'bg-green-500' },
+                    { ref: 'INT-2024-157', client: 'Clinique du Parc', status: 'En cours', color: 'bg-blue-500' },
+                    { ref: 'INT-2024-158', client: 'Cabinet Dupont', status: 'Planifié', color: 'bg-orange-500' },
+                  ].map((row, i) => (
+                    <div key={i} className="flex items-center justify-between text-xs py-1.5">
+                      <span className="text-cyan-400 font-mono">{row.ref}</span>
+                      <span className="text-white/70">{row.client}</span>
+                      <span className={`${row.color} text-white px-2 py-0.5 rounded-full text-[10px]`}>{row.status}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-3 grid grid-cols-3 gap-2 text-center">
+                  <div className="bg-slate-900/60 rounded-lg p-2">
+                    <div className="text-lg font-bold text-teal-400">156</div>
+                    <div className="text-[10px] text-white/40">Ce mois</div>
+                  </div>
+                  <div className="bg-slate-900/60 rounded-lg p-2">
+                    <div className="text-lg font-bold text-cyan-400">98%</div>
+                    <div className="text-[10px] text-white/40">Conformes</div>
+                  </div>
+                  <div className="bg-slate-900/60 rounded-lg p-2">
+                    <div className="text-lg font-bold text-blue-400">12</div>
+                    <div className="text-[10px] text-white/40">En cours</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Module 2: Base Client */}
+              <div className="bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800 rounded-2xl border border-white/10 p-5 shadow-xl">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-xl flex items-center justify-center">
+                    <Building2 className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-white">Base Client</h4>
+                    <p className="text-xs text-white/50">Clients & équipements</p>
+                  </div>
+                </div>
+                <div className="bg-slate-900/80 rounded-xl p-4">
+                  <div className="flex items-center gap-3 mb-3 pb-3 border-b border-white/10">
+                    <div className="w-8 h-8 bg-blue-500/20 rounded-lg flex items-center justify-center text-blue-400 text-xs font-bold">CH</div>
+                    <div className="flex-1">
+                      <div className="text-sm font-medium text-white">CHU Montpellier</div>
+                      <div className="text-[10px] text-white/40">24 équipements • 3 sites</div>
+                    </div>
+                    <div className="text-green-400 text-xs">✓ Actif</div>
+                  </div>
+                  <div className="flex items-center gap-3 mb-3 pb-3 border-b border-white/10">
+                    <div className="w-8 h-8 bg-indigo-500/20 rounded-lg flex items-center justify-center text-indigo-400 text-xs font-bold">CP</div>
+                    <div className="flex-1">
+                      <div className="text-sm font-medium text-white">Clinique du Parc</div>
+                      <div className="text-[10px] text-white/40">12 équipements • 1 site</div>
+                    </div>
+                    <div className="text-green-400 text-xs">✓ Actif</div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 bg-purple-500/20 rounded-lg flex items-center justify-center text-purple-400 text-xs font-bold">LM</div>
+                    <div className="flex-1">
+                      <div className="text-sm font-medium text-white">Labo Médical Sud</div>
+                      <div className="text-[10px] text-white/40">8 équipements • 2 sites</div>
+                    </div>
+                    <div className="text-green-400 text-xs">✓ Actif</div>
+                  </div>
+                </div>
+                <div className="mt-3 text-center text-white/40 text-xs">
+                  <span className="text-white font-semibold">347</span> clients • <span className="text-white font-semibold">1 250</span> équipements
+                </div>
+              </div>
+
+              {/* Module 3: Planification */}
+              <div className="bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800 rounded-2xl border border-white/10 p-5 shadow-xl">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 bg-gradient-to-r from-orange-500 to-red-500 rounded-xl flex items-center justify-center">
+                    <Calendar className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-white">Planification</h4>
+                    <p className="text-xs text-white/50">Calendrier & tournées</p>
+                  </div>
+                </div>
+                <div className="bg-slate-900/80 rounded-xl p-3">
+                  <div className="grid grid-cols-7 gap-1 text-center text-[10px] text-white/40 mb-2">
+                    {['L', 'M', 'M', 'J', 'V', 'S', 'D'].map((d, i) => (
+                      <div key={i}>{d}</div>
+                    ))}
+                  </div>
+                  <div className="grid grid-cols-7 gap-1 text-center text-xs">
+                    {[...Array(31)].map((_, i) => {
+                      const hasEvent = [3, 7, 12, 15, 18, 22, 25].includes(i + 1);
+                      const isToday = i + 1 === 11;
+                      return (
+                        <div 
+                          key={i} 
+                          className={`p-1.5 rounded ${isToday ? 'bg-cyan-500 text-white font-bold' : hasEvent ? 'bg-orange-500/30 text-orange-300' : 'text-white/50'}`}
+                        >
+                          {i + 1}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+                <div className="mt-3 space-y-1.5">
+                  <div className="flex items-center gap-2 text-xs">
+                    <div className="w-2 h-2 bg-cyan-500 rounded-full"></div>
+                    <span className="text-white/70">Aujourd'hui : 3 interventions</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs">
+                    <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
+                    <span className="text-white/70">Cette semaine : 12 planifiées</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Module 4: Commercial */}
+              <div className="bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800 rounded-2xl border border-white/10 p-5 shadow-xl">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl flex items-center justify-center">
+                    <TrendingUp className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-white">Commercial</h4>
+                    <p className="text-xs text-white/50">Offres & performances</p>
+                  </div>
+                </div>
+                <div className="bg-slate-900/80 rounded-xl p-4">
+                  <div className="flex items-end justify-between h-24 mb-2">
+                    {[45, 62, 38, 75, 55, 82, 68, 90, 72, 85, 78, 95].map((h, i) => (
+                      <div 
+                        key={i} 
+                        className="w-full mx-0.5 bg-gradient-to-t from-green-500 to-emerald-400 rounded-t opacity-80"
+                        style={{ height: `${h}%` }}
+                      ></div>
+                    ))}
+                  </div>
+                  <div className="text-[10px] text-white/40 text-center">CA mensuel 2024</div>
+                </div>
+                <div className="mt-3 grid grid-cols-2 gap-2">
+                  <div className="bg-slate-900/60 rounded-lg p-2 text-center">
+                    <div className="text-lg font-bold text-green-400">€ 245K</div>
+                    <div className="text-[10px] text-white/40">CA YTD</div>
+                  </div>
+                  <div className="bg-slate-900/60 rounded-lg p-2 text-center">
+                    <div className="text-lg font-bold text-emerald-400">+18%</div>
+                    <div className="text-[10px] text-white/40">vs N-1</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Module 5: Financier */}
+              <div className="bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800 rounded-2xl border border-white/10 p-5 shadow-xl">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
+                    <Euro className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-white">Financier</h4>
+                    <p className="text-xs text-white/50">Trésorerie & facturation</p>
+                  </div>
+                </div>
+                <div className="bg-slate-900/80 rounded-xl p-4 space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs text-white/60">Solde bancaire</span>
+                    <span className="text-lg font-bold text-purple-400">€ 127 450</span>
+                  </div>
+                  <div className="w-full bg-slate-700 rounded-full h-2">
+                    <div className="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full" style={{ width: '72%' }}></div>
+                  </div>
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-white/40">Encaissé</span>
+                    <span className="text-white/40">Objectif: € 175K</span>
+                  </div>
+                </div>
+                <div className="mt-3 space-y-2">
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-white/60">Factures en attente</span>
+                    <span className="text-orange-400 font-semibold">12 (€ 34K)</span>
+                  </div>
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-white/60">Échéances 30j</span>
+                    <span className="text-pink-400 font-semibold">€ 18 500</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Module 6: Rapports */}
+              <div className="bg-gradient-to-br from-slate-800 via-slate-900 to-slate-800 rounded-2xl border border-white/10 p-5 shadow-xl">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl flex items-center justify-center">
+                    <FileText className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-white">Rapports CQA</h4>
+                    <p className="text-xs text-white/50">Génération & archivage</p>
+                  </div>
+                </div>
+                <div className="bg-slate-900/80 rounded-xl p-4 space-y-2">
+                  {[
+                    { name: 'Rapport_CHU_2024-156.pdf', date: '11/12/24', size: '2.4 MB' },
+                    { name: 'Rapport_Clinique_2024-155.pdf', date: '10/12/24', size: '1.8 MB' },
+                    { name: 'Rapport_Labo_2024-154.pdf', date: '09/12/24', size: '3.1 MB' },
+                  ].map((file, i) => (
+                    <div key={i} className="flex items-center gap-3 p-2 bg-slate-800/50 rounded-lg">
+                      <div className="w-8 h-8 bg-red-500/20 rounded flex items-center justify-center">
+                        <FileText className="w-4 h-4 text-red-400" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-xs text-white truncate">{file.name}</div>
+                        <div className="text-[10px] text-white/40">{file.date} • {file.size}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-3 text-center">
+                  <span className="text-xs text-white/40">Total: <span className="text-white font-semibold">1 847</span> rapports générés</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
           {/* Back Office / Front Office */}
           <div className="mt-16 grid md:grid-cols-2 gap-8">
             <div className="p-8 bg-gradient-to-br from-[#2dd4bf]/10 to-transparent rounded-2xl border border-[#2dd4bf]/20">
