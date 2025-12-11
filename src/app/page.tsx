@@ -387,67 +387,73 @@ export default function HomePage() {
           {/* Contenu dynamique */}
           <div className="relative min-h-[400px]">
             
-            {/* Tab 0: Tableau de bord */}
+            {/* Tab 0: Tableau de bord - Carousel avec mockups détaillés */}
             {activeFeature === 0 && (
-              <div className="grid lg:grid-cols-2 gap-8 items-center animate-fade-in">
-                <div className="order-2 lg:order-1">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/20 text-blue-400 rounded-full text-sm mb-6">
-                    ✨ Points forts
-                  </div>
-                  <h3 className="text-2xl md:text-3xl font-bold mb-6">
-                    Pilotez votre activité en <span className="text-[#2dd4bf]">temps réel</span>
-                  </h3>
-                  <div className="space-y-4">
-                    {[
-                      { icon: '🎯', title: 'Vision 360°', desc: 'Tous vos KPIs financiers et opérationnels sur un seul écran' },
-                      { icon: '📈', title: 'Analyses prédictives', desc: 'Anticipez votre CA, détectez les tendances' },
-                      { icon: '⏱️', title: 'Temps réel', desc: 'Données actualisées en permanence, alertes instantanées' },
-                      { icon: '📊', title: 'Rapports automatiques', desc: 'Exports Excel, PDF, envoi automatique par email' },
-                    ].map((point, i) => (
-                      <div key={i} className="flex items-start gap-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors">
-                        <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center shrink-0 text-xl">
-                          {point.icon}
-                        </div>
-                        <div>
-                          <h4 className="font-semibold text-white mb-1">{point.title}</h4>
-                          <p className="text-white/50 text-sm">{point.desc}</p>
-                        </div>
-                      </div>
-                    ))}
+              <div className="animate-fade-in">
+                {/* Points forts */}
+                <div className="mb-6">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/20 text-blue-400 rounded-full text-sm mb-4">✨ Points forts</div>
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    {[{icon:'🎯',title:'Vision 360°',desc:'KPIs sur un seul écran'},{icon:'📈',title:'Analyses prédictives',desc:'Anticipez votre CA'},{icon:'⏱️',title:'Temps réel',desc:'Alertes instantanées'},{icon:'📊',title:'Rapports auto',desc:'Exports Excel, PDF'}].map((p,i)=>(<div key={i} className="p-3 bg-white/5 rounded-xl hover:bg-white/10"><div className="text-2xl mb-2">{p.icon}</div><h4 className="font-semibold text-white text-sm mb-1">{p.title}</h4><p className="text-white/50 text-xs">{p.desc}</p></div>))}
                   </div>
                 </div>
-                <div className="order-1 lg:order-2">
-                  <div className="bg-white rounded-2xl shadow-2xl overflow-hidden transform hover:scale-[1.02] transition-transform">
-                    <div className="bg-slate-900 px-4 py-3 flex items-center gap-2">
-                      <span className="text-lg font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
-                      <span className="text-white/50 text-xs">Tableau de bord</span>
-                    </div>
-                    <div className="p-5">
-                      <div className="grid grid-cols-2 gap-3 mb-4">
-                        <div className="bg-slate-50 rounded-xl p-3 text-center">
-                          <div className="text-xs text-slate-500">CA du mois</div>
-                          <div className="text-lg font-bold text-green-600">127 450 €</div>
-                          <div className="text-xs text-green-500">+12%</div>
+                
+                {/* Carousel */}
+                <div className="relative" onMouseEnter={() => setIsHovering(true)} onMouseLeave={() => setIsHovering(false)}>
+                  <button onClick={() => setCarouselIndex(prev => prev > 0 ? prev - 1 : 1)} className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-black/50 backdrop-blur rounded-full flex items-center justify-center text-white hover:bg-black/70"><ChevronLeft className="w-5 h-5" /></button>
+                  <button onClick={() => setCarouselIndex(prev => prev < 1 ? prev + 1 : 0)} className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-black/50 backdrop-blur rounded-full flex items-center justify-center text-white hover:bg-black/70"><ChevronRight className="w-5 h-5" /></button>
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex gap-2">{[0,1].map(i=>(<button key={i} onClick={()=>setCarouselIndex(i)} className={`w-2 h-2 rounded-full transition-all ${carouselIndex===i?'bg-[#2dd4bf] w-6':'bg-white/50'}`}/>))}</div>
+                  <div className="absolute top-4 left-4 z-10 px-3 py-1 bg-black/50 backdrop-blur text-white text-xs rounded-full">{carouselIndex===0?'💰 Dashboard Financier':'📊 Dashboard Commercial'}</div>
+                  
+                  {/* Mockup 0: Dashboard Financier COMPLET */}
+                  {carouselIndex === 0 && (
+                    <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                      <div className="bg-slate-900 px-4 py-3 flex items-center justify-between">
+                        <div className="flex items-center gap-3"><span className="text-xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span><span className="text-[10px] text-white/40 hidden sm:block">Logiciel métier Inspections et de Suivi des Activités</span></div>
+                        <div className="flex items-center gap-2"><span className="text-[10px] text-white/50">📅 11/12/2025</span><div className="px-3 py-1.5 bg-teal-500 text-white text-xs rounded-lg flex items-center gap-1.5"><RefreshCw className="w-3 h-3" /> Actualiser</div></div>
+                      </div>
+                      <div className="flex">
+                        <div className="w-40 bg-slate-50 border-r p-3 hidden sm:block">
+                          <div className="flex items-center gap-2 mb-4 pb-3 border-b"><div className="w-10 h-10 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-full flex items-center justify-center"><span className="text-white text-xs font-bold">PA</span></div><div><div className="text-[10px] text-slate-400">Connecté :</div><div className="text-xs font-medium text-slate-700">Admin PAQA</div></div></div>
+                          <nav className="space-y-1">{[{icon:'💰',label:'FINANCIER',active:true},{icon:'📊',label:'COMMERCIAL'},{icon:'🏦',label:'TRÉSORERIE'},{icon:'📅',label:'PLANIFICATION'},{icon:'📋',label:'SUIVI ACTIVITÉ'},{icon:'🗺️',label:'FEUILLE ROUTE'},{icon:'🏢',label:'BASE CLIENT'}].map((item,i)=>(<div key={i} className={`flex items-center gap-2 px-2 py-1.5 rounded-lg text-[10px] ${item.active?'bg-teal-500 text-white font-medium':'text-slate-600 hover:bg-slate-100'}`}><span>{item.icon}</span><span>{item.label}</span></div>))}</nav>
                         </div>
-                        <div className="bg-slate-50 rounded-xl p-3 text-center">
-                          <div className="text-xs text-slate-500">Interventions</div>
-                          <div className="text-lg font-bold text-blue-600">156</div>
-                          <div className="text-xs text-green-500">+8%</div>
-                        </div>
-                        <div className="bg-slate-50 rounded-xl p-3 text-center">
-                          <div className="text-xs text-slate-500">Taux conformité</div>
-                          <div className="text-lg font-bold text-teal-600">94.2%</div>
-                        </div>
-                        <div className="bg-slate-50 rounded-xl p-3 text-center">
-                          <div className="text-xs text-slate-500">Devis en attente</div>
-                          <div className="text-lg font-bold text-orange-600">23 400 €</div>
+                        <div className="flex-1 p-5">
+                          <div className="flex items-center justify-between mb-4"><h4 className="text-xl font-bold text-slate-800 flex items-center gap-2"><div className="w-8 h-8 bg-amber-100 rounded-lg flex items-center justify-center"><span className="text-amber-600">💰</span></div>Dashboard Financier</h4><span className="text-xs text-slate-400">Août 2025</span></div>
+                          <div className="mb-4"><div className="flex items-center gap-2 mb-3"><span className="w-6 h-6 bg-green-100 rounded flex items-center justify-center text-green-600 text-sm">$</span><span className="font-semibold text-slate-700">Chiffre d'Affaires</span></div>
+                            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                              <div className="bg-slate-50 rounded-xl p-3 border"><div className="flex items-center gap-2 mb-1"><span className="w-5 h-5 bg-green-100 rounded flex items-center justify-center text-[10px] text-green-600">$</span><span className="text-[10px] text-slate-500">CA 2025</span><span className="text-[9px] text-green-500 ml-auto">↗18.3%</span></div><div className="text-xl font-bold text-slate-800">1 811 081 €</div><div className="flex items-center justify-between mt-2"><span className="text-[9px] text-slate-400">Budget</span><span className="text-[9px] text-slate-600">1 978 147 €</span></div><div className="w-full bg-slate-200 rounded-full h-1.5 mt-1"><div className="bg-green-500 h-1.5 rounded-full" style={{width:'91.5%'}}></div></div></div>
+                              <div className="bg-slate-50 rounded-xl p-3 border"><div className="flex items-center gap-2 mb-1"><span className="w-5 h-5 bg-blue-100 rounded flex items-center justify-center text-[10px] text-blue-600">$</span><span className="text-[10px] text-slate-500">CA 2024</span></div><div className="text-xl font-bold text-slate-800">1 530 861 €</div><div className="w-full bg-slate-200 rounded-full h-1.5 mt-2"><div className="bg-green-500 h-1.5 rounded-full" style={{width:'90%'}}></div></div></div>
+                              <div className="bg-slate-50 rounded-xl p-3 border"><div className="text-[10px] text-slate-500 mb-1">Croissance</div><div className="text-3xl font-bold text-green-600">18.3%</div></div>
+                              <div className="bg-slate-50 rounded-xl p-3 border"><div className="text-[10px] text-slate-500 mb-1">Budget 2025</div><div className="text-xl font-bold text-slate-800">1 978 147 €</div></div>
+                            </div>
+                          </div>
+                          <div className="grid grid-cols-2 gap-4">
+                            <div className="bg-slate-50 rounded-xl p-4 border"><div className="text-sm font-medium text-slate-700 mb-3">Évolution CA</div><div className="flex items-end justify-between h-20 gap-1">{[{v25:95,v24:85},{v25:145,v24:120},{v25:180,v24:155},{v25:220,v24:195},{v25:285,v24:240},{v25:350,v24:295}].map((d,i)=>(<div key={i} className="flex-1 flex gap-0.5 items-end justify-center h-full"><div className="w-2 bg-teal-400 rounded-t" style={{height:`${d.v25/4}px`}}></div><div className="w-2 bg-slate-300 rounded-t" style={{height:`${d.v24/4}px`}}></div></div>))}</div><div className="flex items-center justify-center gap-4 text-[10px] mt-2"><span className="flex items-center gap-1"><span className="w-2 h-2 bg-teal-400 rounded"></span>2025</span><span className="flex items-center gap-1"><span className="w-2 h-2 bg-slate-300 rounded"></span>2024</span></div></div>
+                            <div className="bg-slate-50 rounded-xl p-4 border"><div className="text-sm font-medium text-slate-700 mb-3">Budget CA</div><div className="mb-3"><div className="flex justify-between text-xs mb-1"><span className="text-slate-600">Progression</span><span className="font-semibold">91.6%</span></div><div className="w-full bg-slate-200 rounded-full h-3"><div className="bg-gradient-to-r from-yellow-400 to-yellow-500 h-3 rounded-full" style={{width:'91.6%'}}></div></div></div><div className="flex justify-between text-xs"><span className="text-green-600">91.6% réalisé</span><span className="text-orange-500">167 066 € restants</span></div></div>
+                          </div>
                         </div>
                       </div>
-                      <div className="h-24 bg-gradient-to-r from-blue-100 to-cyan-50 rounded-xl flex items-center justify-center">
-                        <span className="text-slate-400 text-sm">📈 Graphique évolution CA</span>
+                    </div>
+                  )}
+                  
+                  {/* Mockup 1: Dashboard Commercial COMPLET */}
+                  {carouselIndex === 1 && (
+                    <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+                      <div className="bg-slate-900 px-4 py-3 flex items-center justify-between"><div className="flex items-center gap-3"><span className="text-xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span></div><div className="flex items-center gap-2"><div className="px-3 py-1.5 bg-blue-500 text-white text-xs rounded-lg">📊 Grille Tarifaire</div><span className="text-[10px] text-white/50">Admin</span></div></div>
+                      <div className="p-5">
+                        <h4 className="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2"><div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center"><span className="text-blue-600">📊</span></div>Dashboard Commercial</h4>
+                        <div className="flex gap-1 mb-5 border-b overflow-x-auto">{[{label:'Performances',icon:'📈',active:true},{label:'Carte France',icon:'🗺️'},{label:'Offres',icon:'📋'},{label:'Prospects',icon:'👥'}].map((tab,i)=>(<button key={i} className={`px-4 py-2 text-xs flex items-center gap-1.5 border-b-2 whitespace-nowrap ${tab.active?'border-blue-500 text-blue-700 font-medium':'border-transparent text-slate-500'}`}><span>{tab.icon}</span>{tab.label}</button>))}</div>
+                        <div className="mb-4"><div className="grid grid-cols-2 md:grid-cols-5 gap-2">{[{value:'344',label:'OFFRE Total',color:'text-blue-600'},{value:'234',label:'Conversions',color:'text-green-600'},{value:'68.0%',label:'Taux Conv.',color:'text-teal-600'},{value:'12',label:'Captations',color:'text-orange-500'},{value:'5',label:'Relances',color:'text-red-500'}].map((stat,i)=>(<div key={i} className="bg-slate-50 rounded-xl p-3 text-center border"><div className={`text-2xl font-bold ${stat.color}`}>{stat.value}</div><div className="text-[10px] text-slate-500">{stat.label}</div></div>))}</div></div>
+                        <div className="grid grid-cols-2 gap-3 mb-4"><div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-4 border border-green-100"><div className="text-xs text-slate-500 mb-1">CA Réalisé</div><div className="text-3xl font-bold text-green-600">475 726 €</div></div><div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-4 border border-blue-100"><div className="text-xs text-slate-500 mb-1">Portefeuille</div><div className="text-3xl font-bold text-blue-600">96 047 €</div></div></div>
+                        <div className="bg-gradient-to-r from-slate-800 to-slate-700 rounded-xl p-5 text-white">
+                          <div className="flex items-center justify-between mb-3"><div className="flex items-center gap-3"><div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center"><span>🎯</span></div><div><div className="font-semibold">CA Global</div><div className="text-xs text-white/60">Objectif Annuel</div></div></div><div className="text-right"><div className="text-3xl font-bold text-green-400">104.7%</div><div className="text-xs text-white/60">Réalisé</div></div></div>
+                          <div className="grid grid-cols-3 gap-3 mb-3">{[{l:'CA Réalisé',v:'475 726 €'},{l:'Objectif',v:'454 500 €'},{l:'Dépassement',v:'+21 226 €',c:'text-green-400'}].map((d,i)=>(<div key={i} className="bg-white/10 rounded-lg p-2"><div className="text-[10px] text-white/60">{d.l}</div><div className={`font-bold ${d.c||''}`}>{d.v}</div></div>))}</div>
+                          <div><div className="flex justify-between text-xs mb-1"><span>Progression</span><span className="text-green-400">🎉 Objectif dépassé !</span></div><div className="w-full bg-slate-600 rounded-full h-2.5"><div className="bg-gradient-to-r from-yellow-400 via-green-400 to-green-500 h-2.5 rounded-full" style={{width:'100%'}}></div></div></div>
+                          <div className="mt-3 bg-green-500/20 rounded-lg p-2 text-center"><span className="text-green-300">🎉 OBJECTIF PULVÉRISÉ ! +4.7% ! 🏆</span></div>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  )}
                 </div>
               </div>
             )}
