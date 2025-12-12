@@ -41,9 +41,6 @@ export default function HomePage() {
   const [mockupIndex, setMockupIndex] = useState(0);
   const [isHoveringCarousel, setIsHoveringCarousel] = useState(false);
   const [heroSlide, setHeroSlide] = useState(0);
-  const [mobileScreenshotIndex, setMobileScreenshotIndex] = useState(0);
-  const [lightboxImage, setLightboxImage] = useState<string | null>(null);
-  const [lightboxZoom, setLightboxZoom] = useState(1);
   
   // Messages percutants pour le Hero
   const heroSlides = [
@@ -132,17 +129,6 @@ export default function HomePage() {
   }, [isHoveringCarousel, totalMockups]);
 
   // Auto-scroll des screenshots mobiles
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setMobileScreenshotIndex(prev => (prev + 1) % mobileScreenshots.length);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, [mobileScreenshots.length]);
-
-  // Réinitialiser le zoom quand l'image change
-  useEffect(() => {
-    setLightboxZoom(1);
-  }, [lightboxImage]);
 
   // Gérer la souscription Stripe
   const handleSubscribe = async (plan: 'starter' | 'pro') => {
@@ -776,117 +762,6 @@ export default function HomePage() {
 
             {/* COLONNE DROITE - Carousel des mockups détaillés (2/3 de largeur) */}
             <div className="order-1 lg:order-2 lg:col-span-2">
-              
-              {/* VERSION MOBILE - Carousel de screenshots avec auto-scroll */}
-              <div className="lg:hidden">
-                <div className="relative">
-                  {/* Indicateur */}
-                  <div className="text-center mb-3">
-                    <span className="px-3 py-1.5 bg-white/10 backdrop-blur rounded-full text-white text-xs">
-                      {mobileScreenshots[mobileScreenshotIndex].caption}
-                      <br />
-                      ({mobileScreenshotIndex + 1}/{mobileScreenshots.length}) • Tapote pour zoomer
-                    </span>
-                  </div>
-                  
-                  {/* Carousel d'images avec touch swipe */}
-                  <div 
-                    className="relative overflow-hidden rounded-xl touch-pan-x"
-                    onTouchStart={(e) => {
-                      const touch = e.touches[0];
-                      (e.currentTarget as HTMLElement).dataset.startX = touch.clientX.toString();
-                    }}
-                    onTouchEnd={(e) => {
-                      const startX = parseFloat((e.currentTarget as HTMLElement).dataset.startX || '0');
-                      const endX = e.changedTouches[0].clientX;
-                      const diff = startX - endX;
-                      if (Math.abs(diff) > 50) {
-                        if (diff > 0) {
-                          setMobileScreenshotIndex(prev => prev < mobileScreenshots.length - 1 ? prev + 1 : 0);
-                        } else {
-                          setMobileScreenshotIndex(prev => prev > 0 ? prev - 1 : mobileScreenshots.length - 1);
-                        }
-                      }
-                    }}
-                  >
-                    <div 
-                      className="flex transition-transform duration-500 ease-out"
-                      style={{ transform: `translateX(-${mobileScreenshotIndex * 100}%)` }}
-                    >
-                      {mobileScreenshots.map((item, index) => (
-                        <div key={item.src} className="w-full flex-shrink-0 px-1">
-                          <img 
-                            src={item.src}
-                            alt={`Capture LISA ${index + 1}`}
-                            className="w-full h-auto rounded-xl shadow-2xl border border-white/10 cursor-zoom-in"
-                            onClick={() => setLightboxImage(item.src)}
-                          />
-                        </div>
-                      ))}
-                    </div>
-                    
-                    {/* Boutons navigation plus visibles */}
-                    <button 
-                      onClick={() => setMobileScreenshotIndex(prev => prev > 0 ? prev - 1 : mobileScreenshots.length - 1)} 
-                      className="absolute left-1 top-1/2 -translate-y-1/2 w-10 h-10 bg-[#2dd4bf]/80 backdrop-blur rounded-full flex items-center justify-center text-[#0f2a2a] shadow-lg active:scale-95 transition-transform"
-                    >
-                      <ChevronLeft className="w-5 h-5" />
-                    </button>
-                    <button 
-                      onClick={() => setMobileScreenshotIndex(prev => prev < mobileScreenshots.length - 1 ? prev + 1 : 0)} 
-                      className="absolute right-1 top-1/2 -translate-y-1/2 w-10 h-10 bg-[#2dd4bf]/80 backdrop-blur rounded-full flex items-center justify-center text-[#0f2a2a] shadow-lg active:scale-95 transition-transform"
-                    >
-                      <ChevronRight className="w-5 h-5" />
-                    </button>
-                  </div>
-                  
-                  {/* Indicateurs de position améliorés */}
-                  <div className="flex justify-center gap-2 mt-4">
-                    {mobileScreenshots.map((_, i) => (
-                      <button 
-                        key={i} 
-                        onClick={() => setMobileScreenshotIndex(i)} 
-                        className={`h-2 rounded-full transition-all duration-300 ${mobileScreenshotIndex === i ? 'bg-[#2dd4bf] w-8' : 'bg-white/30 w-2 hover:bg-white/50'}`} 
-                      />
-                    ))}
-                  </div>
-                  
-                  {/* CTA */}
-                  <div className="mt-4 text-center">
-                    <a href="#contact" className="inline-flex items-center gap-2 px-4 py-2 bg-[#2dd4bf]/20 rounded-full text-[#2dd4bf] text-sm font-medium">
-                      Demander une démo
-                      <ArrowRight className="w-4 h-4" />
-                    </a>
-                  </div>
-                </div>
-
-                {/* Lightbox / zoom */}
-                {lightboxImage && (
-                  <div className="fixed inset-0 z-50 bg-black/80 flex flex-col items-center justify-center p-4">
-                    <button
-                      onClick={() => setLightboxImage(null)}
-                      className="absolute top-6 right-6 text-white text-2xl"
-                    >
-                      ×
-                    </button>
-                    <div className="relative max-w-full max-h-full overflow-hidden rounded-2xl bg-black">
-                      <img
-                        src={lightboxImage}
-                        alt="Aperçu LISA"
-                        className="w-full max-h-[80vh] object-contain cursor-zoom-out"
-                        style={{ transform: `scale(${lightboxZoom})`, transition: 'transform 0.2s ease' }}
-                        onClick={() =>
-                          setLightboxZoom(prev => (prev === 1 ? 1.5 : 1))
-                        }
-                      />
-                    </div>
-                    <p className="mt-4 text-xs text-white/60">
-                      Appuie sur l’image pour zoomer / dézoomer, puis déplace ton doigt pour te déplacer.
-                    </p>
-                  </div>
-                )}
-              </div>
-              
               {/* VERSION DESKTOP - Carousel complet */}
               <div className="hidden lg:block relative" onMouseEnter={() => setIsHoveringCarousel(true)} onMouseLeave={() => setIsHoveringCarousel(false)}>
                 {/* Navigation Arrows */}
