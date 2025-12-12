@@ -440,8 +440,8 @@ export default function MarketingSlider() {
         
       </div>
       
-      {/* Screenshots carousel - section séparée en dessous sur mobile */}
-      <div className="lg:hidden bg-[#010d11] border-t border-white/5 py-8 px-4">
+      {/* Screenshots carousel - section séparée avec hauteur fixe */}
+      <div className="lg:hidden bg-[#010d11] border-t border-white/5 py-6 px-4 h-[608px] overflow-hidden">
         <MobileScreenshotsCarousel />
       </div>
     </section>

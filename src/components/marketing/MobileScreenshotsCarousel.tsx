@@ -16,42 +16,41 @@ export default function MobileScreenshotsCarousel() {
   if (!mobileScreenshots.length) return null;
 
   return (
-    <div className="bg-[#030f11] border border-white/10 rounded-3xl p-4">
-      <div className="text-xs uppercase tracking-[0.4em] text-[#5eead4] mb-4 text-center">
+    // Container principal avec hauteur TOTALEMENT FIXE
+    <div className="bg-[#030f11] border border-white/10 rounded-3xl p-4 h-[560px] overflow-hidden">
+      {/* Titre - hauteur fixe */}
+      <div className="text-xs uppercase tracking-[0.4em] text-[#5eead4] h-6 text-center">
         Aperçu LISA
       </div>
-      {/* Container avec hauteur FIXE - toutes les images sont empilées */}
+      
+      {/* Zone images - hauteur fixe */}
       <div className="relative h-[420px] overflow-hidden rounded-2xl bg-[#010d11]">
-        {/* Toutes les images empilées en position absolue */}
         {mobileScreenshots.map((screenshot, idx) => (
-          <div
+          <img
             key={idx}
-            className={`absolute inset-0 flex items-center justify-center transition-opacity duration-500 ${
-              index === idx ? 'opacity-100 z-10' : 'opacity-0 z-0'
+            src={screenshot.src}
+            alt={screenshot.caption}
+            className={`absolute inset-0 w-full h-full object-contain rounded-2xl transition-opacity duration-500 ${
+              index === idx ? 'opacity-100' : 'opacity-0'
             }`}
-          >
-            <img
-              src={screenshot.src}
-              alt={screenshot.caption}
-              className="max-w-full max-h-full object-contain rounded-2xl"
-            />
-          </div>
+          />
         ))}
-        {/* Caption en overlay - toujours visible avec texte qui change */}
-        <div className="absolute inset-x-0 bottom-0 py-3 px-4 bg-gradient-to-t from-[#010d11] via-[#010d11]/80 to-transparent z-20">
-          <p className="text-center text-white/90 text-xs font-medium h-4">
+        {/* Caption overlay - hauteur fixe */}
+        <div className="absolute inset-x-0 bottom-0 h-12 flex items-center justify-center bg-gradient-to-t from-[#010d11] via-[#010d11]/90 to-transparent">
+          <p className="text-white/90 text-xs font-medium text-center px-4 truncate max-w-full">
             {mobileScreenshots[index].caption}
           </p>
         </div>
       </div>
-      {/* Indicateurs */}
-      <div className="flex justify-center gap-1.5 mt-4 flex-wrap">
+      
+      {/* Indicateurs - hauteur fixe, pas de wrap */}
+      <div className="h-10 flex items-center justify-center gap-1.5 overflow-hidden">
         {mobileScreenshots.map((_, idx) => (
           <button
             key={idx}
             onClick={() => setIndex(idx)}
-            className={`h-2 rounded-full transition-all duration-300 ${
-              index === idx ? 'bg-[#2dd4bf] w-4' : 'bg-white/30 hover:bg-white/50 w-2'
+            className={`h-2 rounded-full transition-all duration-300 flex-shrink-0 ${
+              index === idx ? 'bg-[#2dd4bf] w-4' : 'bg-white/30 w-2'
             }`}
           />
         ))}
