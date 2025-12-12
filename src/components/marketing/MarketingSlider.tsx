@@ -169,7 +169,7 @@ export default function MarketingSlider() {
                     </div>
                   </div>
                 )}
-                {slide.id === 'workflow' && (
+                {slide.id === 'workflow' && slide.steps && (
                   <div className="space-y-6">
                     <h3 className="text-2xl font-bold text-center">Workflow maîtrisé</h3>
                     <div className="grid gap-4 md:grid-cols-3">
@@ -183,7 +183,7 @@ export default function MarketingSlider() {
                     <p className="text-center text-white/70 text-sm">{slide.footer}</p>
                   </div>
                 )}
-                {slide.id === 'benefits' && (
+                {slide.id === 'benefits' && slide.cards && (
                   <div className="space-y-6">
                     <h3 className="text-2xl font-bold text-center">{slide.title}</h3>
                     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -196,7 +196,7 @@ export default function MarketingSlider() {
                     </div>
                   </div>
                 )}
-                {slide.id === 'security' && (
+                {slide.id === 'security' && slide.bullets && (
                   <div className="space-y-4">
                     <h3 className="text-2xl font-bold text-center">{slide.title}</h3>
                     <div className="grid gap-3 md:grid-cols-2">
