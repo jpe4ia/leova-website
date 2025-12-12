@@ -837,7 +837,7 @@ export default function HomePage() {
                   
                   {/* Indicateurs de position améliorés */}
                   <div className="flex justify-center gap-2 mt-4">
-                    {MOBILE_SCREENSHOTS.map((_, i) => (
+                    {mobileScreenshots.map((_, i) => (
                       <button 
                         key={i} 
                         onClick={() => setMobileScreenshotIndex(i)} 
