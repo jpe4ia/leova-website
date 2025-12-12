@@ -198,11 +198,38 @@ export default function HomePage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center pt-20">
-        {/* Subtle gradient background */}
+      <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
+        {/* Fond dégradé de base */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#0f2a2a] via-[#1a3d3d] to-[#0f2a2a]"></div>
-        <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-[#2dd4bf]/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-[#2dd4bf]/5 rounded-full blur-3xl"></div>
+        
+        {/* Grille animée subtile */}
+        <div className="absolute inset-0 opacity-[0.03] animate-grid" style={{
+          backgroundImage: 'linear-gradient(rgba(45, 212, 191, 0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(45, 212, 191, 0.5) 1px, transparent 1px)',
+          backgroundSize: '50px 50px'
+        }}></div>
+        
+        {/* Grandes orbes lumineuses animées */}
+        <div className="absolute top-1/4 left-1/6 w-[600px] h-[600px] bg-gradient-to-br from-[#2dd4bf]/10 to-transparent rounded-full blur-3xl animate-pulse-soft"></div>
+        <div className="absolute bottom-1/4 right-1/6 w-[500px] h-[500px] bg-gradient-to-tl from-cyan-500/10 to-transparent rounded-full blur-3xl animate-pulse-soft" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-[#2dd4bf]/5 via-transparent to-blue-500/5 rounded-full blur-3xl animate-rotate-slow"></div>
+        
+        {/* Particules flottantes */}
+        <div className="absolute top-[20%] left-[10%] w-2 h-2 bg-[#2dd4bf]/60 rounded-full animate-float-particle blur-[1px]"></div>
+        <div className="absolute top-[30%] left-[20%] w-3 h-3 bg-cyan-400/40 rounded-full animate-float-particle-slow blur-[1px]" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-[15%] right-[15%] w-2 h-2 bg-[#2dd4bf]/50 rounded-full animate-float-particle-fast blur-[1px]" style={{ animationDelay: '0.5s' }}></div>
+        <div className="absolute top-[40%] right-[25%] w-4 h-4 bg-teal-400/30 rounded-full animate-float-particle blur-[2px]" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute bottom-[30%] left-[30%] w-2 h-2 bg-cyan-300/50 rounded-full animate-float-particle-slow blur-[1px]" style={{ animationDelay: '3s' }}></div>
+        <div className="absolute bottom-[20%] right-[10%] w-3 h-3 bg-[#2dd4bf]/40 rounded-full animate-float-particle blur-[1px]" style={{ animationDelay: '1.5s' }}></div>
+        <div className="absolute top-[60%] left-[5%] w-2 h-2 bg-emerald-400/50 rounded-full animate-float-particle-fast blur-[1px]" style={{ animationDelay: '4s' }}></div>
+        <div className="absolute top-[70%] right-[30%] w-3 h-3 bg-teal-300/40 rounded-full animate-float-particle-slow blur-[1px]" style={{ animationDelay: '2.5s' }}></div>
+        
+        {/* Lignes décoratives animées */}
+        <div className="absolute top-[10%] left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#2dd4bf]/20 to-transparent animate-shimmer"></div>
+        <div className="absolute bottom-[15%] left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-400/15 to-transparent animate-shimmer" style={{ animationDelay: '1.5s' }}></div>
+        
+        {/* Cercles décoratifs */}
+        <div className="absolute top-[25%] right-[5%] w-32 h-32 border border-[#2dd4bf]/10 rounded-full animate-pulse-soft" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute bottom-[35%] left-[8%] w-24 h-24 border border-cyan-400/10 rounded-full animate-pulse-soft" style={{ animationDelay: '2s' }}></div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="text-center max-w-4xl mx-auto">
@@ -1133,6 +1160,7 @@ export default function HomePage() {
     </div>
   );
 }
+
 
 
 
