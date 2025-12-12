@@ -1,6 +1,6 @@
 export default function MockupSuiviActivite() {
   return (
-    <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+    <div className="bg-white rounded-xl md:rounded-2xl shadow-2xl overflow-hidden text-[11px] md:text-xs">
       <div className="bg-gradient-to-r from-purple-600 to-purple-500 px-4 py-3 text-white">
         <div className="flex items-center justify-between flex-wrap gap-2">
           <div className="flex items-center gap-2">

@@ -1,6 +1,6 @@
 export default function MockupAvisIntervention() {
   return (
-            <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+            <div className="bg-white rounded-xl md:rounded-2xl shadow-2xl overflow-hidden text-[11px] md:text-xs">
               {/* Header avec barre latérale gauche colorée */}
               <div className="flex">
                 <div className="w-2 bg-gradient-to-b from-blue-500 via-teal-500 to-green-500"></div>

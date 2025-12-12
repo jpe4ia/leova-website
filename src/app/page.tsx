@@ -777,23 +777,27 @@ export default function HomePage() {
                   ))}
                 </div>
                 
-                {/* Mockups conditionnels par tab */}
-                {activeFeature === 0 && mockupIndex === 0 && <MockupDashboardFinancier />}
-                {activeFeature === 0 && mockupIndex === 1 && <MockupFacturation />}
-                {activeFeature === 1 && mockupIndex === 0 && <MockupDashboardCommercial />}
-                {activeFeature === 1 && mockupIndex === 1 && <MockupBaseClient />}
-                {activeFeature === 2 && mockupIndex === 0 && <MockupPlanification />}
-                {activeFeature === 2 && mockupIndex === 1 && <MockupFeuilleRoute />}
-                {activeFeature === 3 && mockupIndex === 0 && <MockupSuiviActivite />}
-                {activeFeature === 3 && mockupIndex === 1 && <MockupAvisIntervention />}
-                {activeFeature === 3 && mockupIndex === 2 && <MockupDepotRapport />}
-                {activeFeature === 4 && mockupIndex === 0 && <MockupAdminUtilisateurs />}
-                {activeFeature === 4 && mockupIndex === 1 && <MockupAdminRoles />}
-                {activeFeature === 4 && mockupIndex === 2 && <MockupAdminModeles />}
-                {activeFeature === 4 && mockupIndex === 3 && <MockupAdminNC />}
-                {activeFeature === 4 && mockupIndex === 4 && <MockupAdminTemplates />}
-                {activeFeature === 4 && mockupIndex === 5 && <MockupAdminSync />}
-                {activeFeature === 5 && mockupIndex === 0 && <MockupPortailClient />}
+                {/* Mockups conditionnels par tab - avec scroll horizontal sur mobile */}
+                <div className="overflow-x-auto pb-4 -mx-4 px-4 md:mx-0 md:px-0 md:overflow-visible">
+                  <div className="min-w-[320px] md:min-w-0 transform scale-[0.85] md:scale-100 origin-top-left md:origin-center">
+                    {activeFeature === 0 && mockupIndex === 0 && <MockupDashboardFinancier />}
+                    {activeFeature === 0 && mockupIndex === 1 && <MockupFacturation />}
+                    {activeFeature === 1 && mockupIndex === 0 && <MockupDashboardCommercial />}
+                    {activeFeature === 1 && mockupIndex === 1 && <MockupBaseClient />}
+                    {activeFeature === 2 && mockupIndex === 0 && <MockupPlanification />}
+                    {activeFeature === 2 && mockupIndex === 1 && <MockupFeuilleRoute />}
+                    {activeFeature === 3 && mockupIndex === 0 && <MockupSuiviActivite />}
+                    {activeFeature === 3 && mockupIndex === 1 && <MockupAvisIntervention />}
+                    {activeFeature === 3 && mockupIndex === 2 && <MockupDepotRapport />}
+                    {activeFeature === 4 && mockupIndex === 0 && <MockupAdminUtilisateurs />}
+                    {activeFeature === 4 && mockupIndex === 1 && <MockupAdminRoles />}
+                    {activeFeature === 4 && mockupIndex === 2 && <MockupAdminModeles />}
+                    {activeFeature === 4 && mockupIndex === 3 && <MockupAdminNC />}
+                    {activeFeature === 4 && mockupIndex === 4 && <MockupAdminTemplates />}
+                    {activeFeature === 4 && mockupIndex === 5 && <MockupAdminSync />}
+                    {activeFeature === 5 && mockupIndex === 0 && <MockupPortailClient />}
+                  </div>
+                </div>
               </div>
             </div>
           </div>

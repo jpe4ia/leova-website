@@ -2,7 +2,7 @@ import { RefreshCw } from 'lucide-react';
 
 export default function MockupDashboardFinancier() {
   return (
-    <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+    <div className="bg-white rounded-xl md:rounded-2xl shadow-2xl overflow-hidden text-[11px] md:text-xs">
       {/* Header LISA */}
       <div className="bg-slate-900 px-4 py-3 flex items-center justify-between">
         <div className="flex items-center gap-3">
@@ -64,7 +64,7 @@ export default function MockupDashboardFinancier() {
               <span className="w-6 h-6 bg-green-100 rounded flex items-center justify-center text-green-600 text-sm">$</span>
               <span className="font-semibold text-slate-700">Chiffre d&apos;Affaires</span>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 md:gap-3">
               <div className="bg-slate-50 rounded-xl p-3 border border-slate-100">
                 <div className="flex items-center gap-2 mb-1">
                   <span className="w-5 h-5 bg-green-100 rounded flex items-center justify-center text-[10px] text-green-600">$</span>

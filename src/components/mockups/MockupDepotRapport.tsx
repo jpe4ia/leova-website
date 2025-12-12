@@ -2,7 +2,7 @@ import { RefreshCw } from 'lucide-react';
 
 export default function MockupDepotRapport() {
   return (
-    <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+    <div className="bg-white rounded-xl md:rounded-2xl shadow-2xl overflow-hidden text-[11px] md:text-xs">
       <div className="bg-slate-900 px-4 py-3 flex items-center justify-between flex-wrap gap-2">
         <span className="text-xl font-bold bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">LISA</span>
         <div className="flex gap-2 text-xs">
