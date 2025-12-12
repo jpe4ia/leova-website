@@ -2,6 +2,7 @@
 
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import MobileScreenshotsCarousel from '@/components/marketing/MobileScreenshotsCarousel';
 
 const slides = [
   {
@@ -99,7 +100,8 @@ export default function MarketingSlider() {
   return (
     <section className="bg-[#010d11] text-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 py-10">
-        <div className="relative">
+          <div className="relative">
+            <MobileScreenshotsCarousel />
           <div
             className="absolute inset-0 bg-gradient-to-r from-[#020c11] to-[#01131a] opacity-60"
             aria-hidden
