@@ -343,26 +343,26 @@ export default function MarketingSlider() {
 
                 {/* Slide 4: Benefits */}
                 {slide.id === 'benefits' && slide.cards && (
-                  <div className="space-y-8">
+                  <div className="space-y-3 md:space-y-8">
                     <div className="text-center">
-                      <h3 className="text-2xl md:text-3xl font-bold mb-2 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
+                      <h3 className="text-xl md:text-3xl font-bold mb-1 md:mb-2 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
                         {slide.title}
                       </h3>
                     </div>
-                    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    <div className="grid grid-cols-2 gap-2 md:gap-4 lg:grid-cols-3">
                       {slide.cards.map((card) => (
                         <div 
                           key={card.title} 
-                          className="group relative bg-gradient-to-b from-[#0a1215] to-[#050d10] border border-white/5 hover:border-white/20 rounded-2xl p-5 transition-all duration-300 hover:shadow-lg"
+                          className="group relative bg-gradient-to-b from-[#0a1215] to-[#050d10] border border-white/5 hover:border-white/20 rounded-xl md:rounded-2xl p-2.5 md:p-5 transition-all duration-300 hover:shadow-lg"
                         >
-                          <div className={`absolute inset-0 bg-gradient-to-br ${card.color} rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
-                          <div className="relative flex items-start gap-4">
-                            <div className="w-12 h-12 rounded-xl bg-white/5 group-hover:bg-white/10 flex items-center justify-center shrink-0 transition-colors duration-300">
-                              <card.Icon className="w-6 h-6 text-[#2dd4bf]" />
+                          <div className={`absolute inset-0 bg-gradient-to-br ${card.color} rounded-xl md:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
+                          <div className="relative flex items-start gap-2 md:gap-4">
+                            <div className="w-8 h-8 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-white/5 group-hover:bg-white/10 flex items-center justify-center shrink-0 transition-colors duration-300">
+                              <card.Icon className="w-4 h-4 md:w-6 md:h-6 text-[#2dd4bf]" />
                             </div>
                             <div>
-                              <p className="text-base font-semibold text-white mb-1">{card.title}</p>
-                              <p className="text-sm text-white/60 leading-relaxed">{card.copy}</p>
+                              <p className="text-xs md:text-base font-semibold text-white mb-0.5 md:mb-1">{card.title}</p>
+                              <p className="text-[10px] md:text-sm text-white/60 leading-tight md:leading-relaxed line-clamp-2 md:line-clamp-none">{card.copy}</p>
                             </div>
                           </div>
                         </div>
@@ -373,31 +373,31 @@ export default function MarketingSlider() {
 
                 {/* Slide 5: Security */}
                 {slide.id === 'security' && slide.bullets && (
-                  <div className="space-y-8">
+                  <div className="space-y-3 md:space-y-8">
                     <div className="text-center">
-                      <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-4">
-                        <Shield className="w-4 h-4 text-emerald-400" />
-                        <span className="text-sm font-medium text-emerald-400">Sécurité maximale</span>
+                      <div className="inline-flex items-center gap-1.5 md:gap-2 px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-2 md:mb-4">
+                        <Shield className="w-3 h-3 md:w-4 md:h-4 text-emerald-400" />
+                        <span className="text-xs md:text-sm font-medium text-emerald-400">Sécurité maximale</span>
                       </div>
-                      <h3 className="text-2xl md:text-3xl font-bold mb-2 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
+                      <h3 className="text-lg md:text-3xl font-bold mb-1 md:mb-2 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
                         {slide.title}
                       </h3>
-                      <p className="text-white/60">{slide.subtitle}</p>
+                      <p className="text-white/60 text-xs md:text-base hidden md:block">{slide.subtitle}</p>
                     </div>
-                    <div className="grid gap-4 md:grid-cols-2 max-w-3xl mx-auto">
+                    <div className="grid grid-cols-2 gap-2 md:gap-4 md:grid-cols-2 max-w-3xl mx-auto">
                       {slide.bullets.map((point) => (
                         <div 
                           key={point.text} 
-                          className="group flex items-center gap-4 p-5 bg-gradient-to-r from-[#0a1a1c] to-[#050d10] border border-emerald-500/10 hover:border-emerald-500/30 rounded-2xl transition-all duration-300"
+                          className="group flex items-center gap-2 md:gap-4 p-2.5 md:p-5 bg-gradient-to-r from-[#0a1a1c] to-[#050d10] border border-emerald-500/10 hover:border-emerald-500/30 rounded-xl md:rounded-2xl transition-all duration-300"
                         >
-                          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-emerald-500/5 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
-                            <point.Icon className="w-7 h-7 text-emerald-400" />
+                          <div className="w-9 h-9 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-gradient-to-br from-emerald-500/20 to-emerald-500/5 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
+                            <point.Icon className="w-4 h-4 md:w-7 md:h-7 text-emerald-400" />
                           </div>
-                          <p className="text-white/90 font-medium">{point.text}</p>
+                          <p className="text-white/90 font-medium text-xs md:text-base">{point.text}</p>
                         </div>
                       ))}
                     </div>
-                    <p className="text-center text-white/40 text-sm italic max-w-xl mx-auto">{slide.note}</p>
+                    <p className="text-center text-white/40 text-[10px] md:text-sm italic max-w-xl mx-auto hidden md:block">{slide.note}</p>
                   </div>
                 )}
               </div>
