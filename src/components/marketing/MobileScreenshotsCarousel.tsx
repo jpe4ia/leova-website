@@ -16,7 +16,7 @@ export default function MobileScreenshotsCarousel() {
   if (!mobileScreenshots.length) return null;
 
   return (
-    <div className="lg:hidden bg-[#030f11] border border-white/10 rounded-3xl p-4 mb-6">
+    <div className="bg-[#030f11] border border-white/10 rounded-3xl p-4">
       <div className="text-xs uppercase tracking-[0.4em] text-[#5eead4] mb-4 text-center">
         Aperçu
       </div>

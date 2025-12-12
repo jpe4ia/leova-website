@@ -145,8 +145,8 @@ export default function MarketingSlider() {
 
       <div className="max-w-7xl mx-auto px-4 py-16 relative z-10">
         <div className="relative">
-          {/* Container avec hauteur fixe pour le carousel - +25% sur mobile */}
-          <div className="relative min-h-[600px] md:min-h-[420px]">
+          {/* Container avec hauteur fixe pour le carousel */}
+          <div className="relative min-h-[420px] md:min-h-[420px]">
             {slides.map((slide, index) => (
               <div
                 key={slide.id}
@@ -202,13 +202,51 @@ export default function MarketingSlider() {
 
                 {/* Slide 2: Before/After */}
                 {slide.id === 'before-after' && (
-                  <div className="space-y-8">
+                  <div className="space-y-4 md:space-y-8">
                     <div className="text-center">
-                      <h3 className="text-2xl md:text-3xl font-bold mb-2 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
+                      <h3 className="text-xl md:text-3xl font-bold mb-2 bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
                         {slide.title}
                       </h3>
                     </div>
-                    <div className="grid md:grid-cols-2 gap-6 md:gap-8">
+                    {/* VERSION MOBILE - Côte à côte compact */}
+                    <div className="grid grid-cols-2 gap-3 md:hidden">
+                      {/* Before Column Mobile */}
+                      <div className="bg-gradient-to-b from-[#0a1215] to-[#050d10] border border-red-500/20 rounded-2xl p-3">
+                        <div className="flex items-center gap-2 mb-3">
+                          <XCircle className="w-4 h-4 text-red-400" />
+                          <span className="text-xs font-bold uppercase tracking-wider text-red-400">Avant</span>
+                        </div>
+                        {slide.before && (
+                          <div className="space-y-1.5">
+                            {slide.before.slice(0, 4).map((item) => (
+                              <div key={item} className="flex items-start gap-2 text-white/70 text-xs">
+                                <span className="text-red-400 mt-0.5">✕</span>
+                                <span>{item}</span>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                      {/* After Column Mobile */}
+                      <div className="bg-gradient-to-b from-[#0a1a1c] to-[#050d10] border border-[#2dd4bf]/30 rounded-2xl p-3">
+                        <div className="flex items-center gap-2 mb-3">
+                          <CheckCircle2 className="w-4 h-4 text-[#2dd4bf]" />
+                          <span className="text-xs font-bold uppercase tracking-wider text-[#2dd4bf]">Après</span>
+                        </div>
+                        {slide.after && (
+                          <div className="space-y-1.5">
+                            {slide.after.slice(0, 4).map((item) => (
+                              <div key={item} className="flex items-start gap-2 text-white/90 text-xs">
+                                <span className="text-[#2dd4bf] mt-0.5">✓</span>
+                                <span>{item}</span>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                    {/* VERSION DESKTOP - Layout original */}
+                    <div className="hidden md:grid md:grid-cols-2 gap-8">
                       {/* Before Column */}
                       <div className="relative">
                         <div className="absolute -inset-1 bg-gradient-to-b from-red-500/20 to-transparent rounded-3xl blur-xl opacity-50" />
@@ -400,10 +438,11 @@ export default function MarketingSlider() {
           </div>
         </div>
         
-        {/* Screenshots carousel - affiché en dessous sur mobile */}
-        <div className="mt-12">
-          <MobileScreenshotsCarousel />
-        </div>
+      </div>
+      
+      {/* Screenshots carousel - section séparée en dessous sur mobile */}
+      <div className="lg:hidden bg-[#010d11] border-t border-white/5 py-8 px-4">
+        <MobileScreenshotsCarousel />
       </div>
     </section>
   );
