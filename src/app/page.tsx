@@ -797,9 +797,9 @@ export default function HomePage() {
                       const diff = startX - endX;
                       if (Math.abs(diff) > 50) {
                         if (diff > 0) {
-                          setMobileScreenshotIndex(prev => prev < MOBILE_SCREENSHOTS.length - 1 ? prev + 1 : 0);
+                          setMobileScreenshotIndex(prev => prev < mobileScreenshots.length - 1 ? prev + 1 : 0);
                         } else {
-                          setMobileScreenshotIndex(prev => prev > 0 ? prev - 1 : MOBILE_SCREENSHOTS.length - 1);
+                          setMobileScreenshotIndex(prev => prev > 0 ? prev - 1 : mobileScreenshots.length - 1);
                         }
                       }
                     }}
