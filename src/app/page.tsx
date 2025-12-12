@@ -761,7 +761,7 @@ export default function HomePage() {
                   {/* Indicateur */}
                   <div className="text-center mb-3">
                     <span className="px-3 py-1.5 bg-white/10 backdrop-blur rounded-full text-white text-xs">
-                      Aperçu LISA ({mockupIndex + 1}/8) • Défilement auto
+                      Aperçu LISA ({(mockupIndex % 3) + 1}/3) • Swipe pour naviguer
                     </span>
                   </div>
                   
@@ -778,9 +778,9 @@ export default function HomePage() {
                       const diff = startX - endX;
                       if (Math.abs(diff) > 50) {
                         if (diff > 0) {
-                          setMockupIndex(prev => prev < 7 ? prev + 1 : 0);
+                          setMockupIndex(prev => prev < 2 ? prev + 1 : 0);
                         } else {
-                          setMockupIndex(prev => prev > 0 ? prev - 1 : 7);
+                          setMockupIndex(prev => prev > 0 ? prev - 1 : 2);
                         }
                       }
                     }}
@@ -789,7 +789,7 @@ export default function HomePage() {
                       className="flex transition-transform duration-500 ease-out"
                       style={{ transform: `translateX(-${mockupIndex * 100}%)` }}
                     >
-                      {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
+                      {[1, 2, 3].map((num) => (
                         <div key={num} className="w-full flex-shrink-0 px-1">
                           <img 
                             src={`/screenshots/screenshot-0${num}.png`}
@@ -802,13 +802,13 @@ export default function HomePage() {
                     
                     {/* Boutons navigation plus visibles */}
                     <button 
-                      onClick={() => setMockupIndex(prev => prev > 0 ? prev - 1 : 7)} 
+                      onClick={() => setMockupIndex(prev => prev > 0 ? prev - 1 : 2)} 
                       className="absolute left-1 top-1/2 -translate-y-1/2 w-10 h-10 bg-[#2dd4bf]/80 backdrop-blur rounded-full flex items-center justify-center text-[#0f2a2a] shadow-lg active:scale-95 transition-transform"
                     >
                       <ChevronLeft className="w-5 h-5" />
                     </button>
                     <button 
-                      onClick={() => setMockupIndex(prev => prev < 7 ? prev + 1 : 0)} 
+                      onClick={() => setMockupIndex(prev => prev < 2 ? prev + 1 : 0)} 
                       className="absolute right-1 top-1/2 -translate-y-1/2 w-10 h-10 bg-[#2dd4bf]/80 backdrop-blur rounded-full flex items-center justify-center text-[#0f2a2a] shadow-lg active:scale-95 transition-transform"
                     >
                       <ChevronRight className="w-5 h-5" />
@@ -817,7 +817,7 @@ export default function HomePage() {
                   
                   {/* Indicateurs de position améliorés */}
                   <div className="flex justify-center gap-2 mt-4">
-                    {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => (
+                    {[0, 1, 2].map((i) => (
                       <button 
                         key={i} 
                         onClick={() => setMockupIndex(i)} 
@@ -1342,6 +1342,7 @@ export default function HomePage() {
     </div>
   );
 }
+
 
 
 
