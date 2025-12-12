@@ -822,13 +822,13 @@ export default function HomePage() {
                     
                     {/* Boutons navigation plus visibles */}
                     <button 
-                      onClick={() => setMobileScreenshotIndex(prev => prev > 0 ? prev - 1 : MOBILE_SCREENSHOTS.length - 1)} 
+                      onClick={() => setMobileScreenshotIndex(prev => prev > 0 ? prev - 1 : mobileScreenshots.length - 1)} 
                       className="absolute left-1 top-1/2 -translate-y-1/2 w-10 h-10 bg-[#2dd4bf]/80 backdrop-blur rounded-full flex items-center justify-center text-[#0f2a2a] shadow-lg active:scale-95 transition-transform"
                     >
                       <ChevronLeft className="w-5 h-5" />
                     </button>
                     <button 
-                      onClick={() => setMobileScreenshotIndex(prev => prev < MOBILE_SCREENSHOTS.length - 1 ? prev + 1 : 0)} 
+                      onClick={() => setMobileScreenshotIndex(prev => prev < mobileScreenshots.length - 1 ? prev + 1 : 0)} 
                       className="absolute right-1 top-1/2 -translate-y-1/2 w-10 h-10 bg-[#2dd4bf]/80 backdrop-blur rounded-full flex items-center justify-center text-[#0f2a2a] shadow-lg active:scale-95 transition-transform"
                     >
                       <ChevronRight className="w-5 h-5" />
