@@ -145,8 +145,8 @@ export default function MarketingSlider() {
 
       <div className="max-w-7xl mx-auto px-4 py-16 relative z-10">
         <div className="relative">
-          {/* Container avec hauteur fixe pour le carousel */}
-          <div className="relative min-h-[480px] md:min-h-[420px]">
+          {/* Container avec hauteur fixe pour le carousel - +25% sur mobile */}
+          <div className="relative min-h-[600px] md:min-h-[420px]">
             {slides.map((slide, index) => (
               <div
                 key={slide.id}
@@ -366,8 +366,8 @@ export default function MarketingSlider() {
             ))}
           </div>
 
-          {/* Navigation modernisée */}
-          <div className="mt-8 flex items-center justify-between">
+          {/* Navigation modernisée - décalée de 30px supplémentaires */}
+          <div className="mt-8 pt-[30px] flex items-center justify-between">
             <div className="flex items-center gap-2">
               <button
                 type="button"
