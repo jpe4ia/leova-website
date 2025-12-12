@@ -814,7 +814,7 @@ export default function HomePage() {
                             src={item.src}
                             alt={`Capture LISA ${index + 1}`}
                             className="w-full h-auto rounded-xl shadow-2xl border border-white/10 cursor-zoom-in"
-                            onClick={() => setLightboxImage(src)}
+                            onClick={() => setLightboxImage(item.src)}
                           />
                         </div>
                       ))}
@@ -1388,6 +1388,7 @@ export default function HomePage() {
     </div>
   );
 }
+
 
 
 
