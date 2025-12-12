@@ -145,13 +145,13 @@ export default function MarketingSlider() {
 
       <div className="max-w-7xl mx-auto px-4 py-16 relative z-10">
         <div className="relative">
-          {/* Container avec hauteur fixe pour le carousel */}
-          <div className="relative min-h-[420px] md:min-h-[420px]">
+          {/* Container avec hauteur fixe pour le carousel - +25% sur mobile */}
+          <div className="relative min-h-[525px] md:min-h-[420px]">
             {slides.map((slide, index) => (
               <div
                 key={slide.id}
                 aria-hidden={active !== index}
-                className={`absolute inset-0 transition-all duration-700 ease-out ${active === index ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-[0.98] pointer-events-none'}`}
+                className={`absolute inset-0 flex items-center justify-center transition-all duration-700 ease-out ${active === index ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-[0.98] pointer-events-none'}`}
               >
                 {/* Slide 1: Value Proposition */}
                 {slide.id === 'value' && (
@@ -208,20 +208,20 @@ export default function MarketingSlider() {
                         {slide.title}
                       </h3>
                     </div>
-                    {/* VERSION MOBILE - Côte à côte compact */}
-                    <div className="grid grid-cols-2 gap-3 md:hidden">
+                    {/* VERSION MOBILE - Avant au-dessus de Après */}
+                    <div className="flex flex-col gap-3 md:hidden">
                       {/* Before Column Mobile */}
                       <div className="bg-gradient-to-b from-[#0a1215] to-[#050d10] border border-red-500/20 rounded-2xl p-3">
-                        <div className="flex items-center gap-2 mb-3">
+                        <div className="flex items-center gap-2 mb-2">
                           <XCircle className="w-4 h-4 text-red-400" />
                           <span className="text-xs font-bold uppercase tracking-wider text-red-400">Avant</span>
                         </div>
                         {slide.before && (
-                          <div className="space-y-1.5">
+                          <div className="grid grid-cols-2 gap-x-3 gap-y-1">
                             {slide.before.slice(0, 4).map((item) => (
-                              <div key={item} className="flex items-start gap-2 text-white/70 text-xs">
+                              <div key={item} className="flex items-start gap-1.5 text-white/70 text-xs">
                                 <span className="text-red-400 mt-0.5">✕</span>
-                                <span>{item}</span>
+                                <span className="line-clamp-1">{item}</span>
                               </div>
                             ))}
                           </div>
@@ -229,16 +229,16 @@ export default function MarketingSlider() {
                       </div>
                       {/* After Column Mobile */}
                       <div className="bg-gradient-to-b from-[#0a1a1c] to-[#050d10] border border-[#2dd4bf]/30 rounded-2xl p-3">
-                        <div className="flex items-center gap-2 mb-3">
+                        <div className="flex items-center gap-2 mb-2">
                           <CheckCircle2 className="w-4 h-4 text-[#2dd4bf]" />
                           <span className="text-xs font-bold uppercase tracking-wider text-[#2dd4bf]">Après</span>
                         </div>
                         {slide.after && (
-                          <div className="space-y-1.5">
+                          <div className="grid grid-cols-2 gap-x-3 gap-y-1">
                             {slide.after.slice(0, 4).map((item) => (
-                              <div key={item} className="flex items-start gap-2 text-white/90 text-xs">
+                              <div key={item} className="flex items-start gap-1.5 text-white/90 text-xs">
                                 <span className="text-[#2dd4bf] mt-0.5">✓</span>
-                                <span>{item}</span>
+                                <span className="line-clamp-1">{item}</span>
                               </div>
                             ))}
                           </div>
