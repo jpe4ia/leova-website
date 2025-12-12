@@ -260,25 +260,62 @@ export default function HomePage() {
         <div className="absolute bottom-[10%] right-[5%] w-[600px] h-[600px] bg-gradient-to-tl from-blue-500/8 via-teal-500/5 to-transparent rounded-full blur-[100px] animate-pulse-soft" style={{ animationDelay: '2s' }}></div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-gradient-radial from-[#2dd4bf]/5 via-transparent to-transparent rounded-full blur-[80px] animate-rotate-slow"></div>
         
-        {/* Lignes courbes élégantes */}
-        <svg className="absolute inset-0 w-full h-full opacity-[0.08]" viewBox="0 0 100 100" preserveAspectRatio="none">
-          <path d="M0,50 Q25,30 50,50 T100,50" fill="none" stroke="url(#line-grad)" strokeWidth="0.1" className="animate-wave"/>
-          <path d="M0,60 Q30,40 60,60 T100,55" fill="none" stroke="url(#line-grad)" strokeWidth="0.08" className="animate-wave-slow"/>
+        {/* Grandes courbes élégantes en arrière-plan - diamètre très large - z-index négatif pour être derrière tout */}
+        <svg className="absolute inset-0 w-full h-full overflow-visible pointer-events-none" style={{ zIndex: -1 }}>
+          {/* Arc supérieur gauche - très grand rayon */}
+          <path 
+            d="M-800,200 Q200,-300 1800,400" 
+            fill="none" 
+            stroke="url(#curve-grad-1)" 
+            strokeWidth="1.5" 
+            className="animate-wave-slow"
+            opacity="0.15"
+          />
+          {/* Arc central - encore plus grand */}
+          <path 
+            d="M-500,600 Q700,100 2000,500" 
+            fill="none" 
+            stroke="url(#curve-grad-2)" 
+            strokeWidth="1" 
+            className="animate-wave"
+            opacity="0.1"
+          />
+          {/* Arc inférieur - grand rayon */}
+          <path 
+            d="M-300,800 Q600,300 1900,700" 
+            fill="none" 
+            stroke="url(#curve-grad-1)" 
+            strokeWidth="0.8" 
+            className="animate-wave-slow"
+            opacity="0.12"
+            style={{ animationDelay: '3s' }}
+          />
+          {/* Arc supplémentaire subtil */}
+          <path 
+            d="M-600,100 Q400,500 1600,200" 
+            fill="none" 
+            stroke="url(#curve-grad-2)" 
+            strokeWidth="0.5" 
+            className="animate-wave"
+            opacity="0.08"
+            style={{ animationDelay: '1.5s' }}
+          />
           <defs>
-            <linearGradient id="line-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="transparent"/>
-              <stop offset="50%" stopColor="#2dd4bf"/>
-              <stop offset="100%" stopColor="transparent"/>
+            <linearGradient id="curve-grad-1" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#2dd4bf" stopOpacity="0"/>
+              <stop offset="30%" stopColor="#2dd4bf" stopOpacity="0.6"/>
+              <stop offset="50%" stopColor="#06b6d4" stopOpacity="0.8"/>
+              <stop offset="70%" stopColor="#2dd4bf" stopOpacity="0.6"/>
+              <stop offset="100%" stopColor="#2dd4bf" stopOpacity="0"/>
+            </linearGradient>
+            <linearGradient id="curve-grad-2" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#06b6d4" stopOpacity="0"/>
+              <stop offset="40%" stopColor="#0ea5e9" stopOpacity="0.5"/>
+              <stop offset="60%" stopColor="#06b6d4" stopOpacity="0.5"/>
+              <stop offset="100%" stopColor="#06b6d4" stopOpacity="0"/>
             </linearGradient>
           </defs>
         </svg>
-        
-        {/* Cercles concentriques subtils */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <div className="w-[300px] h-[300px] border border-[#2dd4bf]/5 rounded-full animate-pulse-soft"></div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] border border-[#2dd4bf]/3 rounded-full animate-pulse-soft" style={{ animationDelay: '1s' }}></div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] border border-[#2dd4bf]/2 rounded-full animate-pulse-soft" style={{ animationDelay: '2s' }}></div>
-        </div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="text-center max-w-4xl mx-auto">
