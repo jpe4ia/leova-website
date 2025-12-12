@@ -182,16 +182,16 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 md:gap-4">
               <img 
                 src="/logo-icon.png" 
                 alt="LEOVA" 
-                className="h-14 w-auto"
+                className="h-10 md:h-14 w-auto"
               />
               <img 
                 src="/logo-text.png" 
                 alt="LEOVA Systems" 
-                className="h-14 w-auto hidden md:block translate-y-1"
+                className="h-8 md:h-14 w-auto translate-y-0.5 md:translate-y-1"
               />
             </div>
 
@@ -1218,8 +1218,8 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-2">
-              <img src="/logo-icon.png" alt="LEOVA" className="h-10" />
-              <img src="/logo-text.png" alt="LEOVA Systems" className="h-8 hidden sm:block" />
+              <img src="/logo-icon.png" alt="LEOVA" className="h-8 md:h-10" />
+              <img src="/logo-text.png" alt="LEOVA Systems" className="h-6 md:h-8" />
             </div>
             <div className="flex items-center gap-8 text-sm text-white/40">
               <a href="/mentions-legales" className="hover:text-[#2dd4bf] transition-colors">Mentions légales</a>
@@ -1310,6 +1310,7 @@ export default function HomePage() {
     </div>
   );
 }
+
 
 
 
