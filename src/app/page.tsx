@@ -202,34 +202,46 @@ export default function HomePage() {
         {/* Fond dégradé de base */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#0f2a2a] via-[#1a3d3d] to-[#0f2a2a]"></div>
         
-        {/* Grille animée subtile */}
-        <div className="absolute inset-0 opacity-[0.03] animate-grid" style={{
-          backgroundImage: 'linear-gradient(rgba(45, 212, 191, 0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(45, 212, 191, 0.5) 1px, transparent 1px)',
-          backgroundSize: '50px 50px'
-        }}></div>
+        {/* Vagues ondulantes en arrière-plan */}
+        <div className="absolute inset-0 overflow-hidden">
+          <svg className="absolute w-[200%] h-full opacity-[0.03] animate-wave" viewBox="0 0 1440 600" preserveAspectRatio="none">
+            <path fill="url(#wave-gradient)" d="M0,200 C320,300 420,100 640,200 C880,300 1000,100 1200,200 C1400,300 1440,250 1440,250 L1440,600 L0,600 Z"/>
+            <defs>
+              <linearGradient id="wave-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#2dd4bf"/>
+                <stop offset="100%" stopColor="#06b6d4"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <svg className="absolute w-[200%] h-full opacity-[0.02] animate-wave-slow" style={{ top: '10%' }} viewBox="0 0 1440 600" preserveAspectRatio="none">
+            <path fill="#2dd4bf" d="M0,300 C200,200 400,350 600,280 C800,210 1000,350 1200,300 C1350,260 1440,300 1440,300 L1440,600 L0,600 Z"/>
+          </svg>
+        </div>
         
-        {/* Grandes orbes lumineuses animées */}
-        <div className="absolute top-1/4 left-1/6 w-[600px] h-[600px] bg-gradient-to-br from-[#2dd4bf]/10 to-transparent rounded-full blur-3xl animate-pulse-soft"></div>
-        <div className="absolute bottom-1/4 right-1/6 w-[500px] h-[500px] bg-gradient-to-tl from-cyan-500/10 to-transparent rounded-full blur-3xl animate-pulse-soft" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-[#2dd4bf]/5 via-transparent to-blue-500/5 rounded-full blur-3xl animate-rotate-slow"></div>
+        {/* Grandes orbes lumineuses - effet nebula */}
+        <div className="absolute top-[10%] left-[5%] w-[500px] h-[500px] bg-gradient-to-br from-[#2dd4bf]/8 via-cyan-500/5 to-transparent rounded-full blur-[100px] animate-pulse-soft"></div>
+        <div className="absolute bottom-[10%] right-[5%] w-[600px] h-[600px] bg-gradient-to-tl from-blue-500/8 via-teal-500/5 to-transparent rounded-full blur-[100px] animate-pulse-soft" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-gradient-radial from-[#2dd4bf]/5 via-transparent to-transparent rounded-full blur-[80px] animate-rotate-slow"></div>
         
-        {/* Particules flottantes */}
-        <div className="absolute top-[20%] left-[10%] w-2 h-2 bg-[#2dd4bf]/60 rounded-full animate-float-particle blur-[1px]"></div>
-        <div className="absolute top-[30%] left-[20%] w-3 h-3 bg-cyan-400/40 rounded-full animate-float-particle-slow blur-[1px]" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute top-[15%] right-[15%] w-2 h-2 bg-[#2dd4bf]/50 rounded-full animate-float-particle-fast blur-[1px]" style={{ animationDelay: '0.5s' }}></div>
-        <div className="absolute top-[40%] right-[25%] w-4 h-4 bg-teal-400/30 rounded-full animate-float-particle blur-[2px]" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute bottom-[30%] left-[30%] w-2 h-2 bg-cyan-300/50 rounded-full animate-float-particle-slow blur-[1px]" style={{ animationDelay: '3s' }}></div>
-        <div className="absolute bottom-[20%] right-[10%] w-3 h-3 bg-[#2dd4bf]/40 rounded-full animate-float-particle blur-[1px]" style={{ animationDelay: '1.5s' }}></div>
-        <div className="absolute top-[60%] left-[5%] w-2 h-2 bg-emerald-400/50 rounded-full animate-float-particle-fast blur-[1px]" style={{ animationDelay: '4s' }}></div>
-        <div className="absolute top-[70%] right-[30%] w-3 h-3 bg-teal-300/40 rounded-full animate-float-particle-slow blur-[1px]" style={{ animationDelay: '2.5s' }}></div>
+        {/* Lignes courbes élégantes */}
+        <svg className="absolute inset-0 w-full h-full opacity-[0.08]" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <path d="M0,50 Q25,30 50,50 T100,50" fill="none" stroke="url(#line-grad)" strokeWidth="0.1" className="animate-wave"/>
+          <path d="M0,60 Q30,40 60,60 T100,55" fill="none" stroke="url(#line-grad)" strokeWidth="0.08" className="animate-wave-slow"/>
+          <defs>
+            <linearGradient id="line-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="transparent"/>
+              <stop offset="50%" stopColor="#2dd4bf"/>
+              <stop offset="100%" stopColor="transparent"/>
+            </linearGradient>
+          </defs>
+        </svg>
         
-        {/* Lignes décoratives animées */}
-        <div className="absolute top-[10%] left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#2dd4bf]/20 to-transparent animate-shimmer"></div>
-        <div className="absolute bottom-[15%] left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-400/15 to-transparent animate-shimmer" style={{ animationDelay: '1.5s' }}></div>
-        
-        {/* Cercles décoratifs */}
-        <div className="absolute top-[25%] right-[5%] w-32 h-32 border border-[#2dd4bf]/10 rounded-full animate-pulse-soft" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute bottom-[35%] left-[8%] w-24 h-24 border border-cyan-400/10 rounded-full animate-pulse-soft" style={{ animationDelay: '2s' }}></div>
+        {/* Cercles concentriques subtils */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <div className="w-[300px] h-[300px] border border-[#2dd4bf]/5 rounded-full animate-pulse-soft"></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] border border-[#2dd4bf]/3 rounded-full animate-pulse-soft" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] border border-[#2dd4bf]/2 rounded-full animate-pulse-soft" style={{ animationDelay: '2s' }}></div>
+        </div>
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="text-center max-w-4xl mx-auto">
@@ -845,19 +857,20 @@ export default function HomePage() {
           </div>
 
           <div className="grid lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {/* Starter */}
+            {/* Starter - 1 utilisateur */}
             <div className="p-8 bg-[#0f2a2a] rounded-2xl border border-white/10">
               <div className="text-[#2dd4bf] font-semibold text-sm mb-2">STARTER</div>
               <div className="text-4xl font-bold mb-1">99€<span className="text-lg text-white/40 font-normal"> HT/mois</span></div>
-              <p className="text-white/50 text-sm mb-8">Pour les petites structures</p>
+              <p className="text-white/50 text-sm mb-8">Pour les indépendants et petits organismes</p>
               
               <ul className="space-y-3 mb-8">
                 {[
-                  '1 Administrateur',
-                  '3 utilisateurs Back Office',
+                  '1 utilisateur',
+                  'Tous les modules inclus',
                   '10 accès Portail Client',
-                  'Hébergement inclus',
+                  'Hébergement sécurisé France',
                   'Support par email',
+                  'Mises à jour incluses',
                 ].map((item, i) => (
                   <li key={i} className="flex items-center gap-3 text-white/70 text-sm">
                     <CheckCircle className="w-4 h-4 text-[#2dd4bf] flex-shrink-0" />
@@ -874,22 +887,22 @@ export default function HomePage() {
               </button>
             </div>
 
-            {/* Pro - Highlighted */}
+            {/* Équipe - Highlighted */}
             <div className="p-8 bg-gradient-to-b from-[#2dd4bf]/10 to-[#0f2a2a] rounded-2xl border-2 border-[#2dd4bf] relative">
               <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-[#2dd4bf] text-[#0f2a2a] text-sm font-bold rounded-full">
                 RECOMMANDÉ
               </div>
-              <div className="text-[#2dd4bf] font-semibold text-sm mb-2">PROFESSIONNEL</div>
+              <div className="text-[#2dd4bf] font-semibold text-sm mb-2">ÉQUIPE</div>
               <div className="text-4xl font-bold mb-1">199€<span className="text-lg text-white/40 font-normal"> HT/mois</span></div>
-              <p className="text-white/50 text-sm mb-8">Pour les équipes en croissance</p>
+              <p className="text-white/50 text-sm mb-8">Pour les équipes jusqu'à 10 personnes</p>
               
               <ul className="space-y-3 mb-8">
                 {[
-                  '1 Administrateur',
-                  '10 utilisateurs Back Office',
+                  'Jusqu\'à 5 utilisateurs',
+                  'Tous les modules inclus',
                   'Portail Client illimité',
-                  'Module Facturation',
-                  'Feuille de route',
+                  'Module Facturation EBP',
+                  'Feuille de route mobile',
                   'Support prioritaire',
                 ].map((item, i) => (
                   <li key={i} className="flex items-center gap-3 text-white/70 text-sm">
@@ -907,11 +920,11 @@ export default function HomePage() {
               </button>
             </div>
 
-            {/* Enterprise */}
+            {/* Sur Mesure - Équipes pluridisciplinaires */}
             <div className="p-8 bg-[#0f2a2a] rounded-2xl border border-white/10">
-              <div className="text-[#2dd4bf] font-semibold text-sm mb-2">ENTREPRISE</div>
-              <div className="text-4xl font-bold mb-1">Sur mesure</div>
-              <p className="text-white/50 text-sm mb-8">Pour les grandes structures</p>
+              <div className="text-[#2dd4bf] font-semibold text-sm mb-2">SUR MESURE</div>
+              <div className="text-4xl font-bold mb-1">Contactez-nous</div>
+              <p className="text-white/50 text-sm mb-8">Équipes pluridisciplinaires &gt; 10 salariés</p>
               
               <ul className="space-y-3 mb-8">
                 {[
@@ -930,15 +943,15 @@ export default function HomePage() {
               </ul>
               
               <a href="#contact" className="block w-full py-3 bg-white/5 hover:bg-white/10 text-center font-semibold rounded-lg transition-colors border border-white/10">
-                Nous contacter
+                Demander un devis
               </a>
             </div>
           </div>
 
           <div className="mt-12 text-center text-white/50">
             <p>
-              Utilisateurs supplémentaires : <span className="text-white font-semibold">+19€/mois</span> (Back Office) | 
-              <span className="text-white font-semibold"> +9€/mois</span> (Portail Client)
+              Utilisateur supplémentaire : <span className="text-white font-semibold">+29€/mois</span> | 
+              Accès Portail Client supplémentaire : <span className="text-white font-semibold">+9€/mois</span>
             </p>
           </div>
         </div>
