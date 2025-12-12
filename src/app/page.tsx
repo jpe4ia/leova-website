@@ -260,58 +260,58 @@ export default function HomePage() {
         <div className="absolute bottom-[10%] right-[5%] w-[600px] h-[600px] bg-gradient-to-tl from-blue-500/8 via-teal-500/5 to-transparent rounded-full blur-[100px] animate-pulse-soft" style={{ animationDelay: '2s' }}></div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] bg-gradient-radial from-[#2dd4bf]/5 via-transparent to-transparent rounded-full blur-[80px] animate-rotate-slow"></div>
         
-        {/* Grandes courbes élégantes en arrière-plan - diamètre très large - z-index négatif pour être derrière tout */}
-        <svg className="absolute inset-0 w-full h-full overflow-visible pointer-events-none" style={{ zIndex: -1 }}>
-          {/* Arc supérieur gauche - très grand rayon */}
+        {/* Grandes courbes élégantes en arrière-plan - viewBox pour visibilité */}
+        <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 100 100" preserveAspectRatio="none" style={{ zIndex: 1 }}>
+          {/* Courbe supérieure - grand arc */}
           <path 
-            d="M-800,200 Q200,-300 1800,400" 
+            d="M-10,25 Q50,-15 110,35" 
             fill="none" 
             stroke="url(#curve-grad-1)" 
-            strokeWidth="1.5" 
+            strokeWidth="0.15" 
             className="animate-wave-slow"
-            opacity="0.15"
+            opacity="0.4"
           />
-          {/* Arc central - encore plus grand */}
+          {/* Courbe centrale haute */}
           <path 
-            d="M-500,600 Q700,100 2000,500" 
+            d="M-5,45 Q55,5 105,50" 
             fill="none" 
             stroke="url(#curve-grad-2)" 
-            strokeWidth="1" 
+            strokeWidth="0.12" 
             className="animate-wave"
-            opacity="0.1"
+            opacity="0.3"
           />
-          {/* Arc inférieur - grand rayon */}
+          {/* Courbe centrale basse */}
           <path 
-            d="M-300,800 Q600,300 1900,700" 
+            d="M-8,65 Q45,30 108,60" 
             fill="none" 
             stroke="url(#curve-grad-1)" 
-            strokeWidth="0.8" 
+            strokeWidth="0.1" 
             className="animate-wave-slow"
-            opacity="0.12"
-            style={{ animationDelay: '3s' }}
+            opacity="0.35"
+            style={{ animationDelay: '2s' }}
           />
-          {/* Arc supplémentaire subtil */}
+          {/* Courbe inférieure */}
           <path 
-            d="M-600,100 Q400,500 1600,200" 
+            d="M-10,85 Q50,50 110,80" 
             fill="none" 
             stroke="url(#curve-grad-2)" 
-            strokeWidth="0.5" 
+            strokeWidth="0.08" 
             className="animate-wave"
-            opacity="0.08"
-            style={{ animationDelay: '1.5s' }}
+            opacity="0.25"
+            style={{ animationDelay: '4s' }}
           />
           <defs>
             <linearGradient id="curve-grad-1" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor="#2dd4bf" stopOpacity="0"/>
-              <stop offset="30%" stopColor="#2dd4bf" stopOpacity="0.6"/>
-              <stop offset="50%" stopColor="#06b6d4" stopOpacity="0.8"/>
-              <stop offset="70%" stopColor="#2dd4bf" stopOpacity="0.6"/>
+              <stop offset="20%" stopColor="#2dd4bf" stopOpacity="0.8"/>
+              <stop offset="50%" stopColor="#06b6d4" stopOpacity="1"/>
+              <stop offset="80%" stopColor="#2dd4bf" stopOpacity="0.8"/>
               <stop offset="100%" stopColor="#2dd4bf" stopOpacity="0"/>
             </linearGradient>
             <linearGradient id="curve-grad-2" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor="#06b6d4" stopOpacity="0"/>
-              <stop offset="40%" stopColor="#0ea5e9" stopOpacity="0.5"/>
-              <stop offset="60%" stopColor="#06b6d4" stopOpacity="0.5"/>
+              <stop offset="30%" stopColor="#0ea5e9" stopOpacity="0.7"/>
+              <stop offset="70%" stopColor="#06b6d4" stopOpacity="0.7"/>
               <stop offset="100%" stopColor="#06b6d4" stopOpacity="0"/>
             </linearGradient>
           </defs>
@@ -325,11 +325,12 @@ export default function HomePage() {
               {heroSlides[heroSlide].badge}
             </div>
             
-            {/* Main Title dynamique */}
-            <h1 key={`title-${heroSlide}`} className="text-5xl md:text-7xl font-bold leading-tight mb-6 animate-fade-in">
-              <span className="bg-gradient-to-r from-teal-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">LISA</span>
+            {/* LISA statique avec animation de dégradé */}
+            <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6">
+              <span className="bg-gradient-to-r from-teal-400 via-cyan-400 to-blue-400 bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient-shift">LISA</span>
               <br />
-              <span className="text-white">
+              {/* Texte dynamique qui défile */}
+              <span key={`title-${heroSlide}`} className="text-white animate-fade-in">
                 {heroSlides[heroSlide].title}
               </span>
             </h1>
@@ -1255,6 +1256,7 @@ export default function HomePage() {
     </div>
   );
 }
+
 
 
 
