@@ -669,6 +669,142 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Section Accréditation & Conformité */}
+      <section className="py-20 bg-gradient-to-b from-[#0f2a2a] to-[#1a3d3d]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500/20 text-amber-400 rounded-full text-sm mb-6">
+              🏅 Expertise & Conformité
+            </div>
+            <h2 className="text-2xl md:text-4xl font-bold mb-4">
+              Conçu par des <span className="text-[#2dd4bf]">experts accrédités</span>
+            </h2>
+            <p className="text-white/60 text-lg max-w-3xl mx-auto">
+              LISA a été développé en collaboration avec des organismes d'inspection accrédités COFRAC, 
+              pour répondre aux exigences les plus strictes de la norme ISO/CEI 17020.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            {/* COFRAC */}
+            <div className="bg-white/5 backdrop-blur rounded-2xl p-6 border border-white/10 text-center hover:border-[#2dd4bf]/50 transition-colors">
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <span className="text-3xl">🏛️</span>
+              </div>
+              <h3 className="text-xl font-bold mb-2">Accréditation COFRAC</h3>
+              <p className="text-white/50 text-sm">
+                Développé avec des organismes accrédités par le Comité Français d'Accréditation
+              </p>
+            </div>
+
+            {/* ISO 17020 */}
+            <div className="bg-white/5 backdrop-blur rounded-2xl p-6 border border-white/10 text-center hover:border-[#2dd4bf]/50 transition-colors">
+              <div className="w-16 h-16 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <span className="text-3xl">📋</span>
+              </div>
+              <h3 className="text-xl font-bold mb-2">Norme ISO/CEI 17020</h3>
+              <p className="text-white/50 text-sm">
+                Fonctionnalités alignées sur les exigences de la norme pour les organismes d'inspection
+              </p>
+            </div>
+
+            {/* Traçabilité */}
+            <div className="bg-white/5 backdrop-blur rounded-2xl p-6 border border-white/10 text-center hover:border-[#2dd4bf]/50 transition-colors">
+              <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <span className="text-3xl">✅</span>
+              </div>
+              <h3 className="text-xl font-bold mb-2">Traçabilité complète</h3>
+              <p className="text-white/50 text-sm">
+                Audit trail, historique des modifications, preuves d'intervention documentées
+              </p>
+            </div>
+          </div>
+
+          {/* Exigences couvertes */}
+          <div className="bg-white/5 backdrop-blur rounded-2xl p-8 border border-white/10">
+            <h3 className="text-xl font-bold mb-6 text-center">Exigences de la norme couvertes par LISA</h3>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {[
+                { icon: '📁', label: 'Gestion documentaire', desc: 'Modèles, procédures, rapports' },
+                { icon: '👥', label: 'Gestion du personnel', desc: 'Compétences, habilitations' },
+                { icon: '🔧', label: 'Équipements', desc: 'Suivi métrologique, étalonnages' },
+                { icon: '📊', label: 'Rapports d\'inspection', desc: 'Conformité, traçabilité' },
+                { icon: '🔔', label: 'Non-conformités', desc: 'Détection, suivi, clôture' },
+                { icon: '📅', label: 'Planification', desc: 'Ressources, délais' },
+                { icon: '🔒', label: 'Confidentialité', desc: 'Accès sécurisés, droits' },
+                { icon: '📈', label: 'Amélioration continue', desc: 'Indicateurs, analyses' },
+              ].map((item, i) => (
+                <div key={i} className="flex items-start gap-3 p-3 bg-white/5 rounded-xl">
+                  <span className="text-xl">{item.icon}</span>
+                  <div>
+                    <div className="font-semibold text-sm text-white">{item.label}</div>
+                    <div className="text-xs text-white/50">{item.desc}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section "Ils nous font confiance" */}
+      <section className="py-20 bg-[#0a1f1f]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-4xl font-bold mb-4">
+              Ils nous font <span className="text-[#2dd4bf]">confiance</span>
+            </h2>
+            <p className="text-white/60 text-lg">
+              LISA est utilisé au quotidien par des organismes d'inspection reconnus
+            </p>
+          </div>
+
+          <div className="flex flex-col items-center">
+            {/* Client principal - PAQA */}
+            <a 
+              href="https://www.paqa.fr" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="group bg-white/5 backdrop-blur rounded-2xl p-8 border border-white/10 hover:border-[#2dd4bf] transition-all hover:scale-105 max-w-lg w-full"
+            >
+              <div className="flex items-center gap-6">
+                <div className="w-20 h-20 bg-gradient-to-br from-[#2dd4bf] to-cyan-500 rounded-2xl flex items-center justify-center shrink-0">
+                  <span className="text-4xl font-bold text-white">P</span>
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold mb-1 group-hover:text-[#2dd4bf] transition-colors">PAQA</h3>
+                  <p className="text-white/50 text-sm mb-2">Organisme d'inspection accrédité COFRAC</p>
+                  <p className="text-white/70 text-sm">
+                    Spécialiste du contrôle qualité en imagerie médicale et rayonnements ionisants
+                  </p>
+                </div>
+              </div>
+              <div className="mt-4 flex items-center gap-2 text-[#2dd4bf] text-sm">
+                <span>Visiter le site</span>
+                <span className="group-hover:translate-x-1 transition-transform">→</span>
+              </div>
+            </a>
+
+            {/* Témoignage */}
+            <div className="mt-8 max-w-2xl text-center">
+              <blockquote className="text-white/70 italic text-lg mb-4">
+                "LISA nous permet de gérer l'ensemble de notre activité d'inspection avec une traçabilité parfaite. 
+                Un outil indispensable pour répondre aux exigences de notre accréditation COFRAC."
+              </blockquote>
+              <div className="text-white/50 text-sm">— Organisme d'inspection accrédité</div>
+            </div>
+
+            {/* Call to action */}
+            <div className="mt-12 text-center">
+              <p className="text-white/50 mb-4">Vous êtes un organisme d'inspection ?</p>
+              <a href="#contact" className="inline-flex items-center gap-2 px-6 py-3 bg-[#2dd4bf] text-[#0f2a2a] font-semibold rounded-xl hover:bg-[#2dd4bf]/90 transition-colors">
+                Demander une démonstration
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Pricing Section */}
       <section id="pricing" className="py-24 bg-[#1a3d3d]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
