@@ -162,7 +162,16 @@ export default function HomePage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert('Merci pour votre demande ! Notre équipe vous recontactera sous 24h.');
+    // Envoi par mailto à j.petin@leova-systems.com
+    const subject = encodeURIComponent(`[LISA] Demande de ${formData.company || formData.name}`);
+    const body = encodeURIComponent(
+      `Nom: ${formData.name}\n` +
+      `Email: ${formData.email}\n` +
+      `Téléphone: ${formData.phone || 'Non renseigné'}\n` +
+      `Entreprise: ${formData.company}\n\n` +
+      `Message:\n${formData.message || 'Demande de démonstration'}`
+    );
+    window.location.href = `mailto:j.petin@leova-systems.com?subject=${subject}&body=${body}`;
     setFormData({ name: '', email: '', company: '', phone: '', message: '' });
   };
 
@@ -1031,12 +1040,6 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="mt-12 text-center text-white/50">
-            <p>
-              Utilisateur supplémentaire : <span className="text-white font-semibold">+29€/mois</span> | 
-              Accès Portail Client supplémentaire : <span className="text-white font-semibold">+9€/mois</span>
-            </p>
-          </div>
         </div>
       </section>
 
