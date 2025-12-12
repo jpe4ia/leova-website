@@ -755,49 +755,63 @@ export default function HomePage() {
             {/* COLONNE DROITE - Carousel des mockups détaillés (2/3 de largeur) */}
             <div className="order-1 lg:order-2 lg:col-span-2">
               
-              {/* VERSION MOBILE - Aperçu simplifié */}
+              {/* VERSION MOBILE - Carousel de screenshots */}
               <div className="lg:hidden">
-                <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border border-white/10">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-xl flex items-center justify-center">
-                      <span className="text-white text-lg">
-                        {activeFeature === 0 && '💰'}
-                        {activeFeature === 1 && '📊'}
-                        {activeFeature === 2 && '📅'}
-                        {activeFeature === 3 && '📋'}
-                        {activeFeature === 4 && '⚙️'}
-                        {activeFeature === 5 && '🌐'}
-                      </span>
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-white">
-                        {activeFeature === 0 && 'Module Financier'}
-                        {activeFeature === 1 && 'Module Commercial'}
-                        {activeFeature === 2 && 'Planification'}
-                        {activeFeature === 3 && 'Suivi Activité'}
-                        {activeFeature === 4 && 'Administration'}
-                        {activeFeature === 5 && 'Portail Client'}
-                      </h4>
-                      <p className="text-xs text-white/60">{totalMockups} écrans disponibles</p>
-                    </div>
+                <div className="relative">
+                  {/* Indicateur de module */}
+                  <div className="text-center mb-3">
+                    <span className="px-3 py-1.5 bg-white/10 backdrop-blur rounded-full text-white text-xs">
+                      Aperçu LISA ({mockupIndex + 1}/8)
+                    </span>
                   </div>
                   
-                  {/* Mini aperçu des fonctionnalités */}
-                  <div className="space-y-2">
-                    {currentMockups.map((m, i) => (
-                      <div key={i} className="flex items-center gap-3 p-3 bg-white/5 rounded-lg">
-                        <div className="w-8 h-8 bg-[#2dd4bf]/20 rounded-lg flex items-center justify-center">
-                          <span className="text-[#2dd4bf] text-sm">{i + 1}</span>
+                  {/* Carousel d'images */}
+                  <div className="relative overflow-hidden rounded-xl">
+                    <div 
+                      className="flex transition-transform duration-300 ease-in-out"
+                      style={{ transform: `translateX(-${mockupIndex * 100}%)` }}
+                    >
+                      {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
+                        <div key={num} className="w-full flex-shrink-0">
+                          <img 
+                            src={`/screenshots/screenshot-0${num}.png`}
+                            alt={`Capture LISA ${num}`}
+                            className="w-full h-auto rounded-xl shadow-2xl"
+                          />
                         </div>
-                        <span className="text-white/80 text-sm">{m.label}</span>
-                      </div>
+                      ))}
+                    </div>
+                    
+                    {/* Boutons navigation */}
+                    <button 
+                      onClick={() => setMockupIndex(prev => prev > 0 ? prev - 1 : 7)} 
+                      className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/50 backdrop-blur rounded-full flex items-center justify-center text-white"
+                    >
+                      <ChevronLeft className="w-4 h-4" />
+                    </button>
+                    <button 
+                      onClick={() => setMockupIndex(prev => prev < 7 ? prev + 1 : 0)} 
+                      className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/50 backdrop-blur rounded-full flex items-center justify-center text-white"
+                    >
+                      <ChevronRight className="w-4 h-4" />
+                    </button>
+                  </div>
+                  
+                  {/* Indicateurs de position */}
+                  <div className="flex justify-center gap-1.5 mt-3">
+                    {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => (
+                      <button 
+                        key={i} 
+                        onClick={() => setMockupIndex(i)} 
+                        className={`h-1.5 rounded-full transition-all ${mockupIndex === i ? 'bg-[#2dd4bf] w-6' : 'bg-white/30 w-1.5'}`} 
+                      />
                     ))}
                   </div>
                   
-                  <div className="mt-4 pt-4 border-t border-white/10 text-center">
-                    <p className="text-white/50 text-xs mb-2">Visualisez les écrans détaillés sur tablette ou ordinateur</p>
+                  {/* CTA */}
+                  <div className="mt-4 text-center">
                     <a href="#contact" className="inline-flex items-center gap-2 text-[#2dd4bf] text-sm font-medium">
-                      Demander une démo personnalisée
+                      Demander une démo
                       <ArrowRight className="w-4 h-4" />
                     </a>
                   </div>
