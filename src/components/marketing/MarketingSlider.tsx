@@ -145,13 +145,13 @@ export default function MarketingSlider() {
 
       <div className="max-w-7xl mx-auto px-4 py-16 relative z-10">
         <div className="relative">
-          {/* Container avec hauteur fixe pour le carousel - +25% sur mobile */}
-          <div className="relative min-h-[525px] md:min-h-[420px]">
+          {/* Container avec hauteur FIXE pour le carousel - empêche tout mouvement de page */}
+          <div className="relative h-[525px] md:h-[420px] overflow-hidden">
             {slides.map((slide, index) => (
               <div
                 key={slide.id}
                 aria-hidden={active !== index}
-                className={`absolute inset-0 flex items-center justify-center transition-all duration-700 ease-out ${active === index ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-[0.98] pointer-events-none'}`}
+                className={`absolute inset-0 flex items-center justify-center transition-opacity duration-500 ease-out ${active === index ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'}`}
               >
                 {/* Slide 1: Value Proposition */}
                 {slide.id === 'value' && (
