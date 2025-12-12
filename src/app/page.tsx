@@ -37,6 +37,35 @@ export default function HomePage() {
   const [activeFeature, setActiveFeature] = useState(0);
   const [mockupIndex, setMockupIndex] = useState(0);
   const [isHoveringCarousel, setIsHoveringCarousel] = useState(false);
+  const [heroSlide, setHeroSlide] = useState(0);
+  
+  // Messages percutants pour le Hero
+  const heroSlides = [
+    {
+      badge: "Solution SaaS pour professionnels de l'inspection",
+      title: <>Le logiciel métier qui<br /><span className="text-[#2dd4bf]">simplifie</span> vos inspections</>,
+      subtitle: "Centralisez vos équipements, planifiez vos interventions, générez vos rapports et suivez votre activité.",
+      highlight: "Une solution complète, pensée pour votre métier."
+    },
+    {
+      badge: "Conforme ISO/CEI 17020",
+      title: <>Traçabilité <span className="text-[#2dd4bf]">parfaite</span><br />pour votre accréditation</>,
+      subtitle: "Développé avec des organismes accrédités COFRAC pour répondre aux exigences les plus strictes.",
+      highlight: "Audit trail complet, historique des modifications."
+    },
+    {
+      badge: "Gain de temps garanti",
+      title: <>Divisez par <span className="text-[#2dd4bf]">2</span><br />votre temps administratif</>,
+      subtitle: "Rapports automatiques, facturation intégrée, synchronisation en temps réel.",
+      highlight: "Plus de temps sur le terrain, moins au bureau."
+    },
+    {
+      badge: "100% Cloud & Mobile",
+      title: <>Travaillez<br /><span className="text-[#2dd4bf]">où que vous soyez</span></>,
+      subtitle: "Application web et mobile, accessible depuis n'importe quel appareil, données synchronisées.",
+      highlight: "Vos techniciens autonomes sur le terrain."
+    },
+  ];
   
   // Définition des mockups par tab
   const mockupsByTab: { [key: number]: { label: string; id: string }[] } = {
@@ -77,6 +106,14 @@ export default function HomePage() {
   useEffect(() => {
     setMockupIndex(0);
   }, [activeFeature]);
+  
+  // Auto-rotation des slides Hero toutes les 5 secondes
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setHeroSlide(prev => (prev + 1) % heroSlides.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [heroSlides.length]);
 
   // Auto-scroll carousel toutes les 2 secondes
   useEffect(() => {
@@ -245,27 +282,35 @@ export default function HomePage() {
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="text-center max-w-4xl mx-auto">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-5 py-2 bg-[#2dd4bf]/10 border border-[#2dd4bf]/30 rounded-full text-[#2dd4bf] text-sm font-medium mb-8">
+            {/* Badge dynamique */}
+            <div key={`badge-${heroSlide}`} className="inline-flex items-center gap-2 px-5 py-2 bg-[#2dd4bf]/10 border border-[#2dd4bf]/30 rounded-full text-[#2dd4bf] text-sm font-medium mb-8 animate-fade-in">
               <Zap className="w-4 h-4" />
-              Solution SaaS pour professionnels de l'inspection
+              {heroSlides[heroSlide].badge}
             </div>
             
-            {/* Main Title */}
-            <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6">
+            {/* Main Title dynamique */}
+            <h1 key={`title-${heroSlide}`} className="text-5xl md:text-7xl font-bold leading-tight mb-6 animate-fade-in">
               <span className="bg-gradient-to-r from-teal-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">LISA</span>
               <br />
               <span className="text-white">
-                Le logiciel métier qui
-                <br />
-                <span className="text-[#2dd4bf]">simplifie</span> vos inspections
+                {heroSlides[heroSlide].title}
               </span>
             </h1>
             
-            <p className="text-xl text-white/60 max-w-2xl mx-auto mb-10 leading-relaxed">
-              Centralisez vos équipements, planifiez vos interventions, générez vos rapports 
-              et suivez votre activité. <strong className="text-white">Une solution complète, pensée pour votre métier.</strong>
+            <p key={`subtitle-${heroSlide}`} className="text-xl text-white/60 max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-in">
+              {heroSlides[heroSlide].subtitle} <strong className="text-white">{heroSlides[heroSlide].highlight}</strong>
             </p>
+            
+            {/* Indicateurs de slide */}
+            <div className="flex justify-center gap-2 mb-8">
+              {heroSlides.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setHeroSlide(i)}
+                  className={`h-2 rounded-full transition-all duration-300 ${heroSlide === i ? 'bg-[#2dd4bf] w-8' : 'bg-white/30 w-2 hover:bg-white/50'}`}
+                />
+              ))}
+            </div>
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
