@@ -19,8 +19,8 @@ import {
   MockupAdminSync,
   MockupPortailClient,
 } from '@/components/mockups';
-import {
-  Shield, Users, Zap, BarChart3, FileText, Calendar,
+import { 
+  Shield, Users, Zap, BarChart3, FileText, Calendar, 
   CheckCircle, ArrowRight, Menu, X, Mail, Phone, MapPin,
   Monitor, Smartphone, Cloud, Lock, Headphones, TrendingUp,
   Building2, Wrench, ClipboardCheck, Euro, Play, ChevronDown, Loader2, RefreshCw,
@@ -463,7 +463,7 @@ export default function HomePage() {
                     backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
                     backgroundSize: '32px 32px'
                   }}></div>
-                </div>
+                      </div>
                 
                 <div className="relative z-10 text-center space-y-6">
                   {/* Titre LISA avec gradient */}
@@ -481,25 +481,25 @@ export default function HomePage() {
                     <div className="flex items-center gap-4">
                       <div className="w-10 h-10 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg">
                         <FileText className="w-5 h-5 text-white" />
-                      </div>
+                    </div>
                       <span className="text-white/90">Gestion des interventions et rapports</span>
                     </div>
                     <div className="flex items-center gap-4">
                       <div className="w-10 h-10 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-xl flex items-center justify-center shadow-lg">
                         <CheckCircle className="w-5 h-5 text-white" />
-                      </div>
+                  </div>
                       <span className="text-white/90">Suivi qualité et non-conformités</span>
                     </div>
                     <div className="flex items-center gap-4">
                       <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-xl flex items-center justify-center shadow-lg">
                         <Building2 className="w-5 h-5 text-white" />
-                      </div>
+                    </div>
                       <span className="text-white/90">Base clients et équipements</span>
                     </div>
                     <div className="flex items-center gap-4">
                       <div className="w-10 h-10 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-xl flex items-center justify-center shadow-lg">
                         <Calendar className="w-5 h-5 text-white" />
-                      </div>
+                  </div>
                       <span className="text-white/90">Planification et facturation</span>
                     </div>
                   </div>
@@ -560,7 +560,7 @@ export default function HomePage() {
             <p className="text-white/60 text-lg max-w-2xl mx-auto">
               Cliquez sur une fonctionnalité pour explorer ses points forts
             </p>
-          </div>
+                </div>
 
           {/* Navigation Tabs */}
           <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-12">
@@ -598,7 +598,7 @@ export default function HomePage() {
                 <div>
                   <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-500/20 text-blue-400 rounded-full text-xs mb-4">
                     ✨ Points forts
-                  </div>
+                </div>
                   <h3 className="text-xl lg:text-2xl font-bold mb-4">
                     Pilotez en <span className="text-[#2dd4bf]">temps réel</span>
                   </h3>
@@ -612,14 +612,14 @@ export default function HomePage() {
                       <div key={i} className="flex items-start gap-3 p-3 bg-white/5 rounded-xl hover:bg-white/10 transition-colors">
                         <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center shrink-0 text-base">
                           {point.icon}
-                        </div>
+              </div>
                         <div>
                           <h4 className="font-semibold text-white text-sm">{point.title}</h4>
                           <p className="text-white/50 text-xs">{point.desc}</p>
                         </div>
                       </div>
                     ))}
-                  </div>
+            </div>
                 </div>
               )}
 
@@ -628,7 +628,7 @@ export default function HomePage() {
                 <div>
                   <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-green-500/20 text-green-400 rounded-full text-xs mb-4">
                     ✨ Points forts
-                  </div>
+                </div>
                   <h3 className="text-xl lg:text-2xl font-bold mb-4">
                     Boostez vos <span className="text-[#2dd4bf]">ventes</span>
                   </h3>
@@ -642,7 +642,7 @@ export default function HomePage() {
                       <div key={i} className="flex items-start gap-3 p-3 bg-white/5 rounded-xl hover:bg-white/10 transition-colors">
                         <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-emerald-500 rounded-lg flex items-center justify-center shrink-0 text-base">
                           {point.icon}
-                        </div>
+              </div>
                         <div>
                           <h4 className="font-semibold text-white text-sm">{point.title}</h4>
                           <p className="text-white/50 text-xs">{point.desc}</p>
@@ -867,38 +867,20 @@ export default function HomePage() {
                     >
                       ×
                     </button>
-                    <div
-                      className="relative max-w-full max-h-full overflow-hidden rounded-2xl bg-black"
-                      onWheel={(e) => {
-                        e.preventDefault();
-                        setLightboxZoom(prev => {
-                          const delta = e.deltaY > 0 ? -0.1 : 0.1;
-                          return Math.min(2, Math.max(1, prev + delta));
-                        });
-                      }}
-                    >
+                    <div className="relative max-w-full max-h-full overflow-hidden rounded-2xl bg-black">
                       <img
                         src={lightboxImage}
                         alt="Aperçu LISA"
-                        className="w-full max-h-[80vh] object-contain"
+                        className="w-full max-h-[80vh] object-contain cursor-zoom-out"
                         style={{ transform: `scale(${lightboxZoom})`, transition: 'transform 0.2s ease' }}
+                        onClick={() =>
+                          setLightboxZoom(prev => (prev === 1 ? 1.5 : 1))
+                        }
                       />
                     </div>
-                    <div className="mt-4 flex items-center gap-3 text-white">
-                      <button
-                        onClick={() => setLightboxZoom(prev => Math.max(1, prev - 0.25))}
-                        className="px-3 py-1 bg-white/10 rounded-full"
-                      >
-                        -
-                      </button>
-                      <span>{Math.round(lightboxZoom * 100)}%</span>
-                      <button
-                        onClick={() => setLightboxZoom(prev => Math.min(2, prev + 0.25))}
-                        className="px-3 py-1 bg-white/10 rounded-full"
-                      >
-                        +
-                      </button>
-                    </div>
+                    <p className="mt-4 text-xs text-white/60">
+                      Appuie sur l’image pour zoomer / dézoomer, puis déplace ton doigt pour te déplacer.
+                    </p>
                   </div>
                 )}
               </div>
