@@ -106,12 +106,13 @@ export default function MarketingSlider() {
             className="absolute inset-0 bg-gradient-to-r from-[#020c11] to-[#01131a] opacity-60"
             aria-hidden
           />
-          <div className="relative space-y-8">
+          {/* Container avec hauteur fixe pour le carousel */}
+          <div className="relative min-h-[420px] md:min-h-[380px]">
             {slides.map((slide, index) => (
               <div
                 key={slide.id}
                 aria-hidden={active !== index}
-                className={`transition-all duration-500 ease-in-out ${active === index ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10 pointer-events-none'}`}
+                className={`absolute inset-0 transition-all duration-500 ease-in-out ${active === index ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'}`}
               >
                 {slide.id === 'value' && (
                   <div className="space-y-4 text-center">
@@ -213,7 +214,8 @@ export default function MarketingSlider() {
               </div>
             ))}
           </div>
-          <div className="mt-8 flex items-center justify-between text-white/60">
+          {/* Navigation en dessous du container */}
+          <div className="mt-4 flex items-center justify-between text-white/60">
             <div className="flex items-center gap-3">
               <button
                 type="button"
