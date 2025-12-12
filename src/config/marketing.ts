@@ -7,6 +7,7 @@ export const marketingFlags = {
   enableSecurity: true,
   enableFAQ: true,
   enableFinalCTA: true,
+  enableMarketingSlider: true,
 };
 
 export const marketingEnvOverrides = {
@@ -18,6 +19,7 @@ export const marketingEnvOverrides = {
   enableSecurity: process.env.NEXT_PUBLIC_MARKETING_ENABLE_SECURITY,
   enableFAQ: process.env.NEXT_PUBLIC_MARKETING_ENABLE_FAQ,
   enableFinalCTA: process.env.NEXT_PUBLIC_MARKETING_ENABLE_FINAL_CTA,
+  enableMarketingSlider: process.env.NEXT_PUBLIC_MARKETING_ENABLE_SLIDER,
 };
 
 export function getMarketingFlags() {

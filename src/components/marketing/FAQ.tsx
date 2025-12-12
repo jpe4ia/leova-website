@@ -3,49 +3,55 @@
 const faqs = [
   {
     question: 'LISA est-il fait pour les organismes d’inspection ?',
-    answer: 'Oui, conçu pour la conformité, les rapports, la traçabilité et les demandes réglementaires.',
+    answer: 'Oui, il répond aux besoins réglementaires (COFRAC, ISO) avec des workflows adaptés au terrain.',
   },
   {
     question: 'Peut-on gérer plusieurs agences/équipes ?',
-    answer: 'Oui, multi-sites et multi-equipes avec rôles et droits séparés.',
+    answer: 'Oui, multi-sites, multi-équipe et multi-rôle avec une supervision consolidée.',
   },
   {
     question: 'Rapports : modèles personnalisables ?',
-    answer: 'Modèles Word/PDF exportables avec champs dynamiques et workflow de validation.',
+    answer: 'Modèles Word/PDF personnalisés, champs dynamiques, et validation en workflow.',
   },
   {
     question: 'Historique : retrouve-t-on une intervention en 2 clics ?',
-    answer: 'Oui, filtre par client/site/technicien et remonte l’historique complet.',
+    answer: 'Filtre par client/site/technicien. L’historique et les versions sont disponibles.',
   },
   {
     question: 'Données : hébergement et accès ?',
-    answer: 'Hébergement France, accès sécurisé, contrôle des rôles et audit trail.',
+    answer: 'Hébergement France, accès sécurisé, politique de rôles et audit trail.',
   },
   {
     question: 'Déploiement : combien de temps pour démarrer ?',
-    answer: 'Déploiement SaaS en quelques jours selon les procédés et intégrations.',
+    answer: 'Déploiement SaaS rapide, on se connecte à vos outils existants sous quelques jours.',
   },
   {
     question: 'Import Excel possible ?',
-    answer: 'Oui, import standardisé avec mapping de colonnes et vérifications.',
+    answer: 'Oui, outils d’import avec mapping et vérification des doublons.',
   },
   {
     question: 'Support et évolutions ?',
-    answer: 'Support dédié, mises à jour régulières et roadmap partagée.',
+    answer: 'Support dédié, roadmap partagée et mises à jour pilotées.',
   },
 ];
 
 export default function FAQ() {
   return (
-    <section className="py-16 bg-[#011216] text-white">
-      <div className="max-w-4xl mx-auto px-4 space-y-6">
-        <h3 className="text-2xl font-bold text-center">Questions fréquentes</h3>
-        <div className="space-y-4">
+    <section className="py-16 bg-[#010d11] text-white">
+      <div className="max-w-6xl mx-auto px-4">
+        <div className="text-center mb-8">
+          <p className="text-xs uppercase tracking-[0.4em] text-[#5eead4]">FAQ</p>
+          <h3 className="text-2xl font-bold">Ce que veulent savoir les décideurs</h3>
+        </div>
+        <div className="grid gap-6 md:grid-cols-2">
           {faqs.map(faq => (
-            <div key={faq.question} className="p-4 rounded-2xl bg-white/5 border border-white/10">
-              <p className="font-semibold">{faq.question}</p>
-              <p className="text-white/70 text-sm mt-1">{faq.answer}</p>
-            </div>
+            <details key={faq.question} className="group bg-white/5 border border-white/10 rounded-2xl p-5 open:border-[#2dd4bf]/50">
+              <summary className="cursor-pointer text-lg font-semibold flex justify-between items-center">
+                <span>{faq.question}</span>
+                <span className="text-[#2dd4bf] group-open:-rotate-45 transition">+</span>
+              </summary>
+              <p className="mt-3 text-sm text-white/70">{faq.answer}</p>
+            </details>
           ))}
         </div>
       </div>

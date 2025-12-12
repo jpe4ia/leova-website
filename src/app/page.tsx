@@ -26,15 +26,8 @@ import {
   Building2, Wrench, ClipboardCheck, Euro, Play, ChevronDown, Loader2, RefreshCw,
   ChevronLeft, ChevronRight
 } from 'lucide-react';
-import { mobileScreenshots } from '@/data/mobileScreenshots';
-import HeroValue from '@/components/marketing/HeroValue';
-import ProblemSolution from '@/components/marketing/ProblemSolution';
-import Workflow from '@/components/marketing/Workflow';
-import BenefitsGrid from '@/components/marketing/BenefitsGrid';
-import PersonaPanels from '@/components/marketing/PersonasPanels';
-import SecurityBlock from '@/components/marketing/SecurityBlock';
+import MarketingSlider from '@/components/marketing/MarketingSlider';
 import FAQ from '@/components/marketing/FAQ';
-import FinalCTA from '@/components/marketing/FinalCTA';
 import { getMarketingFlags } from '@/config/marketing';
 
 export default function HomePage() {
@@ -428,14 +421,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {marketingOptions.enableHeroValue && <HeroValue />}
-      {marketingOptions.enableProblemSolution && <ProblemSolution />}
-      {marketingOptions.enableWorkflow && <Workflow />}
-      {marketingOptions.enableBenefits && <BenefitsGrid />}
-      {marketingOptions.enablePersonas && <PersonaPanels />}
-      {marketingOptions.enableSecurity && <SecurityBlock />}
-      {marketingOptions.enableFAQ && <FAQ />}
-      {marketingOptions.enableFinalCTA && <FinalCTA />}
+      {marketingOptions.enableMarketingSlider && <MarketingSlider />}
 
       {/* Product Section */}
       <section id="produit" className="py-24 bg-[#1a3d3d]">
@@ -1309,6 +1295,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {marketingOptions.enableFAQ && <FAQ />}
 
       {/* Footer */}
       <footer className="py-12 bg-[#0a1f1f] border-t border-white/5">
