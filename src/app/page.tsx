@@ -186,12 +186,12 @@ export default function HomePage() {
               <img 
                 src="/logo-icon.png" 
                 alt="LEOVA" 
-                className="h-10 md:h-14 w-auto"
+                className="h-12 md:h-16 w-auto"
               />
               <img 
                 src="/logo-text.png" 
                 alt="LEOVA Systems" 
-                className="h-8 md:h-14 w-auto translate-y-0.5 md:translate-y-1"
+                className="h-10 md:h-16 w-auto translate-y-0.5 md:translate-y-1"
               />
             </div>
 
@@ -755,62 +755,80 @@ export default function HomePage() {
             {/* COLONNE DROITE - Carousel des mockups détaillés (2/3 de largeur) */}
             <div className="order-1 lg:order-2 lg:col-span-2">
               
-              {/* VERSION MOBILE - Carousel de screenshots */}
+              {/* VERSION MOBILE - Carousel de screenshots avec auto-scroll */}
               <div className="lg:hidden">
                 <div className="relative">
-                  {/* Indicateur de module */}
+                  {/* Indicateur */}
                   <div className="text-center mb-3">
                     <span className="px-3 py-1.5 bg-white/10 backdrop-blur rounded-full text-white text-xs">
-                      Aperçu LISA ({mockupIndex + 1}/8)
+                      Aperçu LISA ({mockupIndex + 1}/8) • Défilement auto
                     </span>
                   </div>
                   
-                  {/* Carousel d'images */}
-                  <div className="relative overflow-hidden rounded-xl">
+                  {/* Carousel d'images avec touch swipe */}
+                  <div 
+                    className="relative overflow-hidden rounded-xl touch-pan-x"
+                    onTouchStart={(e) => {
+                      const touch = e.touches[0];
+                      (e.currentTarget as HTMLElement).dataset.startX = touch.clientX.toString();
+                    }}
+                    onTouchEnd={(e) => {
+                      const startX = parseFloat((e.currentTarget as HTMLElement).dataset.startX || '0');
+                      const endX = e.changedTouches[0].clientX;
+                      const diff = startX - endX;
+                      if (Math.abs(diff) > 50) {
+                        if (diff > 0) {
+                          setMockupIndex(prev => prev < 7 ? prev + 1 : 0);
+                        } else {
+                          setMockupIndex(prev => prev > 0 ? prev - 1 : 7);
+                        }
+                      }
+                    }}
+                  >
                     <div 
-                      className="flex transition-transform duration-300 ease-in-out"
+                      className="flex transition-transform duration-500 ease-out"
                       style={{ transform: `translateX(-${mockupIndex * 100}%)` }}
                     >
                       {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
-                        <div key={num} className="w-full flex-shrink-0">
+                        <div key={num} className="w-full flex-shrink-0 px-1">
                           <img 
                             src={`/screenshots/screenshot-0${num}.png`}
                             alt={`Capture LISA ${num}`}
-                            className="w-full h-auto rounded-xl shadow-2xl"
+                            className="w-full h-auto rounded-xl shadow-2xl border border-white/10"
                           />
                         </div>
                       ))}
                     </div>
                     
-                    {/* Boutons navigation */}
+                    {/* Boutons navigation plus visibles */}
                     <button 
                       onClick={() => setMockupIndex(prev => prev > 0 ? prev - 1 : 7)} 
-                      className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/50 backdrop-blur rounded-full flex items-center justify-center text-white"
+                      className="absolute left-1 top-1/2 -translate-y-1/2 w-10 h-10 bg-[#2dd4bf]/80 backdrop-blur rounded-full flex items-center justify-center text-[#0f2a2a] shadow-lg active:scale-95 transition-transform"
                     >
-                      <ChevronLeft className="w-4 h-4" />
+                      <ChevronLeft className="w-5 h-5" />
                     </button>
                     <button 
                       onClick={() => setMockupIndex(prev => prev < 7 ? prev + 1 : 0)} 
-                      className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/50 backdrop-blur rounded-full flex items-center justify-center text-white"
+                      className="absolute right-1 top-1/2 -translate-y-1/2 w-10 h-10 bg-[#2dd4bf]/80 backdrop-blur rounded-full flex items-center justify-center text-[#0f2a2a] shadow-lg active:scale-95 transition-transform"
                     >
-                      <ChevronRight className="w-4 h-4" />
+                      <ChevronRight className="w-5 h-5" />
                     </button>
                   </div>
                   
-                  {/* Indicateurs de position */}
-                  <div className="flex justify-center gap-1.5 mt-3">
+                  {/* Indicateurs de position améliorés */}
+                  <div className="flex justify-center gap-2 mt-4">
                     {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => (
                       <button 
                         key={i} 
                         onClick={() => setMockupIndex(i)} 
-                        className={`h-1.5 rounded-full transition-all ${mockupIndex === i ? 'bg-[#2dd4bf] w-6' : 'bg-white/30 w-1.5'}`} 
+                        className={`h-2 rounded-full transition-all duration-300 ${mockupIndex === i ? 'bg-[#2dd4bf] w-8' : 'bg-white/30 w-2 hover:bg-white/50'}`} 
                       />
                     ))}
                   </div>
                   
                   {/* CTA */}
                   <div className="mt-4 text-center">
-                    <a href="#contact" className="inline-flex items-center gap-2 text-[#2dd4bf] text-sm font-medium">
+                    <a href="#contact" className="inline-flex items-center gap-2 px-4 py-2 bg-[#2dd4bf]/20 rounded-full text-[#2dd4bf] text-sm font-medium">
                       Demander une démo
                       <ArrowRight className="w-4 h-4" />
                     </a>
@@ -1324,6 +1342,7 @@ export default function HomePage() {
     </div>
   );
 }
+
 
 
 
