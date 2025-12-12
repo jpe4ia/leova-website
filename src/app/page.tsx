@@ -19,19 +19,14 @@ import {
   MockupAdminSync,
   MockupPortailClient,
 } from '@/components/mockups';
-import { 
-  Shield, Users, Zap, BarChart3, FileText, Calendar, 
+import {
+  Shield, Users, Zap, BarChart3, FileText, Calendar,
   CheckCircle, ArrowRight, Menu, X, Mail, Phone, MapPin,
   Monitor, Smartphone, Cloud, Lock, Headphones, TrendingUp,
   Building2, Wrench, ClipboardCheck, Euro, Play, ChevronDown, Loader2, RefreshCw,
   ChevronLeft, ChevronRight
 } from 'lucide-react';
-
-const MOBILE_SCREENSHOTS = [
-  '/screenshots/screenshot-01.png',
-  '/screenshots/screenshot-02.png',
-  '/screenshots/screenshot-03.png',
-];
+import { mobileScreenshots } from '@/data/mobileScreenshots';
 
 export default function HomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -136,10 +131,10 @@ export default function HomePage() {
   // Auto-scroll des screenshots mobiles
   useEffect(() => {
     const interval = setInterval(() => {
-      setMobileScreenshotIndex(prev => (prev + 1) % MOBILE_SCREENSHOTS.length);
+      setMobileScreenshotIndex(prev => (prev + 1) % mobileScreenshots.length);
     }, 4000);
     return () => clearInterval(interval);
-  }, []);
+  }, [mobileScreenshots.length]);
 
   // Réinitialiser le zoom quand l'image change
   useEffect(() => {
@@ -783,7 +778,9 @@ export default function HomePage() {
                   {/* Indicateur */}
                   <div className="text-center mb-3">
                     <span className="px-3 py-1.5 bg-white/10 backdrop-blur rounded-full text-white text-xs">
-                      Aperçu LISA ({mobileScreenshotIndex + 1}/{MOBILE_SCREENSHOTS.length}) • Zommez en appuyant
+                      {mobileScreenshots[mobileScreenshotIndex].caption}
+                      <br />
+                      ({mobileScreenshotIndex + 1}/{mobileScreenshots.length}) • Tapote pour zoomer
                     </span>
                   </div>
                   
@@ -811,10 +808,10 @@ export default function HomePage() {
                       className="flex transition-transform duration-500 ease-out"
                       style={{ transform: `translateX(-${mobileScreenshotIndex * 100}%)` }}
                     >
-                      {MOBILE_SCREENSHOTS.map((src, index) => (
-                        <div key={src} className="w-full flex-shrink-0 px-1">
+                      {mobileScreenshots.map((item, index) => (
+                        <div key={item.src} className="w-full flex-shrink-0 px-1">
                           <img 
-                            src={src}
+                            src={item.src}
                             alt={`Capture LISA ${index + 1}`}
                             className="w-full h-auto rounded-xl shadow-2xl border border-white/10 cursor-zoom-in"
                             onClick={() => setLightboxImage(src)}
@@ -1391,6 +1388,7 @@ export default function HomePage() {
     </div>
   );
 }
+
 
 
 
