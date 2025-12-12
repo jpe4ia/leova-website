@@ -128,13 +128,15 @@ export default function MarketingSlider() {
                         </a>
                       </div>
                     )}
-                    <div className="flex flex-wrap justify-center gap-3 text-sm text-white/80">
-                      {slide.pills.map(pill => (
-                        <span key={pill} className="px-4 py-2 border border-white/20 rounded-full bg-white/5">
-                          {pill}
-                        </span>
-                      ))}
-                    </div>
+                    {slide.pills && (
+                      <div className="flex flex-wrap justify-center gap-3 text-sm text-white/80">
+                        {slide.pills.map(pill => (
+                          <span key={pill} className="px-4 py-2 border border-white/20 rounded-full bg-white/5">
+                            {pill}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 )}
                 {slide.id === 'before-after' && (
