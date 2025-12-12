@@ -754,12 +754,63 @@ export default function HomePage() {
 
             {/* COLONNE DROITE - Carousel des mockups détaillés (2/3 de largeur) */}
             <div className="order-1 lg:order-2 lg:col-span-2">
-              <div className="relative" onMouseEnter={() => setIsHoveringCarousel(true)} onMouseLeave={() => setIsHoveringCarousel(false)}>
+              
+              {/* VERSION MOBILE - Aperçu simplifié */}
+              <div className="lg:hidden">
+                <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-6 border border-white/10">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 bg-gradient-to-br from-teal-400 to-cyan-500 rounded-xl flex items-center justify-center">
+                      <span className="text-white text-lg">
+                        {activeFeature === 0 && '💰'}
+                        {activeFeature === 1 && '📊'}
+                        {activeFeature === 2 && '📅'}
+                        {activeFeature === 3 && '📋'}
+                        {activeFeature === 4 && '⚙️'}
+                        {activeFeature === 5 && '🌐'}
+                      </span>
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-white">
+                        {activeFeature === 0 && 'Module Financier'}
+                        {activeFeature === 1 && 'Module Commercial'}
+                        {activeFeature === 2 && 'Planification'}
+                        {activeFeature === 3 && 'Suivi Activité'}
+                        {activeFeature === 4 && 'Administration'}
+                        {activeFeature === 5 && 'Portail Client'}
+                      </h4>
+                      <p className="text-xs text-white/60">{totalMockups} écrans disponibles</p>
+                    </div>
+                  </div>
+                  
+                  {/* Mini aperçu des fonctionnalités */}
+                  <div className="space-y-2">
+                    {currentMockups.map((m, i) => (
+                      <div key={i} className="flex items-center gap-3 p-3 bg-white/5 rounded-lg">
+                        <div className="w-8 h-8 bg-[#2dd4bf]/20 rounded-lg flex items-center justify-center">
+                          <span className="text-[#2dd4bf] text-sm">{i + 1}</span>
+                        </div>
+                        <span className="text-white/80 text-sm">{m.label}</span>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  <div className="mt-4 pt-4 border-t border-white/10 text-center">
+                    <p className="text-white/50 text-xs mb-2">Visualisez les écrans détaillés sur tablette ou ordinateur</p>
+                    <a href="#contact" className="inline-flex items-center gap-2 text-[#2dd4bf] text-sm font-medium">
+                      Demander une démo personnalisée
+                      <ArrowRight className="w-4 h-4" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+              
+              {/* VERSION DESKTOP - Carousel complet */}
+              <div className="hidden lg:block relative" onMouseEnter={() => setIsHoveringCarousel(true)} onMouseLeave={() => setIsHoveringCarousel(false)}>
                 {/* Navigation Arrows */}
-                <button onClick={() => setMockupIndex(prev => prev > 0 ? prev - 1 : totalMockups - 1)} className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 md:-translate-x-6 z-10 w-10 h-10 bg-white/10 backdrop-blur rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-colors">
+                <button onClick={() => setMockupIndex(prev => prev > 0 ? prev - 1 : totalMockups - 1)} className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 z-10 w-10 h-10 bg-white/10 backdrop-blur rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-colors">
                   <ChevronLeft className="w-5 h-5" />
                 </button>
-                <button onClick={() => setMockupIndex(prev => prev < totalMockups - 1 ? prev + 1 : 0)} className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 md:translate-x-6 z-10 w-10 h-10 bg-white/10 backdrop-blur rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-colors">
+                <button onClick={() => setMockupIndex(prev => prev < totalMockups - 1 ? prev + 1 : 0)} className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 z-10 w-10 h-10 bg-white/10 backdrop-blur rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-colors">
                   <ChevronRight className="w-5 h-5" />
                 </button>
                 
@@ -777,27 +828,23 @@ export default function HomePage() {
                   ))}
                 </div>
                 
-                {/* Mockups conditionnels par tab - avec scroll horizontal sur mobile */}
-                <div className="overflow-x-auto pb-4 -mx-4 px-4 md:mx-0 md:px-0 md:overflow-visible">
-                  <div className="min-w-[320px] md:min-w-0 transform scale-[0.85] md:scale-100 origin-top-left md:origin-center">
-                    {activeFeature === 0 && mockupIndex === 0 && <MockupDashboardFinancier />}
-                    {activeFeature === 0 && mockupIndex === 1 && <MockupFacturation />}
-                    {activeFeature === 1 && mockupIndex === 0 && <MockupDashboardCommercial />}
-                    {activeFeature === 1 && mockupIndex === 1 && <MockupBaseClient />}
-                    {activeFeature === 2 && mockupIndex === 0 && <MockupPlanification />}
-                    {activeFeature === 2 && mockupIndex === 1 && <MockupFeuilleRoute />}
-                    {activeFeature === 3 && mockupIndex === 0 && <MockupSuiviActivite />}
-                    {activeFeature === 3 && mockupIndex === 1 && <MockupAvisIntervention />}
-                    {activeFeature === 3 && mockupIndex === 2 && <MockupDepotRapport />}
-                    {activeFeature === 4 && mockupIndex === 0 && <MockupAdminUtilisateurs />}
-                    {activeFeature === 4 && mockupIndex === 1 && <MockupAdminRoles />}
-                    {activeFeature === 4 && mockupIndex === 2 && <MockupAdminModeles />}
-                    {activeFeature === 4 && mockupIndex === 3 && <MockupAdminNC />}
-                    {activeFeature === 4 && mockupIndex === 4 && <MockupAdminTemplates />}
-                    {activeFeature === 4 && mockupIndex === 5 && <MockupAdminSync />}
-                    {activeFeature === 5 && mockupIndex === 0 && <MockupPortailClient />}
-                  </div>
-                </div>
+                {/* Mockups conditionnels par tab */}
+                {activeFeature === 0 && mockupIndex === 0 && <MockupDashboardFinancier />}
+                {activeFeature === 0 && mockupIndex === 1 && <MockupFacturation />}
+                {activeFeature === 1 && mockupIndex === 0 && <MockupDashboardCommercial />}
+                {activeFeature === 1 && mockupIndex === 1 && <MockupBaseClient />}
+                {activeFeature === 2 && mockupIndex === 0 && <MockupPlanification />}
+                {activeFeature === 2 && mockupIndex === 1 && <MockupFeuilleRoute />}
+                {activeFeature === 3 && mockupIndex === 0 && <MockupSuiviActivite />}
+                {activeFeature === 3 && mockupIndex === 1 && <MockupAvisIntervention />}
+                {activeFeature === 3 && mockupIndex === 2 && <MockupDepotRapport />}
+                {activeFeature === 4 && mockupIndex === 0 && <MockupAdminUtilisateurs />}
+                {activeFeature === 4 && mockupIndex === 1 && <MockupAdminRoles />}
+                {activeFeature === 4 && mockupIndex === 2 && <MockupAdminModeles />}
+                {activeFeature === 4 && mockupIndex === 3 && <MockupAdminNC />}
+                {activeFeature === 4 && mockupIndex === 4 && <MockupAdminTemplates />}
+                {activeFeature === 4 && mockupIndex === 5 && <MockupAdminSync />}
+                {activeFeature === 5 && mockupIndex === 0 && <MockupPortailClient />}
               </div>
             </div>
           </div>
