@@ -145,8 +145,6 @@ export default function MarketingSlider() {
 
       <div className="max-w-7xl mx-auto px-4 py-16 relative z-10">
         <div className="relative">
-          <MobileScreenshotsCarousel />
-          
           {/* Container avec hauteur fixe pour le carousel */}
           <div className="relative min-h-[480px] md:min-h-[420px]">
             {slides.map((slide, index) => (
@@ -400,6 +398,11 @@ export default function MarketingSlider() {
               ))}
             </div>
           </div>
+        </div>
+        
+        {/* Screenshots carousel - affiché en dessous sur mobile */}
+        <div className="mt-12">
+          <MobileScreenshotsCarousel />
         </div>
       </div>
     </section>
