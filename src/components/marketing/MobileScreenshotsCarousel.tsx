@@ -20,16 +20,28 @@ export default function MobileScreenshotsCarousel() {
       <div className="text-xs uppercase tracking-[0.4em] text-[#5eead4] mb-4 text-center">
         Aperçu LISA
       </div>
-      {/* Container avec hauteur fixe basée sur le plus grand screenshot */}
-      <div className="relative h-[420px] flex items-center justify-center overflow-hidden rounded-2xl bg-[#010d11]">
-        <img
-          src={mobileScreenshots[index].src}
-          alt={mobileScreenshots[index].caption}
-          className="max-w-full max-h-full object-contain rounded-2xl transition-opacity duration-300"
-        />
-        {/* Caption en overlay en bas */}
-        <div className="absolute inset-x-0 bottom-0 py-3 px-4 bg-gradient-to-t from-[#010d11] to-transparent">
-          <p className="text-center text-white/90 text-xs font-medium">{mobileScreenshots[index].caption}</p>
+      {/* Container avec hauteur FIXE - toutes les images sont empilées */}
+      <div className="relative h-[420px] overflow-hidden rounded-2xl bg-[#010d11]">
+        {/* Toutes les images empilées en position absolue */}
+        {mobileScreenshots.map((screenshot, idx) => (
+          <div
+            key={idx}
+            className={`absolute inset-0 flex items-center justify-center transition-opacity duration-500 ${
+              index === idx ? 'opacity-100 z-10' : 'opacity-0 z-0'
+            }`}
+          >
+            <img
+              src={screenshot.src}
+              alt={screenshot.caption}
+              className="max-w-full max-h-full object-contain rounded-2xl"
+            />
+          </div>
+        ))}
+        {/* Caption en overlay - toujours visible avec texte qui change */}
+        <div className="absolute inset-x-0 bottom-0 py-3 px-4 bg-gradient-to-t from-[#010d11] via-[#010d11]/80 to-transparent z-20">
+          <p className="text-center text-white/90 text-xs font-medium h-4">
+            {mobileScreenshots[index].caption}
+          </p>
         </div>
       </div>
       {/* Indicateurs */}
@@ -38,11 +50,12 @@ export default function MobileScreenshotsCarousel() {
           <button
             key={idx}
             onClick={() => setIndex(idx)}
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${index === idx ? 'bg-[#2dd4bf] w-4' : 'bg-white/30 hover:bg-white/50'}`}
+            className={`h-2 rounded-full transition-all duration-300 ${
+              index === idx ? 'bg-[#2dd4bf] w-4' : 'bg-white/30 hover:bg-white/50 w-2'
+            }`}
           />
         ))}
       </div>
     </div>
   );
 }
-
