@@ -422,7 +422,8 @@ export default function HomePage() {
               <button
                 key={tab.id}
                 onClick={() => setActiveFeature(tab.id)}
-                className={`px-4 md:px-6 py-3 rounded-xl font-medium transition-all duration-300 flex items-center gap-2 text-sm md:text-base ${
+                onMouseEnter={() => setActiveFeature(tab.id)}
+                className={`px-3 md:px-5 py-2.5 rounded-xl font-medium transition-all duration-300 flex items-center gap-2 text-sm ${
                   activeFeature === tab.id
                     ? `bg-gradient-to-r ${tab.color} text-white shadow-lg scale-105`
                     : 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white'
@@ -435,33 +436,33 @@ export default function HomePage() {
           </div>
 
           {/* Contenu dynamique - Points forts + Carousel */}
-          <div className="grid lg:grid-cols-2 gap-8 items-start animate-fade-in">
+          <div className="grid lg:grid-cols-3 gap-6 items-start animate-fade-in">
             
-            {/* COLONNE GAUCHE - Points forts (change selon le tab) */}
-            <div className="order-2 lg:order-1">
+            {/* COLONNE GAUCHE - Points forts (1/3 de largeur) */}
+            <div className="order-2 lg:order-1 lg:col-span-1">
               {/* Tab 0: Financier */}
               {activeFeature === 0 && (
                 <div>
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/20 text-blue-400 rounded-full text-sm mb-6">
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-500/20 text-blue-400 rounded-full text-xs mb-4">
                     ✨ Points forts
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-bold mb-6">
-                    Pilotez votre activité en <span className="text-[#2dd4bf]">temps réel</span>
+                  <h3 className="text-xl lg:text-2xl font-bold mb-4">
+                    Pilotez en <span className="text-[#2dd4bf]">temps réel</span>
                   </h3>
-                  <div className="space-y-4">
+                  <div className="space-y-2">
                     {[
-                      { icon: '🎯', title: 'Vision 360°', desc: 'Tous vos KPIs financiers et opérationnels sur un seul écran' },
-                      { icon: '📈', title: 'Analyses prédictives', desc: 'Anticipez votre CA, détectez les tendances' },
-                      { icon: '⏱️', title: 'Temps réel', desc: 'Données actualisées en permanence, alertes instantanées' },
-                      { icon: '📊', title: 'Rapports automatiques', desc: 'Exports Excel, PDF, envoi automatique par email' },
+                      { icon: '🎯', title: 'Vision 360°', desc: 'KPIs financiers et opérationnels' },
+                      { icon: '📈', title: 'Analyses prédictives', desc: 'Anticipez votre CA' },
+                      { icon: '⏱️', title: 'Temps réel', desc: 'Alertes instantanées' },
+                      { icon: '📊', title: 'Rapports auto', desc: 'Exports Excel, PDF' },
                     ].map((point, i) => (
-                      <div key={i} className="flex items-start gap-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors">
-                        <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center shrink-0 text-xl">
+                      <div key={i} className="flex items-start gap-3 p-3 bg-white/5 rounded-xl hover:bg-white/10 transition-colors">
+                        <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center shrink-0 text-base">
                           {point.icon}
                         </div>
                         <div>
-                          <h4 className="font-semibold text-white mb-1">{point.title}</h4>
-                          <p className="text-white/50 text-sm">{point.desc}</p>
+                          <h4 className="font-semibold text-white text-sm">{point.title}</h4>
+                          <p className="text-white/50 text-xs">{point.desc}</p>
                         </div>
                       </div>
                     ))}
@@ -472,26 +473,26 @@ export default function HomePage() {
               {/* Tab 1: Commercial */}
               {activeFeature === 1 && (
                 <div>
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/20 text-green-400 rounded-full text-sm mb-6">
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-green-500/20 text-green-400 rounded-full text-xs mb-4">
                     ✨ Points forts
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-bold mb-6">
+                  <h3 className="text-xl lg:text-2xl font-bold mb-4">
                     Boostez vos <span className="text-[#2dd4bf]">ventes</span>
                   </h3>
-                  <div className="space-y-4">
+                  <div className="space-y-2">
                     {[
-                      { icon: '👥', title: 'Pipeline visuel', desc: 'Suivez chaque opportunité du premier contact à la signature' },
-                      { icon: '📝', title: 'Devis en 2 clics', desc: 'Modèles personnalisables, calcul automatique, envoi direct' },
-                      { icon: '📈', title: 'Prévisions', desc: 'Estimez votre CA futur avec les probabilités de signature' },
-                      { icon: '🔔', title: 'Relances auto', desc: 'Ne perdez plus de prospects avec les rappels intelligents' },
+                      { icon: '👥', title: 'Pipeline visuel', desc: 'Du contact à la signature' },
+                      { icon: '📝', title: 'Devis en 2 clics', desc: 'Calcul auto, envoi direct' },
+                      { icon: '📈', title: 'Prévisions', desc: 'Probabilités de signature' },
+                      { icon: '🔔', title: 'Relances auto', desc: 'Rappels intelligents' },
                     ].map((point, i) => (
-                      <div key={i} className="flex items-start gap-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors">
-                        <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-500 rounded-lg flex items-center justify-center shrink-0 text-xl">
+                      <div key={i} className="flex items-start gap-3 p-3 bg-white/5 rounded-xl hover:bg-white/10 transition-colors">
+                        <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-emerald-500 rounded-lg flex items-center justify-center shrink-0 text-base">
                           {point.icon}
                         </div>
                         <div>
-                          <h4 className="font-semibold text-white mb-1">{point.title}</h4>
-                          <p className="text-white/50 text-sm">{point.desc}</p>
+                          <h4 className="font-semibold text-white text-sm">{point.title}</h4>
+                          <p className="text-white/50 text-xs">{point.desc}</p>
                         </div>
                       </div>
                     ))}
@@ -502,26 +503,26 @@ export default function HomePage() {
               {/* Tab 2: Planification */}
               {activeFeature === 2 && (
                 <div>
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-500/20 text-purple-400 rounded-full text-sm mb-6">
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-purple-500/20 text-purple-400 rounded-full text-xs mb-4">
                     ✨ Points forts
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-bold mb-6">
+                  <h3 className="text-xl lg:text-2xl font-bold mb-4">
                     Optimisez vos <span className="text-[#2dd4bf]">tournées</span>
                   </h3>
-                  <div className="space-y-4">
+                  <div className="space-y-2">
                     {[
-                      { icon: '🗺️', title: 'Optimisation GPS', desc: 'Réduisez les km parcourus avec nos algorithmes' },
-                      { icon: '📅', title: 'Planning drag & drop', desc: 'Planifiez en glissant-déposant, visualisez les conflits' },
-                      { icon: '📧', title: 'Avis automatiques', desc: 'Envoi automatique aux clients, confirmations en 1 clic' },
-                      { icon: '📱', title: 'App mobile', desc: 'Vos techniciens reçoivent leur feuille de route en temps réel' },
+                      { icon: '🗺️', title: 'Optimisation GPS', desc: 'Réduisez les km parcourus' },
+                      { icon: '📅', title: 'Drag & drop', desc: 'Planifiez en glissant' },
+                      { icon: '📧', title: 'Avis auto', desc: 'Envoi aux clients en 1 clic' },
+                      { icon: '📱', title: 'App mobile', desc: 'Feuille de route temps réel' },
                     ].map((point, i) => (
-                      <div key={i} className="flex items-start gap-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors">
-                        <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-lg flex items-center justify-center shrink-0 text-xl">
+                      <div key={i} className="flex items-start gap-3 p-3 bg-white/5 rounded-xl hover:bg-white/10 transition-colors">
+                        <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-lg flex items-center justify-center shrink-0 text-base">
                           {point.icon}
                         </div>
                         <div>
-                          <h4 className="font-semibold text-white mb-1">{point.title}</h4>
-                          <p className="text-white/50 text-sm">{point.desc}</p>
+                          <h4 className="font-semibold text-white text-sm">{point.title}</h4>
+                          <p className="text-white/50 text-xs">{point.desc}</p>
                         </div>
                       </div>
                     ))}
@@ -532,26 +533,26 @@ export default function HomePage() {
               {/* Tab 3: Suivi terrain */}
               {activeFeature === 3 && (
                 <div>
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-orange-500/20 text-orange-400 rounded-full text-sm mb-6">
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-orange-500/20 text-orange-400 rounded-full text-xs mb-4">
                     ✨ Points forts
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-bold mb-6">
-                    Suivez vos <span className="text-[#2dd4bf]">techniciens</span> en direct
+                  <h3 className="text-xl lg:text-2xl font-bold mb-4">
+                    Suivez en <span className="text-[#2dd4bf]">direct</span>
                   </h3>
-                  <div className="space-y-4">
+                  <div className="space-y-2">
                     {[
-                      { icon: '📍', title: 'Géolocalisation', desc: 'Visualisez la position de chaque technicien en temps réel' },
-                      { icon: '📋', title: 'Rapports mobiles', desc: 'Saisie terrain immédiate, photos, signatures électroniques' },
-                      { icon: '🔄', title: 'Synchro instantanée', desc: 'Les données remontent automatiquement dans LISA' },
-                      { icon: '✅', title: 'Validation workflow', desc: 'Circuit de validation configurable pour chaque rapport' },
+                      { icon: '📍', title: 'Géolocalisation', desc: 'Position temps réel' },
+                      { icon: '📋', title: 'Rapports mobiles', desc: 'Photos, signatures' },
+                      { icon: '🔄', title: 'Synchro instant', desc: 'Données auto dans LISA' },
+                      { icon: '✅', title: 'Workflow', desc: 'Validation configurable' },
                     ].map((point, i) => (
-                      <div key={i} className="flex items-start gap-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors">
-                        <div className="w-10 h-10 bg-gradient-to-br from-orange-500 to-amber-500 rounded-lg flex items-center justify-center shrink-0 text-xl">
+                      <div key={i} className="flex items-start gap-3 p-3 bg-white/5 rounded-xl hover:bg-white/10 transition-colors">
+                        <div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-amber-500 rounded-lg flex items-center justify-center shrink-0 text-base">
                           {point.icon}
                         </div>
                         <div>
-                          <h4 className="font-semibold text-white mb-1">{point.title}</h4>
-                          <p className="text-white/50 text-sm">{point.desc}</p>
+                          <h4 className="font-semibold text-white text-sm">{point.title}</h4>
+                          <p className="text-white/50 text-xs">{point.desc}</p>
                         </div>
                       </div>
                     ))}
@@ -562,26 +563,26 @@ export default function HomePage() {
               {/* Tab 4: Administration */}
               {activeFeature === 4 && (
                 <div>
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-pink-500/20 text-pink-400 rounded-full text-sm mb-6">
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-pink-500/20 text-pink-400 rounded-full text-xs mb-4">
                     ✨ Points forts
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-bold mb-6">
-                    Configurez <span className="text-[#2dd4bf]">tout</span> selon vos besoins
+                  <h3 className="text-xl lg:text-2xl font-bold mb-4">
+                    Configurez <span className="text-[#2dd4bf]">tout</span>
                   </h3>
-                  <div className="space-y-4">
+                  <div className="space-y-2">
                     {[
-                      { icon: '👥', title: 'Gestion des utilisateurs', desc: 'Créez des comptes, attribuez des rôles personnalisés' },
-                      { icon: '🛡️', title: 'Rôles sur-mesure', desc: 'Définissez précisément les droits de chaque profil' },
-                      { icon: '📄', title: 'Modèles de rapports', desc: 'Créez vos propres modèles avec les points de contrôle' },
-                      { icon: '⚙️', title: 'Paramètres avancés', desc: 'Intégrations, webhooks, synchronisation automatique' },
+                      { icon: '👥', title: 'Utilisateurs', desc: 'Comptes et rôles' },
+                      { icon: '🛡️', title: 'Rôles sur-mesure', desc: 'Droits précis' },
+                      { icon: '📄', title: 'Modèles rapports', desc: 'Points de contrôle' },
+                      { icon: '⚙️', title: 'Intégrations', desc: 'Webhooks, synchro auto' },
                     ].map((point, i) => (
-                      <div key={i} className="flex items-start gap-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors">
-                        <div className="w-10 h-10 bg-gradient-to-br from-pink-500 to-rose-500 rounded-lg flex items-center justify-center shrink-0 text-xl">
+                      <div key={i} className="flex items-start gap-3 p-3 bg-white/5 rounded-xl hover:bg-white/10 transition-colors">
+                        <div className="w-8 h-8 bg-gradient-to-br from-pink-500 to-rose-500 rounded-lg flex items-center justify-center shrink-0 text-base">
                           {point.icon}
                         </div>
                         <div>
-                          <h4 className="font-semibold text-white mb-1">{point.title}</h4>
-                          <p className="text-white/50 text-sm">{point.desc}</p>
+                          <h4 className="font-semibold text-white text-sm">{point.title}</h4>
+                          <p className="text-white/50 text-xs">{point.desc}</p>
                         </div>
                       </div>
                     ))}
@@ -592,26 +593,26 @@ export default function HomePage() {
               {/* Tab 5: Portail Client */}
               {activeFeature === 5 && (
                 <div>
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-slate-500/20 text-slate-400 rounded-full text-sm mb-6">
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-slate-500/20 text-slate-400 rounded-full text-xs mb-4">
                     ✨ Points forts
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-bold mb-6">
+                  <h3 className="text-xl lg:text-2xl font-bold mb-4">
                     Fidélisez vos <span className="text-[#2dd4bf]">clients</span>
                   </h3>
-                  <div className="space-y-4">
+                  <div className="space-y-2">
                     {[
-                      { icon: '🏢', title: 'Fiche client complète', desc: 'Toutes les infos : contacts, sites, équipements, historique' },
-                      { icon: '📁', title: 'Documents centralisés', desc: 'Contrats, devis, factures, rapports accessibles en 1 clic' },
-                      { icon: '🖥️', title: 'Portail client', desc: 'Vos clients accèdent à leurs données en autonomie' },
-                      { icon: '🔒', title: "Droits d'accès", desc: 'Contrôlez finement qui voit quoi dans le portail' },
+                      { icon: '🏢', title: 'Fiche complète', desc: 'Contacts, équipements' },
+                      { icon: '📁', title: 'Documents', desc: 'Tout en 1 clic' },
+                      { icon: '🖥️', title: 'Portail client', desc: 'Accès autonome' },
+                      { icon: '🔒', title: "Droits d'accès", desc: 'Contrôle fin' },
                     ].map((point, i) => (
-                      <div key={i} className="flex items-start gap-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors">
-                        <div className="w-10 h-10 bg-gradient-to-br from-slate-500 to-zinc-500 rounded-lg flex items-center justify-center shrink-0 text-xl">
+                      <div key={i} className="flex items-start gap-3 p-3 bg-white/5 rounded-xl hover:bg-white/10 transition-colors">
+                        <div className="w-8 h-8 bg-gradient-to-br from-slate-500 to-zinc-500 rounded-lg flex items-center justify-center shrink-0 text-base">
                           {point.icon}
                         </div>
                         <div>
-                          <h4 className="font-semibold text-white mb-1">{point.title}</h4>
-                          <p className="text-white/50 text-sm">{point.desc}</p>
+                          <h4 className="font-semibold text-white text-sm">{point.title}</h4>
+                          <p className="text-white/50 text-xs">{point.desc}</p>
                         </div>
                       </div>
                     ))}
@@ -620,8 +621,8 @@ export default function HomePage() {
               )}
             </div>
 
-            {/* COLONNE DROITE - Carousel des mockups détaillés */}
-            <div className="order-1 lg:order-2">
+            {/* COLONNE DROITE - Carousel des mockups détaillés (2/3 de largeur) */}
+            <div className="order-1 lg:order-2 lg:col-span-2">
               <div className="relative" onMouseEnter={() => setIsHoveringCarousel(true)} onMouseLeave={() => setIsHoveringCarousel(false)}>
                 {/* Navigation Arrows */}
                 <button onClick={() => setMockupIndex(prev => prev > 0 ? prev - 1 : totalMockups - 1)} className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 md:-translate-x-6 z-10 w-10 h-10 bg-white/10 backdrop-blur rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-colors">
@@ -996,6 +997,9 @@ export default function HomePage() {
     </div>
   );
 }
+
+
+
 
 
 
