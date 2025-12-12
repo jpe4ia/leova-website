@@ -143,6 +143,7 @@ export default function MarketingSlider() {
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <p className="text-xs uppercase tracking-[0.3em] text-[#5eead4] mb-4">Avant</p>
+                    {slide.before && (
                       <div className="space-y-3">
                         {slide.before.map(item => (
                           <div key={item} className="flex items-center gap-3 p-4 bg-[#061518] border border-white/5 rounded-2xl">
@@ -151,9 +152,11 @@ export default function MarketingSlider() {
                           </div>
                         ))}
                       </div>
+                    )}
                     </div>
                     <div>
                       <p className="text-xs uppercase tracking-[0.3em] text-[#5eead4] mb-4">Après</p>
+                    {slide.after && (
                       <div className="space-y-3">
                         {slide.after.map(item => (
                           <div key={item} className="flex items-center gap-3 p-4 bg-gradient-to-r from-[#022627] to-[#031c21] border border-[#2dd4bf]/50 rounded-2xl">
@@ -162,6 +165,7 @@ export default function MarketingSlider() {
                           </div>
                         ))}
                       </div>
+                    )}
                     </div>
                   </div>
                 )}
