@@ -940,15 +940,15 @@ export default function HomePage() {
           </div>
 
           <div className="grid lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {/* Starter - 1 utilisateur */}
+            {/* Starter - 1 à 2 utilisateurs */}
             <div className="p-8 bg-[#0f2a2a] rounded-2xl border border-white/10">
               <div className="text-[#2dd4bf] font-semibold text-sm mb-2">STARTER</div>
-              <div className="text-4xl font-bold mb-1">99€<span className="text-lg text-white/40 font-normal"> HT/mois</span></div>
+              <div className="text-4xl font-bold mb-1">450€<span className="text-lg text-white/40 font-normal"> HT/mois</span></div>
               <p className="text-white/50 text-sm mb-8">Pour les indépendants et petits organismes</p>
               
               <ul className="space-y-3 mb-8">
                 {[
-                  '1 utilisateur',
+                  '1 à 2 utilisateurs',
                   'Tous les modules inclus',
                   '10 accès Portail Client',
                   'Hébergement sécurisé France',
@@ -976,12 +976,12 @@ export default function HomePage() {
                 RECOMMANDÉ
               </div>
               <div className="text-[#2dd4bf] font-semibold text-sm mb-2">ÉQUIPE</div>
-              <div className="text-4xl font-bold mb-1">199€<span className="text-lg text-white/40 font-normal"> HT/mois</span></div>
-              <p className="text-white/50 text-sm mb-8">Pour les équipes jusqu'à 10 personnes</p>
+              <div className="text-4xl font-bold mb-1">199€<span className="text-lg text-white/40 font-normal"> HT/utilisateur/mois</span></div>
+              <p className="text-white/50 text-sm mb-8">Pour les équipes jusqu&apos;à 10 utilisateurs</p>
               
               <ul className="space-y-3 mb-8">
                 {[
-                  'Jusqu\'à 5 utilisateurs',
+                  'Jusqu\'à 10 utilisateurs',
                   'Tous les modules inclus',
                   'Portail Client illimité',
                   'Module Facturation EBP',
@@ -1198,10 +1198,10 @@ export default function HomePage() {
             </button>
 
             <h3 className="text-2xl font-bold mb-2">
-              Souscrire à LISA {showSubscribeModal === 'starter' ? 'Starter' : 'Professionnel'}
+              Souscrire à LISA {showSubscribeModal === 'starter' ? 'Starter' : 'Équipe'}
             </h3>
             <p className="text-white/60 mb-6">
-              {showSubscribeModal === 'starter' ? '99€ HT/mois' : '199€ HT/mois'} - Sans engagement
+              {showSubscribeModal === 'starter' ? '450€ HT/mois (1-2 utilisateurs)' : '199€ HT/utilisateur/mois (jusqu\'à 10)'} - Sans engagement
             </p>
 
             <div className="space-y-4">
@@ -1256,6 +1256,7 @@ export default function HomePage() {
     </div>
   );
 }
+
 
 
 
