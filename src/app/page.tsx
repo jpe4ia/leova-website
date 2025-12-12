@@ -762,20 +762,20 @@ export default function HomePage() {
           <div className="flex flex-col items-center">
             {/* Client principal - PAQA */}
             <a 
-              href="https://www.paqa.fr" 
+              href="https://www.cibio.fr" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="group bg-white/5 backdrop-blur rounded-2xl p-8 border border-white/10 hover:border-[#2dd4bf] transition-all hover:scale-105 max-w-lg w-full"
+              className="group bg-white/5 backdrop-blur rounded-2xl p-8 border border-white/10 hover:border-[#2dd4bf] transition-all hover:scale-105 max-w-xl w-full"
             >
               <div className="flex items-center gap-6">
-                <div className="w-20 h-20 bg-gradient-to-br from-[#2dd4bf] to-cyan-500 rounded-2xl flex items-center justify-center shrink-0">
-                  <span className="text-4xl font-bold text-white">P</span>
+                <div className="w-24 h-24 bg-white rounded-2xl flex items-center justify-center shrink-0 p-2">
+                  <img src="/logo-paqa.png" alt="Logo PAQA" className="w-full h-full object-contain" />
                 </div>
                 <div>
                   <h3 className="text-2xl font-bold mb-1 group-hover:text-[#2dd4bf] transition-colors">PAQA</h3>
                   <p className="text-white/50 text-sm mb-2">Organisme d'inspection accrédité COFRAC</p>
                   <p className="text-white/70 text-sm">
-                    Spécialiste du contrôle qualité en imagerie médicale et rayonnements ionisants
+                    Spécialiste du contrôle qualité en imagerie médicale, rayonnements ionisants et vérifications électriques BT
                   </p>
                 </div>
               </div>
