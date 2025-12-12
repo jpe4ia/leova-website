@@ -116,14 +116,16 @@ export default function MarketingSlider() {
                     <p className="text-xs uppercase tracking-[0.4em] text-[#5eead4]">LISA by LEOVA</p>
                     <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold">{slide.label}</h2>
                     <p className="text-lg text-white/80 max-w-3xl mx-auto">{slide.description}</p>
-                    <div className="flex flex-wrap justify-center gap-4">
-                      <a href={slide.primary.href} className="bg-[#2dd4bf] text-[#0f2a2a] px-8 py-3 rounded-full font-semibold transition hover:bg-[#5eead4]">
-                        {slide.primary.label}
-                      </a>
-                      <a href={slide.secondary.href} className="border border-white/40 px-8 py-3 rounded-full font-semibold transition hover:border-white">
-                        {slide.secondary.label}
-                      </a>
-                    </div>
+                    {slide.primary && slide.secondary && (
+                      <div className="flex flex-wrap justify-center gap-4">
+                        <a href={slide.primary.href} className="bg-[#2dd4bf] text-[#0f2a2a] px-8 py-3 rounded-full font-semibold transition hover:bg-[#5eead4]">
+                          {slide.primary.label}
+                        </a>
+                        <a href={slide.secondary.href} className="border border-white/40 px-8 py-3 rounded-full font-semibold transition hover:border-white">
+                          {slide.secondary.label}
+                        </a>
+                      </div>
+                    )}
                     <div className="flex flex-wrap justify-center gap-3 text-sm text-white/80">
                       {slide.pills.map(pill => (
                         <span key={pill} className="px-4 py-2 border border-white/20 rounded-full bg-white/5">
