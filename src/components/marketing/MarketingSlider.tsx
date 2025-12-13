@@ -27,6 +27,15 @@ import {
 import { useEffect, useState } from 'react';
 import MobileScreenshotsCarousel from '@/components/marketing/MobileScreenshotsCarousel';
 
+// Images de fond par slide
+const slideBackgrounds = [
+  '/images/slide-inspection.jpg',  // value - technicien inspection
+  '/images/slide-digital.jpg',     // before-after - transformation digitale
+  '/images/slide-workflow.jpg',    // workflow - équipe collaboration
+  '/images/slide-dashboard.jpg',   // benefits - dashboard analytics
+  '/images/slide-security.jpg',    // security - serveurs/sécurité
+];
+
 const slides = [
   {
     id: 'value',
@@ -136,13 +145,23 @@ export default function MarketingSlider() {
 
   return (
     <section className="bg-gradient-to-b from-[#010d11] via-[#051a1f] to-[#010d11] text-white relative overflow-hidden">
-      {/* Illustrations vectorielles */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Grille subtile */}
-        <div className="absolute inset-0 opacity-[0.02]" style={{
-          backgroundImage: 'linear-gradient(#2dd4bf 1px, transparent 1px), linear-gradient(90deg, #2dd4bf 1px, transparent 1px)',
-          backgroundSize: '60px 60px'
-        }} />
+      {/* Images de fond qui changent avec les slides */}
+      <div className="absolute inset-0 overflow-hidden">
+        {slideBackgrounds.map((bg, index) => (
+          <div 
+            key={bg}
+            className={`absolute inset-0 transition-opacity duration-1000 ${active === index ? 'opacity-100' : 'opacity-0'}`}
+          >
+            <img 
+              src={bg} 
+              alt="" 
+              className="w-full h-full object-cover"
+            />
+            {/* Overlay gradient pour lisibilité */}
+            <div className="absolute inset-0 bg-gradient-to-b from-[#010d11]/80 via-[#051a1f]/85 to-[#010d11]/90" />
+          </div>
+        ))}
+      </div>
         {/* Decorative elements */}
         <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#2dd4bf]/5 rounded-full blur-[120px]" />
         <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[100px]" />
