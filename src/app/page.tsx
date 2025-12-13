@@ -251,16 +251,16 @@ export default function HomePage() {
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
-        {/* Image de fond professionnelle */}
-        <div className="absolute inset-0">
+        {/* Fond dégradé de base */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0f2a2a] via-[#1a3d3d] to-[#0f2a2a]"></div>
+        {/* Image de fond professionnelle - PAR DESSUS le gradient */}
+        <div className="absolute inset-0 z-[1]">
           <img 
             src="/images/team-quality.jpg" 
             alt="" 
-            className="w-full h-full object-cover opacity-20"
+            className="w-full h-full object-cover opacity-[0.15] mix-blend-luminosity"
           />
         </div>
-        {/* Fond dégradé de base */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0f2a2a] via-[#1a3d3d]/95 to-[#0f2a2a]"></div>
         
         {/* Vagues ondulantes en arrière-plan */}
         <div className="absolute inset-0 overflow-hidden">
@@ -419,14 +419,13 @@ export default function HomePage() {
 
       {/* Product Section */}
       <section id="produit" className="py-24 bg-[#1a3d3d] relative overflow-hidden">
-        {/* Image de fond subtile */}
+        {/* Image de fond visible */}
         <div className="absolute inset-0">
           <img 
             src="/images/technician-tablet.jpg" 
             alt="" 
-            className="w-full h-full object-cover opacity-20"
+            className="w-full h-full object-cover opacity-[0.12] mix-blend-luminosity"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#1a3d3d] via-[#1a3d3d]/80 to-[#1a3d3d]" />
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -522,14 +521,13 @@ export default function HomePage() {
 
       {/* Features Section */}
       <section id="features" className="py-24 bg-[#0f2a2a] relative overflow-hidden">
-        {/* Image de fond subtile */}
+        {/* Image de fond visible */}
         <div className="absolute inset-0">
           <img 
             src="/images/industrial-control.jpg" 
             alt="" 
-            className="w-full h-full object-cover opacity-15"
+            className="w-full h-full object-cover opacity-[0.10] mix-blend-luminosity"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0f2a2a] via-[#0f2a2a]/85 to-[#0f2a2a]" />
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
@@ -973,14 +971,13 @@ export default function HomePage() {
 
       {/* Pricing Section */}
       <section id="pricing" className="py-24 bg-[#1a3d3d] relative overflow-hidden">
-        {/* Image de fond subtile */}
+        {/* Image de fond visible */}
         <div className="absolute inset-0">
           <img 
             src="/images/hero-inspection.jpg" 
             alt="" 
-            className="w-full h-full object-cover opacity-20"
+            className="w-full h-full object-cover opacity-[0.12] mix-blend-luminosity"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#1a3d3d] via-[#1a3d3d]/80 to-[#1a3d3d]" />
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
@@ -1089,14 +1086,13 @@ export default function HomePage() {
 
       {/* Contact Section */}
       <section id="contact" className="py-24 bg-[#0f2a2a] relative overflow-hidden">
-        {/* Image de fond subtile */}
+        {/* Image de fond visible */}
         <div className="absolute inset-0">
           <img 
             src="/images/professional-meeting.jpg" 
             alt="" 
-            className="w-full h-full object-cover opacity-15"
+            className="w-full h-full object-cover opacity-[0.10] mix-blend-luminosity"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0f2a2a] via-[#0f2a2a]/85 to-[#0f2a2a]" />
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16">
