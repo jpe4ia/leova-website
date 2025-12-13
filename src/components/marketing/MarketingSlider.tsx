@@ -175,17 +175,19 @@ export default function MarketingSlider() {
               >
                 {/* Slide 1: Value Proposition */}
                 {slide.id === 'value' && (
-                  <div className="space-y-8 text-center">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#2dd4bf]/20 to-cyan-500/20 border border-[#2dd4bf]/30">
-                      <Sparkles className="w-4 h-4 text-[#2dd4bf]" />
-                      <span className="text-sm font-medium text-[#5eead4] tracking-wide">LISA by LEOVA</span>
-                    </div>
-                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
-                      <span className="bg-gradient-to-r from-white via-white to-white/80 bg-clip-text text-transparent">
-                        {slide.label}
+                  <div className="space-y-6 text-center">
+                    {/* LISA avec dégradé animé comme sur la homepage */}
+                    <h2 className="text-6xl sm:text-7xl lg:text-8xl font-black tracking-tight">
+                      <span className="bg-gradient-to-r from-teal-400 via-cyan-400 to-blue-400 bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient-shift">
+                        LISA
                       </span>
                     </h2>
-                    <p className="text-lg md:text-xl text-white/70 max-w-3xl mx-auto leading-relaxed">
+                    {/* Sous-titre */}
+                    <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white/90 max-w-4xl mx-auto leading-tight">
+                      Le logiciel d'exploitation pour les métiers de l'inspection
+                    </p>
+                    {/* Description */}
+                    <p className="text-base md:text-lg text-white/60 max-w-3xl mx-auto leading-relaxed">
                       {slide.description}
                     </p>
                     {slide.primary && slide.secondary && (
