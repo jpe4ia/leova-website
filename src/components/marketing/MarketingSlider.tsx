@@ -157,8 +157,8 @@ export default function MarketingSlider() {
               alt="" 
               className="w-full h-full object-cover object-center md:object-top scale-110 md:scale-100"
             />
-            {/* Overlay gradient renforcé pour lisibilité mobile */}
-            <div className="absolute inset-0 bg-gradient-to-b from-[#010d11]/85 via-[#051a1f]/90 to-[#010d11]/95 md:from-[#010d11]/75 md:via-[#051a1f]/80 md:to-[#010d11]/85" />
+            {/* Overlay gradient - plus léger sur mobile pour mieux voir les images */}
+            <div className="absolute inset-0 bg-gradient-to-b from-[#010d11]/60 via-[#051a1f]/65 to-[#010d11]/70 md:from-[#010d11]/75 md:via-[#051a1f]/80 md:to-[#010d11]/85" />
           </div>
         ))}
       </div>
