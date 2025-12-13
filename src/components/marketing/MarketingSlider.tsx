@@ -162,11 +162,6 @@ export default function MarketingSlider() {
           </div>
         ))}
       </div>
-        {/* Decorative elements */}
-        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#2dd4bf]/5 rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[100px]" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-gradient-to-r from-transparent via-[#2dd4bf]/3 to-transparent rotate-12" />
-      </div>
 
       <div className="max-w-7xl mx-auto px-4 py-16 relative z-10">
         <div className="relative">
