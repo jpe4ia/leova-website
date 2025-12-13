@@ -145,7 +145,7 @@ export default function MarketingSlider() {
 
   return (
     <section className="bg-gradient-to-b from-[#010d11] via-[#051a1f] to-[#010d11] text-white relative overflow-hidden">
-      {/* Images de fond qui changent avec les slides */}
+      {/* Images de fond qui changent avec les slides - responsive */}
       <div className="absolute inset-0 overflow-hidden">
         {slideBackgrounds.map((bg, index) => (
           <div 
@@ -155,10 +155,10 @@ export default function MarketingSlider() {
             <img 
               src={bg} 
               alt="" 
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover object-center md:object-top scale-110 md:scale-100"
             />
-            {/* Overlay gradient pour lisibilité */}
-            <div className="absolute inset-0 bg-gradient-to-b from-[#010d11]/80 via-[#051a1f]/85 to-[#010d11]/90" />
+            {/* Overlay gradient renforcé pour lisibilité mobile */}
+            <div className="absolute inset-0 bg-gradient-to-b from-[#010d11]/85 via-[#051a1f]/90 to-[#010d11]/95 md:from-[#010d11]/75 md:via-[#051a1f]/80 md:to-[#010d11]/85" />
           </div>
         ))}
       </div>
