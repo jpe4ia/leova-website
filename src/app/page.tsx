@@ -256,7 +256,7 @@ export default function HomePage() {
           <img 
             src="/images/team-quality.jpg" 
             alt="" 
-            className="w-full h-full object-cover opacity-[0.08]"
+            className="w-full h-full object-cover opacity-20"
           />
         </div>
         {/* Fond dégradé de base */}
@@ -424,9 +424,9 @@ export default function HomePage() {
           <img 
             src="/images/technician-tablet.jpg" 
             alt="" 
-            className="w-full h-full object-cover opacity-[0.04]"
+            className="w-full h-full object-cover opacity-20"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#1a3d3d] via-[#1a3d3d]/95 to-[#1a3d3d]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#1a3d3d] via-[#1a3d3d]/80 to-[#1a3d3d]" />
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -527,9 +527,9 @@ export default function HomePage() {
           <img 
             src="/images/industrial-control.jpg" 
             alt="" 
-            className="w-full h-full object-cover opacity-[0.03]"
+            className="w-full h-full object-cover opacity-15"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0f2a2a] via-[#0f2a2a]/98 to-[#0f2a2a]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0f2a2a] via-[#0f2a2a]/85 to-[#0f2a2a]" />
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
@@ -978,9 +978,9 @@ export default function HomePage() {
           <img 
             src="/images/hero-inspection.jpg" 
             alt="" 
-            className="w-full h-full object-cover opacity-[0.04]"
+            className="w-full h-full object-cover opacity-20"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#1a3d3d] via-[#1a3d3d]/97 to-[#1a3d3d]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#1a3d3d] via-[#1a3d3d]/80 to-[#1a3d3d]" />
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
@@ -1094,9 +1094,9 @@ export default function HomePage() {
           <img 
             src="/images/professional-meeting.jpg" 
             alt="" 
-            className="w-full h-full object-cover opacity-[0.05]"
+            className="w-full h-full object-cover opacity-15"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0f2a2a] via-[#0f2a2a]/98 to-[#0f2a2a]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0f2a2a] via-[#0f2a2a]/85 to-[#0f2a2a]" />
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16">
@@ -1314,6 +1314,8 @@ export default function HomePage() {
     </div>
   );
 }
+
+
 
 
 
