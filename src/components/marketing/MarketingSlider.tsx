@@ -166,7 +166,7 @@ export default function MarketingSlider() {
       <div className="max-w-7xl mx-auto px-4 py-16 relative z-10">
         <div className="relative">
           {/* Container avec hauteur FIXE pour le carousel - empêche tout mouvement de page */}
-          <div className="relative h-[525px] md:h-[420px] overflow-hidden">
+          <div className="relative h-[630px] md:h-[505px] overflow-hidden">
             {slides.map((slide, index) => (
               <div
                 key={slide.id}
