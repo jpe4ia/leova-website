@@ -136,8 +136,19 @@ export default function MarketingSlider() {
 
   return (
     <section className="bg-gradient-to-b from-[#010d11] via-[#051a1f] to-[#010d11] text-white relative overflow-hidden">
-      {/* Decorative background elements */}
+      {/* Background images avec overlay */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Image de fond professionnelle */}
+        <div className="absolute inset-0 opacity-[0.07]">
+          <img 
+            src="/images/dashboard-analytics.jpg" 
+            alt="" 
+            className="w-full h-full object-cover"
+          />
+        </div>
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#010d11] via-[#010d11]/95 to-[#010d11]" />
+        {/* Decorative elements */}
         <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#2dd4bf]/5 rounded-full blur-[120px]" />
         <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[100px]" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-gradient-to-r from-transparent via-[#2dd4bf]/3 to-transparent rotate-12" />

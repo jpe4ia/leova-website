@@ -19,8 +19,8 @@ import {
   MockupAdminSync,
   MockupPortailClient,
 } from '@/components/mockups';
-import {
-  Shield, Users, Zap, BarChart3, FileText, Calendar,
+import { 
+  Shield, Users, Zap, BarChart3, FileText, Calendar, 
   CheckCircle, ArrowRight, Menu, X, Mail, Phone, MapPin,
   Monitor, Smartphone, Cloud, Lock, Headphones, TrendingUp,
   Building2, Wrench, ClipboardCheck, Euro, Play, ChevronDown, Loader2, RefreshCw,
@@ -251,8 +251,16 @@ export default function HomePage() {
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
+        {/* Image de fond professionnelle */}
+        <div className="absolute inset-0">
+          <img 
+            src="/images/team-quality.jpg" 
+            alt="" 
+            className="w-full h-full object-cover opacity-[0.08]"
+          />
+        </div>
         {/* Fond dégradé de base */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0f2a2a] via-[#1a3d3d] to-[#0f2a2a]"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0f2a2a] via-[#1a3d3d]/95 to-[#0f2a2a]"></div>
         
         {/* Vagues ondulantes en arrière-plan */}
         <div className="absolute inset-0 overflow-hidden">
@@ -410,8 +418,17 @@ export default function HomePage() {
       {marketingOptions.enableMarketingSlider && <MarketingSlider />}
 
       {/* Product Section */}
-      <section id="produit" className="py-24 bg-[#1a3d3d]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="produit" className="py-24 bg-[#1a3d3d] relative overflow-hidden">
+        {/* Image de fond subtile */}
+        <div className="absolute inset-0">
+          <img 
+            src="/images/technician-tablet.jpg" 
+            alt="" 
+            className="w-full h-full object-cover opacity-[0.04]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#1a3d3d] via-[#1a3d3d]/95 to-[#1a3d3d]" />
+        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
               <h2 className="text-4xl font-bold mb-6">
@@ -504,8 +521,17 @@ export default function HomePage() {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="py-24 bg-[#0f2a2a]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="features" className="py-24 bg-[#0f2a2a] relative overflow-hidden">
+        {/* Image de fond subtile */}
+        <div className="absolute inset-0">
+          <img 
+            src="/images/industrial-control.jpg" 
+            alt="" 
+            className="w-full h-full object-cover opacity-[0.03]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0f2a2a] via-[#0f2a2a]/98 to-[#0f2a2a]" />
+        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-2xl md:text-4xl font-bold mb-4">
               Fonctionnalités <span className="text-[#2dd4bf]">complètes</span>
@@ -946,8 +972,17 @@ export default function HomePage() {
       </section>
 
       {/* Pricing Section */}
-      <section id="pricing" className="py-24 bg-[#1a3d3d]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="pricing" className="py-24 bg-[#1a3d3d] relative overflow-hidden">
+        {/* Image de fond subtile */}
+        <div className="absolute inset-0">
+          <img 
+            src="/images/hero-inspection.jpg" 
+            alt="" 
+            className="w-full h-full object-cover opacity-[0.04]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#1a3d3d] via-[#1a3d3d]/97 to-[#1a3d3d]" />
+        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-2xl md:text-4xl font-bold mb-4">
               Tarification <span className="text-[#2dd4bf]">transparente</span>
@@ -1053,8 +1088,17 @@ export default function HomePage() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-24 bg-[#0f2a2a]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="contact" className="py-24 bg-[#0f2a2a] relative overflow-hidden">
+        {/* Image de fond subtile */}
+        <div className="absolute inset-0">
+          <img 
+            src="/images/professional-meeting.jpg" 
+            alt="" 
+            className="w-full h-full object-cover opacity-[0.05]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0f2a2a] via-[#0f2a2a]/98 to-[#0f2a2a]" />
+        </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16">
             {/* Left */}
             <div>
@@ -1270,6 +1314,7 @@ export default function HomePage() {
     </div>
   );
 }
+
 
 
 
