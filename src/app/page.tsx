@@ -253,13 +253,27 @@ export default function HomePage() {
       <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
         {/* Fond dégradé de base */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#0f2a2a] via-[#1a3d3d] to-[#0f2a2a]"></div>
-        {/* Image de fond professionnelle - PAR DESSUS le gradient */}
-        <div className="absolute inset-0 z-[1]">
-          <img 
-            src="/images/team-quality.jpg" 
-            alt="" 
-            className="w-full h-full object-cover opacity-[0.15] mix-blend-luminosity"
-          />
+        {/* Illustrations vectorielles flottantes */}
+        <div className="absolute inset-0 z-[1] overflow-hidden pointer-events-none">
+          {/* Icônes flottantes animées */}
+          <div className="absolute top-[15%] left-[8%] opacity-20 animate-float">
+            <FileText className="w-16 h-16 text-[#2dd4bf]" />
+          </div>
+          <div className="absolute top-[25%] right-[12%] opacity-15 animate-float" style={{ animationDelay: '1s' }}>
+            <ClipboardCheck className="w-20 h-20 text-cyan-400" />
+          </div>
+          <div className="absolute bottom-[30%] left-[15%] opacity-10 animate-float" style={{ animationDelay: '2s' }}>
+            <Calendar className="w-14 h-14 text-[#2dd4bf]" />
+          </div>
+          <div className="absolute bottom-[20%] right-[8%] opacity-20 animate-float" style={{ animationDelay: '0.5s' }}>
+            <BarChart3 className="w-18 h-18 text-teal-400" />
+          </div>
+          <div className="absolute top-[60%] left-[5%] opacity-10 animate-float" style={{ animationDelay: '1.5s' }}>
+            <Shield className="w-12 h-12 text-emerald-400" />
+          </div>
+          <div className="absolute top-[40%] right-[5%] opacity-15 animate-float" style={{ animationDelay: '2.5s' }}>
+            <Building2 className="w-16 h-16 text-cyan-300" />
+          </div>
         </div>
         
         {/* Vagues ondulantes en arrière-plan */}
@@ -419,13 +433,15 @@ export default function HomePage() {
 
       {/* Product Section */}
       <section id="produit" className="py-24 bg-[#1a3d3d] relative overflow-hidden">
-        {/* Image de fond visible */}
-        <div className="absolute inset-0">
-          <img 
-            src="/images/technician-tablet.jpg" 
-            alt="" 
-            className="w-full h-full object-cover opacity-[0.12] mix-blend-luminosity"
-          />
+        {/* Illustration vectorielle - grille de points */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute inset-0 opacity-[0.03]" style={{
+            backgroundImage: 'radial-gradient(circle at 2px 2px, #2dd4bf 1px, transparent 0)',
+            backgroundSize: '40px 40px'
+          }} />
+          {/* Cercles décoratifs */}
+          <div className="absolute -top-20 -right-20 w-80 h-80 border border-[#2dd4bf]/10 rounded-full" />
+          <div className="absolute -bottom-32 -left-32 w-96 h-96 border border-cyan-500/10 rounded-full" />
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -521,13 +537,28 @@ export default function HomePage() {
 
       {/* Features Section */}
       <section id="features" className="py-24 bg-[#0f2a2a] relative overflow-hidden">
-        {/* Image de fond visible */}
-        <div className="absolute inset-0">
-          <img 
-            src="/images/industrial-control.jpg" 
-            alt="" 
-            className="w-full h-full object-cover opacity-[0.10] mix-blend-luminosity"
-          />
+        {/* Illustration vectorielle - lignes géométriques */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {/* Lignes diagonales subtiles */}
+          <svg className="absolute inset-0 w-full h-full opacity-[0.04]" preserveAspectRatio="none">
+            <defs>
+              <pattern id="diag-lines" patternUnits="userSpaceOnUse" width="60" height="60" patternTransform="rotate(45)">
+                <line x1="0" y1="0" x2="0" y2="60" stroke="#2dd4bf" strokeWidth="1"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#diag-lines)" />
+          </svg>
+          {/* Hexagones flottants */}
+          <div className="absolute top-10 right-[10%] opacity-10">
+            <svg width="80" height="80" viewBox="0 0 100 100" className="animate-float">
+              <polygon points="50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5" fill="none" stroke="#2dd4bf" strokeWidth="2"/>
+            </svg>
+          </div>
+          <div className="absolute bottom-20 left-[5%] opacity-10">
+            <svg width="60" height="60" viewBox="0 0 100 100" className="animate-float" style={{ animationDelay: '2s' }}>
+              <polygon points="50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5" fill="none" stroke="#06b6d4" strokeWidth="2"/>
+            </svg>
+          </div>
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
@@ -971,13 +1002,21 @@ export default function HomePage() {
 
       {/* Pricing Section */}
       <section id="pricing" className="py-24 bg-[#1a3d3d] relative overflow-hidden">
-        {/* Image de fond visible */}
-        <div className="absolute inset-0">
-          <img 
-            src="/images/hero-inspection.jpg" 
-            alt="" 
-            className="w-full h-full object-cover opacity-[0.12] mix-blend-luminosity"
-          />
+        {/* Illustration vectorielle - formes abstraites */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {/* Cercles concentriques */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+            <div className="w-[600px] h-[600px] border border-[#2dd4bf]/5 rounded-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+            <div className="w-[800px] h-[800px] border border-cyan-500/5 rounded-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+            <div className="w-[1000px] h-[1000px] border border-teal-500/5 rounded-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+          </div>
+          {/* Icône Euro flottante */}
+          <div className="absolute top-[15%] right-[15%] opacity-10 animate-float">
+            <Euro className="w-12 h-12 text-[#2dd4bf]" />
+          </div>
+          <div className="absolute bottom-[20%] left-[10%] opacity-10 animate-float" style={{ animationDelay: '1.5s' }}>
+            <TrendingUp className="w-10 h-10 text-emerald-400" />
+          </div>
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
@@ -1086,13 +1125,27 @@ export default function HomePage() {
 
       {/* Contact Section */}
       <section id="contact" className="py-24 bg-[#0f2a2a] relative overflow-hidden">
-        {/* Image de fond visible */}
-        <div className="absolute inset-0">
-          <img 
-            src="/images/professional-meeting.jpg" 
-            alt="" 
-            className="w-full h-full object-cover opacity-[0.10] mix-blend-luminosity"
-          />
+        {/* Illustration vectorielle - connexions/réseau */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {/* Points connectés style réseau */}
+          <svg className="absolute inset-0 w-full h-full opacity-[0.06]" preserveAspectRatio="none">
+            <defs>
+              <pattern id="dots-pattern" patternUnits="userSpaceOnUse" width="80" height="80">
+                <circle cx="40" cy="40" r="2" fill="#2dd4bf"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#dots-pattern)" />
+          </svg>
+          {/* Icônes flottantes contact */}
+          <div className="absolute top-[20%] left-[8%] opacity-15 animate-float">
+            <Mail className="w-10 h-10 text-[#2dd4bf]" />
+          </div>
+          <div className="absolute bottom-[25%] right-[12%] opacity-10 animate-float" style={{ animationDelay: '1s' }}>
+            <Phone className="w-8 h-8 text-cyan-400" />
+          </div>
+          <div className="absolute top-[60%] right-[5%] opacity-10 animate-float" style={{ animationDelay: '2s' }}>
+            <Headphones className="w-12 h-12 text-teal-400" />
+          </div>
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16">
